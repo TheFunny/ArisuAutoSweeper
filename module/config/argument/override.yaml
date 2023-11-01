@@ -1,0 +1,40 @@
+# --------------------
+# Define non-modifiable values
+# --------------------
+
+
+# ==================== Alas ====================
+
+Alas:
+  Emulator:
+    ScreenshotMethod: scrcpy
+    ControlMethod: MaaTouch
+  Optimization:
+    ScreenshotInterval: 0.2
+    CombatScreenshotInterval: 1.0
+Restart:
+  Scheduler:
+    Enable:
+      type: state
+      value: true
+      option: [ true, ]
+      option_bold: [ true, ]
+    ServerUpdate: 04:00
+
+# ==================== Daily ====================
+
+Cafe:
+  Scheduler:
+    ServerUpdate: "04:00, 16:00"
+
+TacticalChallenge:
+  Scheduler:
+    ServerUpdate: "15:00"
+
+DataUpdate:
+  Scheduler:
+    Enable:
+      type: state
+      value: true
+      option: [ true, ]
+      option_bold: [ true, ]

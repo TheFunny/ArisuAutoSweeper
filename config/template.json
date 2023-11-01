@@ -1,0 +1,89 @@
+{
+  "Alas": {
+    "Emulator": {
+      "Serial": "auto",
+      "PackageName": "auto",
+      "GameLanguage": "auto",
+      "ScreenshotMethod": "scrcpy",
+      "ControlMethod": "MaaTouch",
+      "AdbRestart": false
+    },
+    "EmulatorInfo": {
+      "Emulator": "auto",
+      "name": null,
+      "path": null
+    },
+    "Error": {
+      "Restart": "game",
+      "SaveError": true,
+      "ScreenshotLength": 1,
+      "OnePushConfig": "provider: null"
+    },
+    "Optimization": {
+      "ScreenshotInterval": 0.2,
+      "CombatScreenshotInterval": 1.0,
+      "WhenTaskQueueEmpty": "goto_main"
+    }
+  },
+  "Restart": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Restart",
+      "ServerUpdate": "04:00"
+    }
+  },
+  "Cafe": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Cafe",
+      "ServerUpdate": "04:00, 16:00"
+    },
+    "Cafe": {
+      "Reward": true,
+      "Touch": true,
+      "AutoAdjust": true
+    }
+  },
+  "Mail": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Mail",
+      "ServerUpdate": "04:00"
+    }
+  },
+  "Circle": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Circle",
+      "ServerUpdate": "04:00"
+    }
+  },
+  "TacticalChallenge": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "TacticalChallenge",
+      "ServerUpdate": "15:00"
+    },
+    "TacticalChallenge": {
+      "PlayerSelect": 0
+    }
+  },
+  "DataUpdate": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "DataUpdate",
+      "ServerUpdate": "04:00"
+    },
+    "ItemStorage": {
+      "AP": {},
+      "Credit": {},
+      "Pyroxene": {}
+    }
+  }
+}

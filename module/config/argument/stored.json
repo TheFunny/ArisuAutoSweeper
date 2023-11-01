@@ -1,0 +1,39 @@
+{
+  "AP": {
+    "name": "AP",
+    "path": "DataUpdate.ItemStorage.AP",
+    "i18n": "ItemStorage.AP.name",
+    "stored": "StoredAP",
+    "attrs": {
+      "time": "2020-01-01 00:00:00",
+      "total": 0,
+      "value": 0
+    },
+    "order": 1,
+    "color": "#62ea6e"
+  },
+  "Credit": {
+    "name": "Credit",
+    "path": "DataUpdate.ItemStorage.Credit",
+    "i18n": "ItemStorage.Credit.name",
+    "stored": "StoredInt",
+    "attrs": {
+      "time": "2020-01-01 00:00:00",
+      "value": 0
+    },
+    "order": 2,
+    "color": "#fdec00"
+  },
+  "Pyroxene": {
+    "name": "Pyroxene",
+    "path": "DataUpdate.ItemStorage.Pyroxene",
+    "i18n": "ItemStorage.Pyroxene.name",
+    "stored": "StoredInt",
+    "attrs": {
+      "time": "2020-01-01 00:00:00",
+      "value": 0
+    },
+    "order": 3,
+    "color": "#21befc"
+  }
+}

@@ -1,0 +1,18 @@
+# --------------------
+# Define default values
+# --------------------
+
+# ==================== Alas ====================
+
+Cafe:
+  Scheduler:
+    Enable: true
+Mail:
+  Scheduler:
+    Enable: true
+Circle:
+  Scheduler:
+    Enable: true
+TacticalChallenge:
+  Scheduler:
+    Enable: true

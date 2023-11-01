@@ -1,0 +1,39 @@
+# Image processing
+numpy
+scipy
+pillow
+opencv-python
+
+# Device connection
+adbutils
+uiautomator2==2.16.17
+uiautomator2cache==0.3.0.1
+wrapt>=1.14.0
+lz4
+av==10.0.0
+psutil==5.9.3
+
+# Utils
+rich
+tqdm
+jellyfish
+pyyaml
+inflection
+prettytable==2.2.1
+pydantic
+
+# OCR
+pponnxcr==2.0
+
+# Webui
+pywebio==1.6.2
+starlette==0.14.2
+uvicorn[standard]==0.17.6
+aiofiles
+
+# Game resources
+srcmap==1.1.0
+
+# For dev
+# pip-tools
+pynput
