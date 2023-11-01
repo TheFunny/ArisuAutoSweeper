@@ -2,7 +2,7 @@ Deploy:
   Git:
     # URL of AzurLaneAutoScript repository
     # [CN user] Use 'cn' to get update from git-over-cdn service
-    # [Other] Use 'global' to get update from https://github.com/LmeSzinc/StarRailCopilot
+    # [Other] Use 'global' to get update from https://github.com/TheFunny/ArisuAutoSrcipt
     Repository: {{repository}}
     # Branch of Alas
     # [Developer] Use 'dev', 'app', etc, to try new features
