@@ -98,6 +98,8 @@ class Cafe(UI):
             case 'right':
                 self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5)
                 self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5)
+        # solve too much swipe causing restart
+        self.device.click_record_clear()
 
     def _get_reward_num(self):
         ocr = Digit(OCR_CAFE)
