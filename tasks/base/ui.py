@@ -49,6 +49,7 @@ class UI(MainPage):
             self.device.get_orientation()
 
         timeout = Timer(10, count=20).start()
+        back_timer = Timer(0.5, count=2)
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -76,8 +77,9 @@ class UI(MainPage):
                 logger.info("Additional ui page handled")
                 timeout.reset()
                 continue
-            logger.info("May be in standby main page")
-            self.device.click(BACK)
+            if back_timer.reached_and_reset():
+                logger.info("Unknown page, try to back")
+                self.device.click(BACK)
 
             app_check()
             minicap_check()
