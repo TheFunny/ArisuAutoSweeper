@@ -128,6 +128,14 @@ class ModuleBase:
             self.device.click(button)
         return appear
 
+    def click_with_interval(self, button, interval=5):
+        if interval and not self.interval_is_reached(button, interval=interval):
+            return False
+        self.device.click(button)
+        if interval:
+            self.interval_reset(button, interval=interval)
+        return True
+
     def wait_until_stable(self, button, timer=Timer(0.3, count=1), timeout=Timer(5, count=10)):
         """
         A terrible method, don't rely too much on it.
