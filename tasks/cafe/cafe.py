@@ -133,13 +133,14 @@ class Cafe(UI):
                 if self.appear_then_click(CHECK_REWARD):
                     return CafeStatus.REWARD
             case CafeStatus.REWARD:
+                if not self.appear(GET_REWARD_CLOSE):
+                    self.click_with_interval(CHECK_REWARD)
+                    return status
                 if self.match_color(GOT_REWARD):
                     self.device.click(GET_REWARD_CLOSE)
                     return CafeStatus.GOT
-                if not self.appear(GET_REWARD):
-                    return CafeStatus.OCR
                 if self.match_color(GET_REWARD):
-                    self.device.click(GET_REWARD)
+                    self.click_with_interval(GET_REWARD)
             case CafeStatus.GOT:
                 logger.info('Cafe reward have been got')
                 self.appear_then_click(GET_REWARD_CLOSE)
