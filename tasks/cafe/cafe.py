@@ -151,7 +151,7 @@ class Cafe(UI):
                 logger.attr('Clickable', self.click)
                 if not buttons:
                     return CafeStatus.CHECK
-                self.device.click(buttons[0])
+                self.click_with_interval(buttons[0], interval=1)
             case CafeStatus.CHECK:
                 buttons = self._get_clickable_buttons()
                 if not self.is_adjust_on:
@@ -194,7 +194,6 @@ class Cafe(UI):
         status = CafeStatus.STUDENT_LIST
         loading_timer = Timer(2).start()
         action_timer = Timer(1.5, count=1)  # cant be too fast
-        check_timer = Timer(1, count=1)
         is_list = False
         is_reset = False
         is_second = False
@@ -251,9 +250,6 @@ class Cafe(UI):
             if is_touch_on and not is_reset and status == CafeStatus.CLICK:
                 self._reset_cafe_position('init')
                 is_reset = True
-                continue
-
-            if status == CafeStatus.CHECK and not check_timer.reached_and_reset():
                 continue
 
             if action_timer.reached_and_reset():
