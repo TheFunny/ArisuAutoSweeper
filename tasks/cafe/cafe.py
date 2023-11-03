@@ -133,7 +133,8 @@ class Cafe(UI):
             case CafeStatus.GOT:
                 logger.info('Cafe reward have been got')
                 self.appear_then_click(GET_REWARD_CLOSE)
-                return CafeStatus.CLICK
+                if not self.appear(GET_REWARD_CLOSE):
+                    return CafeStatus.CLICK
             case CafeStatus.CLICK:
                 buttons = self._get_clickable_buttons(offset=(45, 10))
                 self.click = len(buttons)
@@ -198,7 +199,7 @@ class Cafe(UI):
 
             if not is_list and status == CafeStatus.STUDENT_LIST and self.appear(STUDENT_LIST):
                 is_list = True
-                loading_timer = Timer(5).start()
+                loading_timer = Timer(4).start()
                 continue
 
             if not is_reward_on and status == CafeStatus.OCR:
