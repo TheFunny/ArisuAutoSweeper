@@ -65,9 +65,6 @@ class ConfigModel:
     AppAsarUpdate: bool = True
     NoSandbox: bool = True
 
-    # Dynamic
-    GitOverCdn: bool = False
-
 
 class DeployConfig(ConfigModel):
     def __init__(self, file=DEPLOY_CONFIG):
@@ -82,8 +79,9 @@ class DeployConfig(ConfigModel):
 
         # Bypass webui.config.DeployConfig.__setattr__()
         # Don't write these into deploy.yaml
-        super().__setattr__('GitOverCdn', self.Repository in ['cn'])
-        if self.Repository in ['global', 'cn']:
+        if self.Repository == 'cn':
+            super().__setattr__('Repository', 'https://git.yoursfunny.top/YoursFunny/ArisuAutoSweeper.git')
+        if self.Repository == 'global':
             super().__setattr__('Repository', 'https://github.com/TheFunny/ArisuAutoSweeper')
 
         self.write()
