@@ -146,8 +146,8 @@ class TacticalChallenge(UI):
             if not ui_timer.reached():
                 continue
             if action_timer.reached_and_reset():
-                status = self._handle_challenge(status)
                 logger.attr('Status', status.name)
+                status = self._handle_challenge(status)
             if status in (TCStatus.FINAL, TCStatus.FINISHED):
                 break
 

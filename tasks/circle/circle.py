@@ -47,8 +47,8 @@ class Circle(UI):
                 status = CircleStatus.GOT
 
             if action_timer.reached_and_reset():
-                status = self._handle_circle(status)
                 logger.attr('Status', status)
+                status = self._handle_circle(status)
 
             if status is CircleStatus.FINISHED:
                 break

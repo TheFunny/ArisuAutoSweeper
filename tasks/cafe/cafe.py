@@ -257,8 +257,8 @@ class Cafe(UI):
                 continue
 
             if action_timer.reached_and_reset():
-                status = self._handle_cafe(status)
                 logger.attr('Status', status)
+                status = self._handle_cafe(status)
 
             if not is_second_cafe_on:
                 if status is CafeStatus.FINISHED:
