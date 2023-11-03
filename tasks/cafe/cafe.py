@@ -44,14 +44,14 @@ class Cafe(UI):
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         # set color range
-        lower_hsv = np.array([17, 200, 220])
-        upper_hsv = np.array([28, 255, 255])
+        lower_hsv = np.array([18, 200, 220])
+        upper_hsv = np.array([30, 255, 255])
         # get mask
         mask = cv2.inRange(hsv, lower_hsv, upper_hsv)
         # generate result
         return cv2.bitwise_and(image, image, mask=mask)
 
-    def _match_clickable_points(self, image, threshold=0.9):
+    def _match_clickable_points(self, image, threshold=0.8):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         template = self.btn.matched_button.image
         template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
@@ -60,7 +60,7 @@ class Cafe(UI):
         loc = np.where(res >= threshold)
         return [point for point in zip(*loc[::-1])]
 
-    def _get_clickable_buttons(self, threshold=0.9, offset=(0, 0)):
+    def _get_clickable_buttons(self, threshold=0.8, offset=(0, 0)):
         image = cv2.copyMakeBorder(self.device.image, 20, 20, 10, 60, cv2.BORDER_CONSTANT, value=(0, 0, 0))
         image = self._extract_clickable_from_image(image)
         points = self._match_clickable_points(image, threshold)
