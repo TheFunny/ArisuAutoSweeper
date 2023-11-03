@@ -7,9 +7,19 @@ from module.base.timer import Timer
 from module.base.button import ClickButton
 from module.base.utils.utils import area_offset
 from module.ocr.ocr import Digit
+from module.ui.switch import Switch
 from tasks.base.page import page_cafe
 from tasks.base.ui import UI
 from tasks.cafe.assets.assets_cafe import *
+
+
+SWITCH_CAFE = Switch('Cafe_switch')
+SWITCH_CAFE.add_state('off', CHANGE_CAFE_NOT_SELECTED)
+SWITCH_CAFE.add_state('on', CHANGE_CAFE_SELECTED)
+
+SWITCH_CAFE_SELECT = Switch('Cafe_switch_select')
+SWITCH_CAFE_SELECT.add_state('1', CAFE_FIRST)
+SWITCH_CAFE_SELECT.add_state('2', CAFE_SECOND)
 
 
 class CafeStatus(Enum):
@@ -177,6 +187,7 @@ class Cafe(UI):
         is_reward_on = self.config.Cafe_Reward
         is_touch_on = self.config.Cafe_Touch
         self.is_adjust_on = self.config.Cafe_AutoAdjust
+        is_second_cafe_on = self.config.Cafe_SecondCafe
 
         self.ui_ensure(page_cafe)
 
@@ -186,13 +197,38 @@ class Cafe(UI):
         check_timer = Timer(1, count=1)
         is_list = False
         is_reset = False
+        is_second = False
         is_enable = is_reward_on or is_touch_on
 
-        while is_enable:
+        while 1:
+            if not is_enable:
+                break
+
             self.device.screenshot()
 
             if self.ui_additional():
                 continue
+
+            if is_second_cafe_on and not is_second and status == CafeStatus.FINISHED:
+                if not SWITCH_CAFE.appear(main=self):
+                    logger.warning('Cafe switch not found')
+                    continue
+                if SWITCH_CAFE.get(main=self) == 'off':
+                    SWITCH_CAFE.set('on', main=self)
+                    logger.info('Switching to second cafe')
+                if not SWITCH_CAFE_SELECT.appear(main=self):
+                    logger.info('Cafe switch select not found')
+                    continue
+                match (SWITCH_CAFE_SELECT.get(main=self)):
+                    case '1':
+                        if self.click_with_interval(CAFE_SECOND):
+                            continue
+                    case '2':
+                        logger.info('Cafe second arrived')
+                        status = CafeStatus.STUDENT_LIST
+                        is_list = False
+                        is_second = True
+                        self.check = 0
 
             if not loading_timer.reached():
                 continue
@@ -224,7 +260,11 @@ class Cafe(UI):
                 status = self._handle_cafe(status)
                 logger.attr('Status', status)
 
-            if status is CafeStatus.FINISHED:
-                break
+            if not is_second_cafe_on:
+                if status is CafeStatus.FINISHED:
+                    break
+            else:
+                if is_second and status is CafeStatus.FINISHED:
+                    break
 
         self.config.task_delay(server_update=True, minute=180)

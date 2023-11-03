@@ -43,7 +43,8 @@
     "Cafe": {
       "Reward": true,
       "Touch": true,
-      "AutoAdjust": true
+      "AutoAdjust": true,
+      "SecondCafe": true
     }
   },
   "Mail": {

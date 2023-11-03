@@ -79,6 +79,7 @@ Cafe:
   Reward: true
   Touch: true
   AutoAdjust: true
+  SecondCafe: true
 
 TacticalChallenge:
   PlayerSelect:

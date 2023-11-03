@@ -201,6 +201,10 @@
     "AutoAdjust": {
       "name": "Cafe.AutoAdjust.name",
       "help": "Cafe.AutoAdjust.help"
+    },
+    "SecondCafe": {
+      "name": "Cafe.SecondCafe.name",
+      "help": "Cafe.SecondCafe.help"
     }
   },
   "TacticalChallenge": {

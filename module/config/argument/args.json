@@ -194,6 +194,10 @@
       "AutoAdjust": {
         "type": "checkbox",
         "value": true
+      },
+      "SecondCafe": {
+        "type": "checkbox",
+        "value": true
       }
     }
   },

@@ -13,6 +13,46 @@ BOX_CAFE = ButtonWrapper(
         button=(33, 130, 1247, 569),
     ),
 )
+CAFE_FIRST = ButtonWrapper(
+    name='CAFE_FIRST',
+    jp=Button(
+        file='./assets/jp/cafe/CAFE_FIRST.png',
+        area=(82, 152, 136, 175),
+        search=(62, 132, 156, 195),
+        color=(111, 127, 147),
+        button=(82, 152, 136, 175),
+    ),
+)
+CAFE_SECOND = ButtonWrapper(
+    name='CAFE_SECOND',
+    jp=Button(
+        file='./assets/jp/cafe/CAFE_SECOND.png',
+        area=(219, 152, 279, 175),
+        search=(199, 132, 299, 195),
+        color=(110, 126, 146),
+        button=(219, 152, 279, 175),
+    ),
+)
+CHANGE_CAFE_NOT_SELECTED = ButtonWrapper(
+    name='CHANGE_CAFE_NOT_SELECTED',
+    jp=Button(
+        file='./assets/jp/cafe/CHANGE_CAFE_NOT_SELECTED.png',
+        area=(84, 89, 178, 109),
+        search=(64, 69, 198, 129),
+        color=(185, 193, 203),
+        button=(84, 89, 178, 109),
+    ),
+)
+CHANGE_CAFE_SELECTED = ButtonWrapper(
+    name='CHANGE_CAFE_SELECTED',
+    jp=Button(
+        file='./assets/jp/cafe/CHANGE_CAFE_SELECTED.png',
+        area=(40, 87, 191, 112),
+        search=(20, 67, 211, 132),
+        color=(82, 105, 130),
+        button=(40, 87, 191, 112),
+    ),
+)
 CHECK_REWARD = ButtonWrapper(
     name='CHECK_REWARD',
     jp=Button(
@@ -47,20 +87,20 @@ GET_REWARD_CLOSE = ButtonWrapper(
     name='GET_REWARD_CLOSE',
     jp=Button(
         file='./assets/jp/cafe/GET_REWARD_CLOSE.png',
-        area=(891, 144, 917, 170),
-        search=(871, 124, 937, 190),
-        color=(173, 179, 189),
-        button=(891, 144, 917, 170),
+        area=(970, 134, 996, 160),
+        search=(950, 114, 1016, 180),
+        color=(172, 179, 188),
+        button=(970, 134, 996, 160),
     ),
 )
 GOT_REWARD = ButtonWrapper(
     name='GOT_REWARD',
     jp=Button(
         file='./assets/jp/cafe/GOT_REWARD.png',
-        area=(609, 507, 672, 535),
-        search=(589, 487, 692, 555),
-        color=(174, 175, 174),
-        button=(609, 507, 672, 535),
+        area=(561, 501, 718, 556),
+        search=(541, 481, 738, 576),
+        color=(209, 210, 209),
+        button=(561, 501, 718, 556),
     ),
 )
 OCR_CAFE = ButtonWrapper(

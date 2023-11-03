@@ -43,6 +43,7 @@ class GeneratedConfig:
     Cafe_Reward = True
     Cafe_Touch = True
     Cafe_AutoAdjust = True
+    Cafe_SecondCafe = True
 
     # Group `TacticalChallenge`
     TacticalChallenge_PlayerSelect = 0  # 0, 1, 2, 3

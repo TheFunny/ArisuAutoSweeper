@@ -201,6 +201,10 @@
     "AutoAdjust": {
       "name": "自动调整界面",
       "help": "在进行学生互动点击前对咖啡馆界面进行缩放和位置调整，以增加互动成功率"
+    },
+    "SecondCafe": {
+      "name": "第二咖啡厅",
+      "help": "自动切换第二咖啡厅进行互动点击"
     }
   },
   "TacticalChallenge": {
