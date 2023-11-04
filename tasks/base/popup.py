@@ -27,7 +27,7 @@ class PopupHandler(ModuleBase):
 
         return False
 
-    def handle_reward(self, interval=5) -> bool:
+    def handle_reward(self) -> bool:
         """
         Args:
             interval:
@@ -35,15 +35,13 @@ class PopupHandler(ModuleBase):
         Returns:
             If handled.
         """
-        if self.appear_then_click(GET_REWARD, interval=interval):
-            timer = Timer(0.2).start()
+        if self.appear(GET_REWARD) or self.match_color(GET_REWARD, threshold=30):
             while 1:
-                if timer.reached_and_reset():
-                    self.device.screenshot()
-                    if self.appear(GET_REWARD):
-                        self.device.click(GET_REWARD)
-                    else:
-                        break
+                self.device.screenshot()
+                if self.appear(GET_REWARD) or self.match_color(GET_REWARD, threshold=30):
+                    self.click_with_interval(GET_REWARD, interval=0.5)
+                else:
+                    break
             return True
 
         return False
