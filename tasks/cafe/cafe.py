@@ -71,7 +71,7 @@ class Cafe(UI):
         return [point for point in zip(*loc[::-1])]
 
     def _get_clickable_buttons(self, threshold=0.8, offset=(0, 0)):
-        image = cv2.copyMakeBorder(self.device.image, 20, 20, 10, 60, cv2.BORDER_CONSTANT, value=(0, 0, 0))
+        image = cv2.copyMakeBorder(self.device.image, 20, 20, 10, 80, cv2.BORDER_CONSTANT, value=(0, 0, 0))
         image = self._extract_clickable_from_image(image)
         points = self._match_clickable_points(image, threshold)
         points = self.merge_points(points)
@@ -194,7 +194,7 @@ class Cafe(UI):
 
         status = CafeStatus.STUDENT_LIST
         loading_timer = Timer(2).start()
-        action_timer = Timer(1.5, count=1)  # cant be too fast
+        action_timer = Timer(1, count=1)  # cant be too fast
         is_list = False
         is_reset = False
         is_second = False
@@ -214,7 +214,7 @@ class Cafe(UI):
 
             if not is_list and status == CafeStatus.STUDENT_LIST and self.appear(STUDENT_LIST):
                 is_list = True
-                loading_timer = Timer(4).start()
+                loading_timer = Timer(3).start()
                 continue
 
             if not is_reward_on and status == CafeStatus.OCR:
