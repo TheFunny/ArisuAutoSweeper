@@ -5,7 +5,7 @@ from tasks.base.assets.assets_base_page import LOADING_CHECK
 
 
 class PopupHandler(ModuleBase):
-    def handle_loading(self, interval=5) -> bool:
+    def handle_loading(self) -> bool:
         """
         Args:
             interval:
@@ -13,7 +13,7 @@ class PopupHandler(ModuleBase):
         Returns:
             If handled.
         """
-        if self.appear(LOADING_CHECK, interval=interval):
+        if self.appear(LOADING_CHECK):
             timer = Timer(0.5).start()
             while 1:
                 if timer.reached_and_reset():
@@ -52,13 +52,13 @@ class PopupHandler(ModuleBase):
         if self.appear_then_click(GET_REWARD_SKIP, interval=interval):
             return True
 
-    def handle_daily_news(self, interval=5) -> bool:
+    def handle_daily_news(self, interval=2) -> bool:
         if self.appear_then_click(DAILY_NEWS, interval=interval):
             return True
 
         return False
 
-    def handle_daily_reward(self, interval=5) -> bool:
+    def handle_daily_reward(self, interval=2) -> bool:
         if self.appear_then_click(DAILY_REWARD, interval=interval):
             return True
 
@@ -70,16 +70,14 @@ class PopupHandler(ModuleBase):
 
         return False
 
-    def handle_affection_level_up(self, interval=5) -> bool:
-        if self.appear_then_click(AFFECTION_LEVEL_UP, interval=interval):
-            timer = Timer(0.2).start()
+    def handle_affection_level_up(self) -> bool:
+        if self.appear_then_click(AFFECTION_LEVEL_UP):
             while 1:
-                if timer.reached_and_reset():
-                    self.device.screenshot()
-                    if self.appear(AFFECTION_LEVEL_UP):
-                        self.device.click(AFFECTION_LEVEL_UP)
-                    else:
-                        break
+                self.device.screenshot()
+                if self.appear(AFFECTION_LEVEL_UP):
+                    self.click_with_interval(AFFECTION_LEVEL_UP, interval=1)
+                else:
+                    break
             return True
 
         return False
