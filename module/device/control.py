@@ -172,7 +172,7 @@ class Control(Hermit, Minitouch, Scrcpy, MaaTouch):
             self.click(ClickButton(button=area_offset(point_random, p2), name=name))
 
     # just used in cafe
-    def pinch(self, box=(33, 130, 1247, 569), name='PINCH'):
+    def pinch(self, box=(35, 130, 1250, 560), name='PINCH'):
         self.handle_control_check(name)
         middle_point = (box[0] + box[2]) // 2, (box[1] + box[3]) // 2
         width = box[2] - middle_point[0]
