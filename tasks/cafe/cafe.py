@@ -120,6 +120,13 @@ class Cafe(UI):
         logger.attr('Reward', num)
         return num
 
+    def _cafe_additional(self) -> bool:
+        if self.appear_then_click(INVENTORY):
+            return True
+        if self.appear_then_click(MOMOTALK_CLOSE):
+            return True
+        return False
+
     def _handle_cafe(self, status):
         match status:
             case CafeStatus.STUDENT_LIST:
@@ -206,7 +213,7 @@ class Cafe(UI):
 
             self.device.screenshot()
 
-            if self.ui_additional():
+            if self.ui_additional() or self._cafe_additional():
                 continue
 
             if not loading_timer.reached():

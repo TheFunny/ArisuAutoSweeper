@@ -103,6 +103,26 @@ GOT_REWARD = ButtonWrapper(
         button=(561, 501, 718, 556),
     ),
 )
+INVENTORY = ButtonWrapper(
+    name='INVENTORY',
+    jp=Button(
+        file='./assets/jp/cafe/INVENTORY.png',
+        area=(553, 94, 725, 122),
+        search=(533, 74, 745, 142),
+        color=(198, 205, 213),
+        button=(1130, 94, 1156, 120),
+    ),
+)
+MOMOTALK_CLOSE = ButtonWrapper(
+    name='MOMOTALK_CLOSE',
+    jp=Button(
+        file='./assets/jp/cafe/MOMOTALK_CLOSE.png',
+        area=(824, 82, 850, 108),
+        search=(804, 62, 870, 128),
+        color=(252, 182, 194),
+        button=(824, 82, 850, 108),
+    ),
+)
 OCR_CAFE = ButtonWrapper(
     name='OCR_CAFE',
     jp=Button(
