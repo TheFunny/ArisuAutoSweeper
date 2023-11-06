@@ -71,7 +71,9 @@ class Cafe(UI):
         return [point for point in zip(*loc[::-1])]
 
     def _get_clickable_buttons(self, threshold=0.8, offset=(0, 0)):
-        image = cv2.copyMakeBorder(self.device.image, 20, 20, 10, 80, cv2.BORDER_CONSTANT, value=(0, 0, 0))
+        image = self.device.image
+        h, w = image.shape[:2]
+        cv2.rectangle(image, (0, 10), (w - 25, h - 10), (0, 0, 0), 50)
         image = self._extract_clickable_from_image(image)
         points = self._match_clickable_points(image, threshold)
         points = self.merge_points(points)
