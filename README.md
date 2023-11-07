@@ -1,10 +1,12 @@
-<img width="150" height="150" align="left"  style="float: left; margin: 0 10px 0 0;" alt="AAS icon" src="docs/resources/aas_icon.svg"/>
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="AAS icon" src="docs/resources/aas_icon.svg"/>
 
 # ArisuAutoScript
 
 **蔚蓝档案自动化脚本**
 
 **| [English](README.en.md) | 简体中文 |**
+
+![gui_cn.png](docs/resources/gui_cn.png)
 
 ## 功能
 
@@ -13,7 +15,7 @@
 - [x] **咖啡厅** 领取奖励 / 互动 / 第二咖啡厅
 - [x] **公会** 领取体力
 - [x] **邮箱** 领取奖励
-- [x] **战术对抗战** 领取奖励 / 自动战斗
+- [x] **战术对抗赛** 领取奖励 / 自动战斗
 
 _目前仅支持日服。_
 
