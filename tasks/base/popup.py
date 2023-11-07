@@ -65,6 +65,8 @@ class PopupHandler(ModuleBase):
     def handle_network_reconnect(self, interval=5) -> bool:
         if self.appear_then_click(NETWORK_RECONNECT, interval=interval):
             return True
+        if self.appear_then_click(NETWORK_RECONNECT_OK, interval=interval):
+            return True
 
         return False
 

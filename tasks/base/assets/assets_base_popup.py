@@ -27,9 +27,9 @@ DAILY_REWARD = ButtonWrapper(
     name='DAILY_REWARD',
     jp=Button(
         file='./assets/jp/base/popup/DAILY_REWARD.png',
-        area=(854, 117, 1008, 165),
-        search=(834, 97, 1028, 185),
-        color=(178, 167, 112),
+        area=(416, 165, 434, 216),
+        search=(396, 145, 454, 236),
+        color=(203, 227, 237),
         button=(920, 632, 1140, 712),
     ),
 )
@@ -71,5 +71,15 @@ NETWORK_RECONNECT = ButtonWrapper(
         search=(705, 468, 830, 536),
         color=(78, 138, 169),
         button=(663, 467, 870, 537),
+    ),
+)
+NETWORK_RECONNECT_OK = ButtonWrapper(
+    name='NETWORK_RECONNECT_OK',
+    jp=Button(
+        file='./assets/jp/base/popup/NETWORK_RECONNECT_OK.png',
+        area=(744, 487, 791, 515),
+        search=(724, 467, 811, 535),
+        color=(91, 165, 196),
+        button=(665, 468, 870, 536),
     ),
 )
