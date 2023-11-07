@@ -1,94 +1,94 @@
 {
   "Menu": {
     "Alas": {
-      "name": "Menu.Alas.name",
-      "help": "Menu.Alas.help"
+      "name": "AAS",
+      "help": ""
     },
     "Daily": {
-      "name": "Menu.Daily.name",
-      "help": "Menu.Daily.help"
+      "name": "Daily",
+      "help": ""
     }
   },
   "Task": {
     "Alas": {
-      "name": "Task.Alas.name",
-      "help": "Task.Alas.help"
+      "name": "AAS Settings",
+      "help": ""
     },
     "Restart": {
-      "name": "Task.Restart.name",
-      "help": "Task.Restart.help"
+      "name": "Error Handling",
+      "help": ""
     },
     "Cafe": {
-      "name": "Task.Cafe.name",
-      "help": "Task.Cafe.help"
+      "name": "Cafe",
+      "help": ""
     },
     "Mail": {
-      "name": "Task.Mail.name",
-      "help": "Task.Mail.help"
+      "name": "Mailbox",
+      "help": ""
     },
     "Circle": {
-      "name": "Task.Circle.name",
-      "help": "Task.Circle.help"
+      "name": "Circle",
+      "help": ""
     },
     "TacticalChallenge": {
-      "name": "Task.TacticalChallenge.name",
-      "help": "Task.TacticalChallenge.help"
+      "name": "Tactical Challenge",
+      "help": ""
     },
     "DataUpdate": {
-      "name": "Task.DataUpdate.name",
-      "help": "Task.DataUpdate.help"
+      "name": "Dashboard Upd",
+      "help": ""
     }
   },
   "Scheduler": {
     "_info": {
-      "name": "Scheduler._info.name",
-      "help": "Scheduler._info.help"
+      "name": "Scheduler",
+      "help": ""
     },
     "Enable": {
-      "name": "Scheduler.Enable.name",
-      "help": "Scheduler.Enable.help",
-      "True": "True",
+      "name": "Enable Task",
+      "help": "Join this task to scheduler.",
+      "True": "Enabled",
       "False": "False"
     },
     "NextRun": {
-      "name": "Scheduler.NextRun.name",
-      "help": "Scheduler.NextRun.help"
+      "name": "Next Run",
+      "help": "Updated automatically after completing the task to set next scheduled run, typically not manually modified\nHowever you can force immediate scheduling if you clear this text field"
     },
     "Command": {
-      "name": "Scheduler.Command.name",
-      "help": "Scheduler.Command.help"
+      "name": "Command",
+      "help": ""
     },
     "ServerUpdate": {
-      "name": "Scheduler.ServerUpdate.name",
-      "help": "Scheduler.ServerUpdate.help"
+      "name": "Server Update",
+      "help": "Series of server refresh time(s) as to when this task will next run, this is automatically converted to respective time zone, generally do not need to modify"
     }
   },
   "Emulator": {
     "_info": {
-      "name": "Emulator._info.name",
-      "help": "Emulator._info.help"
+      "name": "Emulator Settings",
+      "help": ""
     },
     "Serial": {
-      "name": "Emulator.Serial.name",
-      "help": "Emulator.Serial.help"
+      "name": "Serial",
+      "help": "Common emulator Serial can be queried in the list below\nUse \"auto\" to auto-detect emulators, but if multiple emulators are running or use emulators that do not support auto-detect, \"auto\" cannot be used and serial must be filled in manually\nDefault serial for select emulators:\n- BlueStacks 127.0.0.1:5555\n- BlueStacks4 Hyper-V use \"bluestacks4-hyperv\", \"bluestacks4-hyperv-2\" for multi instance, and so on\n- BlueStacks5 Hyper-V use \"bluestacks5-hyperv\", \"bluestacks5-hyperv-1\" for multi instance, and so on\n- NoxPlayer 127.0.0.1:62001\n- NoxPlayer64bit 127.0.0.1:59865\n- MuMuPlayer/MuMuPlayer X 127.0.0.1:7555\n- MuMuPlayer12 127.0.0.1:16384\n- MemuPlayer 127.0.0.1:21503\n- LDPlayer emulator-5554 or 127.0.0.1:5555\n- WSA use \"wsa-0\" to make the game run in the background, which needs to be controlled or closed by third-party software\nIf there are multiple emulator instances running, the default is reserved for one of them and the others will use different serials to avoid conflicts\nOpen console.bat and run `adb devices` to find them or follow the emulator's official tutorial"
     },
     "PackageName": {
-      "name": "Emulator.PackageName.name",
-      "help": "Emulator.PackageName.help",
-      "auto": "auto",
-      "JP-Official": "JP-Official"
+      "name": "Game Server",
+      "help": "Can't distinguish different regions of oversea servers, please select the server manually.",
+      "auto": "Auto-detect",
+      "JP-Official": "[JP]-Official"
     },
     "GameLanguage": {
-      "name": "Emulator.GameLanguage.name",
-      "help": "Emulator.GameLanguage.help",
-      "auto": "auto",
-      "jp": "jp"
+      "name": "In-game Text Language",
+      "help": "Currently, only Simplified Chinese and English are supported. Please set the text language in game to one of them.",
+      "auto": "Auto-detect",
+      "jp": "Japanese"
     },
     "ScreenshotMethod": {
-      "name": "Emulator.ScreenshotMethod.name",
-      "help": "Emulator.ScreenshotMethod.help",
-      "auto": "auto",
-      "ADB": "ADB",
+      "name": "Screenshot Method",
+      "help": "When using auto-select, a benchmark will be performed and automatically changed to the fastest screenshot method.\nGeneral speed: DroidCast_raw >> aScreenCap_nc > ADB_nc >>> aScreenCap > uiautomator2 ~= ADB.\nRun Tools - Performance Test to find the fastest method.",
+      "auto": "Auto-select the fastest",
+      "ADB": "ADB ",
       "ADB_nc": "ADB_nc",
       "uiautomator2": "uiautomator2",
       "aScreenCap": "aScreenCap",
@@ -98,127 +98,127 @@
       "scrcpy": "scrcpy"
     },
     "ControlMethod": {
-      "name": "Emulator.ControlMethod.name",
-      "help": "Emulator.ControlMethod.help",
+      "name": "Control Method",
+      "help": "Speed: MaaTouch = minitouch >>> uiautomator2 ~= ADB\nMaaTouch is recommended",
       "minitouch": "minitouch",
       "MaaTouch": "MaaTouch"
     },
     "AdbRestart": {
-      "name": "Emulator.AdbRestart.name",
-      "help": "Emulator.AdbRestart.help"
+      "name": "Try to restart adb when no device found",
+      "help": ""
     }
   },
   "EmulatorInfo": {
     "_info": {
-      "name": "EmulatorInfo._info.name",
-      "help": "EmulatorInfo._info.help"
+      "name": "Emulator Settings",
+      "help": "The following values are auto-filled according to \"Serial\", if you don’t understand, please don't modify them"
     },
     "Emulator": {
-      "name": "EmulatorInfo.Emulator.name",
-      "help": "EmulatorInfo.Emulator.help",
-      "auto": "auto",
-      "NoxPlayer": "NoxPlayer",
-      "NoxPlayer64": "NoxPlayer64",
-      "BlueStacks4": "BlueStacks4",
-      "BlueStacks5": "BlueStacks5",
-      "BlueStacks4HyperV": "BlueStacks4HyperV",
-      "BlueStacks5HyperV": "BlueStacks5HyperV",
-      "LDPlayer3": "LDPlayer3",
-      "LDPlayer4": "LDPlayer4",
-      "LDPlayer9": "LDPlayer9",
-      "MuMuPlayer": "MuMuPlayer",
-      "MuMuPlayerX": "MuMuPlayerX",
-      "MuMuPlayer12": "MuMuPlayer12",
-      "MEmuPlayer": "MEmuPlayer"
+      "name": "Emulator Type",
+      "help": "",
+      "auto": "Auto-detect",
+      "NoxPlayer": "Nox Player",
+      "NoxPlayer64": "Nox Player 64bit",
+      "BlueStacks4": "BlueStacks 4",
+      "BlueStacks5": "BlueStacks 5",
+      "BlueStacks4HyperV": "BlueStacks 4 Hyper-V",
+      "BlueStacks5HyperV": "BlueStacks 5 Hyper-V",
+      "LDPlayer3": "LD Player 3",
+      "LDPlayer4": "LD Player 4",
+      "LDPlayer9": "LD Player 9",
+      "MuMuPlayer": "MuMu Player",
+      "MuMuPlayerX": "MuMu Player X",
+      "MuMuPlayer12": "MuMu Player 12",
+      "MEmuPlayer": "MEmu Player"
     },
     "name": {
-      "name": "EmulatorInfo.name.name",
-      "help": "EmulatorInfo.name.help"
+      "name": "Emulator Instance Name",
+      "help": ""
     },
     "path": {
-      "name": "EmulatorInfo.path.name",
-      "help": "EmulatorInfo.path.help"
+      "name": "Emulator Installation Path",
+      "help": ""
     }
   },
   "Error": {
     "_info": {
-      "name": "Error._info.name",
-      "help": "Error._info.help"
+      "name": "Debug Settings",
+      "help": ""
     },
     "Restart": {
-      "name": "Error.Restart.name",
-      "help": "Error.Restart.help",
-      "game": "game",
-      "game_emulator": "game_emulator"
+      "name": "Restart Game on Error",
+      "help": "",
+      "game": "Restart game",
+      "game_emulator": "Restart emulator and game"
     },
     "SaveError": {
-      "name": "Error.SaveError.name",
-      "help": "Error.SaveError.help"
+      "name": "Record Exception",
+      "help": "Records exception and log into directory for review or sharing"
     },
     "ScreenshotLength": {
-      "name": "Error.ScreenshotLength.name",
-      "help": "Error.ScreenshotLength.help"
+      "name": "Record Screenshot(s)",
+      "help": "Number of screenshots saved when exception occurs"
     },
     "OnePushConfig": {
-      "name": "Error.OnePushConfig.name",
-      "help": "Error.OnePushConfig.help"
+      "name": "Error notify config",
+      "help": "When AAS cannot handle exception, send a message through Onepush. Configuration document: \nhttps://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Onepush-configuration-%5BEN%5D"
     }
   },
   "Optimization": {
     "_info": {
-      "name": "Optimization._info.name",
-      "help": "Optimization._info.help"
+      "name": "Optimization Settings",
+      "help": ""
     },
     "ScreenshotInterval": {
-      "name": "Optimization.ScreenshotInterval.name",
-      "help": "Optimization.ScreenshotInterval.help"
+      "name": "Take Screenshots Every X Second(s)",
+      "help": "Minimum interval between 2 screenshots, limited in 0.1 ~ 0.3, can help reduce CPU on high-end PCs"
     },
     "CombatScreenshotInterval": {
-      "name": "Optimization.CombatScreenshotInterval.name",
-      "help": "Optimization.CombatScreenshotInterval.help"
+      "name": "Take Screenshots Every X Second(s) In Combat",
+      "help": "Minimum interval between 2 screenshots, limited in 0.1 ~ 1.0, can help reduce CPU during battle"
     },
     "WhenTaskQueueEmpty": {
-      "name": "Optimization.WhenTaskQueueEmpty.name",
-      "help": "Optimization.WhenTaskQueueEmpty.help",
-      "stay_there": "stay_there",
-      "goto_main": "goto_main",
-      "close_game": "close_game"
+      "name": "When Task Queue is Empty",
+      "help": "Close AL when there are no pending tasks, can help reduce CPU",
+      "stay_there": "Stay There",
+      "goto_main": "Goto Main Page",
+      "close_game": "Close Game"
     }
   },
   "Cafe": {
     "_info": {
-      "name": "Cafe._info.name",
-      "help": "Cafe._info.help"
+      "name": "Cafe Settings",
+      "help": ""
     },
     "Reward": {
-      "name": "Cafe.Reward.name",
-      "help": "Cafe.Reward.help"
+      "name": "Claim Reward",
+      "help": ""
     },
     "Touch": {
-      "name": "Cafe.Touch.name",
-      "help": "Cafe.Touch.help"
+      "name": "Student Interaction",
+      "help": "Auto detect intractable student and click"
     },
     "AutoAdjust": {
-      "name": "Cafe.AutoAdjust.name",
-      "help": "Cafe.AutoAdjust.help"
+      "name": "Interface Auto Adjustment",
+      "help": "Auto adjust cafe interface for better student interaction"
     },
     "SecondCafe": {
-      "name": "Cafe.SecondCafe.name",
-      "help": "Cafe.SecondCafe.help"
+      "name": "Second Cafe",
+      "help": "Enable auto switch to second cafe and perform interaction"
     }
   },
   "TacticalChallenge": {
     "_info": {
-      "name": "TacticalChallenge._info.name",
-      "help": "TacticalChallenge._info.help"
+      "name": "Tactical Challenge Settings",
+      "help": ""
     },
     "PlayerSelect": {
-      "name": "TacticalChallenge.PlayerSelect.name",
-      "help": "TacticalChallenge.PlayerSelect.help",
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3"
+      "name": "Select Player",
+      "help": "",
+      "0": "Random",
+      "1": "First",
+      "2": "Second",
+      "3": "Third"
     }
   },
   "ItemStorage": {
@@ -227,118 +227,118 @@
       "help": "ItemStorage._info.help"
     },
     "AP": {
-      "name": "ItemStorage.AP.name",
-      "help": "ItemStorage.AP.help"
+      "name": "AP",
+      "help": ""
     },
     "Credit": {
-      "name": "ItemStorage.Credit.name",
-      "help": "ItemStorage.Credit.help"
+      "name": "Credit",
+      "help": ""
     },
     "Pyroxene": {
-      "name": "ItemStorage.Pyroxene.name",
-      "help": "ItemStorage.Pyroxene.help"
+      "name": "Pyroxene",
+      "help": ""
     }
   },
   "Gui": {
     "Aside": {
-      "Install": "Gui.Aside.Install",
-      "Home": "Gui.Aside.Home",
-      "Develop": "Gui.Aside.Develop",
-      "Performance": "Gui.Aside.Performance",
-      "Setting": "Gui.Aside.Setting",
-      "AddAlas": "Gui.Aside.AddAlas"
+      "Install": "Install",
+      "Home": "Home",
+      "Develop": "Develop",
+      "Performance": "Perf.",
+      "Setting": "Settings",
+      "AddAlas": "Add"
     },
     "Button": {
-      "Start": "Gui.Button.Start",
-      "Stop": "Gui.Button.Stop",
-      "ScrollON": "Gui.Button.ScrollON",
-      "ScrollOFF": "Gui.Button.ScrollOFF",
-      "ClearLog": "Gui.Button.ClearLog",
-      "Setting": "Gui.Button.Setting",
-      "CheckUpdate": "Gui.Button.CheckUpdate",
-      "ClickToUpdate": "Gui.Button.ClickToUpdate",
-      "RetryUpdate": "Gui.Button.RetryUpdate",
-      "CancelUpdate": "Gui.Button.CancelUpdate"
+      "Start": "Start",
+      "Stop": "Stop",
+      "ScrollON": "Auto Scroll ON",
+      "ScrollOFF": "Auto Scroll OFF",
+      "ClearLog": "Clear Log",
+      "Setting": "Setting",
+      "CheckUpdate": "Check update",
+      "ClickToUpdate": "Click to update",
+      "RetryUpdate": "Retry update",
+      "CancelUpdate": "Cancel update"
     },
     "Toast": {
-      "DisableTranslateMode": "Gui.Toast.DisableTranslateMode",
-      "ConfigSaved": "Gui.Toast.ConfigSaved",
-      "AlasIsRunning": "Gui.Toast.AlasIsRunning",
-      "ClickToUpdate": "Gui.Toast.ClickToUpdate"
+      "DisableTranslateMode": "Click here to disable translate mode",
+      "ConfigSaved": "Config saved",
+      "AlasIsRunning": "Scheduler is already running",
+      "ClickToUpdate": "New update available, click here to update"
     },
     "Status": {
-      "Running": "Gui.Status.Running",
-      "Inactive": "Gui.Status.Inactive",
-      "Warning": "Gui.Status.Warning",
-      "Updating": "Gui.Status.Updating"
+      "Running": "Running",
+      "Inactive": "Inactive",
+      "Warning": "Warning",
+      "Updating": "Waiting Update"
     },
     "MenuAlas": {
-      "Overview": "Gui.MenuAlas.Overview",
-      "Log": "Gui.MenuAlas.Log"
+      "Overview": "Overview",
+      "Log": "Logs"
     },
     "MenuDevelop": {
-      "HomePage": "Gui.MenuDevelop.HomePage",
-      "Translate": "Gui.MenuDevelop.Translate",
-      "Update": "Gui.MenuDevelop.Update",
-      "Remote": "Gui.MenuDevelop.Remote",
-      "Utils": "Gui.MenuDevelop.Utils"
+      "HomePage": "Home",
+      "Translate": "Translate",
+      "Update": "Updater",
+      "Remote": "Remote access",
+      "Utils": "Utils"
     },
     "Overview": {
-      "Scheduler": "Gui.Overview.Scheduler",
-      "Log": "Gui.Overview.Log",
-      "Running": "Gui.Overview.Running",
-      "Pending": "Gui.Overview.Pending",
-      "Waiting": "Gui.Overview.Waiting",
-      "NoTask": "Gui.Overview.NoTask"
+      "Scheduler": "Scheduler",
+      "Log": "Log",
+      "Running": "Running",
+      "Pending": "Pending",
+      "Waiting": "Waiting",
+      "NoTask": "No Task"
     },
     "Dashboard": {
-      "NoData": "Gui.Dashboard.NoData",
-      "TimeError": "Gui.Dashboard.TimeError",
-      "JustNow": "Gui.Dashboard.JustNow",
-      "MinutesAgo": "Gui.Dashboard.MinutesAgo",
-      "HoursAgo": "Gui.Dashboard.HoursAgo",
-      "DaysAgo": "Gui.Dashboard.DaysAgo",
-      "LongTimeAgo": "Gui.Dashboard.LongTimeAgo"
+      "NoData": "no data",
+      "TimeError": "time error",
+      "JustNow": "just now",
+      "MinutesAgo": "{time}min ago",
+      "HoursAgo": "{time}h ago",
+      "DaysAgo": "{time}d ago",
+      "LongTimeAgo": "long time ago"
     },
     "AddAlas": {
-      "PopupTitle": "Gui.AddAlas.PopupTitle",
-      "NewName": "Gui.AddAlas.NewName",
-      "CopyFrom": "Gui.AddAlas.CopyFrom",
-      "Confirm": "Gui.AddAlas.Confirm",
-      "FileExist": "Gui.AddAlas.FileExist",
-      "InvalidChar": "Gui.AddAlas.InvalidChar",
-      "InvalidPrefixTemplate": "Gui.AddAlas.InvalidPrefixTemplate"
+      "PopupTitle": "Add new config",
+      "NewName": "New name",
+      "CopyFrom": "Copy from existing config",
+      "Confirm": "Add",
+      "FileExist": "A config with the same name exists, please choose another one",
+      "InvalidChar": "Config name cannot contain any of the following characters: .\\/:*?\"<>|",
+      "InvalidPrefixTemplate": "Config name cannot start with 'template'"
     },
     "Update": {
-      "UpToDate": "Gui.Update.UpToDate",
-      "HaveUpdate": "Gui.Update.HaveUpdate",
-      "UpdateStart": "Gui.Update.UpdateStart",
-      "UpdateWait": "Gui.Update.UpdateWait",
-      "UpdateRun": "Gui.Update.UpdateRun",
-      "UpdateSuccess": "Gui.Update.UpdateSuccess",
-      "UpdateFailed": "Gui.Update.UpdateFailed",
-      "UpdateChecking": "Gui.Update.UpdateChecking",
-      "UpdateCancel": "Gui.Update.UpdateCancel",
-      "UpdateFinish": "Gui.Update.UpdateFinish",
-      "Local": "Gui.Update.Local",
-      "Upstream": "Gui.Update.Upstream",
-      "Author": "Gui.Update.Author",
-      "Time": "Gui.Update.Time",
-      "Message": "Gui.Update.Message",
-      "DisabledWarn": "Gui.Update.DisabledWarn",
-      "DetailedHistory": "Gui.Update.DetailedHistory"
+      "UpToDate": "Latest version",
+      "HaveUpdate": "A new version is available",
+      "UpdateStart": "Start update",
+      "UpdateWait": "Waiting for all AAS complete current task",
+      "UpdateRun": "Updating",
+      "UpdateSuccess": "Update succeeded, restarting",
+      "UpdateFailed": "Update failed. Logs can be found in ./log/*_gui.txt",
+      "UpdateChecking": "Checking for updates",
+      "UpdateCancel": "Update canceled, restarting AAS",
+      "UpdateFinish": "Update succeeded, please restart manually",
+      "Local": "Local",
+      "Upstream": "Upstream",
+      "Author": "Author",
+      "Time": "Commit time",
+      "Message": "Commit message",
+      "DisabledWarn": "Updater module is disabled. You need to manually restart AAS to update",
+      "DetailedHistory": "Detailed Commit History"
     },
     "Remote": {
-      "Running": "Gui.Remote.Running",
-      "NotRunning": "Gui.Remote.NotRunning",
-      "NotEnable": "Gui.Remote.NotEnable",
-      "EntryPoint": "Gui.Remote.EntryPoint",
-      "ConfigureHint": "Gui.Remote.ConfigureHint",
-      "SSHNotInstall": "Gui.Remote.SSHNotInstall"
+      "Running": "Remote access on",
+      "NotRunning": "Not running, server disconnected or offline",
+      "NotEnable": "Disabled, set webui password in deploy.yaml and enable remote access",
+      "EntryPoint": "Entry point:",
+      "ConfigureHint": "Configuration tutorial:",
+      "SSHNotInstall": "No SSH command in your system. Please refer to the tutorial to download or install one"
     },
     "Text": {
-      "InvalidFeedBack": "Gui.Text.InvalidFeedBack",
-      "Clear": "Gui.Text.Clear"
+      "InvalidFeedBack": "Invalid format. Example: {0}",
+      "Clear": "Clear"
     }
   }
 }
