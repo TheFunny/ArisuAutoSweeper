@@ -116,8 +116,8 @@ class TacticalChallenge(UI):
                 if self.appear_then_click(CHALLENGE_LOSE):
                     return TCStatus.LOSE
             case TCStatus.WIN | TCStatus.LOSE:
-                if self.appear(CHALLENGE_WIN) or self.appear(CHALLENGE_LOSE):
-                    return TCStatus.RESULT
+                if self.appear_then_click(CHALLENGE_WIN) or self.appear_then_click(CHALLENGE_LOSE):
+                    return status
                 is_valid, ticket = self._get_ticket()
                 if not is_valid:
                     return status
