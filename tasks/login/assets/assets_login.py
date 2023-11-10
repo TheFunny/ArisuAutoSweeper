@@ -23,3 +23,13 @@ LOGIN_LOADING = ButtonWrapper(
         button=(34, 682, 60, 707),
     ),
 )
+UPDATE = ButtonWrapper(
+    name='UPDATE',
+    jp=Button(
+        file='./assets/jp/login/UPDATE.png',
+        area=(526, 87, 756, 117),
+        search=(506, 67, 776, 137),
+        color=(183, 192, 201),
+        button=(666, 527, 872, 595),
+    ),
+)

@@ -3,8 +3,7 @@ from module.exception import GameNotRunningError
 from module.logger import logger
 from tasks.base.page import page_main
 from tasks.base.ui import UI
-# from tasks.login.assets.assets_login import LOGIN_CONFIRM, USER_AGREEMENT_ACCEPT, LOGIN_LOADING
-from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING
+from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING, UPDATE
 
 
 class Login(UI):
@@ -77,6 +76,8 @@ class Login(UI):
             #     continue
             # if self.handle_popup_confirm():
             #     continue
+            if self.appear_then_click(UPDATE):
+                continue
             if self.ui_additional():
                 continue
 
