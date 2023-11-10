@@ -6,6 +6,8 @@
 
 **| English | [简体中文](README.md) |**
 
+![gui_en.png](docs/resources/gui_en.png)
+
 ## Features
 
 The script is still under active development. The following features have been implemented:
