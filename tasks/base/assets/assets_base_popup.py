@@ -13,6 +13,16 @@ AFFECTION_LEVEL_UP = ButtonWrapper(
         button=(882, 244, 1176, 476),
     ),
 )
+AP_EXCEED = ButtonWrapper(
+    name='AP_EXCEED',
+    jp=Button(
+        file='./assets/jp/base/popup/AP_EXCEED.png',
+        area=(610, 124, 669, 153),
+        search=(590, 104, 689, 173),
+        color=(139, 153, 168),
+        button=(535, 494, 746, 565),
+    ),
+)
 DAILY_NEWS = ButtonWrapper(
     name='DAILY_NEWS',
     jp=Button(
@@ -61,6 +71,16 @@ GET_REWARD_SKIP = ButtonWrapper(
         search=(1117, 14, 1263, 85),
         color=(197, 200, 205),
         button=(1137, 34, 1243, 65),
+    ),
+)
+ITEM_EXPIRED = ButtonWrapper(
+    name='ITEM_EXPIRED',
+    jp=Button(
+        file='./assets/jp/base/popup/ITEM_EXPIRED.png',
+        area=(612, 147, 668, 175),
+        search=(592, 127, 688, 195),
+        color=(131, 145, 162),
+        button=(537, 487, 742, 553),
     ),
 )
 NETWORK_RECONNECT = ButtonWrapper(

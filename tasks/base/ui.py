@@ -343,6 +343,10 @@ class UI(MainPage):
             return True
         if self.handle_new_student():
             return True
+        if self.handle_ap_exceed():
+            return True
+        if self.handle_item_expired():
+            return True
 
         return False
 

@@ -87,3 +87,15 @@ class PopupHandler(ModuleBase):
             return True
 
         return False
+
+    def handle_ap_exceed(self, interval=5) -> bool:
+        if self.appear_then_click(AP_EXCEED, interval=interval):
+            return True
+
+        return False
+
+    def handle_item_expired(self, interval=5) -> bool:
+        if self.appear_then_click(ITEM_EXPIRED, interval=interval):
+            return True
+
+        return False
