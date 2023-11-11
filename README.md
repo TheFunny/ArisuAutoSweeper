@@ -24,6 +24,12 @@ _目前仅支持日服。_
 - [AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript): 碧蓝航线自动化脚本
 - [StarRailCopilot](https://github.com/LmeSzinc/StarRailCopilot): 崩坏：星穹铁道脚本，基于下一代Alas框架
 
+一些蔚蓝档案脚本：
+
+- [BAAuto](https://github.com/RedDeadDepresso/BAAuto): 蔚蓝档案自动脚本
+- [BlueArchiveAutoScript](https://github.com/pur1fying/blue_archive_auto_script): BAAS，用于实现蔚蓝档案自动化
+- [MBA](https://github.com/MaaAssistantArknights/MBA): 基于 MAA 全新架构的 BA 小助手
+
 ## 鸣谢
 
 感谢 [6bir](https://github.com/6bir) 为本项目设计的图标。

@@ -23,7 +23,14 @@ _Currently only supports JP server._
 
 - [AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript): Azur Lane auto script
 - [StarRailCopilot](https://github.com/LmeSzinc/StarRailCopilot): A bot for Honkai: Star Rail, based on the next
-  generation of ALAS framework.
+  generation of ALAS framework
+
+Some Blue Archive auto scripts:
+
+- [BAAuto](https://github.com/RedDeadDepresso/BAAuto): Blue Archive Automation Script
+- [BlueArchiveAutoScript](https://github.com/pur1fying/blue_archive_auto_script): BAAS, used to implement Blue Archive
+  automation
+- [MBA](https://github.com/MaaAssistantArknights/MBA): BA assistant based on the new architecture of MAA
 
 ## Acknowledgements
 
