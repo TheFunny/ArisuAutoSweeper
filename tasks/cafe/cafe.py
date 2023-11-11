@@ -63,8 +63,7 @@ class Cafe(UI):
 
     def _match_clickable_points(self, image, threshold=0.8):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        template = self.btn.matched_button.image
-        template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+        template = cv2.cvtColor(self.image_crop(self.btn), cv2.COLOR_BGR2GRAY)
 
         res = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
         loc = np.where(res >= threshold)
