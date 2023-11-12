@@ -27,7 +27,7 @@
       "help": ""
     },
     "Circle": {
-      "name": "Circle",
+      "name": "Club",
       "help": ""
     },
     "TacticalChallenge": {
@@ -196,7 +196,7 @@
     },
     "Touch": {
       "name": "Student Interaction",
-      "help": "Auto detect intractable student and click"
+      "help": "Auto detect intractable student and tap"
     },
     "AutoAdjust": {
       "name": "Interface Auto Adjustment",
