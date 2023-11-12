@@ -67,10 +67,10 @@ CLICKABLE_TEMPLATE = ButtonWrapper(
     name='CLICKABLE_TEMPLATE',
     jp=Button(
         file='./assets/jp/cafe/CLICKABLE_TEMPLATE.png',
-        area=(0, 0, 42, 56),
-        search=(0, 0, 62, 76),
-        color=(77, 63, 1),
-        button=(0, 0, 42, 56),
+        area=(619, 332, 660, 387),
+        search=(599, 312, 680, 407),
+        color=(79, 65, 1),
+        button=(619, 332, 660, 387),
     ),
 )
 GET_REWARD = ButtonWrapper(
