@@ -5,7 +5,7 @@ from enum import Enum
 from module.logger import logger
 from module.base.timer import Timer
 from module.base.button import ClickButton
-from module.base.utils.utils import area_offset
+from module.base.utils.utils import area_offset, crop
 from module.ocr.ocr import Digit
 from module.ui.switch import Switch
 from tasks.base.page import page_cafe
@@ -63,7 +63,7 @@ class Cafe(UI):
 
     def _match_clickable_points(self, image, threshold=0.8):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        template = cv2.cvtColor(self.image_crop(self.btn), cv2.COLOR_BGR2GRAY)
+        template = cv2.cvtColor(crop(self.btn.matched_button.image, self.btn.area), cv2.COLOR_BGR2GRAY)
 
         res = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
         loc = np.where(res >= threshold)
