@@ -76,13 +76,15 @@
       "name": "游戏服务器",
       "help": "无法区分国际服的不同地区，请手动选择服务器",
       "auto": "自动检测",
-      "JP-Official": "[日服]-官服"
+      "JP-Official": "[日服]-官服",
+      "OVERSEA-Global": "[国际服]-全球"
     },
     "GameLanguage": {
       "name": "游戏内文本语言",
       "help": "",
       "auto": "自动检测",
-      "jp": "日语"
+      "jp": "日语",
+      "en": "英语"
     },
     "ScreenshotMethod": {
       "name": "模拟器截图方案",

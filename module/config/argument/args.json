@@ -11,7 +11,8 @@
         "value": "auto",
         "option": [
           "auto",
-          "JP-Official"
+          "JP-Official",
+          "OVERSEA-Global"
         ]
       },
       "GameLanguage": {
@@ -19,7 +20,8 @@
         "value": "auto",
         "option": [
           "auto",
-          "jp"
+          "jp",
+          "en"
         ]
       },
       "ScreenshotMethod": {

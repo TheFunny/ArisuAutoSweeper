@@ -76,19 +76,21 @@
       "name": "Game Server",
       "help": "Can't distinguish different regions of oversea servers, please select the server manually.",
       "auto": "Auto-detect",
-      "JP-Official": "[JP]-Official"
+      "JP-Official": "[JP]-Official",
+      "OVERSEA-Global": "[OVERSEA]-Global"
     },
     "GameLanguage": {
       "name": "In-game Text Language",
-      "help": "Currently, only Simplified Chinese and English are supported. Please set the text language in game to one of them.",
+      "help": "",
       "auto": "Auto-detect",
-      "jp": "Japanese"
+      "jp": "Japanese",
+      "en": "English"
     },
     "ScreenshotMethod": {
       "name": "Screenshot Method",
       "help": "When using auto-select, a benchmark will be performed and automatically changed to the fastest screenshot method.\nGeneral speed: DroidCast_raw >> aScreenCap_nc > ADB_nc >>> aScreenCap > uiautomator2 ~= ADB.\nRun Tools - Performance Test to find the fastest method.",
       "auto": "Auto-select the fastest",
-      "ADB": "ADB ",
+      "ADB": "ADB",
       "ADB_nc": "ADB_nc",
       "uiautomator2": "uiautomator2",
       "aScreenCap": "aScreenCap",

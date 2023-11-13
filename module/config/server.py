@@ -5,9 +5,10 @@ Use 'import module.config.server as server' to import, don't use 'from xxx impor
 lang = 'jp'  # Setting default to cn, will avoid errors when using dev_tools
 server = 'JP-Official'
 
-VALID_LANG = ['jp']
+VALID_LANG = ['jp', 'en']
 VALID_SERVER = {
-    'JP-Official': 'com.YostarJP.BlueArchive'
+    'JP-Official': 'com.YostarJP.BlueArchive',
+    'OVERSEA-Global': 'com.nexon.bluearchive',
 }
 VALID_PACKAGE = set(list(VALID_SERVER.values()))
 
