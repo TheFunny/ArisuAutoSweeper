@@ -12,11 +12,25 @@ BOX_CAFE = ButtonWrapper(
         color=(175, 181, 186),
         button=(33, 130, 1247, 569),
     ),
+    en=Button(
+        file='./assets/en/cafe/BOX_CAFE.png',
+        area=(33, 130, 1247, 569),
+        search=(13, 110, 1267, 589),
+        color=(175, 181, 186),
+        button=(33, 130, 1247, 569),
+    ),
 )
 CAFE_FIRST = ButtonWrapper(
     name='CAFE_FIRST',
     jp=Button(
         file='./assets/jp/cafe/CAFE_FIRST.png',
+        area=(82, 152, 136, 175),
+        search=(62, 132, 156, 195),
+        color=(111, 127, 147),
+        button=(82, 152, 136, 175),
+    ),
+    en=Button(
+        file='./assets/en/cafe/CAFE_FIRST.png',
         area=(82, 152, 136, 175),
         search=(62, 132, 156, 195),
         color=(111, 127, 147),
@@ -32,11 +46,25 @@ CAFE_SECOND = ButtonWrapper(
         color=(110, 126, 146),
         button=(219, 152, 279, 175),
     ),
+    en=Button(
+        file='./assets/en/cafe/CAFE_SECOND.png',
+        area=(219, 152, 279, 175),
+        search=(199, 132, 299, 195),
+        color=(110, 126, 146),
+        button=(219, 152, 279, 175),
+    ),
 )
 CHANGE_CAFE_NOT_SELECTED = ButtonWrapper(
     name='CHANGE_CAFE_NOT_SELECTED',
     jp=Button(
         file='./assets/jp/cafe/CHANGE_CAFE_NOT_SELECTED.png',
+        area=(84, 89, 178, 109),
+        search=(64, 69, 198, 129),
+        color=(185, 193, 203),
+        button=(84, 89, 178, 109),
+    ),
+    en=Button(
+        file='./assets/en/cafe/CHANGE_CAFE_NOT_SELECTED.png',
         area=(84, 89, 178, 109),
         search=(64, 69, 198, 129),
         color=(185, 193, 203),
@@ -52,6 +80,13 @@ CHANGE_CAFE_SELECTED = ButtonWrapper(
         color=(82, 105, 130),
         button=(40, 87, 191, 112),
     ),
+    en=Button(
+        file='./assets/en/cafe/CHANGE_CAFE_SELECTED.png',
+        area=(40, 87, 191, 112),
+        search=(20, 67, 211, 132),
+        color=(82, 105, 130),
+        button=(40, 87, 191, 112),
+    ),
 )
 CHECK_REWARD = ButtonWrapper(
     name='CHECK_REWARD',
@@ -62,11 +97,25 @@ CHECK_REWARD = ButtonWrapper(
         color=(82, 105, 129),
         button=(1086, 607, 1225, 685),
     ),
+    en=Button(
+        file='./assets/en/cafe/CHECK_REWARD.png',
+        area=(1090, 613, 1229, 644),
+        search=(1070, 593, 1249, 664),
+        color=(64, 88, 115),
+        button=(1086, 611, 1229, 685),
+    ),
 )
 CLICKABLE_TEMPLATE = ButtonWrapper(
     name='CLICKABLE_TEMPLATE',
     jp=Button(
         file='./assets/jp/cafe/CLICKABLE_TEMPLATE.png',
+        area=(619, 332, 660, 387),
+        search=(599, 312, 680, 407),
+        color=(79, 65, 1),
+        button=(619, 332, 660, 387),
+    ),
+    en=Button(
+        file='./assets/en/cafe/CLICKABLE_TEMPLATE.png',
         area=(619, 332, 660, 387),
         search=(599, 312, 680, 407),
         color=(79, 65, 1),
@@ -82,6 +131,13 @@ GET_REWARD = ButtonWrapper(
         color=(159, 133, 48),
         button=(546, 494, 735, 563),
     ),
+    en=Button(
+        file='./assets/en/cafe/GET_REWARD.png',
+        area=(581, 503, 692, 536),
+        search=(561, 483, 712, 556),
+        color=(208, 190, 63),
+        button=(539, 491, 741, 555),
+    ),
 )
 GET_REWARD_CLOSE = ButtonWrapper(
     name='GET_REWARD_CLOSE',
@@ -91,6 +147,13 @@ GET_REWARD_CLOSE = ButtonWrapper(
         search=(950, 114, 1016, 180),
         color=(172, 179, 188),
         button=(970, 134, 996, 160),
+    ),
+    en=Button(
+        file='./assets/en/cafe/GET_REWARD_CLOSE.png',
+        area=(883, 134, 926, 178),
+        search=(863, 114, 946, 198),
+        color=(215, 220, 224),
+        button=(883, 134, 926, 178),
     ),
 )
 GOT_REWARD = ButtonWrapper(
@@ -102,6 +165,13 @@ GOT_REWARD = ButtonWrapper(
         color=(209, 210, 209),
         button=(561, 501, 718, 556),
     ),
+    en=Button(
+        file='./assets/en/cafe/GOT_REWARD.png',
+        area=(543, 489, 741, 558),
+        search=(523, 469, 761, 578),
+        color=(211, 212, 212),
+        button=(543, 489, 741, 558),
+    ),
 )
 INVENTORY = ButtonWrapper(
     name='INVENTORY',
@@ -112,11 +182,25 @@ INVENTORY = ButtonWrapper(
         color=(198, 205, 213),
         button=(1130, 94, 1156, 120),
     ),
+    en=Button(
+        file='./assets/en/cafe/INVENTORY.png',
+        area=(559, 90, 720, 128),
+        search=(539, 70, 740, 148),
+        color=(197, 204, 212),
+        button=(1123, 90, 1165, 130),
+    ),
 )
 MOMOTALK_CLOSE = ButtonWrapper(
     name='MOMOTALK_CLOSE',
     jp=Button(
         file='./assets/jp/cafe/MOMOTALK_CLOSE.png',
+        area=(824, 82, 850, 108),
+        search=(804, 62, 870, 128),
+        color=(252, 182, 194),
+        button=(824, 82, 850, 108),
+    ),
+    en=Button(
+        file='./assets/en/cafe/MOMOTALK_CLOSE.png',
         area=(824, 82, 850, 108),
         search=(804, 62, 870, 128),
         color=(252, 182, 194),
@@ -132,6 +216,13 @@ OCR_CAFE = ButtonWrapper(
         color=(87, 107, 129),
         button=(1103, 642, 1202, 672),
     ),
+    en=Button(
+        file='./assets/en/cafe/OCR_CAFE.png',
+        area=(1105, 639, 1195, 674),
+        search=(1085, 619, 1215, 694),
+        color=(84, 104, 127),
+        button=(1105, 639, 1195, 674),
+    ),
 )
 STUDENT_LIST = ButtonWrapper(
     name='STUDENT_LIST',
@@ -141,5 +232,12 @@ STUDENT_LIST = ButtonWrapper(
         search=(592, 152, 687, 221),
         color=(145, 157, 172),
         button=(545, 423, 738, 495),
+    ),
+    en=Button(
+        file='./assets/en/cafe/STUDENT_LIST.png',
+        area=(587, 167, 692, 203),
+        search=(567, 147, 712, 223),
+        color=(195, 202, 210),
+        button=(548, 426, 739, 493),
     ),
 )

@@ -12,4 +12,11 @@ SCROLL = ButtonWrapper(
         color=(198, 214, 210),
         button=(742, 136, 1101, 671),
     ),
+    en=Button(
+        file='./assets/en/schedule/SCROLL.png',
+        area=(727, 137, 1103, 671),
+        search=(707, 117, 1123, 691),
+        color=(198, 214, 210),
+        button=(727, 137, 1103, 671),
+    ),
 )
