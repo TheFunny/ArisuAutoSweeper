@@ -12,4 +12,11 @@ GET_REWARD_AP = ButtonWrapper(
         color=(198, 206, 213),
         button=(543, 457, 735, 524),
     ),
+    en=Button(
+        file='./assets/en/circle/GET_REWARD_AP.png',
+        area=(420, 143, 851, 182),
+        search=(400, 123, 871, 202),
+        color=(204, 212, 219),
+        button=(545, 460, 741, 521),
+    ),
 )
