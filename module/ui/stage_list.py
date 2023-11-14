@@ -43,7 +43,8 @@ class StageList:
     def __hash__(self):
         return hash(self.name)
 
-    def _get_indexes(self) -> list[int]:
+    @property
+    def _indexes(self) -> list[int]:
         return list(map(lambda x: int(x.ocr_text), self.current_indexes))
 
     def load_stage_indexes(self, main: ModuleBase):
@@ -53,7 +54,7 @@ class StageList:
         if not self.current_indexes:
             logger.warning(f'No valid index in {self.index_ocr.name}')
             return
-        indexes = self._get_indexes()
+        indexes = self._indexes
 
         self.current_index_min = min(indexes)
         self.current_index_max = max(indexes)
@@ -119,7 +120,7 @@ class StageList:
                 timeout=Timer(1.5, 5)
             )
 
-            indexes = self._get_indexes()
+            indexes = self._indexes
             if indexes and last_indexes == set(indexes):
                 logger.warning(f'No more index {index}')
                 return False
