@@ -48,9 +48,9 @@ UPDATE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/login/UPDATE.png',
-        area=(526, 87, 756, 117),
-        search=(506, 67, 776, 137),
-        color=(183, 192, 201),
-        button=(666, 527, 872, 595),
+        area=(446, 258, 686, 301),
+        search=(426, 238, 706, 321),
+        color=(216, 216, 216),
+        button=(665, 472, 872, 531),
     ),
 )
