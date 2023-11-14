@@ -206,7 +206,7 @@
     },
     "SecondCafe": {
       "name": "第二咖啡厅",
-      "help": "自动切换第二咖啡厅进行互动点击"
+      "help": "仅支持日服\n自动切换第二咖啡厅进行互动点击"
     }
   },
   "TacticalChallenge": {

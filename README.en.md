@@ -12,8 +12,8 @@
 
 The script is still under active development. The following features have been implemented:
 
-- [x] **Cafe** Claim rewards / Interact / Second cafe
-- [x] **Circle** Claim AP
+- [x] **Cafe** Claim rewards / Interact / Second floor
+- [x] **Club** Claim AP
 - [x] **Mailbox** Claim rewards
 - [x] **Tactical Challenge** Claim rewards / Auto battle
 

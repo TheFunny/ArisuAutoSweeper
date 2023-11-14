@@ -205,8 +205,8 @@
       "help": "Auto adjust cafe interface for better student interaction"
     },
     "SecondCafe": {
-      "name": "Second Cafe",
-      "help": "Enable auto switch to second cafe and perform interaction"
+      "name": "Second Floor",
+      "help": "JP server only\nEnable auto switch to second floor and perform interaction"
     }
   },
   "TacticalChallenge": {
