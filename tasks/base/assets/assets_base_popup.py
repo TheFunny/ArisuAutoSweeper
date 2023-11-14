@@ -167,9 +167,9 @@ NETWORK_RECONNECT_OK = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/popup/NETWORK_RECONNECT_OK.png',
-        area=(744, 487, 791, 515),
-        search=(724, 467, 811, 535),
-        color=(91, 165, 196),
-        button=(665, 468, 870, 536),
+        area=(569, 483, 708, 521),
+        search=(549, 463, 728, 541),
+        color=(103, 189, 222),
+        button=(540, 471, 744, 530),
     ),
 )
