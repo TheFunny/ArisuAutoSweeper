@@ -5,6 +5,7 @@ from enum import Enum
 from module.logger import logger
 from module.base.timer import Timer
 from module.base.button import ClickButton
+from module.base.decorator import Config
 from module.base.utils.utils import area_offset
 from module.ocr.ocr import Digit
 from module.ui.switch import Switch
@@ -190,6 +191,16 @@ class Cafe(UI):
                 logger.warning(f'Invalid status: {status}')
         return status
 
+    @Config.when(Emulator_GameLanguage='jp')
+    def is_second_cafe_on(self):
+        return self.config.Cafe_SecondCafe
+
+    @Config.when(Emulator_GameLanguage=None)
+    def is_second_cafe_on(self):
+        return False
+
+    is_second_cafe_on = property(is_second_cafe_on)
+
     def run(self):
         self.click = 0
         self.check = 0
@@ -197,7 +208,6 @@ class Cafe(UI):
         is_reward_on = self.config.Cafe_Reward
         is_touch_on = self.config.Cafe_Touch
         self.is_adjust_on = self.config.Cafe_AutoAdjust
-        is_second_cafe_on = self.config.Cafe_SecondCafe
 
         self.ui_ensure(page_cafe)
 
@@ -241,7 +251,7 @@ class Cafe(UI):
                 is_reset = True
                 continue
 
-            if is_second_cafe_on and not is_second and status == CafeStatus.FINISHED:
+            if self.is_second_cafe_on and not is_second and status == CafeStatus.FINISHED:
                 if not SWITCH_CAFE.appear(main=self):
                     logger.warning('Cafe switch not found')
                     continue
@@ -267,11 +277,14 @@ class Cafe(UI):
                 logger.attr('Status', status)
                 status = self._handle_cafe(status)
 
-            if not is_second_cafe_on:
+            if not self.is_second_cafe_on:
                 if status is CafeStatus.FINISHED:
+                    logger.info('Second cafe is not supported or disabled')
+                    logger.info('Cafe finished')
                     break
             else:
                 if is_second and status is CafeStatus.FINISHED:
+                    logger.info('Cafe finished')
                     break
 
         self.config.task_delay(server_update=True, minute=180)
