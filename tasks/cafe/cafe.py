@@ -33,6 +33,8 @@ class CafeStatus(Enum):
 
 
 class Cafe(UI):
+    template = CLICKABLE_TEMPLATE
+
     @staticmethod
     def merge_points(points, threshold=3):
         if len(points) <= 1:
@@ -63,7 +65,7 @@ class Cafe(UI):
 
     def _match_clickable_points(self, image, threshold=0.8):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        template = cv2.cvtColor(self.btn.matched_button.image, cv2.COLOR_BGR2GRAY)
+        template = cv2.cvtColor(self.template.matched_button.image, cv2.COLOR_BGR2GRAY)
 
         res = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
         loc = np.where(res >= threshold)
@@ -78,11 +80,11 @@ class Cafe(UI):
         points = self.merge_points(points)
         if not points:
             return []
-        area = area_offset((0, 0, self.btn.width, self.btn.height), offset)
+        area = area_offset((0, 0, self.template.width, self.template.height), offset)
         return [
             ClickButton(
                 button=area_offset(area, offset=point),
-                name=self.btn.name
+                name=self.template.name
             )
             for point in points
         ]
@@ -189,7 +191,6 @@ class Cafe(UI):
         return status
 
     def run(self):
-        self.btn = CLICKABLE_TEMPLATE
         self.click = 0
         self.check = 0
 
