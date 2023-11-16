@@ -130,17 +130,6 @@ INSUFFICIENT_INVENTORY = ButtonWrapper(
         area=(578, 117, 703, 152),
         search=(558, 97, 723, 172),
         color=(202, 209, 216),
-        button=(578, 117, 703, 152),
-    ),
-)
-INSUFFICIENT_INVENTORY_BUTTON = ButtonWrapper(
-    name='INSUFFICIENT_INVENTORY_BUTTON',
-    jp=None,
-    en=Button(
-        file='./assets/en/base/popup/INSUFFICIENT_INVENTORY_BUTTON.png',
-        area=(535, 502, 747, 560),
-        search=(515, 482, 767, 580),
-        color=(109, 205, 239),
         button=(535, 502, 747, 560),
     ),
 )
