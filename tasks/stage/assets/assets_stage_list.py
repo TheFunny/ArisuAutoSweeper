@@ -47,3 +47,14 @@ STAGE_LIST = ButtonWrapper(
     ),
     en=None,
 )
+STAGE_STARS = ButtonWrapper(
+    name='STAGE_STARS',
+    jp=Button(
+        file='./assets/jp/stage/list/STAGE_STARS.png',
+        area=(693, 192, 746, 212),
+        search=(673, 172, 766, 232),
+        color=(225, 214, 166),
+        button=(693, 192, 746, 212),
+    ),
+    en=None,
+)
