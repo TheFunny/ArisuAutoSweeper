@@ -31,10 +31,10 @@ AP_EXCEED = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/popup/AP_EXCEED.png',
-        area=(610, 124, 669, 153),
-        search=(590, 104, 689, 173),
-        color=(139, 153, 168),
-        button=(535, 494, 746, 565),
+        area=(583, 138, 693, 178),
+        search=(563, 118, 713, 198),
+        color=(197, 205, 212),
+        button=(537, 470, 747, 530),
     ),
 )
 DAILY_NEWS = ButtonWrapper(
@@ -120,6 +120,28 @@ GET_REWARD_SKIP = ButtonWrapper(
         search=(1117, 14, 1263, 85),
         color=(197, 200, 205),
         button=(1137, 34, 1243, 65),
+    ),
+)
+INSUFFICIENT_INVENTORY = ButtonWrapper(
+    name='INSUFFICIENT_INVENTORY',
+    jp=None,
+    en=Button(
+        file='./assets/en/base/popup/INSUFFICIENT_INVENTORY.png',
+        area=(578, 117, 703, 152),
+        search=(558, 97, 723, 172),
+        color=(202, 209, 216),
+        button=(578, 117, 703, 152),
+    ),
+)
+INSUFFICIENT_INVENTORY_BUTTON = ButtonWrapper(
+    name='INSUFFICIENT_INVENTORY_BUTTON',
+    jp=None,
+    en=Button(
+        file='./assets/en/base/popup/INSUFFICIENT_INVENTORY_BUTTON.png',
+        area=(535, 502, 747, 560),
+        search=(515, 482, 767, 580),
+        color=(109, 205, 239),
+        button=(535, 502, 747, 560),
     ),
 )
 ITEM_EXPIRED = ButtonWrapper(
