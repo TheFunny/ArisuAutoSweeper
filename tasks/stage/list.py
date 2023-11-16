@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 from module.base.base import ModuleBase
-from module.base.button import ClickButton
+from module.base.button import ClickButton, match_template
 from module.base.timer import Timer
 from module.base.utils import area_pad, area_size, area_offset, random_rectangle_vector_opted
 from module.logger import logger
@@ -20,6 +20,7 @@ class StageList:
             button_index: ButtonWrapper = None,
             button_item: ButtonWrapper = None,
             button_enter: ButtonWrapper = None,
+            button_stars: ButtonWrapper = None,
             drag_direction: str = "down"
     ):
         self.name = name
@@ -27,6 +28,7 @@ class StageList:
         self.index_ocr = Ocr(button_index if button_index else OCR_INDEX, lang='en')
         self.stage_item = (button_item if button_item else STAGE_ITEM).button
         self.enter = button_enter if button_enter else STAGE_ENTER
+        self.sweepable = button_stars if button_stars else STAGE_STARS
         self.drag_direction = drag_direction
 
         self.current_index_min = 1
@@ -138,11 +140,18 @@ class StageList:
         loc = np.where(res >= threshold)
         return [point for point in zip(*loc[::-1])]
 
+    def is_sweepable(self, image, main: ModuleBase, skip_first_screenshot=True) -> bool:
+        if not skip_first_screenshot:
+            main.device.screenshot()
+
+        return match_template(image, self.sweepable.matched_button.image)
+
     def select_index_enter(
             self,
             index: int,
             main: ModuleBase,
             insight: bool = True,
+            sweepable: bool = True,
             skip_first_screenshot: bool = True,
             interval: int = 5
     ) -> bool:
@@ -169,6 +178,11 @@ class StageList:
             stage_item_box = area_pad((0, 0, *area_size(self.stage_item)))
             search_box = area_offset(stage_item_box, index_box.box[:2])
             search_image = main.image_crop(search_box)
+
+            if sweepable and not self.is_sweepable(search_image, main, skip_first_screenshot):
+                logger.warning(f'Index {index} is not sweepable')
+                return False
+
             points = self._match_clickable_points(search_image, self.enter.matched_button.image)
 
             if not points:
