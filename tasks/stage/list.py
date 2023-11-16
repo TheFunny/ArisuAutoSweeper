@@ -131,8 +131,8 @@ class StageList:
 
     @staticmethod
     def _match_clickable_points(image, template, threshold=0.85):
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        template = cv2.cvtColor(template, cv2.COLOR_RGB2GRAY)
 
         res = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
         loc = np.where(res >= threshold)

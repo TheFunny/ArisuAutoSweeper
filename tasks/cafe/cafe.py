@@ -54,8 +54,7 @@ class Cafe(UI):
     @staticmethod
     def _extract_clickable_from_image(image):
         # convert to hsv for better color matching
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
         # set color range
         lower_hsv = np.array([18, 200, 220])
         upper_hsv = np.array([30, 255, 255])
@@ -65,8 +64,8 @@ class Cafe(UI):
         return cv2.bitwise_and(image, image, mask=mask)
 
     def _match_clickable_points(self, image, threshold=0.8):
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        template = cv2.cvtColor(self.template.matched_button.image, cv2.COLOR_BGR2GRAY)
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        template = cv2.cvtColor(self.template.matched_button.image, cv2.COLOR_RGB2GRAY)
 
         res = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
         loc = np.where(res >= threshold)
