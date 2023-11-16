@@ -152,6 +152,7 @@ class StageList:
             main: ModuleBase,
             insight: bool = True,
             sweepable: bool = True,
+            offset: tuple[int, int] = (-20, -15),
             skip_first_screenshot: bool = True,
             interval: int = 5
     ) -> bool:
@@ -175,7 +176,7 @@ class StageList:
                 logger.warning(f'No index {index} in {self.index_ocr.name}')
                 return False
 
-            stage_item_box = area_pad((0, 0, *area_size(self.stage_item)))
+            stage_item_box = area_pad((*offset, *area_size(self.stage_item)))
             search_box = area_offset(stage_item_box, index_box.box[:2])
             search_image = main.image_crop(search_box)
 
