@@ -154,7 +154,7 @@ class StageList:
             sweepable: bool = True,
             offset: tuple[int, int] = (-20, -15),
             skip_first_screenshot: bool = True,
-            interval: int = 5
+            interval: int = 2
     ) -> bool:
         if insight and not self.insight_index(index, main, skip_first_screenshot):
             return False
