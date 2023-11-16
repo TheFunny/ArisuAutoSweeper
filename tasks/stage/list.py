@@ -2,11 +2,12 @@ import cv2
 import numpy as np
 
 from module.base.base import ModuleBase
-from module.base.button import ButtonWrapper, ClickButton
+from module.base.button import ClickButton
 from module.base.timer import Timer
 from module.base.utils import area_pad, area_size, area_offset, random_rectangle_vector_opted
 from module.logger import logger
 from module.ocr.ocr import Ocr
+from tasks.stage.assets.assets_stage_list import *
 
 
 class StageList:
@@ -15,17 +16,17 @@ class StageList:
     def __init__(
             self,
             name,
-            area_stage: ButtonWrapper,
-            area_index: ButtonWrapper,
-            area_item: ButtonWrapper,
-            button_enter: ButtonWrapper,
+            button_list: ButtonWrapper = None,
+            button_index: ButtonWrapper = None,
+            button_item: ButtonWrapper = None,
+            button_enter: ButtonWrapper = None,
             drag_direction: str = "down"
     ):
         self.name = name
-        self.stage = area_stage
-        self.index_ocr = Ocr(area_index, lang='en')
-        self.stage_item = area_item.button
-        self.enter = button_enter
+        self.stage = button_list if button_list else STAGE_LIST
+        self.index_ocr = Ocr(button_index if button_index else OCR_INDEX, lang='en')
+        self.stage_item = (button_item if button_item else STAGE_ITEM).button
+        self.enter = button_enter if button_enter else STAGE_ENTER
         self.drag_direction = drag_direction
 
         self.current_index_min = 1
