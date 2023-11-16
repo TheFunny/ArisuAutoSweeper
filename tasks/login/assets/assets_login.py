@@ -45,17 +45,6 @@ SURVEY = ButtonWrapper(
         area=(946, 269, 994, 307),
         search=(926, 249, 1014, 327),
         color=(211, 223, 166),
-        button=(946, 269, 994, 307),
-    ),
-)
-SURVEY_BUTTON = ButtonWrapper(
-    name='SURVEY_BUTTON',
-    jp=None,
-    en=Button(
-        file='./assets/en/login/SURVEY_BUTTON.png',
-        area=(1199, 6, 1264, 75),
-        search=(1179, 0, 1280, 95),
-        color=(140, 204, 240),
         button=(1199, 6, 1264, 75),
     ),
 )
