@@ -24,10 +24,10 @@ AP_EXCEED = ButtonWrapper(
     name='AP_EXCEED',
     jp=Button(
         file='./assets/jp/base/popup/AP_EXCEED.png',
-        area=(610, 124, 669, 153),
-        search=(590, 104, 689, 173),
-        color=(139, 153, 168),
-        button=(535, 494, 746, 565),
+        area=(611, 147, 669, 177),
+        search=(591, 127, 689, 197),
+        color=(143, 156, 170),
+        button=(539, 470, 743, 533),
     ),
     en=Button(
         file='./assets/en/base/popup/AP_EXCEED.png',
@@ -124,7 +124,13 @@ GET_REWARD_SKIP = ButtonWrapper(
 )
 INSUFFICIENT_INVENTORY = ButtonWrapper(
     name='INSUFFICIENT_INVENTORY',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/base/popup/INSUFFICIENT_INVENTORY.png',
+        area=(610, 124, 669, 153),
+        search=(590, 104, 689, 173),
+        color=(139, 153, 168),
+        button=(535, 494, 746, 565),
+    ),
     en=Button(
         file='./assets/en/base/popup/INSUFFICIENT_INVENTORY.png',
         area=(578, 117, 703, 152),

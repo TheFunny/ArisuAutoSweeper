@@ -94,6 +94,12 @@ class PopupHandler(ModuleBase):
 
         return False
 
+    def handle_insufficient_inventory(self, interval=5) -> bool:
+        if self.appear_then_click(INSUFFICIENT_INVENTORY, interval=interval):
+            return True
+
+        return False
+
     def handle_item_expired(self, interval=5) -> bool:
         if self.appear_then_click(ITEM_EXPIRED, interval=interval):
             return True

@@ -345,6 +345,8 @@ class UI(MainPage):
             return True
         if self.handle_ap_exceed():
             return True
+        if self.handle_insufficient_inventory():
+            return True
         if self.handle_item_expired():
             return True
 
