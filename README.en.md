@@ -17,7 +17,10 @@ The script is still under active development. The following features have been i
 - [x] **Mailbox** Claim rewards
 - [x] **Tactical Challenge** Claim rewards / Auto battle
 
-_Currently only supports JP server._
+Supported servers:
+
+- [x] JP
+- [x] OVERSEA - Global
 
 ## Relative projects
 
@@ -38,3 +41,5 @@ Thanks to [6bir](https://github.com/6bir) for the icon design.
 
 Thanks to [Alas](https://github.com/LmeSzinc/AzurLaneAutoScript) and [SRC](https://github.com/LmeSzinc/StarRailCopilot)
 for the development framework.
+
+Thanks to [RedDeadDepresso](https://github.com/RedDeadDepresso) for EN support.

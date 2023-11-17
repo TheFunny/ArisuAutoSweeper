@@ -17,7 +17,10 @@
 - [x] **邮箱** 领取奖励
 - [x] **战术对抗赛** 领取奖励 / 自动战斗
 
-_目前仅支持日服。_
+目前支持的服务器：
+
+- [x] 日服
+- [x] 国际服 - 全球
 
 ## 相关项目
 
@@ -36,3 +39,5 @@ _目前仅支持日服。_
 
 感谢 [Alas](https://github.com/LmeSzinc/AzurLaneAutoScript) 以及 [SRC](https://github.com/LmeSzinc/StarRailCopilot)
 提供的开发框架。
+
+感谢 [RedDeadDepresso](https://github.com/RedDeadDepresso) 提供英语支持。
