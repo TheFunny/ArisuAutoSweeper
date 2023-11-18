@@ -1,9 +1,10 @@
 from module.base.timer import Timer
+from module.base.decorator import Config
 from module.exception import GameNotRunningError
 from module.logger import logger
 from tasks.base.page import page_main
 from tasks.base.ui import UI
-from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING, UPDATE
+from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING, UPDATE, SURVEY
 
 
 class Login(UI):
@@ -28,6 +29,16 @@ class Login(UI):
                             logger.info('Login to main confirm')
                             return True
                         return False
+
+        @Config.when(Emulator_GameLanguage='jp')
+        def _handle_survey():
+            pass
+
+        @Config.when(Emulator_GameLanguage='en')
+        def _handle_survey():
+            if self.appear_then_click(SURVEY):
+                return True
+            return False
 
         logger.hr('App login')
         orientation_timer = Timer(5)
@@ -77,6 +88,8 @@ class Login(UI):
             # if self.handle_popup_confirm():
             #     continue
             if self.appear_then_click(UPDATE):
+                continue
+            if _handle_survey():
                 continue
             if self.ui_additional():
                 continue
