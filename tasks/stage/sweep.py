@@ -19,11 +19,10 @@ class StageSweep:
     def __init__(
             self,
             name: str,
-            sweep_num: int,
             max_sweep: int,
     ):
         self.name = name
-        self.sweep_num = sweep_num
+        self.sweep_num = None
 
         self.check: ButtonWrapper = None
         self.num: Digit = None
@@ -45,7 +44,6 @@ class StageSweep:
         self.current_sweep = 0
 
         self.sweep_method = None
-        self.set_mode()
 
     def __str__(self):
         return f'StageSweep({self.name})'
@@ -88,9 +86,10 @@ class StageSweep:
         self.skip_ok_upper = button_skip_ok_upper if button_skip_ok_upper else SKIP_OK_UPPER
         self.skip_ok_lower = button_skip_ok_lower if button_skip_ok_lower else SKIP_OK_LOWER
 
-    def set_mode(self, mode: str = None):
-        if mode is None:
-            match self.sweep_num:
+    def set_mode(self, mode: str = None, num: int = None) -> bool:
+        if num is not None:
+            self.sweep_num = num
+            match num:
                 case 0:
                     self.sweep_method = self.set_sweep_min
                 case -1:
@@ -98,15 +97,19 @@ class StageSweep:
                 case x if x > 0:
                     self.sweep_method = self.set_sweep_num
                 case _:
-                    logger.warning(f'Invalid sweep num: {self.sweep_num}')
-            return
-        match mode:
-            case 'max':
-                self.sweep_method = self.set_sweep_max
-            case 'min':
-                self.sweep_method = self.set_sweep_min
-            case _:
-                logger.warning(f'Invalid sweep mode: {mode}')
+                    logger.warning(f'Invalid sweep num: {num}')
+            return True
+        if mode is not None:
+            match mode:
+                case 'max':
+                    self.sweep_method = self.set_sweep_max
+                case 'min':
+                    self.sweep_method = self.set_sweep_min
+                case _:
+                    logger.warning(f'Invalid sweep mode: {mode}')
+            return True
+        logger.warning(f'Invalid sweep setting')
+        return False
 
     def check_sweep(self, main: ModuleBase):
         return main.appear(self.check)
@@ -115,8 +118,11 @@ class StageSweep:
         return main.appear(self.skip_skip) or main.appear(self.skip_ok_upper) or main.appear(self.skip_ok_lower)
 
     def load_sweep_num(self, main: ModuleBase):
+        timer = Timer(0.5, 2).start()
         while 1:
             main.device.screenshot()
+            if not timer.reached_and_reset():
+                continue
             ocr_result = self.num.detect_and_ocr(main.device.image)
             if not ocr_result:
                 logger.warning(f'No valid num in {self.num.name}')
@@ -204,7 +210,9 @@ class StageSweep:
             if retry.reached_and_reset():
                 main.click_with_interval(self.min, interval=0)
 
-    def do_sweep(self, main: ModuleBase, skip_first_screenshot=True) -> bool:
+    def do_sweep(self, main: ModuleBase, mode: str = None, num: int = None, skip_first_screenshot=True) -> bool:
+        if not self.set_mode(mode, num):
+            return False
         timer = Timer(0.5, 1)
         timer_stable = Timer(0.5, 1).start()
         status = SweepStatus.SELECT
