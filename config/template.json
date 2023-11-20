@@ -84,7 +84,10 @@
     "ItemStorage": {
       "AP": {},
       "Credit": {},
-      "Pyroxene": {}
+      "Pyroxene": {},
+      "BountyTicket": {},
+      "ScrimmageTicket": {},
+      "TacticalChallengeTicket": {}
     }
   }
 }

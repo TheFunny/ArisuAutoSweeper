@@ -239,6 +239,18 @@
     "Pyroxene": {
       "name": "青辉石",
       "help": ""
+    },
+    "BountyTicket": {
+      "name": "悬赏通缉票券",
+      "help": ""
+    },
+    "ScrimmageTicket": {
+      "name": "学院交流会票券",
+      "help": ""
+    },
+    "TacticalChallengeTicket": {
+      "name": "战术对抗赛票券",
+      "help": ""
     }
   },
   "Gui": {

@@ -239,6 +239,18 @@
     "Pyroxene": {
       "name": "Pyroxene",
       "help": ""
+    },
+    "BountyTicket": {
+      "name": "Bounty Ticket",
+      "help": ""
+    },
+    "ScrimmageTicket": {
+      "name": "Scrimmage Ticket",
+      "help": ""
+    },
+    "TacticalChallengeTicket": {
+      "name": "Tactical Challenge Ticket",
+      "help": ""
     }
   },
   "Gui": {

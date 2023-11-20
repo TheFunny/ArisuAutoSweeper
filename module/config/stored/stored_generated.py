@@ -1,10 +1,9 @@
 from module.config.stored.classes import (
     StoredAP,
-    StoredBase,
-    StoredCounter,
-    StoredExpiredAt0400,
-    StoredExpiredAtMonday0400,
+    StoredBountyTicket,
     StoredInt,
+    StoredScrimmageTicket,
+    StoredTacticalChallengeTicket,
 )
 
 
@@ -15,3 +14,6 @@ class StoredGenerated:
     AP = StoredAP("DataUpdate.ItemStorage.AP")
     Credit = StoredInt("DataUpdate.ItemStorage.Credit")
     Pyroxene = StoredInt("DataUpdate.ItemStorage.Pyroxene")
+    BountyTicket = StoredBountyTicket("DataUpdate.ItemStorage.BountyTicket")
+    ScrimmageTicket = StoredScrimmageTicket("DataUpdate.ItemStorage.ScrimmageTicket")
+    TacticalChallengeTicket = StoredTacticalChallengeTicket("DataUpdate.ItemStorage.TacticalChallengeTicket")

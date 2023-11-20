@@ -52,3 +52,6 @@ class GeneratedConfig:
     ItemStorage_AP = {}
     ItemStorage_Credit = {}
     ItemStorage_Pyroxene = {}
+    ItemStorage_BountyTicket = {}
+    ItemStorage_ScrimmageTicket = {}
+    ItemStorage_TacticalChallengeTicket = {}

@@ -35,5 +35,44 @@
     },
     "order": 3,
     "color": "#21befc"
+  },
+  "BountyTicket": {
+    "name": "BountyTicket",
+    "path": "DataUpdate.ItemStorage.BountyTicket",
+    "i18n": "ItemStorage.BountyTicket.name",
+    "stored": "StoredBountyTicket",
+    "attrs": {
+      "time": "2020-01-01 00:00:00",
+      "total": 6,
+      "value": 0
+    },
+    "order": 4,
+    "color": "#94cb44"
+  },
+  "ScrimmageTicket": {
+    "name": "ScrimmageTicket",
+    "path": "DataUpdate.ItemStorage.ScrimmageTicket",
+    "i18n": "ItemStorage.ScrimmageTicket.name",
+    "stored": "StoredScrimmageTicket",
+    "attrs": {
+      "time": "2020-01-01 00:00:00",
+      "total": 6,
+      "value": 0
+    },
+    "order": 5,
+    "color": "#f86c6a"
+  },
+  "TacticalChallengeTicket": {
+    "name": "TacticalChallengeTicket",
+    "path": "DataUpdate.ItemStorage.TacticalChallengeTicket",
+    "i18n": "ItemStorage.TacticalChallengeTicket.name",
+    "stored": "StoredTacticalChallengeTicket",
+    "attrs": {
+      "time": "2020-01-01 00:00:00",
+      "total": 5,
+      "value": 0
+    },
+    "order": 6,
+    "color": "#7ac8e5"
   }
 }
