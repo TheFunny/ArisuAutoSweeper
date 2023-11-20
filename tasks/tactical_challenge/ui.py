@@ -1,3 +1,4 @@
+from module.base.timer import Timer
 from module.logger import logger
 from module.ocr.ocr import DigitCounter
 from module.ui.switch import Switch
@@ -24,19 +25,19 @@ class TacticalChallengeUI(UI):
         return True
 
     def get_reward(self):
-        if self.match_color(GET_REWARD_DAILY):
-            self.device.click(GET_REWARD_DAILY)
-            logger.info('Get tc daily reward')
-            return True
-        if self.match_color(GET_REWARD_CREDIT):
-            self.device.click(GET_REWARD_CREDIT)
-            logger.info('Get tc credit reward')
-            return True
-        if self.match_color(GOT_REWARD_DAILY) and self.match_color(GOT_REWARD_CREDIT):
-            logger.info('Both tc reward got')
-            return True
-
-        return False
+        timer = Timer(10, 10).start()
+        while 1:
+            self.device.screenshot()
+            if self.match_color(GOT_REWARD_DAILY) and self.match_color(GOT_REWARD_CREDIT):
+                return True
+            if self.match_color(GET_REWARD_DAILY):
+                self.device.click(GET_REWARD_DAILY)
+                logger.info('Get daily reward')
+            if self.match_color(GET_REWARD_CREDIT):
+                self.device.click(GET_REWARD_CREDIT)
+                logger.info('Get credit reward')
+            if timer.reached():
+                return False
 
     def set_skip(self):
         """
