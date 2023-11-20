@@ -35,6 +35,12 @@ Daily:
       - Highway
       - DesertRailroad
       - Schoolhouse
+    Scrimmage:
+      - Scheduler
+      - Scrimmage
+      - Trinity
+      - Gehenna
+      - Millennium
     TacticalChallenge:
       - Scheduler
       - TacticalChallenge

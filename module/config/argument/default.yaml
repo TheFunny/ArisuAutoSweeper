@@ -16,6 +16,9 @@ Circle:
 Bounty:
   Scheduler:
     Enable: true
+Scrimmage:
+  Scheduler:
+    Enable: true
 TacticalChallenge:
   Scheduler:
     Enable: true

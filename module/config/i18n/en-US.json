@@ -34,6 +34,10 @@
       "name": "Bounty",
       "help": ""
     },
+    "Scrimmage": {
+      "name": "Scrimmage",
+      "help": ""
+    },
     "TacticalChallenge": {
       "name": "Tactical Challenge",
       "help": ""
@@ -288,6 +292,72 @@
       "7": "07 - Besieged Classroom G",
       "8": "08 - Besieged Classroom H",
       "9": "09 - Besieged Classroom I"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "Scrimmage": {
+    "_info": {
+      "name": "Scrimmage Settings",
+      "help": ""
+    },
+    "OnError": {
+      "name": "Error Handling",
+      "help": "Perform the selected action when an error occurs (ticket not enough or any invalid setting)",
+      "stop": "Stop script",
+      "skip": "Skip current task"
+    }
+  },
+  "Trinity": {
+    "_info": {
+      "name": "Trinity",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "1": "01 - Trinity A",
+      "2": "02 - Trinity B",
+      "3": "03 - Trinity C",
+      "4": "04 - Trinity D"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "Gehenna": {
+    "_info": {
+      "name": "Gehenna",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "1": "01 - Gehenna A",
+      "2": "02 - Gehenna B",
+      "3": "03 - Gehenna C",
+      "4": "04 - Gehenna D"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "Millennium": {
+    "_info": {
+      "name": "Millennium",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "1": "01 - Millennium A",
+      "2": "02 - Millennium B",
+      "3": "03 - Millennium C",
+      "4": "04 - Millennium D"
     },
     "Count": {
       "name": "Sweep X times",

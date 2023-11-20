@@ -86,6 +86,29 @@
       "Count": 2
     }
   },
+  "Scrimmage": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Scrimmage",
+      "ServerUpdate": "04:00"
+    },
+    "Scrimmage": {
+      "OnError": "skip"
+    },
+    "Trinity": {
+      "Stage": 1,
+      "Count": 2
+    },
+    "Gehenna": {
+      "Stage": 1,
+      "Count": 2
+    },
+    "Millennium": {
+      "Stage": 1,
+      "Count": 2
+    }
+  },
   "TacticalChallenge": {
     "Scheduler": {
       "Enable": true,

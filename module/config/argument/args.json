@@ -357,6 +357,91 @@
       }
     }
   },
+  "Scrimmage": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Scrimmage",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Scrimmage": {
+      "OnError": {
+        "type": "select",
+        "value": "skip",
+        "option": [
+          "stop",
+          "skip"
+        ]
+      }
+    },
+    "Trinity": {
+      "Stage": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    },
+    "Gehenna": {
+      "Stage": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    },
+    "Millennium": {
+      "Stage": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    }
+  },
   "TacticalChallenge": {
     "Scheduler": {
       "Enable": {
