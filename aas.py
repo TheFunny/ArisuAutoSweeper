@@ -34,6 +34,10 @@ class ArisuAutoSweeper(AzurLaneAutoScript):
         from tasks.mail.mail import Mail
         Mail(config=self.config, device=self.device).run()
 
+    def bounty(self):
+        from tasks.bounty.bounty import Bounty
+        Bounty(config=self.config, device=self.device).run()
+
     def tactical_challenge(self):
         from tasks.tactical_challenge.tactical_challenge import TacticalChallenge
         TacticalChallenge(config=self.config, device=self.device).run()

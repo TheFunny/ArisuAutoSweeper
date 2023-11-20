@@ -3,6 +3,17 @@ from module.base.button import Button, ButtonWrapper
 # This file was auto-generated, do not modify it manually. To generate:
 # ``` python -m dev_tools.button_extract ```
 
+CHECK_BOUNTY = ButtonWrapper(
+    name='CHECK_BOUNTY',
+    jp=Button(
+        file='./assets/jp/bounty/CHECK_BOUNTY.png',
+        area=(654, 87, 889, 129),
+        search=(634, 67, 909, 149),
+        color=(88, 113, 139),
+        button=(654, 87, 889, 129),
+    ),
+    en=None,
+)
 CHECK_DESERT_RAILROAD = ButtonWrapper(
     name='CHECK_DESERT_RAILROAD',
     jp=Button(
@@ -33,6 +44,17 @@ CHECK_SCHOOLHOUSE = ButtonWrapper(
         search=(86, 127, 334, 199),
         color=(176, 183, 187),
         button=(106, 147, 314, 179),
+    ),
+    en=None,
+)
+OCR_TICKET = ButtonWrapper(
+    name='OCR_TICKET',
+    jp=Button(
+        file='./assets/jp/bounty/OCR_TICKET.png',
+        area=(195, 85, 237, 113),
+        search=(175, 65, 257, 133),
+        color=(197, 206, 213),
+        button=(195, 85, 237, 113),
     ),
     en=None,
 )
