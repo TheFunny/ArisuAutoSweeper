@@ -15,6 +15,7 @@ The script is still under active development. The following features have been i
 - [x] **Cafe** Claim rewards / Interact / Second floor
 - [x] **Club** Claim AP
 - [x] **Mailbox** Claim rewards
+- [x] **Bounty** Auto sweep
 - [x] **Tactical Challenge** Claim rewards / Auto battle
 
 Supported servers:
