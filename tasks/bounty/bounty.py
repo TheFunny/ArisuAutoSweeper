@@ -61,12 +61,11 @@ class Bounty(BountyUI):
         match status:
             case BountyStatus.OCR:
                 if self.get_ticket():
+                    if self.current_ticket == 0 or not self.task:
+                        return BountyStatus.FINISH
                     return BountyStatus.SELECT
             case BountyStatus.SELECT:
                 if not self.is_ticket_enough:
-                    if self.current_ticket == 0:
-                        logger.info('Bounty ticket empty')
-                        return BountyStatus.FINISH
                     logger.warning('Bounty ticket not enough')
                     raise RequestHumanTakeover
                 if self.select_bounty(*self.current_bounty):
@@ -77,8 +76,6 @@ class Bounty(BountyUI):
             case BountyStatus.SWEEP:
                 if self.do_sweep(self.current_count):
                     self.task.pop(0)
-                    if not self.task:
-                        return BountyStatus.FINISH
                     return BountyStatus.END
                 return BountyStatus.ENTER
             case BountyStatus.END:
