@@ -213,6 +213,18 @@
       "help": "JP server only\nEnable auto switch to second floor and perform interaction"
     }
   },
+  "Bounty": {
+    "_info": {
+      "name": "Bounty Settings",
+      "help": ""
+    },
+    "OnError": {
+      "name": "Error Handling",
+      "help": "Perform the selected action when an error occurs (ticket not enough or any invalid setting)",
+      "stop": "Stop script",
+      "skip": "Skip current task"
+    }
+  },
   "Highway": {
     "_info": {
       "name": "Overpass",

@@ -283,6 +283,16 @@
         "display": "hide"
       }
     },
+    "Bounty": {
+      "OnError": {
+        "type": "select",
+        "value": "skip",
+        "option": [
+          "stop",
+          "skip"
+        ]
+      }
+    },
     "Highway": {
       "Stage": {
         "type": "select",

@@ -33,9 +33,16 @@ class Bounty(BountyUI):
         task = list(self.bounty_info)
         if not task:
             logger.warning('Bounty enabled but no task set')
+            self.error_handler()
+        return task
+
+    def error_handler(self):
+        action = self.config.Bounty_OnError
+        if action == 'stop':
+            raise RequestHumanTakeover
+        elif action == 'skip':
             self.config.task_delay(server_update=True)
             self.config.task_stop()
-        return task
 
     @property
     def is_ticket_enough(self) -> bool:
@@ -67,7 +74,7 @@ class Bounty(BountyUI):
             case BountyStatus.SELECT:
                 if not self.is_ticket_enough:
                     logger.warning('Bounty ticket not enough')
-                    raise RequestHumanTakeover
+                    self.error_handler()
                 if self.select_bounty(*self.current_bounty):
                     return BountyStatus.ENTER
             case BountyStatus.ENTER:

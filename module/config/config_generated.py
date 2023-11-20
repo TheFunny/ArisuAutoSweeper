@@ -45,6 +45,9 @@ class GeneratedConfig:
     Cafe_AutoAdjust = True
     Cafe_SecondCafe = True
 
+    # Group `Bounty`
+    Bounty_OnError = 'skip'  # stop, skip
+
     # Group `Highway`
     Highway_Stage = 1  # 1, 2, 3, 4, 5, 6, 7, 8, 9
     Highway_Count = 2

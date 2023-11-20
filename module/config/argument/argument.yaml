@@ -81,6 +81,11 @@ Cafe:
   AutoAdjust: true
   SecondCafe: true
 
+Bounty:
+  OnError:
+    value: skip
+    option: [ stop, skip ]
+
 Highway:
   Stage:
     value: 1
