@@ -39,7 +39,7 @@ class Bounty(BountyUI):
 
     @property
     def is_ticket_enough(self) -> bool:
-        return self.config.stored.BountyTicket.value >= self.current_count
+        return self.current_ticket >= self.current_count
 
     @property
     def current_bounty(self):
@@ -53,6 +53,10 @@ class Bounty(BountyUI):
     def current_count(self):
         return self.task[0][3]
 
+    @property
+    def current_ticket(self):
+        return self.config.stored.BountyTicket.value
+
     def handle_bounty(self, status):
         match status:
             case BountyStatus.OCR:
@@ -60,6 +64,9 @@ class Bounty(BountyUI):
                     return BountyStatus.SELECT
             case BountyStatus.SELECT:
                 if not self.is_ticket_enough:
+                    if self.current_ticket == 0:
+                        logger.info('Bounty ticket empty')
+                        return BountyStatus.FINISH
                     logger.warning('Bounty ticket not enough')
                     raise RequestHumanTakeover
                 if self.select_bounty(*self.current_bounty):
