@@ -29,6 +29,11 @@ Daily:
       - Scheduler
     Circle:
       - Scheduler
+    Bounty:
+      - Scheduler
+      - Highway
+      - DesertRailroad
+      - Schoolhouse
     TacticalChallenge:
       - Scheduler
       - TacticalChallenge

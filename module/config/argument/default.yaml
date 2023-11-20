@@ -13,6 +13,9 @@ Mail:
 Circle:
   Scheduler:
     Enable: true
+Bounty:
+  Scheduler:
+    Enable: true
 TacticalChallenge:
   Scheduler:
     Enable: true

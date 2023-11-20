@@ -63,6 +63,26 @@
       "ServerUpdate": "04:00"
     }
   },
+  "Bounty": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Bounty",
+      "ServerUpdate": "04:00"
+    },
+    "Highway": {
+      "Stage": 1,
+      "Count": 2
+    },
+    "DesertRailroad": {
+      "Stage": 1,
+      "Count": 2
+    },
+    "Schoolhouse": {
+      "Stage": 1,
+      "Count": 2
+    }
+  },
   "TacticalChallenge": {
     "Scheduler": {
       "Enable": true,
