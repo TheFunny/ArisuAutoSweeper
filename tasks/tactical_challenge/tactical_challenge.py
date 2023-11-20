@@ -28,6 +28,10 @@ class TCStatus(Enum):
 class TacticalChallenge(TacticalChallengeUI):
     select_players = (PLAYER_SELECT_FIRST, PLAYER_SELECT_SECOND, PLAYER_SELECT_THIRD)
 
+    @property
+    def current_ticket(self):
+        return self.config.stored.TacticalChallengeTicket.value
+
     def _player_select(self, select):
         if select:
             return random.choice(self.select_players)
@@ -40,12 +44,10 @@ class TacticalChallenge(TacticalChallengeUI):
                 if self.get_reward():
                     return TCStatus.OCR
             case TCStatus.OCR:
-                is_valid, ticket = self.get_ticket()
-                if not is_valid:
-                    return status
-                if ticket == 0:
-                    return TCStatus.FINISHED
-                return TCStatus.SELECT
+                if self.get_ticket():
+                    if self.current_ticket == 0:
+                        return TCStatus.FINISHED
+                    return TCStatus.SELECT
             case TCStatus.SELECT:
                 self.appear_then_click(self.select)
                 if self.appear(PREPARE_CHALLENGE):
@@ -70,12 +72,10 @@ class TacticalChallenge(TacticalChallengeUI):
             case TCStatus.WIN | TCStatus.LOSE:
                 if self.appear_then_click(CHALLENGE_WIN) or self.appear_then_click(CHALLENGE_LOSE):
                     return status
-                is_valid, ticket = self.get_ticket()
-                if not is_valid:
-                    return status
-                if ticket == 0:
-                    return TCStatus.FINISHED
-                return TCStatus.FINAL
+                if self.get_ticket():
+                    if self.current_ticket == 0:
+                        return TCStatus.FINISHED
+                    return TCStatus.FINAL
             case TCStatus.FINAL | TCStatus.FINISHED:
                 return status
             case _:

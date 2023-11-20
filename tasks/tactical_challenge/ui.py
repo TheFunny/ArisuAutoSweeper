@@ -15,15 +15,13 @@ class TacticalChallengeUI(UI):
         Page:
             in: page_tactical_challenge
         """
-        ocr = DigitCounter(OCR_TICKET).ocr_single_line(self.device.image)
-        # number of tickets remaining
-        ticket, _, total = ocr
+        ticket, _, total = DigitCounter(OCR_TICKET).ocr_single_line(self.device.image)
         if total == 0:
             logger.warning('Invalid ticket')
-            return False, 5
-        logger.attr('Ticket', ticket)
-
-        return True, ticket
+            return False
+        logger.attr('TacticalChallengeTicket', ticket)
+        self.config.stored.TacticalChallengeTicket.set(ticket)
+        return True
 
     def get_reward(self):
         if self.match_color(GET_REWARD_DAILY):
