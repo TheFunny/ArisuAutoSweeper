@@ -28,6 +28,7 @@ class TacticalChallengeUI(UI):
         timer = Timer(10, 10).start()
         while 1:
             self.device.screenshot()
+            self.ui_additional()
             if self.match_color(GOT_REWARD_DAILY) and self.match_color(GOT_REWARD_CREDIT):
                 return True
             if self.match_color(GET_REWARD_DAILY):
