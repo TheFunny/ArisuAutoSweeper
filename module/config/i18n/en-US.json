@@ -396,15 +396,15 @@
       "help": ""
     },
     "BountyTicket": {
-      "name": "Bounty Ticket",
+      "name": "Bounty",
       "help": ""
     },
     "ScrimmageTicket": {
-      "name": "Scrimmage Ticket",
+      "name": "Scrimmage",
       "help": ""
     },
     "TacticalChallengeTicket": {
-      "name": "Tactical Challenge Ticket",
+      "name": "Tactical Challenge",
       "help": ""
     }
   },

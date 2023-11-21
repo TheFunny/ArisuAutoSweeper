@@ -396,15 +396,15 @@
       "help": ""
     },
     "BountyTicket": {
-      "name": "悬赏通缉票券",
+      "name": "悬赏通缉",
       "help": ""
     },
     "ScrimmageTicket": {
-      "name": "学院交流会票券",
+      "name": "学院交流会",
       "help": ""
     },
     "TacticalChallengeTicket": {
-      "name": "战术对抗赛票券",
+      "name": "战术对抗赛",
       "help": ""
     }
   },
