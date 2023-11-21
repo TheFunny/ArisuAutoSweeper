@@ -148,8 +148,8 @@ class StageList:
 
     def select_index_enter(
             self,
-            index: int,
             main: ModuleBase,
+            index: int,
             insight: bool = True,
             sweepable: bool = True,
             offset: tuple[int, int] = (-20, -15),

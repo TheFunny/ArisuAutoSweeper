@@ -22,7 +22,7 @@ class BountyUI(UI):
                 return False
 
     def enter_stage(self, index: int) -> bool:
-        if BOUNTY_LIST.select_index_enter(index, self):
+        if BOUNTY_LIST.select_index_enter(self, index):
             return True
         return False
 
