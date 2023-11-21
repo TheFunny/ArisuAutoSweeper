@@ -21,12 +21,12 @@ class ScrimmageStatus(Enum):
 class Scrimmage(ScrimmageUI):
     @property
     def scrimmage_info(self):
-        bounty = (SELECT_TRINITY, SELECT_GEHENNA, SELECT_MILLENNIUM)
+        scrimmage = (SELECT_TRINITY, SELECT_GEHENNA, SELECT_MILLENNIUM)
         check = (CHECK_TRINITY, CHECK_GEHENNA, CHECK_MILLENNIUM)
         stage = (self.config.Trinity_Stage, self.config.Gehenna_Stage, self.config.Millennium_Stage)
         count = (self.config.Trinity_Count, self.config.Gehenna_Count, self.config.Millennium_Count)
         ap = (10 if stage == 1 else 15 for stage in stage)
-        info = zip(bounty, check, stage, count, ap)
+        info = zip(scrimmage, check, stage, count, ap)
         return filter(lambda x: x[3] > 0, info)
 
     @property
@@ -38,7 +38,7 @@ class Scrimmage(ScrimmageUI):
         return task
 
     def error_handler(self):
-        action = self.config.Bounty_OnError
+        action = self.config.Scrimmage_OnError
         if action == 'stop':
             raise RequestHumanTakeover
         elif action == 'skip':
