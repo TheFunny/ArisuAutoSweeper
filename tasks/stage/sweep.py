@@ -1,8 +1,9 @@
+from enum import Enum
+
 from module.base.base import ModuleBase
 from module.base.timer import Timer
 from module.logger import logger
 from module.ocr.ocr import Digit
-from enum import Enum
 from tasks.stage.assets.assets_stage_sweep import *
 
 
@@ -123,7 +124,7 @@ class StageSweep:
             main.device.screenshot()
             if not timer.reached_and_reset():
                 continue
-            ocr_result = self.num.detect_and_ocr(main.device.image)
+            ocr_result = list(filter(lambda x: x.ocr_text.isdigit(), self.num.detect_and_ocr(main.device.image)))
             if not ocr_result:
                 logger.warning(f'No valid num in {self.num.name}')
                 continue
