@@ -38,6 +38,10 @@ class ArisuAutoSweeper(AzurLaneAutoScript):
         from tasks.bounty.bounty import Bounty
         Bounty(config=self.config, device=self.device).run()
 
+    def scrimmage(self):
+        from tasks.scrimmage.scrimmage import Scrimmage
+        Scrimmage(config=self.config, device=self.device).run()
+
     def tactical_challenge(self):
         from tasks.tactical_challenge.tactical_challenge import TacticalChallenge
         TacticalChallenge(config=self.config, device=self.device).run()
