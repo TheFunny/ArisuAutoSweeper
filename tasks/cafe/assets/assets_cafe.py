@@ -20,6 +20,23 @@ BOX_CAFE = ButtonWrapper(
         button=(33, 130, 1247, 569),
     ),
 )
+BOX_SEARCH = ButtonWrapper(
+    name='BOX_SEARCH',
+    jp=Button(
+        file='./assets/jp/cafe/BOX_SEARCH.png',
+        area=(61, 72, 1176, 653),
+        search=(41, 52, 1196, 673),
+        color=(172, 180, 188),
+        button=(61, 72, 1176, 653),
+    ),
+    en=Button(
+        file='./assets/en/cafe/BOX_SEARCH.png',
+        area=(61, 72, 1176, 653),
+        search=(41, 52, 1196, 673),
+        color=(172, 180, 188),
+        button=(61, 72, 1176, 653),
+    ),
+)
 CAFE_FIRST = ButtonWrapper(
     name='CAFE_FIRST',
     jp=Button(
