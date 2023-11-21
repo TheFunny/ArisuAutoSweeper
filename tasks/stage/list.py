@@ -154,27 +154,31 @@ class StageList:
             sweepable: bool = True,
             offset: tuple[int, int] = (-20, -15),
             skip_first_screenshot: bool = True,
-            interval: int = 2
+            interval: int = 1.5
     ) -> bool:
+        # insight index, if failed, return False
         if insight and not self.insight_index(index, main, skip_first_screenshot):
             return False
         logger.info(f'Select index: {index}')
         click_interval = Timer(interval)
         load_index_interval = Timer(1)
+        timeout = Timer(15, 10).start()
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 main.device.screenshot()
 
-            if load_index_interval.reached_and_reset():
+            # load index if not insight
+            if load_index_interval.reached_and_reset() and not insight:
                 self.load_stage_indexes(main=main)
 
+            # find box of index
             index_box = next(filter(lambda x: int(x.ocr_text) == index, self.current_indexes), None)
 
             if index_box is None:
                 logger.warning(f'No index {index} in {self.index_ocr.name}')
-                return False
+                continue
 
             stage_item_box = area_pad((*offset, *area_size(self.stage_item)))
             search_box = area_offset(stage_item_box, index_box.box[:2])
@@ -188,7 +192,7 @@ class StageList:
 
             if not points:
                 logger.warning(f'No clickable {self.enter.name}')
-                return False
+                continue
 
             point = area_offset((0, 0, *area_size(self.enter.button)), points[0])
             click_button = ClickButton(area_offset(point, search_box[:2]), name=self.enter.name)
@@ -196,3 +200,7 @@ class StageList:
             if click_interval.reached_and_reset():
                 main.device.click(click_button)
                 return True
+
+            if timeout.reached():
+                logger.warning(f'{self.enter.name} failed')
+                return False
