@@ -1,18 +1,12 @@
-import cv2
-import numpy as np
 from enum import Enum
 
-from module.logger import logger
-from module.base.timer import Timer
-from module.base.button import ClickButton
 from module.base.decorator import Config
-from module.base.utils.utils import area_offset
-from module.ocr.ocr import Digit
+from module.base.timer import Timer
+from module.logger import logger
 from module.ui.switch import Switch
 from tasks.base.page import page_cafe
-from tasks.base.ui import UI
 from tasks.cafe.assets.assets_cafe import *
-
+from tasks.cafe.ui import CafeUI
 
 SWITCH_CAFE = Switch('Cafe_switch')
 SWITCH_CAFE.add_state('off', CHANGE_CAFE_NOT_SELECTED)
@@ -33,102 +27,16 @@ class CafeStatus(Enum):
     FINISHED = -1
 
 
-class Cafe(UI):
-    template = CLICKABLE_TEMPLATE
+class Cafe(CafeUI):
+    @Config.when(Emulator_GameLanguage='jp')
+    def is_second_cafe_on(self):
+        return self.config.Cafe_SecondCafe
 
-    @staticmethod
-    def merge_points(points, threshold=3):
-        if len(points) <= 1:
-            return points
-        result = []
-        for point in points:
-            if not result:
-                result.append(point)
-                continue
-            if point[0] - result[-1][0] < threshold and point[1] - result[-1][1] < threshold:
-                result[-1] = ((point[0] + result[-1][0]) // 2, (point[1] + result[-1][1]) // 2)
-                continue
-            result.append(point)
-        return result
-
-    @staticmethod
-    def _extract_clickable_from_image(image):
-        # convert to hsv for better color matching
-        hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
-        # set color range
-        lower_hsv = np.array([18, 200, 220])
-        upper_hsv = np.array([30, 255, 255])
-        # get mask
-        mask = cv2.inRange(hsv, lower_hsv, upper_hsv)
-        # generate result
-        return cv2.bitwise_and(image, image, mask=mask)
-
-    def _match_clickable_points(self, image, threshold=0.8):
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-        template = cv2.cvtColor(self.template.matched_button.image, cv2.COLOR_RGB2GRAY)
-
-        res = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
-        loc = np.where(res >= threshold)
-        return [point for point in zip(*loc[::-1])]
-
-    def _get_clickable_buttons(self, threshold=0.8, offset=(0, 0)):
-        image = self.device.image
-        h, w = image.shape[:2]
-        image = cv2.rectangle(image, (0, 10), (w - 25, h - 10), (0, 0, 0), 50)
-        image = self._extract_clickable_from_image(image)
-        points = self._match_clickable_points(image, threshold)
-        points = self.merge_points(points)
-        if not points:
-            return []
-        area = area_offset((0, 0, self.template.width, self.template.height), offset)
-        return [
-            ClickButton(
-                button=area_offset(area, offset=point),
-                name=self.template.name
-            )
-            for point in points
-        ]
-
-    def _reset_cafe_position(self, direction: str):
-        width = BOX_CAFE.width
-        height = BOX_CAFE.height
-        r = np.random.uniform(0.6, 0.8)
-        vector_down = (width * r, height * r)
-        vector_up = (width * r, -height * r)
-        vector_left = (-width * r, 0)
-        vector_right = (width * r, 0)
-        random_r = (-5, -5, 5, 5)
-        match direction:
-            case 'init':
-                self.device.pinch()
-                self.device.swipe_vector(vector_down, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_up, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_up, box=BOX_CAFE.area, random_range=random_r, padding=5)
-            case 'left':
-                self.device.swipe_vector(vector_left, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_left, box=BOX_CAFE.area, random_range=random_r, padding=5)
-            case 'right':
-                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5)
-        # solve too much swipe causing restart
-        self.device.click_record_clear()
-
-    def _get_reward_num(self):
-        ocr = Digit(OCR_CAFE)
-        num = ocr.detect_and_ocr(self.device.image)
-        if len(num) != 1:
-            logger.warning(f'Invalid reward num: {num}')
-        num = float(num[0].ocr_text.rstrip('%'))
-        logger.attr('Reward', num)
-        return num
-
-    def _cafe_additional(self) -> bool:
-        if self.appear_then_click(INVENTORY):
-            return True
-        if self.appear_then_click(MOMOTALK_CLOSE):
-            return True
+    @Config.when(Emulator_GameLanguage=None)
+    def is_second_cafe_on(self):
         return False
+
+    is_second_cafe_on = property(is_second_cafe_on)
 
     def _handle_cafe(self, status):
         match status:
@@ -137,7 +45,7 @@ class Cafe(UI):
                 if not self.appear(STUDENT_LIST):
                     return CafeStatus.OCR
             case CafeStatus.OCR:
-                reward = self._get_reward_num()
+                reward = self.get_reward_num()
                 if reward == 0:
                     return CafeStatus.GOT
                 if self.appear_then_click(CHECK_REWARD):
@@ -157,14 +65,14 @@ class Cafe(UI):
                 if not self.appear(GET_REWARD_CLOSE):
                     return CafeStatus.CLICK
             case CafeStatus.CLICK:
-                buttons = self._get_clickable_buttons(offset=(45, 10))
+                buttons = self.get_clickable_buttons(offset=(45, 10))
                 self.click = len(buttons)
                 logger.attr('Clickable', self.click)
                 if not buttons:
                     return CafeStatus.CHECK
                 self.click_with_interval(buttons[0], interval=1)
             case CafeStatus.CHECK:
-                buttons = self._get_clickable_buttons()
+                buttons = self.get_clickable_buttons()
                 if not self.is_adjust_on:
                     if not buttons:
                         return CafeStatus.FINISHED
@@ -177,11 +85,11 @@ class Cafe(UI):
                     return CafeStatus.CLICK
                 match self.check:
                     case 1:
-                        self._reset_cafe_position('left')
+                        self.reset_cafe_position('left')
                     case 2:
-                        self._reset_cafe_position('right')
+                        self.reset_cafe_position('right')
                     case 3:
-                        self._reset_cafe_position('init')
+                        self.reset_cafe_position('init')
                     case 4:
                         return CafeStatus.FINISHED
             case CafeStatus.FINISHED:
@@ -189,16 +97,6 @@ class Cafe(UI):
             case _:
                 logger.warning(f'Invalid status: {status}')
         return status
-
-    @Config.when(Emulator_GameLanguage='jp')
-    def is_second_cafe_on(self):
-        return self.config.Cafe_SecondCafe
-
-    @Config.when(Emulator_GameLanguage=None)
-    def is_second_cafe_on(self):
-        return False
-
-    is_second_cafe_on = property(is_second_cafe_on)
 
     def run(self):
         self.click = 0
@@ -212,7 +110,7 @@ class Cafe(UI):
 
         status = CafeStatus.STUDENT_LIST
         loading_timer = Timer(2).start()
-        action_timer = Timer(1, count=1)  # cant be too fast
+        action_timer = Timer(1, count=1)
         is_list = False
         is_reset = False
         is_second = False
@@ -224,7 +122,7 @@ class Cafe(UI):
 
             self.device.screenshot()
 
-            if self.ui_additional() or self._cafe_additional():
+            if self.ui_additional() or self.cafe_additional():
                 continue
 
             if not loading_timer.reached():
@@ -246,7 +144,7 @@ class Cafe(UI):
                 continue
 
             if is_touch_on and not is_reset and status == CafeStatus.CLICK:
-                self._reset_cafe_position('init')
+                self.reset_cafe_position('init')
                 is_reset = True
                 continue
 
