@@ -77,15 +77,18 @@ class DeployConfig(ConfigModel):
         self.config_template = {}
         self.read()
 
+        self.set_repo()
+
+        self.write()
+        self.show_config()
+
+    def set_repo(self):
         # Bypass webui.config.DeployConfig.__setattr__()
         # Don't write these into deploy.yaml
         if self.Repository == 'cn':
             super().__setattr__('Repository', 'https://git.yoursfunny.top/YoursFunny/ArisuAutoSweeper.git')
         if self.Repository == 'global':
             super().__setattr__('Repository', 'https://github.com/TheFunny/ArisuAutoSweeper')
-
-        self.write()
-        self.show_config()
 
     def show_config(self):
         logger.hr("Show deploy config", 1)

@@ -5,6 +5,7 @@ import time
 from typing import Generator, List, Tuple
 
 import requests
+
 from deploy.Windows.config import ExecutionError
 from deploy.Windows.git import GitManager
 from deploy.Windows.pip import PipManager
@@ -20,6 +21,7 @@ from module.webui.utils import TaskHandler, get_next_time
 class Updater(DeployConfig, GitManager, PipManager):
     def __init__(self, file=DEPLOY_CONFIG):
         super().__init__(file=file)
+        self.set_repo()
         self.state = 0
         self.event: threading.Event = None
 
