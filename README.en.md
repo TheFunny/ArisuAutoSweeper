@@ -16,6 +16,7 @@ The script is still under active development. The following features have been i
 - [x] **Club** Claim AP
 - [x] **Mailbox** Claim rewards
 - [x] **Bounty** Auto sweep
+- [x] **Scrimmage** Auto sweep
 - [x] **Tactical Challenge** Claim rewards / Auto battle
 
 Supported servers:
