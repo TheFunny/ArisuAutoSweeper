@@ -80,6 +80,8 @@ class Bounty(BountyUI):
             case BountyStatus.ENTER:
                 if self.enter_stage(self.current_stage):
                     return BountyStatus.SWEEP
+                else:
+                    self.error_handler()
             case BountyStatus.SWEEP:
                 if self.do_sweep(self.current_count):
                     self.task.pop(0)
