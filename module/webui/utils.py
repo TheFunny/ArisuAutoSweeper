@@ -9,17 +9,17 @@ from queue import Queue
 from typing import Callable, Generator, List
 
 import pywebio
-from module.config.utils import deep_iter
-from module.logger import logger
-from module.webui.setting import State
 from pywebio.input import PASSWORD, input
 from pywebio.output import PopupSize, popup, put_html, toast
 from pywebio.session import eval_js
 from pywebio.session import info as session_info
 from pywebio.session import register_thread, run_js
-from rich.console import Console, ConsoleOptions
+from rich.console import Console
 from rich.terminal_theme import TerminalTheme
 
+from module.config.utils import deep_iter
+from module.logger import logger
+from module.webui.setting import State
 
 RE_DATETIME = (
     r"\d{4}\-(0\d|1[0-2])\-([0-2]\d|[3][0-1]) "
@@ -455,7 +455,11 @@ def get_localstorage(key):
 
 def re_fullmatch(pattern, string):
     if pattern == "datetime":
-        pattern = RE_DATETIME
+        try:
+            datetime.datetime.fromisoformat(string)
+            return True
+        except ValueError:
+            return False
     # elif:
     return re.fullmatch(pattern=pattern, string=string)
 
