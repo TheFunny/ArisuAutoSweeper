@@ -285,7 +285,7 @@ pre.rich-traceback-code {
 *[style*="--header-icon--"] {
     margin: .25rem auto .25rem;
     border-radius: 1.5rem;
-    height: 3.5em;
+    height: 3em;
 }
 
 *[style*="--header-text--"] {
