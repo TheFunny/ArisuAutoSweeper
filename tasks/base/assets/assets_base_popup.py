@@ -39,15 +39,8 @@ AP_EXCEED = ButtonWrapper(
 )
 DAILY_NEWS = ButtonWrapper(
     name='DAILY_NEWS',
-    jp=Button(
-        file='./assets/jp/base/popup/DAILY_NEWS.png',
-        area=(120, 89, 326, 113),
-        search=(100, 69, 346, 133),
-        color=(150, 204, 253),
-        button=(1128, 89, 1156, 117),
-    ),
-    en=Button(
-        file='./assets/en/base/popup/DAILY_NEWS.png',
+    share=Button(
+        file='./assets/share/base/popup/DAILY_NEWS.png',
         area=(120, 89, 326, 113),
         search=(100, 69, 346, 133),
         color=(150, 204, 253),
@@ -56,15 +49,8 @@ DAILY_NEWS = ButtonWrapper(
 )
 DAILY_REWARD = ButtonWrapper(
     name='DAILY_REWARD',
-    jp=Button(
-        file='./assets/jp/base/popup/DAILY_REWARD.png',
-        area=(416, 165, 434, 216),
-        search=(396, 145, 454, 236),
-        color=(203, 227, 237),
-        button=(920, 632, 1140, 712),
-    ),
-    en=Button(
-        file='./assets/en/base/popup/DAILY_REWARD.png',
+    share=Button(
+        file='./assets/share/base/popup/DAILY_REWARD.png',
         area=(416, 165, 434, 216),
         search=(396, 145, 454, 236),
         color=(203, 227, 237),
@@ -73,15 +59,8 @@ DAILY_REWARD = ButtonWrapper(
 )
 GET_NEW_STUDENT = ButtonWrapper(
     name='GET_NEW_STUDENT',
-    jp=Button(
-        file='./assets/jp/base/popup/GET_NEW_STUDENT.png',
-        area=(32, 93, 158, 114),
-        search=(12, 73, 178, 134),
-        color=(125, 132, 92),
-        button=(934, 643, 1263, 714),
-    ),
-    en=Button(
-        file='./assets/en/base/popup/GET_NEW_STUDENT.png',
+    share=Button(
+        file='./assets/share/base/popup/GET_NEW_STUDENT.png',
         area=(32, 93, 158, 114),
         search=(12, 73, 178, 134),
         color=(125, 132, 92),

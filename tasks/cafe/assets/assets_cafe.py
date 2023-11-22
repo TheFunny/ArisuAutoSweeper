@@ -5,15 +5,8 @@ from module.base.button import Button, ButtonWrapper
 
 BOX_CAFE = ButtonWrapper(
     name='BOX_CAFE',
-    jp=Button(
-        file='./assets/jp/cafe/BOX_CAFE.png',
-        area=(33, 130, 1247, 569),
-        search=(13, 110, 1267, 589),
-        color=(175, 181, 186),
-        button=(33, 130, 1247, 569),
-    ),
-    en=Button(
-        file='./assets/en/cafe/BOX_CAFE.png',
+    share=Button(
+        file='./assets/share/cafe/BOX_CAFE.png',
         area=(33, 130, 1247, 569),
         search=(13, 110, 1267, 589),
         color=(175, 181, 186),
@@ -22,15 +15,8 @@ BOX_CAFE = ButtonWrapper(
 )
 BOX_SEARCH = ButtonWrapper(
     name='BOX_SEARCH',
-    jp=Button(
-        file='./assets/jp/cafe/BOX_SEARCH.png',
-        area=(61, 72, 1176, 653),
-        search=(41, 52, 1196, 673),
-        color=(172, 180, 188),
-        button=(61, 72, 1176, 653),
-    ),
-    en=Button(
-        file='./assets/en/cafe/BOX_SEARCH.png',
+    share=Button(
+        file='./assets/share/cafe/BOX_SEARCH.png',
         area=(61, 72, 1176, 653),
         search=(41, 52, 1196, 673),
         color=(172, 180, 188),
@@ -124,15 +110,8 @@ CHECK_REWARD = ButtonWrapper(
 )
 CLICKABLE_TEMPLATE = ButtonWrapper(
     name='CLICKABLE_TEMPLATE',
-    jp=Button(
-        file='./assets/jp/cafe/CLICKABLE_TEMPLATE.png',
-        area=(619, 332, 660, 387),
-        search=(599, 312, 680, 407),
-        color=(79, 65, 1),
-        button=(619, 332, 660, 387),
-    ),
-    en=Button(
-        file='./assets/en/cafe/CLICKABLE_TEMPLATE.png',
+    share=Button(
+        file='./assets/share/cafe/CLICKABLE_TEMPLATE.png',
         area=(619, 332, 660, 387),
         search=(599, 312, 680, 407),
         color=(79, 65, 1),
