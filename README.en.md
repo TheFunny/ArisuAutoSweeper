@@ -24,6 +24,11 @@ Supported servers:
 - [x] JP
 - [x] OVERSEA - Global
 
+Supported in-game languages:
+
+- [x] Japanese
+- [x] English
+
 ## Relative projects
 
 - [AzurLaneAutoScript](https://github.com/LmeSzinc/AzurLaneAutoScript): Azur Lane auto script
