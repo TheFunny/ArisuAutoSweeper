@@ -67,7 +67,7 @@ class Scrimmage(ScrimmageUI):
 
     @property
     def current_task_ap(self):
-        return self.task[0][4]
+        return self.task[0][4] * self.current_count
 
     @property
     def current_ticket(self):
