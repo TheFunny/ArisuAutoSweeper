@@ -196,6 +196,7 @@ class Updater(DeployConfig, GitManager, PipManager):
 
     def update(self):
         logger.hr("Run update")
+        self.set_repo()
         try:
             self.git_install()
             self.pip_install()
