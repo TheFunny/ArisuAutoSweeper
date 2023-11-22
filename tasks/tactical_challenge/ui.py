@@ -32,10 +32,10 @@ class TacticalChallengeUI(UI):
             if self.match_color(GOT_REWARD_DAILY) and self.match_color(GOT_REWARD_CREDIT):
                 return True
             if self.match_color(GET_REWARD_DAILY):
-                self.device.click(GET_REWARD_DAILY)
+                self.click_with_interval(GET_REWARD_DAILY, 0.3)
                 logger.info('Get daily reward')
             if self.match_color(GET_REWARD_CREDIT):
-                self.device.click(GET_REWARD_CREDIT)
+                self.click_with_interval(GET_REWARD_CREDIT, 0.3)
                 logger.info('Get credit reward')
             if timer.reached():
                 return False
