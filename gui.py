@@ -49,7 +49,7 @@ def func(ev: threading.Event):
     args, _ = parser.parse_known_args()
 
     host = args.host or State.deploy_config.WebuiHost or "0.0.0.0"
-    port = args.port or int(State.deploy_config.WebuiPort) or 22367
+    port = args.port or int(State.deploy_config.WebuiPort) or 23467
     State.electron = args.electron
 
     logger.hr("Launcher config")
