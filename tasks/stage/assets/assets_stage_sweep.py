@@ -12,7 +12,13 @@ CHECK_SWEEP = ButtonWrapper(
         color=(174, 184, 197),
         button=(638, 188, 722, 212),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/CHECK_SWEEP.png',
+        area=(654, 187, 706, 215),
+        search=(634, 167, 726, 235),
+        color=(169, 180, 194),
+        button=(654, 187, 706, 215),
+    ),
 )
 ENTER = ButtonWrapper(
     name='ENTER',
@@ -23,7 +29,13 @@ ENTER = ButtonWrapper(
         color=(223, 207, 68),
         button=(791, 514, 1080, 568),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/ENTER.png',
+        area=(781, 508, 1085, 572),
+        search=(761, 488, 1105, 592),
+        color=(226, 211, 69),
+        button=(781, 508, 1085, 572),
+    ),
 )
 EXIT = ButtonWrapper(
     name='EXIT',
@@ -34,7 +46,13 @@ EXIT = ButtonWrapper(
         color=(185, 193, 203),
         button=(1114, 127, 1141, 154),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/EXIT.png',
+        area=(1114, 127, 1141, 154),
+        search=(1094, 107, 1161, 174),
+        color=(185, 193, 203),
+        button=(1114, 127, 1141, 154),
+    ),
 )
 MAX = ButtonWrapper(
     name='MAX',
@@ -45,7 +63,13 @@ MAX = ButtonWrapper(
         color=(216, 222, 228),
         button=(1054, 279, 1111, 321),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/MAX.png',
+        area=(1054, 279, 1111, 321),
+        search=(1034, 259, 1131, 341),
+        color=(216, 222, 228),
+        button=(1054, 279, 1111, 321),
+    ),
 )
 MIN = ButtonWrapper(
     name='MIN',
@@ -56,7 +80,13 @@ MIN = ButtonWrapper(
         color=(194, 194, 194),
         button=(760, 278, 816, 322),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/MIN.png',
+        area=(760, 278, 816, 322),
+        search=(740, 258, 836, 342),
+        color=(194, 194, 194),
+        button=(760, 278, 816, 322),
+    ),
 )
 MINUS = ButtonWrapper(
     name='MINUS',
@@ -67,7 +97,13 @@ MINUS = ButtonWrapper(
         color=(221, 222, 222),
         button=(838, 279, 876, 320),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/MINUS.png',
+        area=(838, 279, 876, 320),
+        search=(818, 259, 896, 340),
+        color=(221, 222, 222),
+        button=(838, 279, 876, 320),
+    ),
 )
 OCR_NUM = ButtonWrapper(
     name='OCR_NUM',
@@ -78,7 +114,13 @@ OCR_NUM = ButtonWrapper(
         color=(81, 94, 113),
         button=(896, 281, 975, 323),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/OCR_NUM.png',
+        area=(896, 281, 975, 323),
+        search=(876, 261, 995, 343),
+        color=(81, 94, 113),
+        button=(896, 281, 975, 323),
+    ),
 )
 PLUS = ButtonWrapper(
     name='PLUS',
@@ -89,7 +131,13 @@ PLUS = ButtonWrapper(
         color=(233, 243, 246),
         button=(995, 278, 1034, 322),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/PLUS.png',
+        area=(995, 278, 1034, 322),
+        search=(975, 258, 1054, 342),
+        color=(233, 243, 246),
+        button=(995, 278, 1034, 322),
+    ),
 )
 SKIP_OK_LOWER = ButtonWrapper(
     name='SKIP_OK_LOWER',
@@ -100,7 +148,13 @@ SKIP_OK_LOWER = ButtonWrapper(
         color=(112, 212, 247),
         button=(541, 551, 740, 616),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/SKIP_OK_LOWER.png',
+        area=(540, 548, 741, 619),
+        search=(520, 528, 761, 639),
+        color=(108, 204, 240),
+        button=(540, 548, 741, 619),
+    ),
 )
 SKIP_OK_UPPER = ButtonWrapper(
     name='SKIP_OK_UPPER',
@@ -111,7 +165,13 @@ SKIP_OK_UPPER = ButtonWrapper(
         color=(112, 212, 248),
         button=(542, 474, 738, 545),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/SKIP_OK_UPPER.png',
+        area=(541, 476, 741, 542),
+        search=(521, 456, 761, 562),
+        color=(107, 203, 239),
+        button=(541, 476, 741, 542),
+    ),
 )
 SKIP_SKIP = ButtonWrapper(
     name='SKIP_SKIP',
@@ -122,7 +182,13 @@ SKIP_SKIP = ButtonWrapper(
         color=(110, 207, 243),
         button=(545, 475, 736, 540),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/SKIP_SKIP.png',
+        area=(543, 477, 739, 542),
+        search=(523, 457, 759, 562),
+        color=(110, 209, 244),
+        button=(543, 477, 739, 542),
+    ),
 )
 SWEEP = ButtonWrapper(
     name='SWEEP',
@@ -133,7 +199,13 @@ SWEEP = ButtonWrapper(
         color=(109, 202, 235),
         button=(796, 385, 1067, 427),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/SWEEP.png',
+        area=(795, 382, 1066, 431),
+        search=(775, 362, 1086, 451),
+        color=(108, 202, 236),
+        button=(795, 382, 1066, 431),
+    ),
 )
 SWEEP_CONFIRM = ButtonWrapper(
     name='SWEEP_CONFIRM',
@@ -144,5 +216,11 @@ SWEEP_CONFIRM = ButtonWrapper(
         color=(143, 156, 170),
         button=(664, 470, 871, 534),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/stage/sweep/SWEEP_CONFIRM.png',
+        area=(587, 143, 695, 182),
+        search=(567, 123, 715, 202),
+        color=(196, 203, 211),
+        button=(665, 471, 871, 535),
+    ),
 )

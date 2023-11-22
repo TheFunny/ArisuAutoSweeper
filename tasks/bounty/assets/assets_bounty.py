@@ -12,7 +12,13 @@ CHECK_BOUNTY = ButtonWrapper(
         color=(88, 113, 139),
         button=(654, 87, 889, 129),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/bounty/CHECK_BOUNTY.png',
+        area=(654, 87, 891, 126),
+        search=(634, 67, 911, 146),
+        color=(92, 116, 141),
+        button=(654, 87, 891, 126),
+    ),
 )
 CHECK_DESERT_RAILROAD = ButtonWrapper(
     name='CHECK_DESERT_RAILROAD',
@@ -23,7 +29,13 @@ CHECK_DESERT_RAILROAD = ButtonWrapper(
         color=(172, 179, 183),
         button=(106, 147, 401, 179),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/bounty/CHECK_DESERT_RAILROAD.png',
+        area=(105, 144, 490, 183),
+        search=(85, 124, 510, 203),
+        color=(200, 207, 211),
+        button=(105, 144, 490, 183),
+    ),
 )
 CHECK_HIGHWAY = ButtonWrapper(
     name='CHECK_HIGHWAY',
@@ -34,7 +46,13 @@ CHECK_HIGHWAY = ButtonWrapper(
         color=(191, 199, 203),
         button=(107, 147, 400, 179),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/bounty/CHECK_HIGHWAY.png',
+        area=(104, 143, 391, 188),
+        search=(84, 123, 411, 208),
+        color=(206, 213, 217),
+        button=(104, 143, 391, 188),
+    ),
 )
 CHECK_SCHOOLHOUSE = ButtonWrapper(
     name='CHECK_SCHOOLHOUSE',
@@ -45,7 +63,13 @@ CHECK_SCHOOLHOUSE = ButtonWrapper(
         color=(176, 183, 187),
         button=(106, 147, 314, 179),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/bounty/CHECK_SCHOOLHOUSE.png',
+        area=(102, 144, 408, 185),
+        search=(82, 124, 428, 205),
+        color=(203, 210, 214),
+        button=(102, 144, 408, 185),
+    ),
 )
 OCR_TICKET = ButtonWrapper(
     name='OCR_TICKET',
@@ -56,7 +80,13 @@ OCR_TICKET = ButtonWrapper(
         color=(197, 206, 213),
         button=(195, 85, 237, 113),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/bounty/OCR_TICKET.png',
+        area=(225, 85, 267, 114),
+        search=(205, 65, 287, 134),
+        color=(197, 206, 213),
+        button=(225, 85, 267, 114),
+    ),
 )
 SELECT_DESERT_RAILROAD = ButtonWrapper(
     name='SELECT_DESERT_RAILROAD',
@@ -67,7 +97,13 @@ SELECT_DESERT_RAILROAD = ButtonWrapper(
         color=(178, 188, 199),
         button=(1066, 271, 1224, 311),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/bounty/SELECT_DESERT_RAILROAD.png',
+        area=(989, 270, 1223, 308),
+        search=(969, 250, 1243, 328),
+        color=(196, 203, 212),
+        button=(989, 270, 1223, 308),
+    ),
 )
 SELECT_HIGHWAY = ButtonWrapper(
     name='SELECT_HIGHWAY',
@@ -78,7 +114,13 @@ SELECT_HIGHWAY = ButtonWrapper(
         color=(214, 221, 228),
         button=(1065, 165, 1223, 203),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/bounty/SELECT_HIGHWAY.png',
+        area=(1073, 167, 1223, 202),
+        search=(1053, 147, 1243, 222),
+        color=(192, 201, 211),
+        button=(1073, 167, 1223, 202),
+    ),
 )
 SELECT_SCHOOLHOUSE = ButtonWrapper(
     name='SELECT_SCHOOLHOUSE',
@@ -89,5 +131,11 @@ SELECT_SCHOOLHOUSE = ButtonWrapper(
         color=(173, 185, 198),
         button=(1154, 381, 1223, 417),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/bounty/SELECT_SCHOOLHOUSE.png',
+        area=(1055, 378, 1226, 415),
+        search=(1035, 358, 1246, 435),
+        color=(198, 206, 215),
+        button=(1055, 378, 1226, 415),
+    ),
 )
