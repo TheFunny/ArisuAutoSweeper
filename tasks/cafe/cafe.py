@@ -29,14 +29,16 @@ class CafeStatus(Enum):
 
 class Cafe(CafeUI):
     @Config.when(Emulator_GameLanguage='jp')
-    def is_second_cafe_on(self):
+    def _is_second_cafe_on(self):
         return self.config.Cafe_SecondCafe
 
     @Config.when(Emulator_GameLanguage=None)
-    def is_second_cafe_on(self):
+    def _is_second_cafe_on(self):
         return False
 
-    is_second_cafe_on = property(is_second_cafe_on)
+    @property
+    def is_second_cafe_on(self):
+        return self._is_second_cafe_on
 
     def _handle_cafe(self, status):
         match status:
