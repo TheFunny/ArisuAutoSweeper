@@ -17,10 +17,10 @@ BOX_SEARCH = ButtonWrapper(
     name='BOX_SEARCH',
     share=Button(
         file='./assets/share/cafe/BOX_SEARCH.png',
-        area=(61, 72, 1176, 653),
-        search=(41, 52, 1196, 673),
-        color=(172, 180, 188),
-        button=(61, 72, 1176, 653),
+        area=(12, 71, 1176, 654),
+        search=(0, 51, 1196, 674),
+        color=(175, 183, 190),
+        button=(12, 71, 1176, 654),
     ),
 )
 CAFE_FIRST = ButtonWrapper(
