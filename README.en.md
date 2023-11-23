@@ -22,7 +22,7 @@ The script is still under active development. The following features have been i
 Supported servers:
 
 - [x] JP
-- [x] OVERSEA - Global
+- [x] OVERSEA
 
 Supported in-game languages:
 
