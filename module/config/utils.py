@@ -13,7 +13,11 @@ from module.config.atomicwrites import atomic_write
 LANGUAGES = ['zh-CN', 'en-US']
 SERVER_TO_TIMEZONE = {
     'JP-Official': timedelta(hours=9),
-    'OVERSEA-Global': timedelta(hours=0),
+    'OVERSEA-TWHKMO': timedelta(hours=9),
+    'OVERSEA-Korea': timedelta(hours=9),
+    'OVERSEA-Asia': timedelta(hours=9),
+    'OVERSEA-America': timedelta(hours=9),
+    'OVERSEA-Global': timedelta(hours=9),
 }
 DEFAULT_TIME = datetime(2020, 1, 1, 0, 0)
 

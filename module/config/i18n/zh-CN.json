@@ -85,11 +85,15 @@
       "help": "无法区分国际服的不同地区，请手动选择服务器",
       "auto": "自动检测",
       "JP-Official": "[日服]-官服",
+      "OVERSEA-TWHKMO": "[国际服]-港澳台",
+      "OVERSEA-Korea": "[国际服]-韩国",
+      "OVERSEA-Asia": "[国际服]-亚洲",
+      "OVERSEA-America": "[国际服]-北美",
       "OVERSEA-Global": "[国际服]-全球"
     },
     "GameLanguage": {
       "name": "游戏内文本语言",
-      "help": "",
+      "help": "无法自动检测语言，请手动选择语言",
       "auto": "自动检测",
       "jp": "日语",
       "en": "英语"

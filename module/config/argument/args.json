@@ -12,6 +12,10 @@
         "option": [
           "auto",
           "JP-Official",
+          "OVERSEA-TWHKMO",
+          "OVERSEA-Korea",
+          "OVERSEA-Asia",
+          "OVERSEA-America",
           "OVERSEA-Global"
         ]
       },

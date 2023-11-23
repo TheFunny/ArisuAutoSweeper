@@ -8,6 +8,10 @@ server = 'JP-Official'
 VALID_LANG = ['jp', 'en']
 VALID_SERVER = {
     'JP-Official': 'com.YostarJP.BlueArchive',
+    'OVERSEA-TWHKMO': 'com.nexon.bluearchive',
+    'OVERSEA-Korea': 'com.nexon.bluearchive',
+    'OVERSEA-Asia': 'com.nexon.bluearchive',
+    'OVERSEA-America': 'com.nexon.bluearchive',
     'OVERSEA-Global': 'com.nexon.bluearchive',
 }
 VALID_PACKAGE = set(list(VALID_SERVER.values()))

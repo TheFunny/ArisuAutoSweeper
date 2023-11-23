@@ -85,11 +85,15 @@
       "help": "Can't distinguish different regions of oversea servers, please select the server manually.",
       "auto": "Auto-detect",
       "JP-Official": "[JP]-Official",
+      "OVERSEA-TWHKMO": "[OVERSEA]-TW/HK/MO",
+      "OVERSEA-Korea": "[OVERSEA]-Korea",
+      "OVERSEA-Asia": "[OVERSEA]-Asia",
+      "OVERSEA-America": "[OVERSEA]-North America",
       "OVERSEA-Global": "[OVERSEA]-Global"
     },
     "GameLanguage": {
       "name": "In-game Text Language",
-      "help": "",
+      "help": "Can't detect language automatically, please select the language manually.",
       "auto": "Auto-detect",
       "jp": "Japanese",
       "en": "English"
