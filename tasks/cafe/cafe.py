@@ -36,9 +36,7 @@ class Cafe(CafeUI):
     def _is_second_cafe_on(self):
         return False
 
-    @property
-    def is_second_cafe_on(self):
-        return self._is_second_cafe_on
+    is_second_cafe_on = property(_is_second_cafe_on)
 
     def _handle_cafe(self, status):
         match status:
