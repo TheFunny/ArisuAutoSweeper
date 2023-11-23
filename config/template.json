@@ -47,19 +47,19 @@
       "SecondCafe": true
     }
   },
-  "Mail": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "Mail",
-      "ServerUpdate": "04:00"
-    }
-  },
   "Circle": {
     "Scheduler": {
       "Enable": true,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Circle",
+      "ServerUpdate": "04:00"
+    }
+  },
+  "Mail": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Mail",
       "ServerUpdate": "04:00"
     }
   },

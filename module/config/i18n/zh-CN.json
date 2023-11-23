@@ -22,13 +22,13 @@
       "name": "咖啡厅",
       "help": ""
     },
-    "Mail": {
-      "name": "邮箱",
-      "help": ""
-    },
     "Circle": {
       "name": "公会",
       "help": "社团 / 小组"
+    },
+    "Mail": {
+      "name": "邮箱",
+      "help": ""
     },
     "Bounty": {
       "name": "悬赏通缉",

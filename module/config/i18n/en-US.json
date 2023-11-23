@@ -22,12 +22,12 @@
       "name": "Cafe",
       "help": ""
     },
-    "Mail": {
-      "name": "Mailbox",
-      "help": ""
-    },
     "Circle": {
       "name": "Club",
+      "help": ""
+    },
+    "Mail": {
+      "name": "Mailbox",
       "help": ""
     },
     "Bounty": {

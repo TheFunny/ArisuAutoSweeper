@@ -25,9 +25,9 @@ Daily:
     Cafe:
       - Scheduler
       - Cafe
-    Mail:
-      - Scheduler
     Circle:
+      - Scheduler
+    Mail:
       - Scheduler
     Bounty:
       - Scheduler
