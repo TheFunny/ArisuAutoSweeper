@@ -119,18 +119,7 @@ class StageSweep:
         return main.appear(self.skip_skip) or main.appear(self.skip_ok_upper) or main.appear(self.skip_ok_lower)
 
     def load_sweep_num(self, main: ModuleBase):
-        timer = Timer(0.5, 2).start()
-        while 1:
-            main.device.screenshot()
-            if not timer.reached_and_reset():
-                continue
-            ocr_result = list(filter(lambda x: x.ocr_text.isdigit(), self.num.detect_and_ocr(main.device.image)))
-            if not ocr_result:
-                logger.warning(f'No valid num in {self.num.name}')
-                continue
-            if len(ocr_result) == 1:
-                self.current_sweep = int(ocr_result[0].ocr_text)
-                return
+        self.current_sweep = self.num.ocr_single_line(main.device.image)
 
     def set_sweep_num(self, main: ModuleBase, skip_first_screenshot=True) -> bool:
         num = self.sweep_num
