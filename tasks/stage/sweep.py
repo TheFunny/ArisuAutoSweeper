@@ -204,7 +204,7 @@ class StageSweep:
         if not self.set_mode(mode, num):
             return False
         timer = Timer(0.5, 1)
-        timer_stable = Timer(0.5, 1).start()
+        timer_stable = Timer(1, 1).start()
         status = SweepStatus.SELECT
         while 1:
             if not timer_stable.reached():
