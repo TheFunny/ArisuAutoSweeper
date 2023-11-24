@@ -4,14 +4,14 @@ import numpy as np
 from module.base.base import ModuleBase
 from module.base.button import ClickButton, match_template
 from module.base.timer import Timer
-from module.base.utils import area_pad, area_size, area_offset, random_rectangle_vector_opted
+from module.base.utils import area_pad, area_size, area_offset
 from module.logger import logger
 from module.ocr.ocr import Ocr
 from tasks.stage.assets.assets_stage_list import *
 
 
 class StageList:
-    drag_vector_range = (0.65, 0.85)
+    swipe_vector_range = (0.65, 0.85)
 
     def __init__(
             self,
@@ -21,7 +21,7 @@ class StageList:
             button_item: ButtonWrapper = None,
             button_enter: ButtonWrapper = None,
             button_stars: ButtonWrapper = None,
-            drag_direction: str = "down"
+            swipe_direction: str = "down"
     ):
         self.name = name
         self.stage = button_list if button_list else STAGE_LIST
@@ -29,7 +29,7 @@ class StageList:
         self.stage_item = (button_item if button_item else STAGE_ITEM).button
         self.enter = button_enter if button_enter else STAGE_ENTER
         self.sweepable = button_stars if button_stars else STAGE_STARS
-        self.drag_direction = drag_direction
+        self.swipe_direction = swipe_direction
 
         self.current_index_min = 1
         self.current_index_max = 1
@@ -63,7 +63,7 @@ class StageList:
         self.current_index_max = max(indexes)
         logger.attr(self.index_ocr.name, f'Index range: {self.current_index_min} - {self.current_index_max}')
 
-    def drag_page(self, direction: str, main: ModuleBase, vector_range=None, reverse=False):
+    def swipe_page(self, direction: str, main: ModuleBase, vector_range=None, reverse=False):
         """
         Args:
             direction: up, down
@@ -72,7 +72,7 @@ class StageList:
             reverse (bool):
         """
         if vector_range is None:
-            vector_range = self.drag_vector_range
+            vector_range = self.swipe_vector_range
         vector = np.random.uniform(*vector_range)
         width, height = area_size(self.stage.button)
         if direction == 'up':
@@ -80,13 +80,12 @@ class StageList:
         elif direction == 'down':
             vector = (0, -vector * height)
         else:
-            logger.warning(f'Unknown drag direction: {direction}')
+            logger.warning(f'Unknown swipe direction: {direction}')
             return
 
         if reverse:
             vector = (-vector[0], -vector[1])
-        p1, p2 = random_rectangle_vector_opted(vector, box=self.stage.button)
-        main.device.drag(p1, p2, name=f'{self.name}_DRAG')
+        main.device.swipe_vector(vector, self.stage.button, name=f'{self.name}_SWIPE')
 
     def insight_index(self, index: int, main: ModuleBase, skip_first_screenshot=True) -> bool:
         """
@@ -113,9 +112,9 @@ class StageList:
                 break
 
             if index < self.current_index_min:
-                self.drag_page(self.drag_direction, main, reverse=True)
+                self.swipe_page(self.swipe_direction, main, reverse=True)
             elif index > self.current_index_max:
-                self.drag_page(self.drag_direction, main)
+                self.swipe_page(self.swipe_direction, main)
 
             main.wait_until_stable(
                 self.stage.button,
