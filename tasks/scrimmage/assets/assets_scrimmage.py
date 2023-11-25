@@ -75,17 +75,17 @@ OCR_TICKET = ButtonWrapper(
     name='OCR_TICKET',
     jp=Button(
         file='./assets/jp/scrimmage/OCR_TICKET.png',
-        area=(195, 85, 235, 113),
-        search=(175, 65, 255, 133),
-        color=(206, 211, 215),
-        button=(195, 85, 235, 113),
+        area=(194, 87, 258, 112),
+        search=(174, 67, 278, 132),
+        color=(207, 213, 218),
+        button=(194, 87, 258, 112),
     ),
     en=Button(
         file='./assets/en/scrimmage/OCR_TICKET.png',
-        area=(227, 84, 265, 115),
-        search=(207, 64, 285, 135),
-        color=(207, 212, 216),
-        button=(227, 84, 265, 115),
+        area=(229, 88, 289, 112),
+        search=(209, 68, 309, 132),
+        color=(199, 206, 212),
+        button=(229, 88, 289, 112),
     ),
 )
 SELECT_GEHENNA = ButtonWrapper(

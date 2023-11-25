@@ -75,17 +75,17 @@ OCR_TICKET = ButtonWrapper(
     name='OCR_TICKET',
     jp=Button(
         file='./assets/jp/bounty/OCR_TICKET.png',
-        area=(195, 85, 237, 113),
-        search=(175, 65, 257, 133),
-        color=(197, 206, 213),
-        button=(195, 85, 237, 113),
+        area=(196, 87, 258, 113),
+        search=(176, 67, 278, 133),
+        color=(173, 197, 212),
+        button=(196, 87, 258, 113),
     ),
     en=Button(
         file='./assets/en/bounty/OCR_TICKET.png',
-        area=(225, 85, 267, 114),
-        search=(205, 65, 287, 134),
-        color=(197, 206, 213),
-        button=(225, 85, 267, 114),
+        area=(229, 89, 285, 112),
+        search=(209, 69, 305, 132),
+        color=(177, 194, 207),
+        button=(229, 89, 285, 112),
     ),
 )
 SELECT_DESERT_RAILROAD = ButtonWrapper(
