@@ -1,8 +1,6 @@
-import cv2
 import numpy as np
 
 from module.base.base import ModuleBase
-from module.base.button import ClickButton, match_template
 from module.base.timer import Timer
 from module.base.utils import area_pad, area_size, area_offset
 from module.logger import logger
@@ -130,21 +128,6 @@ class StageList:
 
         return True
 
-    @staticmethod
-    def _match_clickable_points(image, template, threshold=0.85):
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-        template = cv2.cvtColor(template, cv2.COLOR_RGB2GRAY)
-
-        res = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
-        loc = np.where(res >= threshold)
-        return [point for point in zip(*loc[::-1])]
-
-    def is_sweepable(self, image, main: ModuleBase, skip_first_screenshot=True) -> bool:
-        if not skip_first_screenshot:
-            main.device.screenshot()
-
-        return match_template(image, self.sweepable.matched_button.image)
-
     def select_index_enter(
             self,
             main: ModuleBase,
@@ -181,23 +164,21 @@ class StageList:
 
             stage_item_box = area_pad((*offset, *area_size(self.stage_item)))
             search_box = area_offset(stage_item_box, index_box.box[:2])
-            search_image = main.image_crop(search_box)
+            self.sweepable.load_search(search_box)
 
-            if sweepable and not self.is_sweepable(search_image, main, skip_first_screenshot):
+            if sweepable and not main.appear(self.sweepable):
                 logger.warning(f'Index {index} is not sweepable')
                 return False
 
-            points = self._match_clickable_points(search_image, self.enter.matched_button.image)
+            self.enter.load_search(search_box)
+            click_button = self.enter.match_multi_template(main.device.image)
 
-            if not points:
+            if not click_button:
                 logger.warning(f'No clickable {self.enter.name}')
                 continue
 
-            point = area_offset((0, 0, *area_size(self.enter.button)), points[0])
-            click_button = ClickButton(area_offset(point, search_box[:2]), name=self.enter.name)
-
             if click_interval.reached_and_reset():
-                main.device.click(click_button)
+                main.device.click(click_button[0])
                 return True
 
             if timeout.reached():
