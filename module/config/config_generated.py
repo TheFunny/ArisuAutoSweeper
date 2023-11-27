@@ -45,6 +45,12 @@ class GeneratedConfig:
     Cafe_AutoAdjust = True
     Cafe_SecondCafe = True
 
+    # Group `Invitation`
+    Invitation_Enable = True
+    Invitation_Choice = 'list_top'  # list_top, by_name
+    Invitation_Name = None
+    Invitation_Substitute = True
+
     # Group `Bounty`
     Bounty_OnError = 'skip'  # stop, skip
 

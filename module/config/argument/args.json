@@ -205,6 +205,28 @@
         "type": "checkbox",
         "value": true
       }
+    },
+    "Invitation": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Choice": {
+        "type": "select",
+        "value": "list_top",
+        "option": [
+          "list_top",
+          "by_name"
+        ]
+      },
+      "Name": {
+        "type": "textarea",
+        "value": null
+      },
+      "Substitute": {
+        "type": "checkbox",
+        "value": true
+      }
     }
   },
   "Circle": {

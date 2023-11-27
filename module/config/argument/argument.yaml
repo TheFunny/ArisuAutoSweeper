@@ -80,6 +80,15 @@ Cafe:
   Touch: true
   AutoAdjust: true
   SecondCafe: true
+Invitation:
+  Enable: true
+  Choice:
+    value: list_top
+    option: [ list_top, by_name ]
+  Name:
+    value: null
+    type: textarea
+  Substitute: true
 
 Bounty:
   OnError:

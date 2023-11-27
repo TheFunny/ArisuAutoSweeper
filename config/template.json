@@ -45,6 +45,12 @@
       "Touch": true,
       "AutoAdjust": true,
       "SecondCafe": true
+    },
+    "Invitation": {
+      "Enable": true,
+      "Choice": "list_top",
+      "Name": null,
+      "Substitute": true
     }
   },
   "Circle": {

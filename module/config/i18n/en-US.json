@@ -221,6 +221,30 @@
       "help": "JP server only\nEnable auto switch to second floor and perform interaction"
     }
   },
+  "Invitation": {
+    "_info": {
+      "name": "Invitation Settings",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Choice": {
+      "name": "Choose Inviting Student",
+      "help": "",
+      "list_top": "Top first student of list",
+      "by_name": "By name"
+    },
+    "Name": {
+      "name": "Invited Student Name",
+      "help": "Fill in the name of the student to be invited. Use in-game text language. Use > to connect multiple students. Example:\nJP: ホシノ(水着) > 御坂美琴 > ユズ\nOVERSEA: Hoshino(Swimsuit) > Yuuka > Kayoko(New Year)"
+    },
+    "Substitute": {
+      "name": "Replace existing student",
+      "help": "!TO BE CHANGED!Whether to replace the existing student with another costume.\nIf not, try to match the next student"
+    }
+  },
   "Bounty": {
     "_info": {
       "name": "Bounty Settings",

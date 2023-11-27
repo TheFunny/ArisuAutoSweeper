@@ -25,6 +25,7 @@ Daily:
     Cafe:
       - Scheduler
       - Cafe
+      - Invitation
     Circle:
       - Scheduler
     Mail:
