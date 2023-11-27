@@ -48,21 +48,22 @@ class CafeUI(UI):
         vector_left = (-width * r, 0)
         vector_right = (width * r, 0)
         random_r = (-5, -5, 5, 5)
+        name = 'CAFE_SWIPE'
         match direction:
             case 'init':
                 self.device.pinch()
-                self.device.swipe_vector(vector_down, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_up, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_up, box=BOX_CAFE.area, random_range=random_r, padding=5)
+                self.device.swipe_vector(vector_down, box=BOX_CAFE.area, random_range=random_r, padding=5, name=name)
+                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5, name=name)
+                self.device.swipe_vector(vector_up, box=BOX_CAFE.area, random_range=random_r, padding=5, name=name)
+                self.device.swipe_vector(vector_up, box=BOX_CAFE.area, random_range=random_r, padding=5, name=name)
             case 'left':
-                self.device.swipe_vector(vector_left, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_left, box=BOX_CAFE.area, random_range=random_r, padding=5)
+                self.device.swipe_vector(vector_left, box=BOX_CAFE.area, random_range=random_r, padding=5, name=name)
+                self.device.swipe_vector(vector_left, box=BOX_CAFE.area, random_range=random_r, padding=5, name=name)
             case 'right':
-                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5)
-                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5)
+                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5, name=name)
+                self.device.swipe_vector(vector_right, box=BOX_CAFE.area, random_range=random_r, padding=5, name=name)
         # solve too much swipe causing restart
-        self.device.click_record_clear()
+        self.device.click_record_remove(name)
 
     def cafe_additional(self) -> bool:
         if self.appear_then_click(INVENTORY):
