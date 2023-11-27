@@ -40,6 +40,28 @@ CAFE_FIRST = ButtonWrapper(
         button=(82, 152, 136, 175),
     ),
 )
+CAFE_INVITE = ButtonWrapper(
+    name='CAFE_INVITE',
+    jp=Button(
+        file='./assets/jp/cafe/CAFE_INVITE.png',
+        area=(816, 635, 845, 655),
+        search=(796, 615, 865, 675),
+        color=(173, 182, 192),
+        button=(816, 635, 845, 655),
+    ),
+    en=None,
+)
+CAFE_INVITED = ButtonWrapper(
+    name='CAFE_INVITED',
+    jp=Button(
+        file='./assets/jp/cafe/CAFE_INVITED.png',
+        area=(815, 633, 847, 657),
+        search=(795, 613, 867, 677),
+        color=(144, 144, 146),
+        button=(815, 633, 847, 657),
+    ),
+    en=None,
+)
 CAFE_SECOND = ButtonWrapper(
     name='CAFE_SECOND',
     jp=Button(
@@ -90,6 +112,17 @@ CHANGE_CAFE_SELECTED = ButtonWrapper(
         color=(82, 105, 130),
         button=(40, 87, 191, 112),
     ),
+)
+CHECK_MOMOTALK = ButtonWrapper(
+    name='CHECK_MOMOTALK',
+    jp=Button(
+        file='./assets/jp/cafe/CHECK_MOMOTALK.png',
+        area=(421, 83, 447, 108),
+        search=(401, 63, 467, 128),
+        color=(253, 203, 212),
+        button=(421, 83, 447, 108),
+    ),
+    en=None,
 )
 CHECK_REWARD = ButtonWrapper(
     name='CHECK_REWARD',
@@ -186,6 +219,61 @@ INVENTORY = ButtonWrapper(
         button=(1123, 90, 1165, 130),
     ),
 )
+INVITE_CONFIRM = ButtonWrapper(
+    name='INVITE_CONFIRM',
+    jp=Button(
+        file='./assets/jp/cafe/INVITE_CONFIRM.png',
+        area=(609, 147, 671, 178),
+        search=(589, 127, 691, 198),
+        color=(152, 164, 177),
+        button=(665, 471, 870, 533),
+    ),
+    en=None,
+)
+INVITE_IN_SECOND = ButtonWrapper(
+    name='INVITE_IN_SECOND',
+    jp=Button(
+        file='./assets/jp/cafe/INVITE_IN_SECOND.png',
+        area=(482, 147, 799, 177),
+        search=(462, 127, 819, 197),
+        color=(166, 177, 188),
+        button=(482, 147, 799, 177),
+    ),
+    en=None,
+)
+INVITE_IN_SECOND_CLOSE = ButtonWrapper(
+    name='INVITE_IN_SECOND_CLOSE',
+    jp=Button(
+        file='./assets/jp/cafe/INVITE_IN_SECOND_CLOSE.png',
+        area=(874, 150, 900, 176),
+        search=(854, 130, 920, 196),
+        color=(180, 189, 198),
+        button=(874, 150, 900, 176),
+    ),
+    en=None,
+)
+INVITE_SUBSTITUTE = ButtonWrapper(
+    name='INVITE_SUBSTITUTE',
+    jp=Button(
+        file='./assets/jp/cafe/INVITE_SUBSTITUTE.png',
+        area=(582, 154, 698, 184),
+        search=(562, 134, 718, 204),
+        color=(154, 166, 179),
+        button=(673, 478, 858, 541),
+    ),
+    en=None,
+)
+INVITE_SUBSTITUTE_CLOSE = ButtonWrapper(
+    name='INVITE_SUBSTITUTE_CLOSE',
+    jp=Button(
+        file='./assets/jp/cafe/INVITE_SUBSTITUTE_CLOSE.png',
+        area=(867, 158, 893, 184),
+        search=(847, 138, 913, 204),
+        color=(180, 189, 199),
+        button=(867, 158, 893, 184),
+    ),
+    en=None,
+)
 MOMOTALK_CLOSE = ButtonWrapper(
     name='MOMOTALK_CLOSE',
     jp=Button(
@@ -203,6 +291,28 @@ MOMOTALK_CLOSE = ButtonWrapper(
         button=(824, 82, 850, 108),
     ),
 )
+MOMOTALK_INVITE = ButtonWrapper(
+    name='MOMOTALK_INVITE',
+    jp=Button(
+        file='./assets/jp/cafe/MOMOTALK_INVITE.png',
+        area=(764, 211, 809, 234),
+        search=(744, 191, 829, 254),
+        color=(90, 163, 195),
+        button=(764, 211, 809, 234),
+    ),
+    en=None,
+)
+MOMOTALK_ITEM = ButtonWrapper(
+    name='MOMOTALK_ITEM',
+    jp=Button(
+        file='./assets/jp/cafe/MOMOTALK_ITEM.png',
+        area=(489, 193, 864, 259),
+        search=(469, 173, 884, 279),
+        color=(203, 230, 240),
+        button=(489, 193, 864, 259),
+    ),
+    en=None,
+)
 OCR_CAFE = ButtonWrapper(
     name='OCR_CAFE',
     jp=Button(
@@ -219,6 +329,17 @@ OCR_CAFE = ButtonWrapper(
         color=(84, 104, 127),
         button=(1105, 639, 1195, 674),
     ),
+)
+OCR_NAME = ButtonWrapper(
+    name='OCR_NAME',
+    jp=Button(
+        file='./assets/jp/cafe/OCR_NAME.png',
+        area=(488, 194, 704, 588),
+        search=(468, 174, 724, 608),
+        color=(237, 239, 241),
+        button=(488, 194, 704, 588),
+    ),
+    en=None,
 )
 STUDENT_LIST = ButtonWrapper(
     name='STUDENT_LIST',
