@@ -107,7 +107,13 @@ class StageList:
             self.load_stage_indexes(main=main)
 
             if self.current_index_min <= index <= self.current_index_max:
-                break
+                return True
+
+            indexes = self._indexes
+            if indexes and last_indexes == set(indexes):
+                logger.warning(f'No more index {index}')
+                return False
+            last_indexes = set(indexes)
 
             if index < self.current_index_min:
                 self.swipe_page(self.swipe_direction, main, reverse=True)
@@ -119,14 +125,6 @@ class StageList:
                 timer=Timer(0, 0),
                 timeout=Timer(1.5, 5)
             )
-
-            indexes = self._indexes
-            if indexes and last_indexes == set(indexes):
-                logger.warning(f'No more index {index}')
-                return False
-            last_indexes = set(indexes)
-
-        return True
 
     def select_index_enter(
             self,
