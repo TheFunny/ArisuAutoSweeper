@@ -6,6 +6,7 @@ from module.logger import logger
 from module.ui.switch import Switch
 from tasks.base.page import page_cafe
 from tasks.cafe.assets.assets_cafe import *
+from tasks.cafe.invitation import handle_invitation
 from tasks.cafe.ui import CafeUI
 
 SWITCH_CAFE = Switch('Cafe_switch')
@@ -22,8 +23,9 @@ class CafeStatus(Enum):
     OCR = 1
     REWARD = 2
     GOT = 3
-    CLICK = 4
-    CHECK = 5
+    INVITATION = 4
+    CLICK = 5
+    CHECK = 6
     FINISHED = -1
 
 
@@ -63,6 +65,9 @@ class Cafe(CafeUI):
                 logger.info('Cafe reward have been got')
                 self.appear_then_click(GET_REWARD_CLOSE)
                 if not self.appear(GET_REWARD_CLOSE):
+                    return CafeStatus.INVITATION
+            case CafeStatus.INVITATION:
+                if handle_invitation(self):
                     return CafeStatus.CLICK
             case CafeStatus.CLICK:
                 buttons = self.get_clickable_buttons(offset=(45, 10))
