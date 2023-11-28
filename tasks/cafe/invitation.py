@@ -226,7 +226,7 @@ def handle_invitation_status(status: InvitationStatus, main: ModuleBase) -> Invi
             if main.appear(CAFE_INVITED):
                 logger.info('Invitation in cooldown')
                 return InvitationStatus.FINISHED
-            if invitation.target_name is None:
+            if invitation.choice != 'list_top' and invitation.target_name is None:
                 logger.warning('No student to be invited or all invitations failed')
                 return InvitationStatus.FINISHED
             if main.appear(CHECK_MOMOTALK):
