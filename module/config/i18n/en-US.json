@@ -250,7 +250,7 @@
     },
     "Substitute": {
       "name": "Replace existing student",
-      "help": "!TO BE CHANGED!Whether to replace the existing student with another costume.\nIf not, try to match the next student"
+      "help": "Whether to replace the existing student with their alt.\nIf not, try to match the next student"
     }
   },
   "Bounty": {
