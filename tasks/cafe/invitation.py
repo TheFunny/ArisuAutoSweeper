@@ -1,4 +1,5 @@
 import re
+from datetime import datetime, timedelta
 from enum import Enum
 
 import numpy as np
@@ -6,6 +7,7 @@ import numpy as np
 from module.base.base import ModuleBase
 from module.base.timer import Timer
 from module.base.utils import area_size, area_offset
+from module.config.utils import get_server_next_update
 from module.logger import logger
 from module.ocr.ocr import Ocr
 from tasks.cafe.assets.assets_cafe import *
@@ -32,6 +34,7 @@ class InvitationStatus(Enum):
 
 class Invitation:
     swipe_vector_range = (0.65, 0.85)
+    cafe_update = ["04:00", "16:00"]
 
     def __init__(self, name: str):
         self.name = name
@@ -41,6 +44,7 @@ class Invitation:
         self.invite = MOMOTALK_INVITE
 
         self.target_names = []
+        self.waiting_hour = None
         self.substitute = None
         self.choice = None
 
@@ -94,6 +98,10 @@ class Invitation:
                 self.current_names.append((n[0] + name, n[1]))
                 continue
             self.current_names.append((name, name_.box))
+
+    @property
+    def is_invitation(self) -> bool:
+        return get_server_next_update(self.cafe_update) - datetime.now() > timedelta(hours=self.waiting_hour)
 
     @property
     def names(self):
@@ -212,6 +220,9 @@ invitation = Invitation('test')
 def handle_invitation_status(status: InvitationStatus, main: ModuleBase) -> InvitationStatus:
     match status:
         case InvitationStatus.MOMOTALK:
+            if not invitation.is_invitation:
+                logger.info('Invitation waiting until next refresh')
+                return InvitationStatus.FINISHED
             if main.appear(CAFE_INVITED):
                 logger.info('Invitation in cooldown')
                 return InvitationStatus.FINISHED
@@ -272,6 +283,7 @@ def handle_invitation(main: ModuleBase):
     if not main.config.Invitation_Enable:
         logger.info('Invitation disabled')
         return True
+    invitation.waiting_hour = main.config.Invitation_WaitingHour
     invitation.choice = main.config.Invitation_Choice
     invitation.substitute = main.config.Invitation_Substitute
     if invitation.choice == 'by_name' and not invitation.target_names:
