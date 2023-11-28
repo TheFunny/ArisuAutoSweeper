@@ -289,6 +289,9 @@ def handle_invitation(main: ModuleBase):
         invitation.choice = main.config.Invitation_Choice
     if invitation.choice == 'by_name' and not invitation.target_names:
         name = main.config.Invitation_Name
+        if name is None:
+            logger.warning('Choose By Name but Inviting Student Name is blank')
+            return True
         name = re.sub(r'[ \t\r\n]', '', name)
         name = re.sub(r'[＞﹥›˃ᐳ❯]', '>', name)
         name = re.sub(r'（', '(', name)
