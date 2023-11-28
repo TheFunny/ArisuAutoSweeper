@@ -82,13 +82,16 @@ Cafe:
   SecondCafe: true
 Invitation:
   Enable: true
+  WaitingHour:
+    value: 0
+    option: [ 0, 3, 6, 9 ]
   Choice:
     value: list_top
     option: [ list_top, by_name ]
   Name:
     value: null
     type: textarea
-  Substitute: true
+  Substitute: false
 
 Bounty:
   OnError:

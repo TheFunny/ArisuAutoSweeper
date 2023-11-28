@@ -228,16 +228,24 @@
     },
     "Enable": {
       "name": "Enable",
-      "help": ""
+      "help": "Enable cafe invitation"
+    },
+    "WaitingHour": {
+      "name": "Invitation Condition",
+      "help": "Choose whether to invite students based on the remaining time before next cafe refresh\nThis is for obtaining maximum student interation and maximum affection when AFK. Recommended option:\n24*7 AFK:\t\t Choose \"If 9 more hours remaining\"\nNormal usage:\t Choose \"Invite immediately\"",
+      "0": "Invite immediately",
+      "3": "If 3 more hours remaining",
+      "6": "If 6 more hours remaining",
+      "9": "If 9 more hours remaining"
     },
     "Choice": {
       "name": "Choose Inviting Student",
-      "help": "",
+      "help": "Top first student of list: Invite the student at the top first of the list\nBy name: Invite the student with the name you set below",
       "list_top": "Top first student of list",
       "by_name": "By name"
     },
     "Name": {
-      "name": "Invited Student Name",
+      "name": "Inviting Student Name",
       "help": "Fill in the name of the student to be invited. Use in-game text language. Use > to connect multiple students. Example:\nJP: ホシノ(水着) > 御坂美琴 > ユズ\nOVERSEA: Hoshino(Swimsuit) > Yuuka > Kayoko(New Year)"
     },
     "Substitute": {

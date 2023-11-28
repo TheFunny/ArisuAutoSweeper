@@ -48,9 +48,10 @@
     },
     "Invitation": {
       "Enable": true,
+      "WaitingHour": 0,
       "Choice": "list_top",
       "Name": null,
-      "Substitute": true
+      "Substitute": false
     }
   },
   "Circle": {

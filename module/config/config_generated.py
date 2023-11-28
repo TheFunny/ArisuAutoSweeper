@@ -47,9 +47,10 @@ class GeneratedConfig:
 
     # Group `Invitation`
     Invitation_Enable = True
+    Invitation_WaitingHour = 0  # 0, 3, 6, 9
     Invitation_Choice = 'list_top'  # list_top, by_name
     Invitation_Name = None
-    Invitation_Substitute = True
+    Invitation_Substitute = False
 
     # Group `Bounty`
     Bounty_OnError = 'skip'  # stop, skip
