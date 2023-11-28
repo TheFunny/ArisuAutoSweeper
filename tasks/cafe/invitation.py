@@ -284,8 +284,9 @@ def handle_invitation(main: ModuleBase):
         logger.info('Invitation disabled')
         return True
     invitation.waiting_hour = main.config.Invitation_WaitingHour
-    invitation.choice = main.config.Invitation_Choice
     invitation.substitute = main.config.Invitation_Substitute
+    if invitation.choice is None:
+        invitation.choice = main.config.Invitation_Choice
     if invitation.choice == 'by_name' and not invitation.target_names:
         name = main.config.Invitation_Name
         name = re.sub(r'[ \t\r\n]', '', name)
