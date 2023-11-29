@@ -214,7 +214,7 @@ class Invitation:
                 return False
 
 
-invitation = Invitation('test')
+invitation = Invitation('CafeInvitation')
 
 
 def handle_invitation_status(status: InvitationStatus, main: ModuleBase) -> InvitationStatus:
