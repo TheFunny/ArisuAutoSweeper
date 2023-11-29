@@ -33,7 +33,7 @@ class StageList:
 
         self.current_index_min = 1
         self.current_index_max = 1
-        self.current_indexes = []
+        self.current_indexes: list[tuple[str, tuple]] = []
 
     def __str__(self):
         return f'StageList({self.name})'
@@ -48,12 +48,14 @@ class StageList:
 
     @property
     def _indexes(self) -> list[int]:
-        return list(map(lambda x: int(x.ocr_text), self.current_indexes))
+        return [int(x[0]) for x in self.current_indexes]
 
     def load_stage_indexes(self, main: ModuleBase):
         self.current_indexes = list(
-            filter(lambda x: re.match(r'^\d{1,2}-?\d?$', x.ocr_text),
-                   self.index_ocr.detect_and_ocr(main.device.image))
+            filter(
+                lambda x: re.match(r'^\d{1,2}-?\d?$', x[0]),
+                map(lambda x: (x.ocr_text, x.box), self.index_ocr.detect_and_ocr(main.device.image))
+            )
         )
         if not self.current_indexes:
             logger.warning(f'No valid index in {self.index_ocr.name}')
@@ -157,7 +159,7 @@ class StageList:
                 self.load_stage_indexes(main=main)
 
             # find box of index
-            index_box = next(filter(lambda x: int(x.ocr_text) == index, self.current_indexes), None)
+            index_box = next(filter(lambda x: int(x[0]) == index, self.current_indexes), None)
 
             if index_box is None:
                 logger.warning(f'No index {index} in {self.index_ocr.name}')
