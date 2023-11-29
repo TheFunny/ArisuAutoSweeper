@@ -1,3 +1,5 @@
+import re
+
 import numpy as np
 
 from module.base.base import ModuleBase
@@ -50,7 +52,8 @@ class StageList:
 
     def load_stage_indexes(self, main: ModuleBase):
         self.current_indexes = list(
-            filter(lambda x: x.ocr_text.isdigit(), self.index_ocr.detect_and_ocr(main.device.image))
+            filter(lambda x: re.match(r'^\d{1,2}-?\d?$', x.ocr_text),
+                   self.index_ocr.detect_and_ocr(main.device.image))
         )
         if not self.current_indexes:
             logger.warning(f'No valid index in {self.index_ocr.name}')
