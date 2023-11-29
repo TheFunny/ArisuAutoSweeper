@@ -131,9 +131,63 @@ class StageList:
                 timeout=Timer(1.5, 5)
             )
 
+    def insight_max_sweepable_index(self, main: ModuleBase, skip_first_screenshot=True) -> int:
+        """
+        Args:
+            main:
+            skip_first_screenshot:
+
+        Returns:
+            Index of max sweepable stage
+        """
+        logger.info('Insight sweepable index')
+        max_sweepable_index = 0
+        last_max_sweepable_index = 0
+
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                main.device.screenshot()
+
+            self.load_stage_indexes(main=main)
+
+            sweepable_index = next(
+                filter(
+                    lambda x: not self.is_sweepable(main, self.search_box(x[-1][:2])),
+                    self.current_indexes
+                ), None
+            )
+
+            # all sweepable
+            if sweepable_index is None:
+                logger.info('All sweepable')
+                max_sweepable_index = self.current_index_max
+                self.swipe_page(self.swipe_direction, main)
+                if max_sweepable_index == last_max_sweepable_index:
+                    logger.info(f'Max sweepable index: {max_sweepable_index}')
+                    return max_sweepable_index
+                last_max_sweepable_index = max_sweepable_index
+            # all not sweepable
+            elif int(sweepable_index[0]) == self.current_index_min:
+                logger.info('All not sweepable')
+                if int(sweepable_index[0]) == 1:
+                    logger.warning('No sweepable index')
+                    return 0
+                self.swipe_page(self.swipe_direction, main, reverse=True)
+            else:
+                logger.info(f'Sweepable index: {int(sweepable_index[0]) - 1}')
+                return int(sweepable_index[0]) - 1
+
+            main.wait_until_stable(
+                self.stage.button,
+                timer=Timer(0, 0),
+                timeout=Timer(1.5, 5)
+            )
+
     def is_sweepable(self, main: ModuleBase, search_box) -> bool:
         self.sweepable.load_search(search_box)
-        return main.appear(self.sweepable)
+        return main.appear(self.sweepable, similarity=0.8)
 
     def search_box(
             self,
