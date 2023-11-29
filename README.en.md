@@ -12,7 +12,7 @@
 
 The script is still under active development. The following features have been implemented:
 
-- [x] **Cafe** Claim rewards / Interact / Second floor
+- [x] **Cafe** Claim rewards / Interact / Invitation / Second floor
 - [x] **Club** Claim AP
 - [x] **Mailbox** Claim rewards
 - [x] **Bounty** Auto sweep
