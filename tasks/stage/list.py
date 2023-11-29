@@ -131,13 +131,25 @@ class StageList:
                 timeout=Timer(1.5, 5)
             )
 
+    def is_sweepable(self, main: ModuleBase, search_box) -> bool:
+        self.sweepable.load_search(search_box)
+        return main.appear(self.sweepable)
+
+    def search_box(
+            self,
+            index_cord: tuple[int, int],
+            padding: tuple[int, int] = (-20, -15)
+    ) -> tuple[int, int, int, int]:
+        stage_item_box = area_pad((*padding, *area_size(self.stage_item)))
+        return area_offset(stage_item_box, index_cord)
+
     def select_index_enter(
             self,
             main: ModuleBase,
             index: int,
             insight: bool = True,
             sweepable: bool = True,
-            offset: tuple[int, int] = (-20, -15),
+            padding: tuple[int, int] = (-20, -15),
             skip_first_screenshot: bool = True,
             interval: int = 1.5
     ) -> bool:
@@ -165,11 +177,8 @@ class StageList:
                 logger.warning(f'No index {index} in {self.index_ocr.name}')
                 continue
 
-            stage_item_box = area_pad((*offset, *area_size(self.stage_item)))
-            search_box = area_offset(stage_item_box, index_box.box[:2])
-            self.sweepable.load_search(search_box)
-
-            if sweepable and not main.appear(self.sweepable):
+            search_box = self.search_box(index_box[-1][:2], padding)
+            if sweepable and not self.is_sweepable(main, search_box):
                 logger.warning(f'Index {index} is not sweepable')
                 return False
 
