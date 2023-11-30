@@ -22,6 +22,8 @@ class ScrimmageUI(UI):
                 return False
 
     def enter_stage(self, index: int) -> bool:
+        if not index:
+            index = SCRIMMAGE_LIST.insight_max_sweepable_index(self)
         if SCRIMMAGE_LIST.select_index_enter(self, index, insight=False):
             return True
         return False

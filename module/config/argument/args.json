@@ -332,8 +332,9 @@
     "Highway": {
       "Stage": {
         "type": "select",
-        "value": 1,
+        "value": 0,
         "option": [
+          0,
           1,
           2,
           3,
@@ -353,8 +354,9 @@
     "DesertRailroad": {
       "Stage": {
         "type": "select",
-        "value": 1,
+        "value": 0,
         "option": [
+          0,
           1,
           2,
           3,
@@ -374,8 +376,9 @@
     "Schoolhouse": {
       "Stage": {
         "type": "select",
-        "value": 1,
+        "value": 0,
         "option": [
+          0,
           1,
           2,
           3,
@@ -432,8 +435,9 @@
     "Trinity": {
       "Stage": {
         "type": "select",
-        "value": 1,
+        "value": 0,
         "option": [
+          0,
           1,
           2,
           3,
@@ -448,8 +452,9 @@
     "Gehenna": {
       "Stage": {
         "type": "select",
-        "value": 1,
+        "value": 0,
         "option": [
+          0,
           1,
           2,
           3,
@@ -464,8 +469,9 @@
     "Millennium": {
       "Stage": {
         "type": "select",
-        "value": 1,
+        "value": 0,
         "option": [
+          0,
           1,
           2,
           3,

@@ -22,6 +22,8 @@ class BountyUI(UI):
                 return False
 
     def enter_stage(self, index: int) -> bool:
+        if not index:
+            index = BOUNTY_LIST.insight_max_sweepable_index(self)
         if BOUNTY_LIST.select_index_enter(self, index):
             return True
         return False

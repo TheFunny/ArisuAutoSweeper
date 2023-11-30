@@ -273,6 +273,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Overpass A",
       "2": "02 - Overpass B",
       "3": "03 - Overpass C",
@@ -296,6 +297,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Abandoned Train A",
       "2": "02 - Abandoned Train B",
       "3": "03 - Abandoned Train C",
@@ -319,6 +321,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Besieged Classroom A",
       "2": "02 - Besieged Classroom B",
       "3": "03 - Besieged Classroom C",
@@ -354,6 +357,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Trinity A",
       "2": "02 - Trinity B",
       "3": "03 - Trinity C",
@@ -372,6 +376,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Gehenna A",
       "2": "02 - Gehenna B",
       "3": "03 - Gehenna C",
@@ -390,6 +395,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Millennium A",
       "2": "02 - Millennium B",
       "3": "03 - Millennium C",

@@ -56,30 +56,30 @@ class GeneratedConfig:
     Bounty_OnError = 'skip'  # stop, skip
 
     # Group `Highway`
-    Highway_Stage = 1  # 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Highway_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
     Highway_Count = 2
 
     # Group `DesertRailroad`
-    DesertRailroad_Stage = 1  # 1, 2, 3, 4, 5, 6, 7, 8, 9
+    DesertRailroad_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
     DesertRailroad_Count = 2
 
     # Group `Schoolhouse`
-    Schoolhouse_Stage = 1  # 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Schoolhouse_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
     Schoolhouse_Count = 2
 
     # Group `Scrimmage`
     Scrimmage_OnError = 'skip'  # stop, skip
 
     # Group `Trinity`
-    Trinity_Stage = 1  # 1, 2, 3, 4
+    Trinity_Stage = 0  # 0, 1, 2, 3, 4
     Trinity_Count = 2
 
     # Group `Gehenna`
-    Gehenna_Stage = 1  # 1, 2, 3, 4
+    Gehenna_Stage = 0  # 0, 1, 2, 3, 4
     Gehenna_Count = 2
 
     # Group `Millennium`
-    Millennium_Stage = 1  # 1, 2, 3, 4
+    Millennium_Stage = 0  # 0, 1, 2, 3, 4
     Millennium_Count = 2
 
     # Group `TacticalChallenge`

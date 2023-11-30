@@ -81,15 +81,15 @@
       "OnError": "skip"
     },
     "Highway": {
-      "Stage": 1,
+      "Stage": 0,
       "Count": 2
     },
     "DesertRailroad": {
-      "Stage": 1,
+      "Stage": 0,
       "Count": 2
     },
     "Schoolhouse": {
-      "Stage": 1,
+      "Stage": 0,
       "Count": 2
     }
   },
@@ -104,15 +104,15 @@
       "OnError": "skip"
     },
     "Trinity": {
-      "Stage": 1,
+      "Stage": 0,
       "Count": 2
     },
     "Gehenna": {
-      "Stage": 1,
+      "Stage": 0,
       "Count": 2
     },
     "Millennium": {
-      "Stage": 1,
+      "Stage": 0,
       "Count": 2
     }
   },
