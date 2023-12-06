@@ -221,7 +221,7 @@ class StageList:
                 main.device.screenshot()
 
             # load index if not insight
-            if load_index_interval.reached_and_reset() and not insight:
+            if load_index_interval.reached_and_reset():
                 self.load_stage_indexes(main=main)
 
             # find box of index
