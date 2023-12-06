@@ -3,6 +3,7 @@ from module.logger import logger
 from module.ocr.ocr import DigitCounter
 from tasks.base.ui import UI
 from tasks.scrimmage.assets.assets_scrimmage import *
+from tasks.stage.ap import AP
 from tasks.stage.list import StageList
 from tasks.stage.sweep import StageSweep
 
@@ -10,7 +11,7 @@ SCRIMMAGE_LIST = StageList('ScrimmageList')
 SCRIMMAGE_SWEEP = StageSweep('ScrimmageSweep', 6)
 
 
-class ScrimmageUI(UI):
+class ScrimmageUI(UI, AP):
     def select_scrimmage(self, dest_enter: ButtonWrapper, dest_check: ButtonWrapper):
         timer = Timer(5, 10).start()
         while 1:
@@ -24,6 +25,8 @@ class ScrimmageUI(UI):
     def enter_stage(self, index: int) -> bool:
         if not index:
             index = SCRIMMAGE_LIST.insight_max_sweepable_index(self)
+            # set AP stage
+            self.set_stage(index)
         if SCRIMMAGE_LIST.select_index_enter(self, index, insight=False):
             return True
         return False

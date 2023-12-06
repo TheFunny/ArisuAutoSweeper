@@ -7,6 +7,7 @@ from tasks.base.assets.assets_base_page import BACK
 from tasks.base.page import page_school_exchange
 from tasks.scrimmage.assets.assets_scrimmage import *
 from tasks.scrimmage.ui import ScrimmageUI
+from tasks.stage.ap import AP
 
 
 class ScrimmageStatus(Enum):
@@ -18,15 +19,20 @@ class ScrimmageStatus(Enum):
     FINISH = 5
 
 
-class Scrimmage(ScrimmageUI):
+class Scrimmage(ScrimmageUI, AP):
+    _stage_ap = [10, 15, 15, 15]
+
+    @property
+    def stage_ap(self):
+        return self._stage_ap
+
     @property
     def scrimmage_info(self):
         scrimmage = (SELECT_TRINITY, SELECT_GEHENNA, SELECT_MILLENNIUM)
         check = (CHECK_TRINITY, CHECK_GEHENNA, CHECK_MILLENNIUM)
         stage = (self.config.Trinity_Stage, self.config.Gehenna_Stage, self.config.Millennium_Stage)
         count = (self.config.Trinity_Count, self.config.Gehenna_Count, self.config.Millennium_Count)
-        ap = (10 if stage == 1 else 15 for stage in stage)
-        info = zip(scrimmage, check, stage, count, ap)
+        info = zip(scrimmage, check, stage, count)
         return filter(lambda x: x[3] > 0, info)
 
     @property
@@ -51,10 +57,6 @@ class Scrimmage(ScrimmageUI):
         return self.current_ticket >= self.current_count
 
     @property
-    def is_ap_enough(self) -> bool:
-        return self.current_ap >= self.current_task_ap
-
-    @property
     def current_scrimmage(self):
         return self.task[0][:2]
 
@@ -67,23 +69,8 @@ class Scrimmage(ScrimmageUI):
         return self.task[0][3]
 
     @property
-    def current_task_ap(self):
-        return self.task[0][4] * self.current_count
-
-    @property
     def current_ticket(self):
         return self.config.stored.ScrimmageTicket.value
-
-    @property
-    def current_ap(self):
-        return self.config.stored.AP.value
-
-    def update_ap(self):
-        ap = self.config.stored.AP
-        ap_old = ap.value
-        ap_new = ap_old - self.current_task_ap
-        ap.set(ap_new, ap.total)
-        logger.info(f'Set AP: {ap_old} -> {ap_new}')
 
     def handle_scrimmage(self, status):
         match status:
@@ -96,19 +83,16 @@ class Scrimmage(ScrimmageUI):
                 if not self.is_ticket_enough:
                     logger.warning('Scrimmage ticket not enough')
                     self.error_handler()
-                if not self.is_ap_enough:
-                    logger.warning('AP not enough')
-                    self.error_handler()
                 if self.select_scrimmage(*self.current_scrimmage):
                     return ScrimmageStatus.ENTER
             case ScrimmageStatus.ENTER:
-                if self.enter_stage(self.current_stage):
+                if self.enter_stage(self.current_stage) and self.is_ap_enough(self.current_count, self.current_stage):
                     return ScrimmageStatus.SWEEP
                 else:
                     self.error_handler()
             case ScrimmageStatus.SWEEP:
                 if self.do_sweep(self.current_count):
-                    self.update_ap()
+                    self.update_ap(self.current_count, self.current_stage)
                     self.task.pop(0)
                     return ScrimmageStatus.END
                 return ScrimmageStatus.ENTER
