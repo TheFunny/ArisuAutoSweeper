@@ -41,6 +41,8 @@ class TacticalChallenge(TacticalChallengeUI):
     def _handle_challenge(self, status):
         match status:
             case TCStatus.REWARD:
+                if self.ui_additional():
+                    return status
                 if self.get_reward():
                     return TCStatus.OCR
             case TCStatus.OCR:
