@@ -127,6 +127,14 @@
       "PlayerSelect": 0
     }
   },
+  "Task": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Task",
+      "ServerUpdate": "04:00"
+    }
+  },
   "DataUpdate": {
     "Scheduler": {
       "Enable": true,

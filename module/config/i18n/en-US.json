@@ -42,6 +42,10 @@
       "name": "Tactical Challenge",
       "help": ""
     },
+    "Task": {
+      "name": "Tasks",
+      "help": ""
+    },
     "DataUpdate": {
       "name": "Dashboard Upd",
       "help": ""

@@ -45,6 +45,8 @@ Daily:
     TacticalChallenge:
       - Scheduler
       - TacticalChallenge
+    Task:
+      - Scheduler
     DataUpdate:
       - Scheduler
       - ItemStorage

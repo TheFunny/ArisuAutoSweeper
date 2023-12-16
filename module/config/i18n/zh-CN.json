@@ -42,6 +42,10 @@
       "name": "战术对抗赛",
       "help": "战术大赛 / 竞技场"
     },
+    "Task": {
+      "name": "Task.Task.name",
+      "help": "Task.Task.help"
+    },
     "DataUpdate": {
       "name": "仪表盘更新",
       "help": ""
