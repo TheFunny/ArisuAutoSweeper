@@ -19,17 +19,23 @@ Alas:
 # ==================== Daily ====================
 
 Daily:
-  menu: 'list'
+  menu: 'collapse'
   page: 'setting'
   tasks:
     Cafe:
       - Scheduler
       - Cafe
       - Invitation
-    Circle:
+    DataUpdate:
       - Scheduler
-    Mail:
-      - Scheduler
+      - ItemStorage
+
+# ==================== Farm ====================
+
+Farm:
+  menu: 'collapse'
+  page: 'setting'
+  tasks:
     Bounty:
       - Scheduler
       - Bounty
@@ -45,8 +51,16 @@ Daily:
     TacticalChallenge:
       - Scheduler
       - TacticalChallenge
+
+# ==================== Rewards ====================
+
+Reward:
+  menu: 'collapse'
+  page: 'setting'
+  tasks:
+    Circle:
+      - Scheduler
     Task:
       - Scheduler
-    DataUpdate:
+    Mail:
       - Scheduler
-      - ItemStorage

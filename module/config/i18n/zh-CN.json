@@ -7,6 +7,14 @@
     "Daily": {
       "name": "每日",
       "help": ""
+    },
+    "Farm": {
+      "name": "Menu.Farm.name",
+      "help": "Menu.Farm.help"
+    },
+    "Reward": {
+      "name": "Menu.Reward.name",
+      "help": "Menu.Reward.help"
     }
   },
   "Task": {
@@ -22,12 +30,8 @@
       "name": "咖啡厅",
       "help": ""
     },
-    "Circle": {
-      "name": "公会",
-      "help": "社团 / 小组"
-    },
-    "Mail": {
-      "name": "邮箱",
+    "DataUpdate": {
+      "name": "仪表盘更新",
       "help": ""
     },
     "Bounty": {
@@ -42,12 +46,16 @@
       "name": "战术对抗赛",
       "help": "战术大赛 / 竞技场"
     },
+    "Circle": {
+      "name": "公会",
+      "help": "社团 / 小组"
+    },
     "Task": {
       "name": "Task.Task.name",
       "help": "Task.Task.help"
     },
-    "DataUpdate": {
-      "name": "仪表盘更新",
+    "Mail": {
+      "name": "邮箱",
       "help": ""
     }
   },

@@ -7,6 +7,14 @@
     "Daily": {
       "name": "Daily",
       "help": ""
+    },
+    "Farm": {
+      "name": "Farm",
+      "help": ""
+    },
+    "Reward": {
+      "name": "Reward",
+      "help": ""
     }
   },
   "Task": {
@@ -22,12 +30,8 @@
       "name": "Cafe",
       "help": ""
     },
-    "Circle": {
-      "name": "Club",
-      "help": ""
-    },
-    "Mail": {
-      "name": "Mailbox",
+    "DataUpdate": {
+      "name": "Dashboard Upd",
       "help": ""
     },
     "Bounty": {
@@ -42,12 +46,16 @@
       "name": "Tactical Challenge",
       "help": ""
     },
+    "Circle": {
+      "name": "Club",
+      "help": ""
+    },
     "Task": {
       "name": "Tasks",
       "help": ""
     },
-    "DataUpdate": {
-      "name": "Dashboard Upd",
+    "Mail": {
+      "name": "Mailbox",
       "help": ""
     }
   },

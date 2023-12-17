@@ -54,20 +54,20 @@
       "Substitute": false
     }
   },
-  "Circle": {
+  "DataUpdate": {
     "Scheduler": {
       "Enable": true,
       "NextRun": "2020-01-01 00:00:00",
-      "Command": "Circle",
+      "Command": "DataUpdate",
       "ServerUpdate": "04:00"
-    }
-  },
-  "Mail": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "Mail",
-      "ServerUpdate": "04:00"
+    },
+    "ItemStorage": {
+      "AP": {},
+      "Credit": {},
+      "Pyroxene": {},
+      "BountyTicket": {},
+      "ScrimmageTicket": {},
+      "TacticalChallengeTicket": {}
     }
   },
   "Bounty": {
@@ -127,6 +127,14 @@
       "PlayerSelect": 0
     }
   },
+  "Circle": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Circle",
+      "ServerUpdate": "04:00"
+    }
+  },
   "Task": {
     "Scheduler": {
       "Enable": false,
@@ -135,20 +143,12 @@
       "ServerUpdate": "04:00"
     }
   },
-  "DataUpdate": {
+  "Mail": {
     "Scheduler": {
       "Enable": true,
       "NextRun": "2020-01-01 00:00:00",
-      "Command": "DataUpdate",
+      "Command": "Mail",
       "ServerUpdate": "04:00"
-    },
-    "ItemStorage": {
-      "AP": {},
-      "Credit": {},
-      "Pyroxene": {},
-      "BountyTicket": {},
-      "ScrimmageTicket": {},
-      "TacticalChallengeTicket": {}
     }
   }
 }

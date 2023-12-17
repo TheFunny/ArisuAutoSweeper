@@ -239,14 +239,16 @@
       }
     }
   },
-  "Circle": {
+  "DataUpdate": {
     "Scheduler": {
       "Enable": {
-        "type": "checkbox",
+        "type": "state",
         "value": true,
         "option": [
-          true,
-          false
+          true
+        ],
+        "option_bold": [
+          true
         ]
       },
       "NextRun": {
@@ -256,7 +258,7 @@
       },
       "Command": {
         "type": "input",
-        "value": "Circle",
+        "value": "DataUpdate",
         "display": "hide"
       },
       "ServerUpdate": {
@@ -264,32 +266,55 @@
         "value": "04:00",
         "display": "hide"
       }
-    }
-  },
-  "Mail": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": true,
-        "option": [
-          true,
-          false
-        ]
+    },
+    "ItemStorage": {
+      "AP": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredAP",
+        "order": 1,
+        "color": "#62ea6e"
       },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
+      "Credit": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredInt",
+        "order": 2,
+        "color": "#fdec00"
       },
-      "Command": {
-        "type": "input",
-        "value": "Mail",
-        "display": "hide"
+      "Pyroxene": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredInt",
+        "order": 3,
+        "color": "#21befc"
       },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00",
-        "display": "hide"
+      "BountyTicket": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredBountyTicket",
+        "order": 4,
+        "color": "#94cb44"
+      },
+      "ScrimmageTicket": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredScrimmageTicket",
+        "order": 5,
+        "color": "#f86c6a"
+      },
+      "TacticalChallengeTicket": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredTacticalChallengeTicket",
+        "order": 6,
+        "color": "#7ac8e5"
       }
     }
   },
@@ -523,6 +548,33 @@
       }
     }
   },
+  "Circle": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Circle",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    }
+  },
   "Task": {
     "Scheduler": {
       "Enable": {
@@ -550,16 +602,14 @@
       }
     }
   },
-  "DataUpdate": {
+  "Mail": {
     "Scheduler": {
       "Enable": {
-        "type": "state",
+        "type": "checkbox",
         "value": true,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -569,63 +619,13 @@
       },
       "Command": {
         "type": "input",
-        "value": "DataUpdate",
+        "value": "Mail",
         "display": "hide"
       },
       "ServerUpdate": {
         "type": "input",
         "value": "04:00",
         "display": "hide"
-      }
-    },
-    "ItemStorage": {
-      "AP": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredAP",
-        "order": 1,
-        "color": "#62ea6e"
-      },
-      "Credit": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredInt",
-        "order": 2,
-        "color": "#fdec00"
-      },
-      "Pyroxene": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredInt",
-        "order": 3,
-        "color": "#21befc"
-      },
-      "BountyTicket": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredBountyTicket",
-        "order": 4,
-        "color": "#94cb44"
-      },
-      "ScrimmageTicket": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredScrimmageTicket",
-        "order": 5,
-        "color": "#f86c6a"
-      },
-      "TacticalChallengeTicket": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredTacticalChallengeTicket",
-        "order": 6,
-        "color": "#7ac8e5"
       }
     }
   }

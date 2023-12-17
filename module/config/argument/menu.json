@@ -8,17 +8,29 @@
     ]
   },
   "Daily": {
-    "menu": "list",
+    "menu": "collapse",
     "page": "setting",
     "tasks": [
       "Cafe",
-      "Circle",
-      "Mail",
+      "DataUpdate"
+    ]
+  },
+  "Farm": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "Bounty",
       "Scrimmage",
-      "TacticalChallenge",
+      "TacticalChallenge"
+    ]
+  },
+  "Reward": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
+      "Circle",
       "Task",
-      "DataUpdate"
+      "Mail"
     ]
   }
 }
