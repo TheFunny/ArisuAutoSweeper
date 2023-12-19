@@ -9,7 +9,7 @@ class ManualConfig:
     SCHEDULER_PRIORITY = """
     Restart
     > Cafe > Circle > Mail > DataUpdate > Bounty
-    > Scrimmage > TacticalChallenge > Task
+    > Scrimmage > TacticalChallenge > Task > Shop
     """
 
     """

@@ -33,6 +33,22 @@
       "ServerUpdate": "04:00"
     }
   },
+  "DataUpdate": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "DataUpdate",
+      "ServerUpdate": "04:00"
+    },
+    "ItemStorage": {
+      "AP": {},
+      "Credit": {},
+      "Pyroxene": {},
+      "BountyTicket": {},
+      "ScrimmageTicket": {},
+      "TacticalChallengeTicket": {}
+    }
+  },
   "Cafe": {
     "Scheduler": {
       "Enable": true,
@@ -54,20 +70,55 @@
       "Substitute": false
     }
   },
-  "DataUpdate": {
+  "Shop": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
-      "Command": "DataUpdate",
+      "Command": "Shop",
       "ServerUpdate": "04:00"
     },
-    "ItemStorage": {
-      "AP": {},
-      "Credit": {},
-      "Pyroxene": {},
-      "BountyTicket": {},
-      "ScrimmageTicket": {},
-      "TacticalChallengeTicket": {}
+    "NormalShop": {
+      "Enable": false,
+      "Purchases": 1,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
+      "7": false,
+      "8": false,
+      "9": false,
+      "10": false,
+      "11": false,
+      "12": false,
+      "13": false,
+      "14": false,
+      "15": false,
+      "16": false,
+      "17": false,
+      "18": false,
+      "19": false,
+      "20": false
+    },
+    "TacticalChallengeShop": {
+      "Enable": false,
+      "Purchases": 1,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
+      "7": false,
+      "8": false,
+      "9": false,
+      "10": false,
+      "11": false,
+      "12": false,
+      "13": false,
+      "14": false,
+      "15": false
     }
   },
   "Bounty": {

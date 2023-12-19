@@ -15,6 +15,9 @@ Alas:
       - Optimization
     Restart:
       - Scheduler
+    DataUpdate:
+      - Scheduler
+      - ItemStorage
 
 # ==================== Daily ====================
 
@@ -26,10 +29,11 @@ Daily:
       - Scheduler
       - Cafe
       - Invitation
-    DataUpdate:
+    Shop:
       - Scheduler
-      - ItemStorage
-
+      - NormalShop
+      - TacticalChallengeShop
+      
 # ==================== Farm ====================
 
 Farm:
