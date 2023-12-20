@@ -31,7 +31,8 @@
     "tasks": [
       "Circle",
       "Task",
-      "Mail"
+      "Mail",
+      "Momotalk"
     ]
   }
 }

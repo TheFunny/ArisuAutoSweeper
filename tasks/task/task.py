@@ -24,4 +24,4 @@ class Task(UI):
                     continue
                 break               
 
-        self.config.task_delay(server_update=True)
+        self.config.task_delay(minute=120)

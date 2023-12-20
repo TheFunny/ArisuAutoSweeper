@@ -201,5 +201,13 @@
       "Command": "Mail",
       "ServerUpdate": "04:00"
     }
+  },
+  "Momotalk": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Momotalk",
+      "ServerUpdate": "04:00"
+    }
   }
 }

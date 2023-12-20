@@ -61,6 +61,10 @@
     "Mail": {
       "name": "邮箱",
       "help": ""
+    },
+    "Momotalk": {
+      "name": "Task.Momotalk.name",
+      "help": "Task.Momotalk.help"
     }
   },
   "Scheduler": {

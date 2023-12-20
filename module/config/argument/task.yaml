@@ -68,3 +68,5 @@ Reward:
       - Scheduler
     Mail:
       - Scheduler
+    Momotalk:
+      - Scheduler

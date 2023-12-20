@@ -94,7 +94,7 @@ class Shop(ShopUI):
         return status
 
     def run(self):
-        """Reset the items position by going main and then shop"""
+        """Reset the shop and items position by going main and then shop"""
         self.ui_ensure(page_main)
         self.ui_ensure(page_shop)
 

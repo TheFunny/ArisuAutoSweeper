@@ -54,6 +54,10 @@ class ArisuAutoSweeper(AzurLaneAutoScript):
         from tasks.shop.shop import Shop
         Shop(config=self.config, device=self.device).run()
 
+    def momotalk(self):
+        from tasks.momotalk.momotalk import MomoTalk
+        MomoTalk(config=self.config, device=self.device).run()
+
     def data_update(self):
         from tasks.item.data_update import DataUpdate
         DataUpdate(config=self.config, device=self.device).run()

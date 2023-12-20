@@ -13,7 +13,7 @@ ITEM_POSITIONS = {
     5: (650, 460), 6: (805, 460), 7: (960, 460), 8: (1110, 460),
     9: (650, 200), 10: (805, 200), 11: (960, 200), 12: (1110, 200),
     13: (650, 460), 14: (805, 460), 15: (960, 460), 16: (1110, 460),
-    17: (650, 200), 18: (805, 200), 19: (960, 200), 20: (1110, 200),
+    17: (650, 460), 18: (805, 460), 19: (960, 460), 20: (1110, 460),
 }
 
 class ShopUI(UI):
@@ -21,7 +21,7 @@ class ShopUI(UI):
         super().__init__(config, device)
 
         self.click_coords = self.device.click_methods.get(self.config.Emulator_ControlMethod, self.device.click_adb)
-        self.swipe_vector_range = (0.65, 0.85)
+        self.swipe_vector_range = (1.10, 1.15)
         self.swipe_flags = {8:False, 16: False}
         self.list = ITEM_LIST
 
@@ -66,26 +66,37 @@ class ShopUI(UI):
             True if switch is set, False if switch not found
         """
         if not shop_switch.appear(main=self):
-            logger.info('Shop switch not found')
+            logger.info(f'{shop_switch.name} not found')
             return False
         shop_switch.set('on', main=self)
 
         return True
     
     def select_items(self, item_list):
+        """
+        Select items in the item list checking if swipe is required each time.
+        However, swipes are inaccurate and clicks too fast.
+        """
+        timer = Timer(1).start()
         for item in item_list:
             if self.should_swipe(item):
                 self.swipe_page('down', self)
 
                 self.wait_until_stable(
                     self.list.button,
-                    timer=Timer(0, 0),
+                    timer=Timer(3, 0),
                     timeout=Timer(1.5, 5)
                 )
-
+            while not timer.reached_and_reset():
+                pass
             self.click_coords(*ITEM_POSITIONS[item])        
 
     def should_swipe(self, item):
+        """
+        Return True based on two checkpoints: 
+        one at 8 and the other at 16. 
+        Only once for each checkpoint.
+        """
         if (8 < item < 16) and not self.swipe_flags[8]:
             self.swipe_flags[8] = True
             return True
@@ -100,6 +111,7 @@ class ShopUI(UI):
     def make_purchase(self):
         if self.select_then_check(PURCHASE, CONFIRM_PURCHASE) and self.appear_then_click(CONFIRM_PURCHASE):
             return True
+        logger.warning("No items were selected. Unable to purchase.")
         return False
 
     def refresh_shop(self, need_count):
@@ -110,6 +122,7 @@ class ShopUI(UI):
         if refresh_count:
             purchased_count = 4 - refresh_count
             if need_count > purchased_count and self.appear_then_click(CONFIRM_REFRESH):
+                logger.info("Refreshed the shop")
                 return True
         return False
                                 
