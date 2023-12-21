@@ -21,7 +21,7 @@ class ShopUI(UI):
         super().__init__(config, device)
 
         self.click_coords = self.device.click_methods.get(self.config.Emulator_ControlMethod, self.device.click_adb)
-        self.swipe_vector_range = (1.10, 1.15)
+        self.swipe_vector_range = (0.85, 0.9)
         self.swipe_flags = {8:False, 16: False}
         self.list = ITEM_LIST
 
