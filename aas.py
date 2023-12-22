@@ -46,10 +46,21 @@ class ArisuAutoSweeper(AzurLaneAutoScript):
         from tasks.tactical_challenge.tactical_challenge import TacticalChallenge
         TacticalChallenge(config=self.config, device=self.device).run()
 
+    def task(self):
+        from tasks.task.task import Task
+        Task(config=self.config, device=self.device).run()
+
+    def shop(self):
+        from tasks.shop.shop import Shop
+        Shop(config=self.config, device=self.device).run()
+
+    def momotalk(self):
+        from tasks.momotalk.momotalk import MomoTalk
+        MomoTalk(config=self.config, device=self.device).run()
+
     def data_update(self):
         from tasks.item.data_update import DataUpdate
         DataUpdate(config=self.config, device=self.device).run()
-
 
 if __name__ == '__main__':
     aas = ArisuAutoSweeper('aas')

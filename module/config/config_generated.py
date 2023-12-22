@@ -85,6 +85,49 @@ class GeneratedConfig:
     # Group `TacticalChallenge`
     TacticalChallenge_PlayerSelect = 0  # 0, 1, 2, 3
 
+    # Group `NormalShop`
+    NormalShop_Enable = False
+    NormalShop_Purchases = 1  # 1, 2, 3, 4
+    NormalShop_1 = False
+    NormalShop_2 = False
+    NormalShop_3 = False
+    NormalShop_4 = False
+    NormalShop_5 = False
+    NormalShop_6 = False
+    NormalShop_7 = False
+    NormalShop_8 = False
+    NormalShop_9 = False
+    NormalShop_10 = False
+    NormalShop_11 = False
+    NormalShop_12 = False
+    NormalShop_13 = False
+    NormalShop_14 = False
+    NormalShop_15 = False
+    NormalShop_16 = False
+    NormalShop_17 = False
+    NormalShop_18 = False
+    NormalShop_19 = False
+    NormalShop_20 = False
+
+    # Group `TacticalChallengeShop`
+    TacticalChallengeShop_Enable = False
+    TacticalChallengeShop_Purchases = 1  # 1, 2, 3, 4
+    TacticalChallengeShop_1 = False
+    TacticalChallengeShop_2 = False
+    TacticalChallengeShop_3 = False
+    TacticalChallengeShop_4 = False
+    TacticalChallengeShop_5 = False
+    TacticalChallengeShop_6 = False
+    TacticalChallengeShop_7 = False
+    TacticalChallengeShop_8 = False
+    TacticalChallengeShop_9 = False
+    TacticalChallengeShop_10 = False
+    TacticalChallengeShop_11 = False
+    TacticalChallengeShop_12 = False
+    TacticalChallengeShop_13 = False
+    TacticalChallengeShop_14 = False
+    TacticalChallengeShop_15 = False
+
     # Group `ItemStorage`
     ItemStorage_AP = {}
     ItemStorage_Credit = {}

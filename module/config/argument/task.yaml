@@ -15,21 +15,31 @@ Alas:
       - Optimization
     Restart:
       - Scheduler
+    DataUpdate:
+      - Scheduler
+      - ItemStorage
 
 # ==================== Daily ====================
 
 Daily:
-  menu: 'list'
+  menu: 'collapse'
   page: 'setting'
   tasks:
     Cafe:
       - Scheduler
       - Cafe
       - Invitation
-    Circle:
+    Shop:
       - Scheduler
-    Mail:
-      - Scheduler
+      - NormalShop
+      - TacticalChallengeShop
+      
+# ==================== Farm ====================
+
+Farm:
+  menu: 'collapse'
+  page: 'setting'
+  tasks:
     Bounty:
       - Scheduler
       - Bounty
@@ -45,6 +55,18 @@ Daily:
     TacticalChallenge:
       - Scheduler
       - TacticalChallenge
-    DataUpdate:
+
+# ==================== Rewards ====================
+
+Reward:
+  menu: 'collapse'
+  page: 'setting'
+  tasks:
+    Circle:
       - Scheduler
-      - ItemStorage
+    Task:
+      - Scheduler
+    Mail:
+      - Scheduler
+    Momotalk:
+      - Scheduler

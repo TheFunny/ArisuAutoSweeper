@@ -162,6 +162,85 @@
       }
     }
   },
+  "DataUpdate": {
+    "Scheduler": {
+      "Enable": {
+        "type": "state",
+        "value": true,
+        "option": [
+          true
+        ],
+        "option_bold": [
+          true
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "DataUpdate",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "ItemStorage": {
+      "AP": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredAP",
+        "order": 1,
+        "color": "#62ea6e"
+      },
+      "Credit": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredInt",
+        "order": 2,
+        "color": "#fdec00"
+      },
+      "Pyroxene": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredInt",
+        "order": 3,
+        "color": "#21befc"
+      },
+      "BountyTicket": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredBountyTicket",
+        "order": 4,
+        "color": "#94cb44"
+      },
+      "ScrimmageTicket": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredScrimmageTicket",
+        "order": 5,
+        "color": "#f86c6a"
+      },
+      "TacticalChallengeTicket": {
+        "type": "stored",
+        "value": {},
+        "display": "hide",
+        "stored": "StoredTacticalChallengeTicket",
+        "order": 6,
+        "color": "#7ac8e5"
+      }
+    }
+  },
   "Cafe": {
     "Scheduler": {
       "Enable": {
@@ -239,11 +318,11 @@
       }
     }
   },
-  "Circle": {
+  "Shop": {
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -256,7 +335,7 @@
       },
       "Command": {
         "type": "input",
-        "value": "Circle",
+        "value": "Shop",
         "display": "hide"
       },
       "ServerUpdate": {
@@ -264,32 +343,177 @@
         "value": "04:00",
         "display": "hide"
       }
-    }
-  },
-  "Mail": {
-    "Scheduler": {
+    },
+    "NormalShop": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false
+      },
+      "Purchases": {
+        "type": "select",
+        "value": 1,
         "option": [
-          true,
-          false
+          1,
+          2,
+          3,
+          4
         ]
       },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
+      "1": {
+        "type": "checkbox",
+        "value": false
       },
-      "Command": {
-        "type": "input",
-        "value": "Mail",
-        "display": "hide"
+      "2": {
+        "type": "checkbox",
+        "value": false
       },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00",
-        "display": "hide"
+      "3": {
+        "type": "checkbox",
+        "value": false
+      },
+      "4": {
+        "type": "checkbox",
+        "value": false
+      },
+      "5": {
+        "type": "checkbox",
+        "value": false
+      },
+      "6": {
+        "type": "checkbox",
+        "value": false
+      },
+      "7": {
+        "type": "checkbox",
+        "value": false
+      },
+      "8": {
+        "type": "checkbox",
+        "value": false
+      },
+      "9": {
+        "type": "checkbox",
+        "value": false
+      },
+      "10": {
+        "type": "checkbox",
+        "value": false
+      },
+      "11": {
+        "type": "checkbox",
+        "value": false
+      },
+      "12": {
+        "type": "checkbox",
+        "value": false
+      },
+      "13": {
+        "type": "checkbox",
+        "value": false
+      },
+      "14": {
+        "type": "checkbox",
+        "value": false
+      },
+      "15": {
+        "type": "checkbox",
+        "value": false
+      },
+      "16": {
+        "type": "checkbox",
+        "value": false
+      },
+      "17": {
+        "type": "checkbox",
+        "value": false
+      },
+      "18": {
+        "type": "checkbox",
+        "value": false
+      },
+      "19": {
+        "type": "checkbox",
+        "value": false
+      },
+      "20": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
+    "TacticalChallengeShop": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Purchases": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "1": {
+        "type": "checkbox",
+        "value": false
+      },
+      "2": {
+        "type": "checkbox",
+        "value": false
+      },
+      "3": {
+        "type": "checkbox",
+        "value": false
+      },
+      "4": {
+        "type": "checkbox",
+        "value": false
+      },
+      "5": {
+        "type": "checkbox",
+        "value": false
+      },
+      "6": {
+        "type": "checkbox",
+        "value": false
+      },
+      "7": {
+        "type": "checkbox",
+        "value": false
+      },
+      "8": {
+        "type": "checkbox",
+        "value": false
+      },
+      "9": {
+        "type": "checkbox",
+        "value": false
+      },
+      "10": {
+        "type": "checkbox",
+        "value": false
+      },
+      "11": {
+        "type": "checkbox",
+        "value": false
+      },
+      "12": {
+        "type": "checkbox",
+        "value": false
+      },
+      "13": {
+        "type": "checkbox",
+        "value": false
+      },
+      "14": {
+        "type": "checkbox",
+        "value": false
+      },
+      "15": {
+        "type": "checkbox",
+        "value": false
       }
     }
   },
@@ -523,16 +747,14 @@
       }
     }
   },
-  "DataUpdate": {
+  "Circle": {
     "Scheduler": {
       "Enable": {
-        "type": "state",
+        "type": "checkbox",
         "value": true,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -542,7 +764,7 @@
       },
       "Command": {
         "type": "input",
-        "value": "DataUpdate",
+        "value": "Circle",
         "display": "hide"
       },
       "ServerUpdate": {
@@ -550,55 +772,86 @@
         "value": "04:00",
         "display": "hide"
       }
-    },
-    "ItemStorage": {
-      "AP": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredAP",
-        "order": 1,
-        "color": "#62ea6e"
+    }
+  },
+  "Task": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
-      "Credit": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredInt",
-        "order": 2,
-        "color": "#fdec00"
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
       },
-      "Pyroxene": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredInt",
-        "order": 3,
-        "color": "#21befc"
+      "Command": {
+        "type": "input",
+        "value": "Task",
+        "display": "hide"
       },
-      "BountyTicket": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredBountyTicket",
-        "order": 4,
-        "color": "#94cb44"
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    }
+  },
+  "Mail": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
       },
-      "ScrimmageTicket": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredScrimmageTicket",
-        "order": 5,
-        "color": "#f86c6a"
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
       },
-      "TacticalChallengeTicket": {
-        "type": "stored",
-        "value": {},
-        "display": "hide",
-        "stored": "StoredTacticalChallengeTicket",
-        "order": 6,
-        "color": "#7ac8e5"
+      "Command": {
+        "type": "input",
+        "value": "Mail",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    }
+  },
+  "Momotalk": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Momotalk",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
       }
     }
   }
