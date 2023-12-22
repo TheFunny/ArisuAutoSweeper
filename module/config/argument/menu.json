@@ -4,20 +4,35 @@
     "page": "setting",
     "tasks": [
       "Alas",
-      "Restart"
+      "Restart",
+      "DataUpdate"
     ]
   },
   "Daily": {
-    "menu": "list",
+    "menu": "collapse",
     "page": "setting",
     "tasks": [
       "Cafe",
-      "Circle",
-      "Mail",
+      "Shop"
+    ]
+  },
+  "Farm": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "Bounty",
       "Scrimmage",
-      "TacticalChallenge",
-      "DataUpdate"
+      "TacticalChallenge"
+    ]
+  },
+  "Reward": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
+      "Circle",
+      "Task",
+      "Mail",
+      "Momotalk"
     ]
   }
 }

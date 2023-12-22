@@ -7,6 +7,14 @@
     "Daily": {
       "name": "Daily",
       "help": ""
+    },
+    "Farm": {
+      "name": "Farm",
+      "help": ""
+    },
+    "Reward": {
+      "name": "Reward",
+      "help": ""
     }
   },
   "Task": {
@@ -18,16 +26,16 @@
       "name": "Error Handling",
       "help": ""
     },
+    "DataUpdate": {
+      "name": "Dashboard Upd",
+      "help": ""
+    },
     "Cafe": {
       "name": "Cafe",
       "help": ""
     },
-    "Circle": {
-      "name": "Club",
-      "help": ""
-    },
-    "Mail": {
-      "name": "Mailbox",
+    "Shop": {
+      "name": "Shop",
       "help": ""
     },
     "Bounty": {
@@ -42,8 +50,20 @@
       "name": "Tactical Challenge",
       "help": ""
     },
-    "DataUpdate": {
-      "name": "Dashboard Upd",
+    "Circle": {
+      "name": "Club",
+      "help": ""
+    },
+    "Task": {
+      "name": "Tasks",
+      "help": ""
+    },
+    "Mail": {
+      "name": "Mailbox",
+      "help": ""
+    },
+    "Momotalk": {
+      "name": "MomoTalk",
       "help": ""
     }
   },
@@ -418,6 +438,182 @@
       "1": "First",
       "2": "Second",
       "3": "Third"
+    }
+  },
+  "NormalShop": {
+    "_info": {
+      "name": "Normal Shop Settings",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Purchases": {
+      "name": "Number of Purchases",
+      "help": "Default can be purchased once + number of refreshes = number of purchases, for example, 2 purchases = 1 default purchase + 1 refresh purchase",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "1": {
+      "name": "1",
+      "help": "x5 Novice Activity Report - 12,500 Credits"
+    },
+    "2": {
+      "name": "2",
+      "help": "x5 Normal Activity Report - 125,000 Credits"
+    },
+    "3": {
+      "name": "3",
+      "help": "x3 Advanced Activity Report - 300,000 Credits"
+    },
+    "4": {
+      "name": "4",
+      "help": "x1 Superior Activity Report - 500,000 Credits"
+    },
+    "5": {
+      "name": "5",
+      "help": "x5 Lesser Enhancement Stone - 10,000 Credits"
+    },
+    "6": {
+      "name": "6",
+      "help": "x5 Normal Enhancement Stone - 40,000 Credits"
+    },
+    "7": {
+      "name": "7",
+      "help": "x3 Advanced Enhancement Stone - 96,000 Credits"
+    },
+    "8": {
+      "name": "8",
+      "help": "x1 Superior Enhancement Stone - 128,000 Credits"
+    },
+    "9": {
+      "name": "9",
+      "help": "x5 Lesser Enhancement Stone - 10,000 Credits"
+    },
+    "10": {
+      "name": "10",
+      "help": "x5 Normal Enhancement Stone - 40,000 Credits"
+    },
+    "11": {
+      "name": "11",
+      "help": "x3 Advanced Enhancement Stone - 96,000 Credits"
+    },
+    "12": {
+      "name": "12",
+      "help": "x1 Superior Enhancement Stone - 128,000 Credits"
+    },
+    "13": {
+      "name": "13",
+      "help": "x10 Lesser Enhancement Stone - 20,000 Credits"
+    },
+    "14": {
+      "name": "14",
+      "help": "x10 Normal Enhancement Stone - 80,000 Credits"
+    },
+    "15": {
+      "name": "15",
+      "help": "x6 Advanced Enhancement Stone - 192,000 Credits"
+    },
+    "16": {
+      "name": "16",
+      "help": "x2 Superior Enhancement Stone - 256,000 Credits"
+    },
+    "17": {
+      "name": "17",
+      "help": "x1 Random Selection - 8,000 Credits"
+    },
+    "18": {
+      "name": "18",
+      "help": "x1 Random Selection - 8,000 Credits"
+    },
+    "19": {
+      "name": "19",
+      "help": "x1 Random Selection - 25,000 Credits"
+    },
+    "20": {
+      "name": "20",
+      "help": "x1 Random Selection - 25,000 Credits"
+    }
+  },
+  "TacticalChallengeShop": {
+    "_info": {
+      "name": "Tactical Challenge Shop Settings",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Purchases": {
+      "name": "Number of Purchases",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "1": {
+      "name": "1",
+      "help": "x5 Shizuko's Eleph - 50 Coins"
+    },
+    "2": {
+      "name": "2",
+      "help": "x5 Mashiro's Eleph - 50 Coins"
+    },
+    "3": {
+      "name": "3",
+      "help": "x5 Saya's Eleph - 50 Coins"
+    },
+    "4": {
+      "name": "4",
+      "help": "x5 Fuuka's Eleph - 50 Coins"
+    },
+    "5": {
+      "name": "5",
+      "help": "x5 Utaha's Eleph - 50 Coins"
+    },
+    "6": {
+      "name": "6",
+      "help": "x1 Lesser Drink(30 AP) - 15 Coins"
+    },
+    "7": {
+      "name": "7",
+      "help": "x1 Normal Drink(60 AP) - 30 Coins"
+    },
+    "8": {
+      "name": "8",
+      "help": "x10 Novice Activity Report - 5 Coins"
+    },
+    "9": {
+      "name": "9",
+      "help": "x5 Normal Activity Report - 25 Coins"
+    },
+    "10": {
+      "name": "10",
+      "help": "x3 Advanced Activity Report - 60 Coins"
+    },
+    "11": {
+      "name": "11",
+      "help": "x1 Superior Activity Report - 100 Coins"
+    },
+    "12": {
+      "name": "12",
+      "help": "x5000 Credits - 4 Coins"
+    },
+    "13": {
+      "name": "13",
+      "help": "x25k Credits - 20 Coins"
+    },
+    "14": {
+      "name": "14",
+      "help": "x75k Credits - 60 Coins"
+    },
+    "15": {
+      "name": "15",
+      "help": "x125k Credits - 100 Coins"
     }
   },
   "ItemStorage": {

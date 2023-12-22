@@ -7,6 +7,14 @@
     "Daily": {
       "name": "每日",
       "help": ""
+    },
+    "Farm": {
+      "name": "Menu.Farm.name",
+      "help": "Menu.Farm.help"
+    },
+    "Reward": {
+      "name": "Menu.Reward.name",
+      "help": "Menu.Reward.help"
     }
   },
   "Task": {
@@ -18,17 +26,17 @@
       "name": "异常处理",
       "help": ""
     },
+    "DataUpdate": {
+      "name": "仪表盘更新",
+      "help": ""
+    },
     "Cafe": {
       "name": "咖啡厅",
       "help": ""
     },
-    "Circle": {
-      "name": "公会",
-      "help": "社团 / 小组"
-    },
-    "Mail": {
-      "name": "邮箱",
-      "help": ""
+    "Shop": {
+      "name": "Task.Shop.name",
+      "help": "Task.Shop.help"
     },
     "Bounty": {
       "name": "悬赏通缉",
@@ -42,9 +50,21 @@
       "name": "战术对抗赛",
       "help": "战术大赛 / 竞技场"
     },
-    "DataUpdate": {
-      "name": "仪表盘更新",
+    "Circle": {
+      "name": "公会",
+      "help": "社团 / 小组"
+    },
+    "Task": {
+      "name": "Task.Task.name",
+      "help": "Task.Task.help"
+    },
+    "Mail": {
+      "name": "邮箱",
       "help": ""
+    },
+    "Momotalk": {
+      "name": "Task.Momotalk.name",
+      "help": "Task.Momotalk.help"
     }
   },
   "Scheduler": {
@@ -418,6 +438,182 @@
       "1": "第一位",
       "2": "第二位",
       "3": "第三位"
+    }
+  },
+  "NormalShop": {
+    "_info": {
+      "name": "NormalShop._info.name",
+      "help": "NormalShop._info.help"
+    },
+    "Enable": {
+      "name": "NormalShop.Enable.name",
+      "help": "NormalShop.Enable.help"
+    },
+    "Purchases": {
+      "name": "NormalShop.Purchases.name",
+      "help": "NormalShop.Purchases.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "1": {
+      "name": "1",
+      "help": ""
+    },
+    "2": {
+      "name": "2",
+      "help": ""
+    },
+    "3": {
+      "name": "3",
+      "help": ""
+    },
+    "4": {
+      "name": "4",
+      "help": ""
+    },
+    "5": {
+      "name": "5",
+      "help": ""
+    },
+    "6": {
+      "name": "6",
+      "help": ""
+    },
+    "7": {
+      "name": "7",
+      "help": ""
+    },
+    "8": {
+      "name": "8",
+      "help": ""
+    },
+    "9": {
+      "name": "9",
+      "help": ""
+    },
+    "10": {
+      "name": "10",
+      "help": ""
+    },
+    "11": {
+      "name": "11",
+      "help": ""
+    },
+    "12": {
+      "name": "12",
+      "help": ""
+    },
+    "13": {
+      "name": "13",
+      "help": ""
+    },
+    "14": {
+      "name": "14",
+      "help": ""
+    },
+    "15": {
+      "name": "15",
+      "help": ""
+    },
+    "16": {
+      "name": "16",
+      "help": ""
+    },
+    "17": {
+      "name": "NormalShop.17.name",
+      "help": "NormalShop.17.help"
+    },
+    "18": {
+      "name": "NormalShop.18.name",
+      "help": "NormalShop.18.help"
+    },
+    "19": {
+      "name": "NormalShop.19.name",
+      "help": "NormalShop.19.help"
+    },
+    "20": {
+      "name": "NormalShop.20.name",
+      "help": "NormalShop.20.help"
+    }
+  },
+  "TacticalChallengeShop": {
+    "_info": {
+      "name": "TacticalChallengeShop._info.name",
+      "help": "TacticalChallengeShop._info.help"
+    },
+    "Enable": {
+      "name": "TacticalChallengeShop.Enable.name",
+      "help": "TacticalChallengeShop.Enable.help"
+    },
+    "Purchases": {
+      "name": "TacticalChallengeShop.Purchases.name",
+      "help": "TacticalChallengeShop.Purchases.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "1": {
+      "name": "1",
+      "help": ""
+    },
+    "2": {
+      "name": "2",
+      "help": ""
+    },
+    "3": {
+      "name": "3",
+      "help": ""
+    },
+    "4": {
+      "name": "4",
+      "help": ""
+    },
+    "5": {
+      "name": "5",
+      "help": ""
+    },
+    "6": {
+      "name": "6",
+      "help": ""
+    },
+    "7": {
+      "name": "7",
+      "help": ""
+    },
+    "8": {
+      "name": "8",
+      "help": ""
+    },
+    "9": {
+      "name": "9",
+      "help": ""
+    },
+    "10": {
+      "name": "10",
+      "help": ""
+    },
+    "11": {
+      "name": "11",
+      "help": ""
+    },
+    "12": {
+      "name": "12",
+      "help": ""
+    },
+    "13": {
+      "name": "13",
+      "help": ""
+    },
+    "14": {
+      "name": "14",
+      "help": ""
+    },
+    "15": {
+      "name": "15",
+      "help": ""
     }
   },
   "ItemStorage": {
