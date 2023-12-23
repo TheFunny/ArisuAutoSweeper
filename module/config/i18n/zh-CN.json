@@ -9,12 +9,12 @@
       "help": ""
     },
     "Farm": {
-      "name": "Menu.Farm.name",
-      "help": "Menu.Farm.help"
+      "name": "扫荡",
+      "help": ""
     },
     "Reward": {
-      "name": "Menu.Reward.name",
-      "help": "Menu.Reward.help"
+      "name": "收菜",
+      "help": ""
     }
   },
   "Task": {
@@ -35,8 +35,8 @@
       "help": ""
     },
     "Shop": {
-      "name": "Task.Shop.name",
-      "help": "Task.Shop.help"
+      "name": "商店",
+      "help": ""
     },
     "Bounty": {
       "name": "悬赏通缉",
@@ -55,16 +55,16 @@
       "help": "社团 / 小组"
     },
     "Task": {
-      "name": "Task.Task.name",
-      "help": "Task.Task.help"
+      "name": "任务",
+      "help": ""
     },
     "Mail": {
       "name": "邮箱",
       "help": ""
     },
     "Momotalk": {
-      "name": "Task.Momotalk.name",
-      "help": "Task.Momotalk.help"
+      "name": "Momotalk",
+      "help": ""
     }
   },
   "Scheduler": {
@@ -442,16 +442,16 @@
   },
   "NormalShop": {
     "_info": {
-      "name": "NormalShop._info.name",
-      "help": "NormalShop._info.help"
+      "name": "普通商店",
+      "help": ""
     },
     "Enable": {
-      "name": "NormalShop.Enable.name",
-      "help": "NormalShop.Enable.help"
+      "name": "启用",
+      "help": ""
     },
     "Purchases": {
-      "name": "NormalShop.Purchases.name",
-      "help": "NormalShop.Purchases.help",
+      "name": "购买次数",
+      "help": "指定物品购买 X 次。例：\n购买 2 次 = 商店默认 1 次 + 刷新购买 1 次",
       "1": "1",
       "2": "2",
       "3": "3",
@@ -459,97 +459,97 @@
     },
     "1": {
       "name": "1",
-      "help": ""
+      "help": "x5 初级活动报告书 - 12,500 信用点"
     },
     "2": {
       "name": "2",
-      "help": ""
+      "help": "x5 中级活动报告书 - 125,000 信用点"
     },
     "3": {
       "name": "3",
-      "help": ""
+      "help": "x3 高级活动报告书 - 300,000 信用点"
     },
     "4": {
       "name": "4",
-      "help": ""
+      "help": "x1 特级活动报告书 - 500,000 信用点"
     },
     "5": {
       "name": "5",
-      "help": ""
+      "help": "x5 低级强化珠 - 10,000 信用点"
     },
     "6": {
       "name": "6",
-      "help": ""
+      "help": "x5 中级强化珠 - 40,000 信用点"
     },
     "7": {
       "name": "7",
-      "help": ""
+      "help": "x3 高级强化珠 - 96,000 信用点"
     },
     "8": {
       "name": "8",
-      "help": ""
+      "help": "x1 特级强化珠 - 128,000 信用点"
     },
     "9": {
       "name": "9",
-      "help": ""
+      "help": "x5 低级强化珠 - 10,000 信用点"
     },
     "10": {
       "name": "10",
-      "help": ""
+      "help": "x5 中级强化珠 - 40,000 信用点"
     },
     "11": {
       "name": "11",
-      "help": ""
+      "help": "x3 高级强化珠 - 96,000 信用点"
     },
     "12": {
       "name": "12",
-      "help": ""
+      "help": "x1 特级强化珠 - 128,000 信用点"
     },
     "13": {
       "name": "13",
-      "help": ""
+      "help": "x5 低级强化珠 - 10,000 信用点"
     },
     "14": {
       "name": "14",
-      "help": ""
+      "help": "x5 中级强化珠 - 40,000 信用点"
     },
     "15": {
       "name": "15",
-      "help": ""
+      "help": "x3 高级强化珠 - 96,000 信用点"
     },
     "16": {
       "name": "16",
-      "help": ""
+      "help": "x1 特级强化珠 - 128,000 信用点"
     },
     "17": {
-      "name": "NormalShop.17.name",
-      "help": "NormalShop.17.help"
+      "name": "17",
+      "help": "x1 随机材料 - 8,000 信用点"
     },
     "18": {
-      "name": "NormalShop.18.name",
-      "help": "NormalShop.18.help"
+      "name": "18",
+      "help": "x1 随机材料 - 8,000 信用点"
     },
     "19": {
-      "name": "NormalShop.19.name",
-      "help": "NormalShop.19.help"
+      "name": "19",
+      "help": "x1 随机材料 - 8,000 信用点"
     },
     "20": {
-      "name": "NormalShop.20.name",
-      "help": "NormalShop.20.help"
+      "name": "20",
+      "help": "x1 随机材料 - 8,000 信用点"
     }
   },
   "TacticalChallengeShop": {
     "_info": {
-      "name": "TacticalChallengeShop._info.name",
-      "help": "TacticalChallengeShop._info.help"
+      "name": "战术对抗赛商店",
+      "help": ""
     },
     "Enable": {
-      "name": "TacticalChallengeShop.Enable.name",
-      "help": "TacticalChallengeShop.Enable.help"
+      "name": "启用",
+      "help": ""
     },
     "Purchases": {
-      "name": "TacticalChallengeShop.Purchases.name",
-      "help": "TacticalChallengeShop.Purchases.help",
+      "name": "购买次数",
+      "help": "指定物品购买 X 次。例：\n购买 2 次 = 商店默认 1 次 + 刷新购买 1 次",
       "1": "1",
       "2": "2",
       "3": "3",
@@ -557,63 +557,63 @@
     },
     "1": {
       "name": "1",
-      "help": ""
+      "help": "x5 静子的神名文字 - 50 战术硬币"
     },
     "2": {
       "name": "2",
-      "help": ""
+      "help": "x5 真白的神名文字 - 50 战术硬币"
     },
     "3": {
       "name": "3",
-      "help": ""
+      "help": "x5 纱绫的神名文字 - 50 战术硬币"
     },
     "4": {
       "name": "4",
-      "help": ""
+      "help": "x5 枫香的神名文字 - 50 战术硬币"
     },
     "5": {
       "name": "5",
-      "help": ""
+      "help": "x5 歌原的神名文字 - 50 战术硬币"
     },
     "6": {
       "name": "6",
-      "help": ""
+      "help": "x1 低级能量饮料 (30 体力) - 15 战术硬币"
     },
     "7": {
       "name": "7",
-      "help": ""
+      "help": "x1 中级能量饮料 (60 体力) - 30 战术硬币"
     },
     "8": {
       "name": "8",
-      "help": ""
+      "help": "x5 初级活动报告书 - 5 战术硬币"
     },
     "9": {
       "name": "9",
-      "help": ""
+      "help": "x5 中级活动报告书 - 25 战术硬币"
     },
     "10": {
       "name": "10",
-      "help": ""
+      "help": "x3 高级活动报告书 - 60 战术硬币"
     },
     "11": {
       "name": "11",
-      "help": ""
+      "help": "x1 特级活动报告书 - 100 战术硬币"
     },
     "12": {
       "name": "12",
-      "help": ""
+      "help": "x5000 信用点 - 4 战术硬币"
     },
     "13": {
       "name": "13",
-      "help": ""
+      "help": "x25k 信用点 - 20 战术硬币"
     },
     "14": {
       "name": "14",
-      "help": ""
+      "help": "x75k 信用点 - 60 战术硬币"
     },
     "15": {
       "name": "15",
-      "help": ""
+      "help": "x125k 信用点 - 100 战术硬币"
     }
   },
   "ItemStorage": {
