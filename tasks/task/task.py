@@ -4,6 +4,7 @@ from tasks.base.page import page_task
 from tasks.base.ui import UI
 from tasks.task.assets.assets_task import *
 
+
 class Task(UI):
     def run(self):
         self.ui_ensure(page_task)
@@ -22,6 +23,8 @@ class Task(UI):
                     self.device.click(CLAIM)
                     logger.info("Click Claim")
                     continue
-                break               
+                if self.match_color(CLAIMED) and self.match_color(CLAIMED_ALL):
+                    logger.info("All claimed")
+                    break
 
         self.config.task_delay(minute=120)
