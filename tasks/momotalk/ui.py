@@ -1,18 +1,18 @@
-from module.base.timer import Timer
-from module.base.base import ModuleBase
-from module.logger import logger
-from module.ui.switch import Switch
-from module.base.utils import point_in_area, area_size
-from tasks.base.ui import UI
-from tasks.base.page import page_main, page_momo_talk
-from tasks.momotalk.assets.assets_momotalk import *
 import cv2
 import numpy as np
 
-"""None of the switches works"""
-SWITCH_MESSAGE = Switch("Message_switch")
-SWITCH_MESSAGE.add_state("on", MESSAGE_ON)
-SWITCH_MESSAGE.add_state("off", MESSAGE_OFF)
+from module.base.base import ModuleBase
+from module.base.timer import Timer
+from module.base.utils import point_in_area, area_size
+from module.logger import logger
+from module.ui.switch import Switch
+from tasks.base.page import page_main, page_momo_talk
+from tasks.base.ui import UI
+from tasks.momotalk.assets.assets_momotalk import *
+
+SWITCH_SIDEBAR = Switch("Sidebar_switch", is_selector=True)
+SWITCH_SIDEBAR.add_state("student", SWITCH_STUDENT_CHECK, SWITCH_STUDENT)
+SWITCH_SIDEBAR.add_state("message", SWITCH_MESSAGE_CHECK, SWITCH_MESSAGE)
 
 SWITCH_UNREAD = Switch("Unread_switch")
 SWITCH_UNREAD.add_state("on", UNREAD_ON)
@@ -26,6 +26,7 @@ SWITCH_SORT.add_state("off", SORT_OFF)
 button can be found in different locations"""
 REPLY_TEMPLATE = REPLY.matched_button.image
 STORY_TEMPLATE = STORY.matched_button.image
+
 
 class MomoTalkUI(UI):
     def __init__(self, config, device):
@@ -121,10 +122,10 @@ class MomoTalkUI(UI):
         self.ui_ensure(page_main)
         if self.match_color(NOTIFICATION_BADGE, threshold=80):
             self.ui_ensure(page_momo_talk)
-            while not self.select_then_check(MESSAGE_OFF, MESSAGE_ON):
-                pass
+            while SWITCH_SIDEBAR.get(self) != "message":
+                SWITCH_SIDEBAR.set("message", self)
             return True
-        logger.warn("No students available for interaction")
+        logger.warning("No students available for interaction")
         return False
     
     def sort_messages(self):
