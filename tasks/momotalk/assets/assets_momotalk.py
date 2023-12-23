@@ -113,26 +113,26 @@ SKIP = ButtonWrapper(
         button=(1192, 103, 1229, 141),
     ),
 )
-SORT_OFF = ButtonWrapper(
-    name='SORT_OFF',
+SORT_ASCENDING = ButtonWrapper(
+    name='SORT_ASCENDING',
     jp=None,
     en=Button(
-        file='./assets/en/momotalk/SORT_OFF.png',
-        area=(591, 158, 662, 199),
-        search=(571, 138, 682, 219),
-        color=(235, 237, 238),
-        button=(591, 158, 662, 199),
+        file='./assets/en/momotalk/SORT_ASCENDING.png',
+        area=(631, 166, 648, 188),
+        search=(611, 146, 668, 208),
+        color=(221, 228, 233),
+        button=(631, 166, 648, 188),
     ),
 )
-SORT_ON = ButtonWrapper(
-    name='SORT_ON',
+SORT_DESCENDING = ButtonWrapper(
+    name='SORT_DESCENDING',
     jp=None,
     en=Button(
-        file='./assets/en/momotalk/SORT_ON.png',
-        area=(594, 159, 658, 196),
-        search=(574, 139, 678, 216),
-        color=(233, 235, 236),
-        button=(594, 159, 658, 196),
+        file='./assets/en/momotalk/SORT_DESCENDING.png',
+        area=(631, 166, 648, 189),
+        search=(611, 146, 668, 209),
+        color=(221, 228, 234),
+        button=(631, 166, 648, 189),
     ),
 )
 STORY = ButtonWrapper(

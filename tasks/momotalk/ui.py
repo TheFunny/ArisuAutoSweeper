@@ -19,8 +19,8 @@ SWITCH_UNREAD.add_state("on", UNREAD_ON)
 SWITCH_UNREAD.add_state("off", UNREAD_OFF)
 
 SWITCH_SORT = Switch("Sort_switch")
-SWITCH_SORT.add_state("on", SORT_ON)
-SWITCH_SORT.add_state("off", SORT_OFF)
+SWITCH_SORT.add_state("ascending", SORT_ASCENDING)
+SWITCH_SORT.add_state("descending", SORT_DESCENDING)
 
 """Required for template matching as reply and story 
 button can be found in different locations"""
@@ -145,7 +145,7 @@ class MomoTalkUI(UI):
         """
         if self.match_color(FIRST_UNREAD, threshold=80) and self.select_then_disappear(FIRST_UNREAD, SELECT_STUDENT, force_select=True):
             return True
-        logger.warn("No students available for interaction")
+        logger.warning("No students available for interaction")
         return False
     
     def chat(self):
