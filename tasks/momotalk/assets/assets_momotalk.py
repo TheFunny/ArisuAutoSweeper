@@ -69,28 +69,6 @@ MENU = ButtonWrapper(
         button=(1156, 15, 1251, 63),
     ),
 )
-MESSAGE_OFF = ButtonWrapper(
-    name='MESSAGE_OFF',
-    jp=None,
-    en=Button(
-        file='./assets/en/momotalk/MESSAGE_OFF.png',
-        area=(143, 273, 203, 298),
-        search=(123, 253, 223, 318),
-        color=(93, 105, 122),
-        button=(143, 273, 203, 298),
-    ),
-)
-MESSAGE_ON = ButtonWrapper(
-    name='MESSAGE_ON',
-    jp=None,
-    en=Button(
-        file='./assets/en/momotalk/MESSAGE_ON.png',
-        area=(143, 271, 203, 301),
-        search=(123, 251, 223, 321),
-        color=(160, 168, 182),
-        button=(143, 271, 203, 301),
-    ),
-)
 NOTIFICATION_BADGE = ButtonWrapper(
     name='NOTIFICATION_BADGE',
     jp=None,
@@ -166,6 +144,50 @@ STORY = ButtonWrapper(
         search=(770, 509, 999, 577),
         color=(220, 208, 214),
         button=(790, 529, 979, 557),
+    ),
+)
+SWITCH_MESSAGE = ButtonWrapper(
+    name='SWITCH_MESSAGE',
+    jp=None,
+    en=Button(
+        file='./assets/en/momotalk/SWITCH_MESSAGE.png',
+        area=(147, 271, 194, 297),
+        search=(127, 251, 214, 317),
+        color=(187, 191, 201),
+        button=(147, 271, 194, 297),
+    ),
+)
+SWITCH_MESSAGE_CHECK = ButtonWrapper(
+    name='SWITCH_MESSAGE_CHECK',
+    jp=None,
+    en=Button(
+        file='./assets/en/momotalk/SWITCH_MESSAGE_CHECK.png',
+        area=(228, 165, 391, 194),
+        search=(208, 145, 411, 214),
+        color=(211, 215, 217),
+        button=(228, 165, 391, 194),
+    ),
+)
+SWITCH_STUDENT = ButtonWrapper(
+    name='SWITCH_STUDENT',
+    jp=None,
+    en=Button(
+        file='./assets/en/momotalk/SWITCH_STUDENT.png',
+        area=(148, 167, 194, 217),
+        search=(128, 147, 214, 237),
+        color=(157, 166, 179),
+        button=(148, 167, 194, 217),
+    ),
+)
+SWITCH_STUDENT_CHECK = ButtonWrapper(
+    name='SWITCH_STUDENT_CHECK',
+    jp=None,
+    en=Button(
+        file='./assets/en/momotalk/SWITCH_STUDENT_CHECK.png',
+        area=(229, 166, 320, 192),
+        search=(209, 146, 340, 212),
+        color=(199, 203, 205),
+        button=(229, 166, 320, 192),
     ),
 )
 UNREAD = ButtonWrapper(
