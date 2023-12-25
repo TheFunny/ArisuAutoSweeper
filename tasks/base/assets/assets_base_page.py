@@ -538,9 +538,9 @@ WORK_GO_TO_TACTICAL_CHALLENGE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_TACTICAL_CHALLENGE.png',
-        area=(1034, 435, 1162, 466),
-        search=(1014, 415, 1182, 486),
-        color=(179, 199, 221),
-        button=(1034, 435, 1162, 466),
+        area=(1012, 532, 1152, 591),
+        search=(992, 512, 1172, 611),
+        color=(199, 211, 227),
+        button=(1012, 532, 1152, 591),
     ),
 )

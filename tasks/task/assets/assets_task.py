@@ -5,7 +5,13 @@ from module.base.button import Button, ButtonWrapper
 
 CLAIM = ButtonWrapper(
     name='CLAIM',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/task/CLAIM.png',
+        area=(936, 641, 1010, 696),
+        search=(916, 621, 1030, 716),
+        color=(230, 210, 63),
+        button=(936, 641, 1010, 696),
+    ),
     en=Button(
         file='./assets/en/task/CLAIM.png',
         area=(935, 639, 1015, 698),
@@ -16,7 +22,13 @@ CLAIM = ButtonWrapper(
 )
 CLAIMED = ButtonWrapper(
     name='CLAIMED',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/task/CLAIMED.png',
+        area=(935, 641, 1010, 696),
+        search=(915, 621, 1030, 716),
+        color=(211, 211, 210),
+        button=(935, 641, 1010, 696),
+    ),
     en=Button(
         file='./assets/en/task/CLAIMED.png',
         area=(937, 641, 1010, 696),
@@ -27,7 +39,13 @@ CLAIMED = ButtonWrapper(
 )
 CLAIMED_ALL = ButtonWrapper(
     name='CLAIMED_ALL',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/task/CLAIMED_ALL.png',
+        area=(1057, 640, 1242, 701),
+        search=(1037, 620, 1262, 720),
+        color=(192, 193, 196),
+        button=(1057, 640, 1242, 701),
+    ),
     en=Button(
         file='./assets/en/task/CLAIMED_ALL.png',
         area=(1058, 641, 1240, 701),
@@ -38,7 +56,13 @@ CLAIMED_ALL = ButtonWrapper(
 )
 CLAIM_ALL = ButtonWrapper(
     name='CLAIM_ALL',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/task/CLAIM_ALL.png',
+        area=(1058, 641, 1242, 701),
+        search=(1038, 621, 1262, 720),
+        color=(235, 218, 67),
+        button=(1058, 641, 1242, 701),
+    ),
     en=Button(
         file='./assets/en/task/CLAIM_ALL.png',
         area=(1054, 642, 1243, 700),

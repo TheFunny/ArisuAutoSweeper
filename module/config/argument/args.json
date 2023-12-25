@@ -730,7 +730,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "15:00",
+        "value": "14:00",
         "display": "hide"
       }
     },
@@ -744,6 +744,33 @@
           2,
           3
         ]
+      }
+    }
+  },
+  "Mission": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Mission",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
       }
     }
   },
