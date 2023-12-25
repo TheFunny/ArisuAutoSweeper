@@ -78,7 +78,7 @@ class MissionUI(UI, AP):
                     [self.click_with_interval(RIGHT, interval=1) for x in range(abs(current_area-num))]
             except:
                 tries += 1
-                if tries > 5:
+                if tries > 3:
                     return False
 
     def select_mode(self, switch):

@@ -53,7 +53,7 @@ class StageList:
     def load_stage_indexes(self, main: ModuleBase):
         self.current_indexes = list(
             filter(
-                lambda x: re.match(r'^\d{1,2}-?\d?$', x[0]) and x[0] != '00',
+                lambda x: re.match(r'^\d{1,2}-?[\dA-Z]$', x[0]) and x[0] != '00',
                 map(lambda x: (x.ocr_text, x.box), self.index_ocr.detect_and_ocr(main.device.image))
             )
         )
