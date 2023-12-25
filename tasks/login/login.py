@@ -5,6 +5,7 @@ from module.logger import logger
 from tasks.base.page import page_main
 from tasks.base.ui import UI
 from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING, UPDATE, SURVEY
+from tasks.base.assets.assets_base_page import MAIN_GO_TO_MAIL
 
 
 class Login(UI):
@@ -92,6 +93,10 @@ class Login(UI):
             if _handle_survey(self):
                 continue
             if self.ui_additional():
+                continue
+            # press emulator back button when random popup in main
+            if self.appear(MAIN_GO_TO_MAIL) and not self.match_color(MAIN_GO_TO_MAIL):
+                self.device.u2.press("back")
                 continue
 
         return True
