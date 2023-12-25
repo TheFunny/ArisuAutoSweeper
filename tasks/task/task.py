@@ -23,7 +23,7 @@ class Task(UI):
                     self.device.click(CLAIM)
                     logger.info("Click Claim")
                     continue
-                if self.match_color(CLAIMED) and self.match_color(CLAIMED_ALL):
+                if not self.match_color(CLAIMED) and not self.match_color(CLAIMED_ALL):
                     logger.info("All claimed")
                     break
 
