@@ -22,7 +22,8 @@
     "tasks": [
       "Bounty",
       "Scrimmage",
-      "TacticalChallenge"
+      "TacticalChallenge",
+      "Mission"
     ]
   },
   "Reward": {

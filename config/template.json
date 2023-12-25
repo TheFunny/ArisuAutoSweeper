@@ -172,10 +172,18 @@
       "Enable": true,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "TacticalChallenge",
-      "ServerUpdate": "15:00"
+      "ServerUpdate": "14:00"
     },
     "TacticalChallenge": {
       "PlayerSelect": 0
+    }
+  },
+  "Mission": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Mission",
+      "ServerUpdate": "04:00"
     }
   },
   "Circle": {
