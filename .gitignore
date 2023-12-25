@@ -20,6 +20,7 @@ config/reloadalas
 test.py
 test/
 note.md
+MCE/config.json
 
 # Created by .ignore support plugin (hsz.mobi)
 
