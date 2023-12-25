@@ -52,7 +52,7 @@
     },
     "Mission": {
       "name": "Mission/Commissions/Event",
-      "help": "Open MCE Manager for additional settings"
+      "help": "Open MCE Manager for additional settings. Must be opened if it's your first time!"
     },
     "Circle": {
       "name": "Club",
