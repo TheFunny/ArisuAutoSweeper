@@ -1,18 +1,13 @@
 {
   "ResetDaily": true,
   "LastRun": "2023-12-24 21:41:55",
-  "ResetTime": "20:21:30",
+  "ResetTime": "11:21:30",
   "RechargeAP": true,
   "PreferredTemplate": "commissions",
   "Queue": [
     [
-      "N",
-      "7-2",
-      17
-    ],
-    [
       "H",
-      "7-3",
+      "12-3",
       6
     ],
     [
