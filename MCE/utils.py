@@ -1,12 +1,29 @@
 import customtkinter
 import json
 import sys
-from MCE.custom_widgets.ctk_notification import CTkNotification
+import os 
 
 class Config:
     def __init__(self, linker, config_file):
+        self.default_config = {
+        "ResetDaily": False,
+        "LastRun": "2023-12-24 21:41:55",
+        "ResetTime": "11:21:30",
+        "RechargeAP": False,
+        "PreferredTemplate": "template1",
+        "Queue": [],
+        "Event": False,
+        "Templates": {
+            "template1": []
+        }
+        }
         self.linker = linker
         self.config_file = config_file
+
+        if not os.path.exists(self.config_file):
+            with open(self.config_file, "w") as f:
+                json.dump(self.default_config, f, indent=2)
+
         self.config_data = self.read()
         self.linker.widgets = self.set_values_to_none(self.config_data)
         self.locked = False
