@@ -50,6 +50,10 @@
       "name": "战术对抗赛",
       "help": "战术大赛 / 竞技场"
     },
+    "Mission": {
+      "name": "Task.Mission.name",
+      "help": "Task.Mission.help"
+    },
     "Circle": {
       "name": "公会",
       "help": "社团 / 小组"

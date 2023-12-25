@@ -55,6 +55,8 @@ Farm:
     TacticalChallenge:
       - Scheduler
       - TacticalChallenge
+    Mission:
+      - Scheduler
 
 # ==================== Rewards ====================
 

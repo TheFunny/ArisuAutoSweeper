@@ -50,6 +50,10 @@
       "name": "Tactical Challenge",
       "help": ""
     },
+    "Mission": {
+      "name": "Mission/Commissions/Event",
+      "help": "Open MCE Manager for additional settings"
+    },
     "Circle": {
       "name": "Club",
       "help": ""
