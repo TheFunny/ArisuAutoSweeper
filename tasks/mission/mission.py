@@ -125,9 +125,7 @@ class Mission(MissionUI, CommissionsUI):
         elif self.current_mode in ["BD", "IR"]:
             return self.select_commission(self.current_mode)
         elif self.current_mode == "E":
-            #return self.select_mode(SWITCH_QUEST)
-            logger.error("Event not yet implemented")
-            return False
+            return self.select_event()
         else:
             logger.error("Uknown mode")
             return False

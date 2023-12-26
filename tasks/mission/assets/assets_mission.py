@@ -113,6 +113,28 @@ OCR_AREA = ButtonWrapper(
         button=(108, 176, 176, 219),
     ),
 )
+QUEST_OFF = ButtonWrapper(
+    name='QUEST_OFF',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/QUEST_OFF.png',
+        area=(859, 69, 1025, 125),
+        search=(839, 49, 1045, 145),
+        color=(231, 235, 235),
+        button=(859, 69, 1025, 125),
+    ),
+)
+QUEST_ON = ButtonWrapper(
+    name='QUEST_ON',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/QUEST_ON.png',
+        area=(861, 71, 1025, 124),
+        search=(841, 51, 1045, 144),
+        color=(49, 68, 76),
+        button=(861, 71, 1025, 124),
+    ),
+)
 RIGHT = ButtonWrapper(
     name='RIGHT',
     jp=None,

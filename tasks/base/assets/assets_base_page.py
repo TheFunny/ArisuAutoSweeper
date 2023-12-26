@@ -115,6 +115,17 @@ CRAFTING_CHECK = ButtonWrapper(
         button=(103, 4, 226, 41),
     ),
 )
+EVENT_CHECK = ButtonWrapper(
+    name='EVENT_CHECK',
+    jp=None,
+    en=Button(
+        file='./assets/en/base/page/EVENT_CHECK.png',
+        area=(102, 6, 187, 40),
+        search=(82, 0, 207, 60),
+        color=(200, 209, 216),
+        button=(102, 6, 187, 40),
+    ),
+)
 GACHA_CHECK = ButtonWrapper(
     name='GACHA_CHECK',
     jp=Button(
@@ -474,6 +485,17 @@ WORK_GO_TO_COMMISSIONS = ButtonWrapper(
         search=(636, 474, 823, 537),
         color=(192, 204, 221),
         button=(656, 494, 803, 517),
+    ),
+)
+WORK_GO_TO_EVENT = ButtonWrapper(
+    name='WORK_GO_TO_EVENT',
+    jp=None,
+    en=Button(
+        file='./assets/en/base/page/WORK_GO_TO_EVENT.png',
+        area=(67, 131, 142, 201),
+        search=(47, 111, 162, 221),
+        color=(134, 153, 166),
+        button=(67, 131, 142, 201),
     ),
 )
 WORK_GO_TO_MISSION = ButtonWrapper(
