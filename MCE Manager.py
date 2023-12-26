@@ -432,6 +432,6 @@ if __name__ == "__main__":
     app.title("MCE Manager")
     linker.sidebar = app
     config.load_config()
-    thread = threading.Thread(target=app.check_lock)
-    thread.start()
+    daemon_thread = threading.Thread(target=app.check_lock, daemon=True)
+    daemon_thread.start()
     app.mainloop()
