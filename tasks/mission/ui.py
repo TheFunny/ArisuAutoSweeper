@@ -106,7 +106,7 @@ class MissionUI(UI, AP):
         return False
 
     def do_sweep(self, mode, num: int) -> bool:
-        if mode in ["N", "H"]:
+        if mode in ["N", "H", "E"]:
             return MISSION_SWEEP.do_sweep(self, num=num)
         else:
             return SHARED_SWEEP.do_sweep(self, num=num)
