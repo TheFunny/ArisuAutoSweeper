@@ -31,10 +31,10 @@ CLAIMED = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/task/CLAIMED.png',
-        area=(921, 643, 1026, 692),
-        search=(901, 623, 1046, 712),
-        color=(127, 131, 135),
-        button=(921, 643, 1026, 692),
+        area=(937, 641, 1010, 696),
+        search=(917, 621, 1030, 716),
+        color=(212, 212, 211),
+        button=(937, 641, 1010, 696),
     ),
 )
 CLAIMED_ALL = ButtonWrapper(
@@ -69,5 +69,16 @@ CLAIM_ALL = ButtonWrapper(
         search=(1034, 622, 1263, 720),
         color=(236, 219, 67),
         button=(1054, 642, 1243, 700),
+    ),
+)
+COMPLETE = ButtonWrapper(
+    name='COMPLETE',
+    jp=None,
+    en=Button(
+        file='./assets/en/task/COMPLETE.png',
+        area=(921, 643, 1026, 692),
+        search=(901, 623, 1046, 712),
+        color=(127, 131, 135),
+        button=(921, 643, 1026, 692),
     ),
 )
