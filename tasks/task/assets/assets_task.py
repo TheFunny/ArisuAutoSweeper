@@ -31,10 +31,10 @@ CLAIMED = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/task/CLAIMED.png',
-        area=(937, 641, 1010, 696),
-        search=(917, 621, 1030, 716),
-        color=(212, 212, 211),
-        button=(937, 641, 1010, 696),
+        area=(921, 643, 1026, 692),
+        search=(901, 623, 1046, 712),
+        color=(127, 131, 135),
+        button=(921, 643, 1026, 692),
     ),
 )
 CLAIMED_ALL = ButtonWrapper(
