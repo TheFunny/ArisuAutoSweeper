@@ -2,8 +2,8 @@ from module.base.timer import Timer
 from module.logger import logger
 from module.ui.switch import Switch
 from module.ocr.ocr import Digit
-from tasks.base.assets.assets_base_page import BACK, MISSION_CHECK
-from tasks.base.page import page_mission, page_commissions
+from tasks.base.assets.assets_base_page import BACK, MISSION_CHECK, EVENT_CHECK
+from tasks.base.page import page_mission, page_commissions #,page_event
 from tasks.base.ui import UI
 from tasks.mission.assets.assets_mission import *
 from tasks.stage.ap import AP
@@ -24,7 +24,9 @@ SWITCH_HARD = Switch("HARD_switch")
 SWITCH_HARD.add_state("on", HARD_ON)
 SWITCH_HARD.add_state("off", HARD_OFF)
 
-SWITCH_QUEST = None
+SWITCH_QUEST = Switch("QUEST_switch")
+SWITCH_QUEST.add_state("on",QUEST_ON)
+SWITCH_QUEST.add_state("off",QUEST_OFF)
 
 """
 A dictionary that maps the mode to a tuple where 
@@ -36,7 +38,7 @@ MODE_TO_PAGE = {
     "H": (MISSION_CHECK, page_mission),
     "BD": (CHECK_BD, page_commissions),
     "IR": (CHECK_IR, page_commissions),
-    "E" : ()
+    "E" : (EVENT_CHECK) #page_event
 }
 
 
@@ -92,6 +94,9 @@ class MissionUI(UI, AP):
             return False
         switch.set('on', main=self)
         return True
+    
+    def select_event(self):
+        return self.select_mode(SWITCH_QUEST)
 
     def enter_stage(self, index: int) -> bool:
         if not index:
@@ -143,5 +148,3 @@ class CommissionsUI(UI, AP):
                 return True
             if timer.reached():
                 return False
-
-    
