@@ -2,19 +2,18 @@ from module.base.timer import Timer
 from module.logger import logger
 from module.ui.switch import Switch
 from module.ocr.ocr import Digit
-from tasks.base.assets.assets_base_page import BACK, MISSION_CHECK, EVENT_CHECK
-from tasks.base.page import page_mission, page_commissions #,page_event
+from tasks.base.assets.assets_base_page import BACK, MISSION_CHECK, EVENT_CHECK, WORK_GO_TO_EVENT
+from tasks.base.page import page_mission, page_commissions, page_work #,page_event
 from tasks.base.ui import UI
 from tasks.mission.assets.assets_mission import *
 from tasks.stage.ap import AP
 from tasks.stage.mission_list import StageList
 from tasks.stage.sweep import StageSweep
 
-
 SHARED_LIST = StageList('SharedList')
-MISSION_SWEEP = StageSweep('MissionSweep', 60)
-MISSION_SWEEP.set_button(button_check=CHECK_MISSION_SWEEP) # Check sweep is different for mission
-SHARED_SWEEP = StageSweep('SharedSweep', 60)
+SHARED_SWEEP = StageSweep('MissionSweep', 99)
+SHARED_SWEEP.set_button(button_check=CHECK_MISSION_SWEEP) # Check sweep is different for mission, event
+COMMISSIONS_SWEEP = StageSweep('SharedSweep', 99)
 
 SWITCH_NORMAL = Switch("Normal_switch")
 SWITCH_NORMAL.add_state("on", NORMAL_ON)
@@ -36,8 +35,8 @@ Missing for "E" because there are no event in Global and no page_event
 MODE_TO_PAGE = {
     "N": (MISSION_CHECK, page_mission),
     "H": (MISSION_CHECK, page_mission),
-    "BD": (CHECK_BD, page_commissions),
-    "IR": (CHECK_IR, page_commissions),
+    "XP": (CHECK_XP, page_commissions),
+    "CR": (CHECK_CR, page_commissions),
     "E" : (EVENT_CHECK) #page_event
 }
 
@@ -94,9 +93,6 @@ class MissionUI(UI, AP):
             return False
         switch.set('on', main=self)
         return True
-    
-    def select_event(self):
-        return self.select_mode(SWITCH_QUEST)
 
     def enter_stage(self, index: int) -> bool:
         if not index:
@@ -106,8 +102,8 @@ class MissionUI(UI, AP):
         return False
 
     def do_sweep(self, mode, num: int) -> bool:
-        if mode in ["N", "H", "E"]:
-            return MISSION_SWEEP.do_sweep(self, num=num)
+        if mode in ["XP", "CR"]:
+            return COMMISSIONS_SWEEP.do_sweep(self, num=num)
         else:
             return SHARED_SWEEP.do_sweep(self, num=num)
 
@@ -120,10 +116,10 @@ class MissionUI(UI, AP):
         """
         if prev==next or (prev in ["N", "H"] and next in ["N", "H"]):
             self.go_back(MODE_TO_PAGE[next][0])
-        elif prev in ["BD", "IR"] and next in ["BD", "IR"]:
+        elif prev in ["XP", "CR"] and next in ["XP", "CR"]:
             self.go_back(CHECK_COMMISSIONS)
         else:
-            self.ui_ensure(MODE_TO_PAGE[next][1])
+            self.goto_event() if next == "E" else self.ui_ensure(MODE_TO_PAGE[next][1]) 
 
     def go_back(self, check):
         while 1:
@@ -132,12 +128,27 @@ class MissionUI(UI, AP):
                 return True
             self.click_with_interval(BACK, interval=2)
 
+    def goto_event(self):
+        """
+        Should be removed after implementing ui_ensure(page_event)
+        """
+        self.ui_ensure(page_work)
+        timer = Timer(1).start()
+        while 1:
+            self.device.screenshot()
+            if self.appear(EVENT_CHECK):
+                break
+            self.appear_then_click(WORK_GO_TO_EVENT)
+            self.device.swipe((40,160), (260, 40))
+            while not timer.reached_and_reset():
+                pass
+
 class CommissionsUI(UI, AP):
     """Works the same way as select_bounty"""
     def select_commission(self, mode):
         to_button = {
-            "IR": (SELECT_IR, CHECK_IR),
-            "BD": (SELECT_BD, CHECK_BD)
+            "CR": (SELECT_CR, CHECK_CR),
+            "XP": (SELECT_XP, CHECK_XP)
         }
         dest_enter, dest_check = to_button[mode]
         timer = Timer(5, 10).start()
