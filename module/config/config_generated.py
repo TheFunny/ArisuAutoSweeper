@@ -52,6 +52,29 @@ class GeneratedConfig:
     Invitation_Name = None
     Invitation_Substitute = False
 
+    # Group `Schedule`
+    Schedule_OnError = 'skip'  # stop, skip
+
+    # Group `Choice1`
+    Choice1_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice1_Classrooms = None
+
+    # Group `Choice2`
+    Choice2_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice2_Classrooms = None
+
+    # Group `Choice3`
+    Choice3_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice3_Classrooms = None
+
+    # Group `Choice4`
+    Choice4_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice4_Classrooms = None
+
+    # Group `Choice5`
+    Choice5_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice5_Classrooms = None
+
     # Group `Bounty`
     Bounty_OnError = 'skip'  # stop, skip
 
