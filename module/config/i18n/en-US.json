@@ -34,6 +34,10 @@
       "name": "Cafe",
       "help": ""
     },
+    "Schedule": {
+      "name": "Lesson",
+      "help": "AAS will execute Lesson starting from Choice 1 to Choice 5.\nIt will ignore any Choice that have Location set as None or the text area for classrooms is empty.\nIf any of the active Choices have incorrect input, it will perform the action set in Error handling."
+    },
     "Shop": {
       "name": "Shop",
       "help": ""
@@ -275,6 +279,143 @@
     "Substitute": {
       "name": "Replace existing student",
       "help": "Whether to replace the existing student with their alt.\nIf not, try to match the next student"
+    }
+  },
+  "Schedule": {
+    "_info": {
+      "name": "Lesson Settings",
+      "help": ""
+    },
+    "OnError": {
+      "name": "Error Handling",
+      "help": "Perform the selected action when an error occurs (ticket not enough or any invalid setting)",
+      "stop": "Stop script",
+      "skip": "Skip current task"
+    }
+  },
+  "Choice1": {
+    "_info": {
+      "name": "Choice 1",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": "Type a number from 1 to 9 that represents the classroom position in the locations popup.\nUse > to connect multiple classrooms and AAS will select them following the order they appear. Example:\n5 > 3 > 2 > 4 > 1"
+    }
+  },
+  "Choice2": {
+    "_info": {
+      "name": "Choice 2",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice3": {
+    "_info": {
+      "name": "Choice 3",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice4": {
+    "_info": {
+      "name": "Choice 4",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice5": {
+    "_info": {
+      "name": "Choice 5",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
     }
   },
   "Bounty": {

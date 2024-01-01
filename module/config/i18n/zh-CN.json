@@ -34,6 +34,10 @@
       "name": "咖啡厅",
       "help": ""
     },
+    "Schedule": {
+      "name": "Task.Schedule.name",
+      "help": "Task.Schedule.help"
+    },
     "Shop": {
       "name": "商店",
       "help": ""
@@ -275,6 +279,143 @@
     "Substitute": {
       "name": "是否替换已存在学生",
       "help": "若咖啡厅已存在所邀请学生的不同服装，选择是否替换该学生\n若不替换，则尝试匹配下一位学生"
+    }
+  },
+  "Schedule": {
+    "_info": {
+      "name": "Schedule._info.name",
+      "help": "Schedule._info.help"
+    },
+    "OnError": {
+      "name": "Schedule.OnError.name",
+      "help": "Schedule.OnError.help",
+      "stop": "stop",
+      "skip": "skip"
+    }
+  },
+  "Choice1": {
+    "_info": {
+      "name": "Choice1._info.name",
+      "help": "Choice1._info.help"
+    },
+    "Location": {
+      "name": "Choice1.Location.name",
+      "help": "Choice1.Location.help",
+      "None": "None",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    },
+    "Classrooms": {
+      "name": "Choice1.Classrooms.name",
+      "help": "Choice1.Classrooms.help"
+    }
+  },
+  "Choice2": {
+    "_info": {
+      "name": "Choice2._info.name",
+      "help": "Choice2._info.help"
+    },
+    "Location": {
+      "name": "Choice2.Location.name",
+      "help": "Choice2.Location.help",
+      "None": "None",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    },
+    "Classrooms": {
+      "name": "Choice2.Classrooms.name",
+      "help": "Choice2.Classrooms.help"
+    }
+  },
+  "Choice3": {
+    "_info": {
+      "name": "Choice3._info.name",
+      "help": "Choice3._info.help"
+    },
+    "Location": {
+      "name": "Choice3.Location.name",
+      "help": "Choice3.Location.help",
+      "None": "None",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    },
+    "Classrooms": {
+      "name": "Choice3.Classrooms.name",
+      "help": "Choice3.Classrooms.help"
+    }
+  },
+  "Choice4": {
+    "_info": {
+      "name": "Choice4._info.name",
+      "help": "Choice4._info.help"
+    },
+    "Location": {
+      "name": "Choice4.Location.name",
+      "help": "Choice4.Location.help",
+      "None": "None",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    },
+    "Classrooms": {
+      "name": "Choice4.Classrooms.name",
+      "help": "Choice4.Classrooms.help"
+    }
+  },
+  "Choice5": {
+    "_info": {
+      "name": "Choice5._info.name",
+      "help": "Choice5._info.help"
+    },
+    "Location": {
+      "name": "Choice5.Location.name",
+      "help": "Choice5.Location.help",
+      "None": "None",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    },
+    "Classrooms": {
+      "name": "Choice5.Classrooms.name",
+      "help": "Choice5.Classrooms.help"
     }
   },
   "Bounty": {
