@@ -97,10 +97,10 @@ class ShopUI(UI):
         one at 8 and the other at 16. 
         Only once for each checkpoint.
         """
-        if (8 < item < 16) and not self.swipe_flags[8]:
+        if (9 <= item <= 16) and not self.swipe_flags[8]:
             self.swipe_flags[8] = True
             return True
-        elif item > 16 and not self.swipe_flags[16]:
+        elif item > 17 and not self.swipe_flags[16]:
             self.swipe_flags[16] = True
             return True
         return False
