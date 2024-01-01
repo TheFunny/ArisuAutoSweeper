@@ -134,7 +134,7 @@ class MCE_Manager(customtkinter.CTk):
             self.template_labels.grid(row=0, column=0, sticky="ew")
 
             self.mode_label = customtkinter.CTkLabel(self.template_labels, text="Mode:", font=customtkinter.CTkFont(underline=True))
-            self.mode_tooltip = CTkToolTip(self.mode_label, message="N:Mission Normal\nH:Mission Hard\nE:Event Quest\nBD:Commissions EXP\nIR:Commissions Credits\n")
+            self.mode_tooltip = CTkToolTip(self.mode_label, message="N    :   Mission Normal\nH    :   Mission Hard\nE     :   Event Quest\nXP  :   Commissions EXP\nCR  :   Commissions Credits\n", justify=tk.LEFT)
             self.mode_label.grid(row=1, column=0, padx=(130, 0), pady=5)
 
             self.stage_label = customtkinter.CTkLabel(self.template_labels, text="Stage:", font=customtkinter.CTkFont(underline=True))
@@ -269,7 +269,7 @@ class MCE_Manager(customtkinter.CTk):
         down_button = customtkinter.CTkButton(frame, text="Down", width=5, command=lambda f=frame, queue=queue: self.move_frame_down(f, queue), state=state)
         down_button.grid(row=0, column=1, padx=5, pady=5, sticky="w")
         # Dropdown menu for mode
-        mode_optionmenu = customtkinter.CTkOptionMenu(frame, width=60, values=["N", "H", "E", "BD", "IR"], state=state)
+        mode_optionmenu = customtkinter.CTkOptionMenu(frame, width=60, values=["N", "H", "E", "XP", "CR"], state=state)
         mode_optionmenu.set(inner_list[0] if inner_list else "N")
         mode_optionmenu.grid(row=0, column=2, padx=5, pady=5, sticky="w")
         # Entry widget for stage

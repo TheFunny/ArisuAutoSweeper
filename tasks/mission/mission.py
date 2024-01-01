@@ -3,7 +3,7 @@ from enum import Enum
 from module.base.timer import Timer
 from module.exception import RequestHumanTakeover
 from module.logger import logger
-from tasks.mission.ui import MissionUI, CommissionsUI
+from tasks.mission.ui import MissionUI, CommissionsUI, SWITCH_QUEST
 from tasks.stage.ap import AP
 from tasks.cafe.cafe import Cafe
 from tasks.circle.circle import Circle
@@ -13,7 +13,7 @@ from tasks.item.data_update import DataUpdate
 import json
 import math
 from filelock import FileLock
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class MissionStatus(Enum):
     AP = 0 # Calculate AP and decide to terminate Mission module or not
@@ -45,8 +45,8 @@ class Mission(MissionUI, CommissionsUI):
             "N" : Normal Mission
             "H" : Hard Mission
             "E" : Event Quest
-            "IR" : Item Retrieval / Commission where you get credit
-            "BD" : Base Defense / Commission where you get exp
+            "CR" : Item Retrieval / Commission where you get credit
+            "XP" : Base Defense / Commission where you get exp
 
         Returns:
             list of list 
@@ -70,7 +70,7 @@ class Mission(MissionUI, CommissionsUI):
             logger.error("Failed to read configuration file")
         finally:
             return queue
-
+    
     def check_reset_daily(self):
         # Check if it's time to reset the queue
         if self.reset_daily:
@@ -80,10 +80,21 @@ class Mission(MissionUI, CommissionsUI):
             last_run_datetime = datetime.strptime(self.last_run, "%Y-%m-%d %H:%M:%S")
             reset_time = datetime.strptime(self.reset_time, "%H:%M:%S").time()
 
-            if current_date != last_run_datetime.date() and current_time >= reset_time:
-                self.last_run = str(datetime.now().replace(microsecond=0))
-                logger.info("Reset Daily activated.")
+            # Check if the difference between the current date and last run date is 2 or greater days
+            if (current_date - last_run_datetime.date()).days >= 2:
+                # Set self.last_run to yesterday's date with time as reset_time
+                yesterday_datetime = current_datetime - timedelta(days=1)
+                yesterday_date = yesterday_datetime.date()
+                self.last_run = str(datetime.combine(yesterday_date, reset_time))
+                logger.info("Reset Daily activated")
                 return True
+
+            # Check if the current date is different from the last run date and the current time is greater than or equal to the reset time
+            elif current_date != last_run_datetime.date() and current_time >= reset_time:
+                self.last_run = str(datetime.now().replace(microsecond=0))
+                logger.info("Reset Daily activated")
+                return True
+
         return False
     
     @property
@@ -122,10 +133,10 @@ class Mission(MissionUI, CommissionsUI):
         """
         if self.current_mode in ["N", "H"]:
             return self.select_mission(self.current_mode, self.current_stage)
-        elif self.current_mode in ["BD", "IR"]:
+        elif self.current_mode in ["CR", "XP"]:
             return self.select_commission(self.current_mode)
         elif self.current_mode == "E":
-            return self.select_event()
+            return self.select_mode(SWITCH_QUEST)
         else:
             logger.error("Uknown mode")
             return False
@@ -235,24 +246,25 @@ class Mission(MissionUI, CommissionsUI):
         with self.lock.acquire():
             self.previous_mode = None
             self.task = self.valid_task
-            action_timer = Timer(0.5, 1)
-            status = MissionStatus.AP
-            
-            """Update the dashboard to accurately calculate AP"""
-            DataUpdate(config=self.config, device=self.device).run()
-            
-            while 1:
-                self.device.screenshot()
+            if self.task:
+                action_timer = Timer(0.5, 1)
+                status = MissionStatus.AP
+                
+                """Update the dashboard to accurately calculate AP"""
+                DataUpdate(config=self.config, device=self.device).run()
+                
+                while 1:
+                    self.device.screenshot()
 
-                if self.ui_additional():
-                    continue
+                    if self.ui_additional():
+                        continue
 
-                if action_timer.reached_and_reset():
-                    logger.attr('Status', status)
-                    status = self.handle_mission(status)
+                    if action_timer.reached_and_reset():
+                        logger.attr('Status', status)
+                        status = self.handle_mission(status)
 
-                if status == MissionStatus.FINISH:
-                    break
+                    if status == MissionStatus.FINISH:
+                        break
 
             self.config.task_delay(server_update=True)
         

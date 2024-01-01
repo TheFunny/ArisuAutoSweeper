@@ -3,17 +3,6 @@ from module.base.button import Button, ButtonWrapper
 # This file was auto-generated, do not modify it manually. To generate:
 # ``` python -m dev_tools.button_extract ```
 
-CHECK_BD = ButtonWrapper(
-    name='CHECK_BD',
-    jp=None,
-    en=Button(
-        file='./assets/en/mission/CHECK_BD.png',
-        area=(94, 135, 325, 194),
-        search=(74, 115, 345, 214),
-        color=(208, 215, 220),
-        button=(94, 135, 325, 194),
-    ),
-)
 CHECK_COMMISSIONS = ButtonWrapper(
     name='CHECK_COMMISSIONS',
     jp=None,
@@ -25,11 +14,11 @@ CHECK_COMMISSIONS = ButtonWrapper(
         button=(646, 78, 909, 135),
     ),
 )
-CHECK_IR = ButtonWrapper(
-    name='CHECK_IR',
+CHECK_CR = ButtonWrapper(
+    name='CHECK_CR',
     jp=None,
     en=Button(
-        file='./assets/en/mission/CHECK_IR.png',
+        file='./assets/en/mission/CHECK_CR.png',
         area=(97, 137, 340, 191),
         search=(77, 117, 360, 211),
         color=(213, 220, 223),
@@ -45,6 +34,17 @@ CHECK_MISSION_SWEEP = ButtonWrapper(
         search=(634, 164, 723, 229),
         color=(208, 213, 219),
         button=(654, 184, 703, 209),
+    ),
+)
+CHECK_XP = ButtonWrapper(
+    name='CHECK_XP',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/CHECK_XP.png',
+        area=(94, 135, 325, 194),
+        search=(74, 115, 345, 214),
+        color=(208, 215, 220),
+        button=(94, 135, 325, 194),
     ),
 )
 HARD_OFF = ButtonWrapper(
@@ -146,25 +146,25 @@ RIGHT = ButtonWrapper(
         button=(1202, 311, 1280, 412),
     ),
 )
-SELECT_BD = ButtonWrapper(
-    name='SELECT_BD',
+SELECT_CR = ButtonWrapper(
+    name='SELECT_CR',
     jp=None,
     en=Button(
-        file='./assets/en/mission/SELECT_BD.png',
-        area=(1016, 165, 1227, 211),
-        search=(996, 145, 1247, 231),
-        color=(205, 212, 220),
-        button=(1016, 165, 1227, 211),
-    ),
-)
-SELECT_IR = ButtonWrapper(
-    name='SELECT_IR',
-    jp=None,
-    en=Button(
-        file='./assets/en/mission/SELECT_IR.png',
+        file='./assets/en/mission/SELECT_CR.png',
         area=(1004, 267, 1237, 321),
         search=(984, 247, 1257, 341),
         color=(214, 220, 227),
         button=(1004, 267, 1237, 321),
+    ),
+)
+SELECT_XP = ButtonWrapper(
+    name='SELECT_XP',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/SELECT_XP.png',
+        area=(1016, 165, 1227, 211),
+        search=(996, 145, 1247, 231),
+        color=(205, 212, 220),
+        button=(1016, 165, 1227, 211),
     ),
 )
