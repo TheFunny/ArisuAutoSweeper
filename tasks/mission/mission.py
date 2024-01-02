@@ -265,6 +265,7 @@ class Mission(MissionUI, CommissionsUI):
 
                     if status == MissionStatus.FINISH:
                         break
-
-            self.config.task_delay(server_update=True)
+            
+            # delay mission to 7 hours if there are still stages in the queue 
+            self.config.task_delay(minute=420) if self.task else self.config.task_delay(server_update=True)
         
