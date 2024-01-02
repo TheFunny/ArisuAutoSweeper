@@ -100,7 +100,7 @@ class ShopUI(UI):
         if (9 <= item <= 16) and not self.swipe_flags[8]:
             self.swipe_flags[8] = True
             return True
-        elif item > 17 and not self.swipe_flags[16]:
+        elif item >= 17 and not self.swipe_flags[16]:
             self.swipe_flags[16] = True
             return True
         return False
