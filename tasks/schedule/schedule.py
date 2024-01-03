@@ -35,8 +35,10 @@ class Schedule(ScheduleUI):
             else:
                 classrooms = classrooms.strip()
                 classrooms = re.sub(r'[ \t\r\n]', '', classrooms)
-                classrooms = re.sub(r'[＞﹥›˃ᐳ❯]', '>', classrooms)
-                classrooms_list = list(set(classrooms.split('>')))
+                classrooms = (re.sub(r'[＞﹥›˃ᐳ❯]', '>', classrooms)).split('>')
+                classrooms_list = []
+                # tried to convert to set to remove duplicates but doesn't maintain order
+                [classrooms_list.append(x) for x in classrooms if x not in classrooms_list]
             
             if self.valid_classroom(classrooms_list):
                 info.append([location, classrooms_list])
