@@ -47,6 +47,50 @@ CHECK_XP = ButtonWrapper(
         button=(94, 135, 325, 194),
     ),
 )
+EVENT_INDEX = ButtonWrapper(
+    name='EVENT_INDEX',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/EVENT_INDEX.png',
+        area=(704, 135, 761, 694),
+        search=(684, 115, 781, 714),
+        color=(189, 197, 195),
+        button=(704, 135, 761, 694),
+    ),
+)
+EVENT_ITEM = ButtonWrapper(
+    name='EVENT_ITEM',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/EVENT_ITEM.png',
+        area=(691, 136, 1198, 232),
+        search=(671, 116, 1218, 252),
+        color=(201, 219, 224),
+        button=(691, 136, 1198, 232),
+    ),
+)
+EVENT_LIST = ButtonWrapper(
+    name='EVENT_LIST',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/EVENT_LIST.png',
+        area=(695, 137, 1196, 688),
+        search=(675, 117, 1216, 708),
+        color=(171, 185, 190),
+        button=(695, 137, 1196, 688),
+    ),
+)
+EVENT_STARS = ButtonWrapper(
+    name='EVENT_STARS',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/EVENT_STARS.png',
+        area=(704, 186, 761, 218),
+        search=(684, 166, 781, 238),
+        color=(228, 223, 194),
+        button=(704, 186, 761, 218),
+    ),
+)
 HARD_OFF = ButtonWrapper(
     name='HARD_OFF',
     jp=None,
