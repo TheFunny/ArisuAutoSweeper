@@ -219,7 +219,7 @@ class Mission(MissionUI, CommissionsUI):
                 self.update_task(failure=True)
                 return MissionStatus.AP
             case MissionStatus.ENTER:
-                if self.enter_stage(self.current_stage):
+                if self.enter_stage(self.current_mode, self.current_stage):
                     return MissionStatus.SWEEP
                 self.update_task(failure=True)
                 return MissionStatus.AP

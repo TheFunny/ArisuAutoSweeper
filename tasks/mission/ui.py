@@ -11,6 +11,7 @@ from tasks.stage.mission_list import StageList
 from tasks.stage.sweep import StageSweep
 
 SHARED_LIST = StageList('SharedList')
+EVENT_LIST = StageList('EventList', EVENT_LIST, EVENT_INDEX, EVENT_ITEM, button_stars=EVENT_STARS)
 SHARED_SWEEP = StageSweep('MissionSweep', 99)
 SHARED_SWEEP.set_button(button_check=CHECK_MISSION_SWEEP) # Check sweep is different for mission, event
 COMMISSIONS_SWEEP = StageSweep('SharedSweep', 99)
@@ -37,7 +38,7 @@ MODE_TO_PAGE = {
     "H": (MISSION_CHECK, page_mission),
     "XP": (CHECK_XP, page_commissions),
     "CR": (CHECK_CR, page_commissions),
-    "E" : (EVENT_CHECK) #page_event
+    "E" : (EVENT_CHECK, None) #page_event
 }
 
 
@@ -94,10 +95,9 @@ class MissionUI(UI, AP):
         switch.set('on', main=self)
         return True
 
-    def enter_stage(self, index: int) -> bool:
-        if not index:
-            index = SHARED_LIST.insight_max_sweepable_index(self)
-        if SHARED_LIST.select_index_enter(self, index):
+    def enter_stage(self, mode, index: int) -> bool:
+        list = EVENT_LIST if mode == "E" else SHARED_LIST
+        if list.select_index_enter(self, index):
             return True
         return False
 
