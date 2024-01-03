@@ -33,7 +33,7 @@ class MomoTalk(MomoTalkUI):
                 return MomoTalkStatus.OPEN
             case MomoTalkStatus.STORY:
                 if self.skip_story():
-                    return MomoTalkStatus.OPEN    
+                    return MomoTalkStatus.CHAT    
             case MomoTalkStatus.FINISHED:
                 return status                
             case _:
