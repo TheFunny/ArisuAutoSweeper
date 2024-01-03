@@ -26,11 +26,19 @@ class MissionStatus(Enum):
 
 
 class Mission(MissionUI, CommissionsUI):
-    _stage_ap = [10, 15, 15, 15]
-
     @property
     def stage_ap(self):
-        return self._stage_ap
+        match self.current_mode:
+            case "N":
+                return 10
+            case "H":
+                return 20
+            case "E":
+                stage = int(self.current_stage, base=10)
+                return 20 if stage >= 9 else 10 + 5 * math.floor(stage / 5)
+            case "XP" | "CR":
+                stage = int(self.current_stage, base=10)
+                return 40 if stage >= 9 else 5 + 15 * math.floor(stage / 4)
 
     @property
     def mission_info(self) -> list:
@@ -145,9 +153,8 @@ class Mission(MissionUI, CommissionsUI):
         """
         Calculate the possible number of sweeps based on the current AP
         """
-        ap_cost = 20 if self.current_mode == "H" else 10
-        required_ap = ap_cost * self.current_count
-        return math.floor(min(required_ap, self.current_ap) / ap_cost)
+        possible_count = math.floor(self.current_ap / self.stage_ap)
+        return min(possible_count, self.current_count)
 
     def update_task(self, failure=False):
         """
@@ -172,10 +179,9 @@ class Mission(MissionUI, CommissionsUI):
             self.task = []
 
     def update_ap(self):
-        ap_cost = 20 if self.current_mode == "H" else 10
         ap = self.config.stored.AP
         ap_old = ap.value
-        ap_new = ap_old - ap_cost * self.realistic_count
+        ap_new = ap_old - self.stage_ap * self.realistic_count
         ap.set(ap_new, ap.total)
         logger.info(f'Set AP: {ap_old} -> {ap_new}')
 
