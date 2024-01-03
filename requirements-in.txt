@@ -31,6 +31,9 @@ starlette==0.14.2
 uvicorn[standard]==0.17.6
 aiofiles
 
+# GUI
+customtkinter
+
 # For dev
 # pip-tools
 pynput
