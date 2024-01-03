@@ -14,6 +14,17 @@ BEGIN_STORY = ButtonWrapper(
         button=(796, 540, 1059, 591),
     ),
 )
+CHATTING = ButtonWrapper(
+    name='CHATTING',
+    jp=None,
+    en=Button(
+        file='./assets/en/momotalk/CHATTING.png',
+        area=(774, 563, 821, 585),
+        search=(754, 543, 841, 605),
+        color=(89, 102, 121),
+        button=(774, 563, 821, 585),
+    ),
+)
 CHAT_AREA = ButtonWrapper(
     name='CHAT_AREA',
     jp=None,

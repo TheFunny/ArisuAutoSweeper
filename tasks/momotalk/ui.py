@@ -26,7 +26,7 @@ SWITCH_SORT.add_state("descending", SORT_DESCENDING)
 button can be found in different locations"""
 REPLY_TEMPLATE = REPLY.matched_button.image
 STORY_TEMPLATE = STORY.matched_button.image
-
+CHATTING_TEMPLATE = CHATTING.matched_button.image
 
 class MomoTalkUI(UI):
     def __init__(self, config, device):
@@ -68,18 +68,17 @@ class MomoTalkUI(UI):
             if timer.reached():
                 return False
 
-    def select_then_disappear(self, dest_enter: ButtonWrapper, dest_check: ButtonWrapper, force_select=False):
+    def select_then_disappear(self, dest_enter: ButtonWrapper, dest_check: ButtonWrapper):
         timer = Timer(5, 10).start()
         while 1:
             self.device.screenshot()
-            if force_select or self.appear(dest_enter):
-                self.click_with_interval(dest_enter, interval=1)
+            self.click_with_interval(dest_enter, interval=1)
             if not self.appear(dest_check):
                 return True
             if timer.reached():
                 return False
 
-    def set_switch(self, switch):
+    def set_switch(self, switch, state='on'):
         """
         Set switch to on. However, unsure why is inaccurate in momotalk.
         Returns:
@@ -88,7 +87,7 @@ class MomoTalkUI(UI):
         if not switch.appear(main=self):
             logger.info(f'{switch.name} not found')
             return False
-        switch.set('on', main=self)
+        switch.set(state, main=self)
 
         return True
     
@@ -108,9 +107,10 @@ class MomoTalkUI(UI):
             center_pt = (int(pt[0] + template.shape[1] / 2 + x_add), int(pt[1] + template.shape[0] / 2 + y_add))
             seen.add(center_pt)
         if seen:
-            seen = filter(lambda x: point_in_area(x, CHAT_AREA.area), seen)
-            [click_coords(coords[0], coords[1]) for coords in seen]
-            self.swipe_page("down", self)
+            if y_add != 0:
+                seen = filter(lambda x: point_in_area(x, CHAT_AREA.area), seen)
+                [click_coords(coords[0], coords[1]) for coords in seen]
+                self.swipe_page("down", self)
             return True
         return False
 
@@ -132,18 +132,22 @@ class MomoTalkUI(UI):
         """
         Switch from newest to unread and sort the messages in descending order
         """
-        logger.info("Sorting messages...")
-        steps = [UNREAD, CONFIRM_SORT, UNREAD_OFF, UNREAD_ON]
-        for i in range(len(steps)-2):
-            self.select_then_check(steps[i], steps[i+1], similarity=0.95)    
-        return not self.appear(CONFIRM_SORT) and self.appear(UNREAD) and self.appear(SORT_ON)
+        while 1:
+            self.device.screenshot()
+            if self.set_switch(SWITCH_UNREAD):
+                self.click_with_interval(CONFIRM_SORT, interval=2)
+                continue
+            if self.appear(UNREAD, similarity=0.95):
+                break
+            self.click_with_interval(UNREAD, interval=2)
+        return self.set_switch(SWITCH_SORT, "descending")
 
     def check_first_student(self):
         """
         If the first student has a red notification return True and start chat. 
         Otherwise it means no students are available for interaction.
         """
-        if self.match_color(FIRST_UNREAD, threshold=80) and self.select_then_disappear(FIRST_UNREAD, SELECT_STUDENT, force_select=True):
+        if self.match_color(FIRST_UNREAD, threshold=80) and self.select_then_disappear(FIRST_UNREAD, SELECT_STUDENT):
             return True
         logger.warning("No students available for interaction")
         return False
@@ -154,24 +158,23 @@ class MomoTalkUI(UI):
         check if a reply or story button is found and click them. 
         If the begin story button is found skip story.
         """
+        timer = Timer(8, 5).start()
         logger.info("Chatting with student...")
-        stability_counter = 0
         while 1:
-            self.wait_until_stable(CHAT_AREA, timer=Timer(10, 10))
+            self.device.screenshot()
             if self.appear(BEGIN_STORY):
                 logger.info("Begin Story detected")
                 return True
-            if self.click_all(REPLY_TEMPLATE, y_add=62):
+            elif self.click_all(CHATTING_TEMPLATE):
+                timer.reset()
+            elif self.click_all(REPLY_TEMPLATE, y_add=62):
                 logger.info("Clicked on reply")
-                stability_counter = 0
-                continue
-            if self.click_all(STORY_TEMPLATE, y_add=62):
+                timer.reset()
+            elif self.click_all(STORY_TEMPLATE, y_add=62):
                 logger.info("Clicked on story")
-                stability_counter = 0
-                continue
-            logger.info("No new message detected")
-            stability_counter += 1
-            if stability_counter > 3:
+                timer.reset()
+            elif timer.reached():
+                logger.info("No new message detected")
                 return False        
                 
     def skip_story(self):
@@ -180,11 +183,17 @@ class MomoTalkUI(UI):
         button is clicked and disappears 
         """
         logger.info("Attempting to skip story...")
-        steps = [BEGIN_STORY, MENU, SKIP]
-        for step in steps:
-            self.appear_then_click(step)
-        if self.appear_then_click(CONFIRM_SKIP) and not self.appear(CONFIRM_SKIP, interval=5):
-            logger.info("Skipped story successfully")
-            return True
-        return False
+        steps = [CONFIRM_SKIP, SKIP, MENU, BEGIN_STORY]
+        timer = Timer(1).start()
+        while 1:
+            self.device.screenshot()
+            if self.handle_reward():
+                logger.info("Skipped story successfully")
+                return True
+            for step in steps:
+                if self.appear_then_click(step):
+                    while not timer.reached_and_reset():
+                        pass
+                    break
+
 
