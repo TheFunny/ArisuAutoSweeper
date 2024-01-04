@@ -138,7 +138,7 @@ class MCE_Manager(customtkinter.CTk):
             self.mode_label.grid(row=1, column=0, padx=(130, 0), pady=5)
 
             self.stage_label = customtkinter.CTkLabel(self.template_labels, text="Stage:", font=customtkinter.CTkFont(underline=True))
-            self.stage_tooltip = CTkToolTip(self.stage_label, message="Valid format for Mission: 1-1\nValid format for Commissions/Event: 01")
+            self.stage_tooltip = CTkToolTip(self.stage_label, message="Valid format\nMission: 1-1, 3-A\nCommissions & Event: 01", justify=tk.LEFT)
             self.stage_label.grid(row=1, column=1, padx=(40, 20), pady=5)
 
             self.run_times_label = customtkinter.CTkLabel(self.template_labels, text="Number of Sweeps:", font=customtkinter.CTkFont(underline=True))
