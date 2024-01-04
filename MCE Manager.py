@@ -8,6 +8,7 @@ from MCE.custom_widgets.ctk_timeentry import CTkTimeEntry
 from MCE.custom_widgets.ctk_integerspinbox import CTkIntegerSpinbox
 from MCE.custom_widgets.ctk_templatedialog import CTkTemplateDialog
 from MCE.custom_widgets.ctk_notification import CTkNotification
+from MCE.custom_widgets.ctk_add_button import CTkAddButton
 from MCE.utils import Linker, Config
 from filelock import FileLock, Timeout
 import threading
@@ -117,7 +118,7 @@ class MCE_Manager(customtkinter.CTk):
 
     # Helper method to create Mission Tabview with Template and Queue Tabs
     def create_mission_tabview(self):
-        self.mission_tabview = customtkinter.CTkTabview(self, height=500)
+        self.mission_tabview = customtkinter.CTkTabview(self)
         self.mission_tabview.grid(row=17, column=0, columnspan=3, padx=20)
 
         self.tab_template = self.mission_tabview.add('Template')
@@ -151,7 +152,8 @@ class MCE_Manager(customtkinter.CTk):
             self.highlight_label = customtkinter.CTkLabel(self.template_buttons_frame, text="*You can double click an entry and press up or down arrow to change its position", font=customtkinter.CTkFont(family="Inter", size=12))
             self.highlight_label.grid(row=0, column=0, columnspan=3)
 
-            self.add_button = customtkinter.CTkButton(self.template_buttons_frame , text="Add", command=lambda queue=queue: self.add_frame(queue=queue))
+            self.add_button = CTkAddButton(master=self.template_buttons_frame)
+            self.add_button.button.configure(command=lambda queue=queue, button=self.add_button.button: self.add_frame(queue=queue, button=button))
             self.add_button.grid(row=1, column=0, padx=5, pady=5)
 
             # Clear button to clear all frames
@@ -166,10 +168,10 @@ class MCE_Manager(customtkinter.CTk):
 
     # Helper method to create Template Frame and Queue Frame
     def create_template_and_queue_frames(self):
-        self.template_frame = customtkinter.CTkScrollableFrame(self.tab_template, width=400, height=350)
+        self.template_frame = customtkinter.CTkScrollableFrame(self.tab_template, width=435, height=350)
         self.template_frame.grid(row=1, column=0, sticky="nsew")
         
-        self.queue_frame = customtkinter.CTkScrollableFrame(self.tab_queue, width=400, height=350)
+        self.queue_frame = customtkinter.CTkScrollableFrame(self.tab_queue, width=435, height=350)
         self.queue_frame.grid(row=1, column=0, sticky="nsew")
 
     # Helper method to create Lists to Store Frame Widgets
@@ -254,14 +256,15 @@ class MCE_Manager(customtkinter.CTk):
         return
 
 # Function to add a frame with widgets
-    def add_frame(self, inner_list=None, queue=False, state="normal"):
+    def add_frame(self, inner_list=None, queue=False, state="normal", button=None):
+        position = button.cget("text") if button else "Add Down"
         frames = self.queue_frames if queue else self.template_frames
         parent_frame = self.queue_frame if queue else self.template_frame
         row_index = len(frames) + 1  # Calculate the row for the new frame
         # Create a frame
         frame = tk.Frame(parent_frame, bg="gray17")
         frame.grid(row=row_index, column=0, columnspan=4, padx=10, pady=10, sticky="w")
-        frames.append(frame)
+        frames.append(frame) if position == "Add Down" else frames.insert(0, frame)
         # "Up" button to move the frame up
         up_button = customtkinter.CTkButton(frame, text="Up", width=5, command=lambda f=frame, queue=queue: self.move_frame_up(f, queue), state=state)
         up_button.grid(row=0, column=0, padx=5, pady=5, sticky="w")
@@ -288,7 +291,9 @@ class MCE_Manager(customtkinter.CTk):
         delete_button = customtkinter.CTkButton(frame, text="Delete", width=5, command=lambda f=frame, queue=queue: self.delete_frame(f, queue), state=state)
         delete_button.grid(row=0, column=5, padx=5, pady=5, sticky="w")
 
-        frame.bind("<Double-Button-1>", lambda event, f=frame: self.highlight_frame(f))
+        frame.bind("<Double-Button-1>", lambda event, f=frame: self.highlight_frame(f))     
+        if position == "Add Up":
+            self.update_frame_positions(queue=queue)
 
     # Function to clear all frames
     def clear_frames(self, queue=False):
