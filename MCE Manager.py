@@ -213,7 +213,7 @@ class MCE_Manager(customtkinter.CTk):
                 self.template_optionmenu.set(self.previous_selected)
                 return
             elif template_name in self.templates_list:
-                CTkMessagebox(title="Error", message="Name is invalid.", icon="cancel")
+                CTkMessagebox(title="Error", message="Name is invalid.", icon="MCE\icons\cancel.png")
                 self.template_optionmenu.set(self.previous_selected)
                 return
             else:
@@ -234,7 +234,7 @@ class MCE_Manager(customtkinter.CTk):
 
     def delete_template(self):
         msg = CTkMessagebox(title="Template Deletetion", message=f"Are you sure you want to delete Template {self.previous_selected}?",
-                        icon="question", option_1="No", option_2="Yes")
+                        icon="MCE\icons\question.png", option_1="No", option_2="Yes")
         response = msg.get()
         if response=="Yes":
             if len(self.templates) != 1:
@@ -252,7 +252,7 @@ class MCE_Manager(customtkinter.CTk):
                 self.template_optionmenu.configure(values=self.templates_list)
                 self.template_optionmenu.set(self.preferred_template)
             else:
-                CTkMessagebox(title="Error", message="At least one template must exist!!!", icon="cancel")
+                CTkMessagebox(title="Error", message="At least one template must exist!!!", icon="MCE\icons\cancel.png")
         return
 
 # Function to add a frame with widgets
@@ -311,7 +311,7 @@ class MCE_Manager(customtkinter.CTk):
             mode_optionmenu = frame.winfo_children()[2]
             stage_entry = frame.winfo_children()[3]
             if not self.check_entry(mode_optionmenu, stage_entry):
-                CTkMessagebox(title="Error", message="Configuration not saved. Some entries are incomplete or have incorect input.", icon="cancel")
+                CTkMessagebox(title="Error", message="Configuration not saved. Some entries are incomplete or have incorect input.", icon="MCE\icons\cancel.png")
                 return
             mode = frame.winfo_children()[2].get()
             stage = frame.winfo_children()[3].get().strip()

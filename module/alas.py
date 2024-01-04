@@ -14,6 +14,9 @@ from module.exception import *
 from module.logger import logger
 from module.notify import handle_notify
 
+from MCE.custom_widgets.ctkmessagebox import CTkMessagebox
+import subprocess
+import platform
 
 class AzurLaneAutoScript:
     stop_event: threading.Event = None
@@ -228,6 +231,26 @@ class AzurLaneAutoScript:
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
                         continue
+                elif method == 'shutdown':
+                    os = platform.system()
+                    if os not in ["Windows", "Linux", "Darwin"]:
+                        logger.info("Shutdown set during wait but operating system not supported")
+                    else:
+                        logger.info('Shutdown during wait')
+                        try:
+                            self.shutdown(os)
+                            msg = CTkMessagebox(title="AAS: Cancel Shutdown?", message="All tasks have been completed: shutting down. Do you want to cancel?",
+                                                icon="MCE\icons\question.png", option_1="Cancel")
+                            response = msg.get()
+                            if response=="Cancel":
+                                self.abort_shutdown(os)
+                        except:
+                            logger.error("Failed to shutdown. It may be due to a lack of administrator privileges.")
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue
                 else:
                     logger.warning(f'Invalid Optimization_WhenTaskQueueEmpty: {method}, fallback to stay_there')
                     release_resources()
@@ -308,6 +331,18 @@ class AzurLaneAutoScript:
                 self.checker.check_now()
                 continue
 
+    def shutdown(self, os):
+        logger.info("Running Shutting down")
+        if os == "Windows":
+            subprocess.run(["shutdown", "-s", "-t", "60"])
+        elif os in ["Linux", "Darwin"]:
+            subprocess.run(["shutdown", "-h", "+1"])
+
+    def abort_shutdown(self, os):
+        if os == "Windows":
+            subprocess.run(["shutdown", "-a"])
+        elif os in ["Linux", "Darwin"]:
+            subprocess.run(["shutdown", "-c"])
 
 if __name__ == '__main__':
     alas = AzurLaneAutoScript()
