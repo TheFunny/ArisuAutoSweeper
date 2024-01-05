@@ -153,6 +153,8 @@ class PlatformWindows(PlatformBase, EmulatorManager):
         elif instance == Emulator.NoxPlayerFamily:
             # Nox.exe -clone:Nox_1 -quit
             self.execute(f'"{exe}" -clone:{instance.name} -quit')
+        elif instance == Emulator.BlueStacks5:
+            self.execute(f'taskkill /fi "WINDOWTITLE eq {instance.name}" /IM "HD-Player.exe" /F')
         else:
             raise EmulatorUnknown(f'Cannot stop an unknown emulator instance: {instance}')
 

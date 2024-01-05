@@ -129,6 +129,8 @@
           "stay_there",
           "goto_main",
           "close_game",
+          "exit_aas",
+          "exit_aas_emulator",
           "shutdown"
         ]
       }
