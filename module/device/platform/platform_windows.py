@@ -97,7 +97,7 @@ class PlatformWindows(PlatformBase, EmulatorManager):
             self.execute(f'"{exe}" -clone:{instance.name}')
         elif instance == Emulator.BlueStacks5:
             # HD-Player.exe -instance Pie64
-            self.execute(f'"{exe}" -instance {instance.name}')
+            self.execute(f'"{exe}" --instance {instance.name}')
         elif instance == Emulator.BlueStacks4:
             # BlueStacks\Client\Bluestacks.exe -vmname Android_1
             self.execute(f'"{exe}" -vmname {instance.name}')
