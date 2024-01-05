@@ -225,6 +225,8 @@
       "stay_there": "Stay There",
       "goto_main": "Goto Main Page",
       "close_game": "Close Game",
+      "exit_aas": "Exit AAS",
+      "exit_aas_emulator": "Exit AAS & Emulator",
       "shutdown": "Shutdown"
     }
   },

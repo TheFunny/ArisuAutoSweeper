@@ -29,6 +29,7 @@ class AzurLaneAutoScript:
         # Failure count of tasks
         # Key: str, task name, value: int, failure count
         self.failure_record = {}
+        self.operating_system = platform.system()
 
     @cached_property
     def config(self):
@@ -231,21 +232,19 @@ class AzurLaneAutoScript:
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
                         continue
+                elif method == 'exit_aas':
+                    self.exit_aas()
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue                          
+                elif method == 'exit_aas_emulator':
+                    self.exit_emulator()
+                    self.exit_aas()
+                    exit(0)
                 elif method == 'shutdown':
-                    os = platform.system()
-                    if os not in ["Windows", "Linux", "Darwin"]:
-                        logger.info("Shutdown set during wait but operating system not supported")
-                    else:
-                        logger.info('Shutdown during wait')
-                        try:
-                            self.shutdown(os)
-                            msg = CTkMessagebox(title="AAS: Cancel Shutdown?", message="All tasks have been completed: shutting down. Do you want to cancel?",
-                                                icon="MCE\icons\question.png", option_1="Cancel")
-                            response = msg.get()
-                            if response=="Cancel":
-                                self.abort_shutdown(os)
-                        except:
-                            logger.error("Failed to shutdown. It may be due to a lack of administrator privileges.")
+                    self.shutdown()
                     release_resources()
                     self.device.release_during_wait()
                     if not self.wait_until(task.next_run):
@@ -331,17 +330,52 @@ class AzurLaneAutoScript:
                 self.checker.check_now()
                 continue
 
-    def shutdown(self, os):
+    def exit_emulator(self):
+        if self.operating_system != 'Windows':
+            logger.error("Exiting emulator is only supported on Windows")
+            return
+        try:
+            from module.device.platform.platform_windows import PlatformWindows
+            PlatformWindows(self.config).emulator_stop()
+        except:
+            logger.error("Failed to stop emulator. It may be due to a lack of administrator privileges or incorrect input in Emulator Settings.")
+
+    def exit_aas(self):
+        if self.operating_system != 'Windows':
+            logger.error("Exiting AAS is only supported on Windows")
+            return
+        try:
+            from module.device.platform.platform_windows import PlatformWindows
+            PlatformWindows(self.config).kill_process_by_regex("aas\.exe")
+        except:
+            logger.error("Failed to stop AAS. It may be due to a lack of administrator privileges.")        
+
+    def shutdown(self):
+        if self.operating_system not in ["Windows", "Linux", "Darwin"]:
+            logger.info("Shutdown set during wait but operating system not supported")
+        else:
+            logger.info('Shutdown during wait')
+            try:
+                self.start_shutdown()
+                msg = CTkMessagebox(title="AAS: Cancel Shutdown?", message="All tasks have been completed: shutting down. Do you want to cancel?",
+                                    icon="MCE\icons\question.png", option_1="Cancel")
+                response = msg.get()
+                if response=="Cancel":
+                    self.cancel_shutdown()
+            except:
+                logger.error("Failed to shutdown. It may be due to a lack of administrator privileges.")
+
+    def start_shutdown(self):
         logger.info("Running Shutting down")
-        if os == "Windows":
+        if self.operating_system == "Windows":
             subprocess.run(["shutdown", "-s", "-t", "60"])
-        elif os in ["Linux", "Darwin"]:
+        elif self.operating_system in ["Linux", "Darwin"]:
             subprocess.run(["shutdown", "-h", "+1"])
 
-    def abort_shutdown(self, os):
-        if os == "Windows":
+    def cancel_shutdown(self):
+        if self.operating_system == "Windows":
             subprocess.run(["shutdown", "-a"])
-        elif os in ["Linux", "Darwin"]:
+        elif self.operating_system in ["Linux", "Darwin"]:
             subprocess.run(["shutdown", "-c"])
 
 if __name__ == '__main__':

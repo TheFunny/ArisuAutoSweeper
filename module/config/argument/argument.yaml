@@ -71,7 +71,7 @@ Optimization:
   CombatScreenshotInterval: 1.0
   WhenTaskQueueEmpty:
     value: goto_main
-    option: [ stay_there, goto_main, close_game, shutdown ]
+    option: [ stay_there, goto_main, close_game, exit_aas, exit_aas_emulator, shutdown ]
 
 # ==================== Daily ====================
 
