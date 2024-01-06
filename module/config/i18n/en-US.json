@@ -221,7 +221,7 @@
     },
     "WhenTaskQueueEmpty": {
       "name": "When Task Queue is Empty",
-      "help": "Close Blue Archive when there are no pending tasks, can help reduce CPU.\nExit AAS, emulator and shutdown should be set while AAS is running tasks otherwise it won't start and after their execution it will be reset to Goto Main Page.\nExit AAS and emulator are only available on Windows.\nExit emulator is only possible if instance name and emulator path follow the same auto-filled values according to 'Serial' in Emulator Settings",
+      "help": "Close Blue Archive when there are no pending tasks, can help reduce CPU.\nExit AAS, emulator and shutdown should be set while AAS is running tasks otherwise it won't start; after their execution it will be reset to Goto Main Page.\nExit AAS and emulator are only available on Windows.\n\nExit emulator is only possible if instance name and emulator path actually follow the same auto-filled values according to 'Serial' in Emulator Settings.\nFor example, for Bluestacks 5 the instance name and Bluestacks 5 installation path must be respectively:\nNougat64\nC:/Program Files/BlueStacks_nxt/HD-Player.exe",
       "stay_there": "Stay There",
       "goto_main": "Goto Main Page",
       "close_game": "Close Game",

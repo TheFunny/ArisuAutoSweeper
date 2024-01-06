@@ -233,21 +233,40 @@ class AzurLaneAutoScript:
                         del_cached_property(self, 'config')
                         continue
                 elif method == 'exit_aas':
-                    self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
-                    self.exit_aas()
-                    exit(1)
+                    if abs(task.next_run - datetime.now()) >= timedelta(minutes=2): # ensure tactical challenge is fully ran
+                        self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                        self.exit_aas()
+                        exit(1)  
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue
                 elif method == 'exit_emulator':
-                    self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
-                    self.exit_emulator()
-                    exit(1) # stops AAS from restarting emulator
+                    if abs(task.next_run - datetime.now()) >= timedelta(minutes=2):
+                        self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                        self.exit_emulator()
+                        exit(1)  # stops AAS from restarting emulator
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue
                 elif method == 'exit_aas_emulator':
-                    self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
-                    self.exit_emulator()
-                    self.exit_aas()
-                    exit(1)
+                    if abs(task.next_run - datetime.now()) >= timedelta(minutes=2):
+                        self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                        self.exit_emulator()
+                        self.exit_aas()
+                        exit(1)  
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue
                 elif method == 'shutdown':
-                    self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
-                    self.shutdown()
+                    if abs(task.next_run - datetime.now()) >= timedelta(minutes=2):
+                        self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                        self.shutdown()
                     release_resources()
                     self.device.release_during_wait()
                     if not self.wait_until(task.next_run):
