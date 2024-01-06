@@ -241,6 +241,7 @@ class AzurLaneAutoScript:
                     self.exit_emulator()
                     exit(1) # stops AAS from restarting emulator
                 elif method == 'exit_aas_emulator':
+                    self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
                     self.exit_emulator()
                     self.exit_aas()
                     exit(1)
