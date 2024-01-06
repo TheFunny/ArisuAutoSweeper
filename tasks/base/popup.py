@@ -105,3 +105,15 @@ class PopupHandler(ModuleBase):
             return True
 
         return False
+
+    def handle_location_level_up(self, interval=5) -> bool:
+        if self.appear_then_click(LOCATION_LEVEL_UP, interval=interval):
+            return True
+
+        return False
+    
+    def handle_level_up(self, interval=5) -> bool:
+        if self.appear_then_click(LEVEL_UP, interval=interval):
+            return True
+
+        return False
