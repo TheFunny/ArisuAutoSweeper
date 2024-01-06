@@ -18,7 +18,8 @@ class ScheduleUI(UI):
         while 1:
             self.device.screenshot()
             self.appear_then_click(dest_enter, interval=1)
-            self.handle_affection_level_up()
+            if self.handle_affection_level_up() or self.handle_location_level_up():
+                timer.reset()
             if self.appear(dest_check):
                 return True
             
