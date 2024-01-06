@@ -221,11 +221,12 @@
     },
     "WhenTaskQueueEmpty": {
       "name": "When Task Queue is Empty",
-      "help": "Close AL when there are no pending tasks, can help reduce CPU",
+      "help": "Close Blue Archive when there are no pending tasks, can help reduce CPU.\nExit AAS, emulator and shutdown should be set while AAS is running tasks otherwise it won't start.\nExit AAS and emulator are only available on Windows.\nExit emulator is only possible if instance name and emulator path follow the same auto-filled values according to 'Serial' in Emulator Settings",
       "stay_there": "Stay There",
       "goto_main": "Goto Main Page",
       "close_game": "Close Game",
       "exit_aas": "Exit AAS",
+      "exit_emulator": "Exit Emulator",
       "exit_aas_emulator": "Exit AAS & Emulator",
       "shutdown": "Shutdown"
     }

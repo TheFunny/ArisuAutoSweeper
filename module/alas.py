@@ -233,17 +233,19 @@ class AzurLaneAutoScript:
                         del_cached_property(self, 'config')
                         continue
                 elif method == 'exit_aas':
+                    self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
                     self.exit_aas()
-                    release_resources()
-                    self.device.release_during_wait()
-                    if not self.wait_until(task.next_run):
-                        del_cached_property(self, 'config')
-                        continue                          
+                    exit(1)
+                elif method == 'exit_emulator':
+                    self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                    self.exit_emulator()
+                    exit(1) # stops AAS from restarting emulator
                 elif method == 'exit_aas_emulator':
                     self.exit_emulator()
                     self.exit_aas()
-                    exit(0)
+                    exit(1)
                 elif method == 'shutdown':
+                    self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
                     self.shutdown()
                     release_resources()
                     self.device.release_during_wait()
@@ -338,7 +340,7 @@ class AzurLaneAutoScript:
             from module.device.platform.platform_windows import PlatformWindows
             PlatformWindows(self.config).emulator_stop()
         except:
-            logger.error("Failed to stop emulator. It may be due to a lack of administrator privileges or incorrect input in Emulator Settings.")
+            logger.error("Failed to stop emulator. It may be due to a lack of administrator privileges.")
 
     def exit_aas(self):
         if self.operating_system != 'Windows':
@@ -352,7 +354,7 @@ class AzurLaneAutoScript:
 
     def shutdown(self):
         if self.operating_system not in ["Windows", "Linux", "Darwin"]:
-            logger.info("Shutdown set during wait but operating system not supported")
+            logger.error("Shutdown set during wait but operating system not supported")
         else:
             logger.info('Shutdown during wait')
             try:
