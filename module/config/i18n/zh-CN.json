@@ -226,6 +226,7 @@
       "goto_main": "前往主界面",
       "close_game": "关闭游戏",
       "exit_aas": "exit_aas",
+      "exit_emulator": "exit_emulator",
       "exit_aas_emulator": "exit_aas_emulator",
       "shutdown": "shutdown"
     }

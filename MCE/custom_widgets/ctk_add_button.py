@@ -14,3 +14,6 @@ class CTkAddButton(customtkinter.CTkFrame):
     def set_button(self, value):
         self.option_menu.set("")
         self.button.configure(text=value)
+
+    def configure(self, *args, **kwargs):
+        self.button.configure(*args, **kwargs)
