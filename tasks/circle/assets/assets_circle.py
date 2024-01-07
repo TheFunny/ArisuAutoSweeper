@@ -19,4 +19,11 @@ GET_REWARD_AP = ButtonWrapper(
         color=(204, 212, 219),
         button=(545, 460, 741, 521),
     ),
+    zht=Button(
+        file='./assets/zht/circle/GET_REWARD_AP.png',
+        area=(539, 145, 740, 175),
+        search=(519, 125, 760, 195),
+        color=(160, 172, 184),
+        button=(540, 456, 741, 521),
+    ),
 )

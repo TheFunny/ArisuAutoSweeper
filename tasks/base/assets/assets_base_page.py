@@ -19,6 +19,13 @@ ACCOUNT_INFO_CHECK = ButtonWrapper(
         color=(192, 200, 209),
         button=(103, 10, 219, 39),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/ACCOUNT_INFO_CHECK.png',
+        area=(92, 0, 222, 41),
+        search=(72, 0, 242, 61),
+        color=(191, 201, 210),
+        button=(92, 0, 222, 41),
+    ),
 )
 BACK = ButtonWrapper(
     name='BACK',
@@ -46,6 +53,13 @@ BOUNTY_CHECK = ButtonWrapper(
         color=(200, 208, 216),
         button=(101, 5, 206, 42),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/BOUNTY_CHECK.png',
+        area=(92, 6, 224, 41),
+        search=(72, 0, 244, 61),
+        color=(181, 191, 201),
+        button=(92, 6, 224, 41),
+    ),
 )
 CAFE_CHECK = ButtonWrapper(
     name='CAFE_CHECK',
@@ -62,6 +76,13 @@ CAFE_CHECK = ButtonWrapper(
         search=(176, 0, 279, 57),
         color=(188, 197, 206),
         button=(196, 8, 259, 37),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/CAFE_CHECK.png',
+        area=(94, 2, 307, 43),
+        search=(74, 0, 327, 63),
+        color=(187, 196, 201),
+        button=(94, 2, 307, 43),
     ),
 )
 CIRCLE_CHECK = ButtonWrapper(
@@ -80,6 +101,13 @@ CIRCLE_CHECK = ButtonWrapper(
         color=(190, 199, 208),
         button=(102, 8, 168, 38),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/CIRCLE_CHECK.png',
+        area=(93, 3, 224, 39),
+        search=(73, 0, 244, 59),
+        color=(187, 197, 206),
+        button=(93, 3, 224, 39),
+    ),
 )
 COMMISSIONS_CHECK = ButtonWrapper(
     name='COMMISSIONS_CHECK',
@@ -96,6 +124,13 @@ COMMISSIONS_CHECK = ButtonWrapper(
         search=(83, 0, 306, 57),
         color=(191, 200, 209),
         button=(103, 7, 286, 37),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/COMMISSIONS_CHECK.png',
+        area=(93, 5, 222, 42),
+        search=(73, 0, 242, 62),
+        color=(186, 196, 205),
+        button=(93, 5, 222, 42),
     ),
 )
 CRAFTING_CHECK = ButtonWrapper(
@@ -114,6 +149,13 @@ CRAFTING_CHECK = ButtonWrapper(
         color=(202, 210, 217),
         button=(103, 4, 226, 41),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/CRAFTING_CHECK.png',
+        area=(97, 1, 196, 44),
+        search=(77, 0, 216, 64),
+        color=(200, 207, 206),
+        button=(97, 1, 196, 44),
+    ),
 )
 EVENT_CHECK = ButtonWrapper(
     name='EVENT_CHECK',
@@ -124,6 +166,13 @@ EVENT_CHECK = ButtonWrapper(
         search=(82, 0, 207, 60),
         color=(200, 209, 216),
         button=(102, 6, 187, 40),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/EVENT_CHECK.png',
+        area=(96, 1, 171, 40),
+        search=(76, 0, 191, 60),
+        color=(195, 205, 213),
+        button=(96, 1, 171, 40),
     ),
 )
 GACHA_CHECK = ButtonWrapper(
@@ -141,6 +190,13 @@ GACHA_CHECK = ButtonWrapper(
         search=(197, 0, 405, 57),
         color=(189, 197, 206),
         button=(217, 8, 385, 37),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/GACHA_CHECK.png',
+        area=(94, 0, 221, 40),
+        search=(74, 0, 241, 60),
+        color=(191, 200, 209),
+        button=(94, 0, 221, 40),
     ),
 )
 HOME = ButtonWrapper(
@@ -178,6 +234,13 @@ MAIL_CHECK = ButtonWrapper(
         search=(87, 0, 236, 57),
         color=(174, 184, 196),
         button=(107, 11, 216, 37),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/MAIL_CHECK.png',
+        area=(89, 2, 174, 40),
+        search=(69, 0, 194, 60),
+        color=(197, 207, 215),
+        button=(89, 2, 174, 40),
     ),
 )
 MAIN_GO_TO_CAFE = ButtonWrapper(
@@ -296,6 +359,13 @@ MAIN_GO_TO_WORK = ButtonWrapper(
         color=(90, 112, 141),
         button=(1127, 605, 1250, 637),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/MAIN_GO_TO_WORK.png',
+        area=(1167, 595, 1277, 637),
+        search=(1147, 575, 1280, 657),
+        color=(73, 100, 133),
+        button=(1167, 595, 1277, 637),
+    ),
 )
 MISSION_CHECK = ButtonWrapper(
     name='MISSION_CHECK',
@@ -312,6 +382,13 @@ MISSION_CHECK = ButtonWrapper(
         search=(85, 0, 275, 59),
         color=(194, 202, 210),
         button=(105, 7, 255, 39),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/MISSION_CHECK.png',
+        area=(97, 3, 222, 37),
+        search=(77, 0, 242, 57),
+        color=(174, 185, 196),
+        button=(97, 3, 222, 37),
     ),
 )
 MOMOTALK_CHECK = ButtonWrapper(
@@ -350,6 +427,13 @@ SCHEDULE_CHECK = ButtonWrapper(
         color=(202, 210, 217),
         button=(101, 5, 200, 40),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/SCHEDULE_CHECK.png',
+        area=(94, 2, 196, 40),
+        search=(74, 0, 216, 60),
+        color=(186, 196, 205),
+        button=(94, 2, 196, 40),
+    ),
 )
 SCHOOL_EXCHANGE_CHECK = ButtonWrapper(
     name='SCHOOL_EXCHANGE_CHECK',
@@ -366,6 +450,13 @@ SCHOOL_EXCHANGE_CHECK = ButtonWrapper(
         search=(79, 0, 283, 61),
         color=(200, 208, 215),
         button=(99, 6, 263, 41),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/SCHOOL_EXCHANGE_CHECK.png',
+        area=(99, 3, 244, 42),
+        search=(79, 0, 264, 62),
+        color=(187, 196, 205),
+        button=(99, 3, 244, 42),
     ),
 )
 SHOP_CHECK = ButtonWrapper(
@@ -384,6 +475,13 @@ SHOP_CHECK = ButtonWrapper(
         color=(188, 197, 207),
         button=(103, 11, 176, 41),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/SHOP_CHECK.png',
+        area=(97, 1, 166, 41),
+        search=(77, 0, 186, 61),
+        color=(194, 203, 212),
+        button=(97, 1, 166, 41),
+    ),
 )
 STORY_CHECK = ButtonWrapper(
     name='STORY_CHECK',
@@ -400,6 +498,13 @@ STORY_CHECK = ButtonWrapper(
         search=(84, 0, 198, 60),
         color=(188, 197, 207),
         button=(104, 11, 178, 40),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/STORY_CHECK.png',
+        area=(100, 3, 163, 36),
+        search=(80, 0, 183, 56),
+        color=(173, 184, 196),
+        button=(100, 3, 163, 36),
     ),
 )
 TACTICAL_CHALLENGE_CHECK = ButtonWrapper(
@@ -418,6 +523,13 @@ TACTICAL_CHALLENGE_CHECK = ButtonWrapper(
         color=(190, 199, 207),
         button=(104, 10, 214, 38),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/TACTICAL_CHALLENGE_CHECK.png',
+        area=(97, 2, 222, 39),
+        search=(77, 0, 242, 59),
+        color=(185, 195, 204),
+        button=(97, 2, 222, 39),
+    ),
 )
 TASK_CHECK = ButtonWrapper(
     name='TASK_CHECK',
@@ -434,6 +546,13 @@ TASK_CHECK = ButtonWrapper(
         search=(82, 0, 205, 57),
         color=(185, 194, 204),
         button=(102, 11, 185, 37),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/TASK_CHECK.png',
+        area=(536, 83, 607, 128),
+        search=(516, 63, 627, 148),
+        color=(77, 92, 87),
+        button=(536, 83, 607, 128),
     ),
 )
 WORK_CHECK = ButtonWrapper(
@@ -452,6 +571,13 @@ WORK_CHECK = ButtonWrapper(
         color=(197, 205, 213),
         button=(105, 5, 244, 41),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/WORK_CHECK.png',
+        area=(102, 6, 169, 41),
+        search=(82, 0, 189, 61),
+        color=(184, 194, 203),
+        button=(102, 6, 169, 41),
+    ),
 )
 WORK_GO_TO_BOUNTY = ButtonWrapper(
     name='WORK_GO_TO_BOUNTY',
@@ -468,6 +594,13 @@ WORK_GO_TO_BOUNTY = ButtonWrapper(
         search=(651, 389, 780, 460),
         color=(183, 202, 227),
         button=(671, 409, 760, 440),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/WORK_GO_TO_BOUNTY.png',
+        area=(668, 402, 774, 442),
+        search=(648, 382, 794, 462),
+        color=(182, 199, 224),
+        button=(668, 402, 774, 442),
     ),
 )
 WORK_GO_TO_COMMISSIONS = ButtonWrapper(
@@ -486,6 +619,13 @@ WORK_GO_TO_COMMISSIONS = ButtonWrapper(
         color=(192, 204, 221),
         button=(656, 494, 803, 517),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/WORK_GO_TO_COMMISSIONS.png',
+        area=(656, 487, 759, 526),
+        search=(636, 467, 779, 546),
+        color=(194, 207, 223),
+        button=(656, 487, 759, 526),
+    ),
 )
 WORK_GO_TO_EVENT = ButtonWrapper(
     name='WORK_GO_TO_EVENT',
@@ -496,6 +636,13 @@ WORK_GO_TO_EVENT = ButtonWrapper(
         search=(47, 111, 162, 221),
         color=(134, 153, 166),
         button=(67, 131, 142, 201),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/WORK_GO_TO_EVENT.png',
+        area=(65, 129, 142, 207),
+        search=(45, 109, 162, 227),
+        color=(136, 159, 172),
+        button=(65, 129, 142, 207),
     ),
 )
 WORK_GO_TO_MISSION = ButtonWrapper(
@@ -514,6 +661,13 @@ WORK_GO_TO_MISSION = ButtonWrapper(
         color=(192, 204, 221),
         button=(720, 160, 871, 206),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/WORK_GO_TO_MISSION.png',
+        area=(719, 152, 805, 202),
+        search=(699, 132, 825, 222),
+        color=(182, 194, 214),
+        button=(719, 152, 805, 202),
+    ),
 )
 WORK_GO_TO_SCHOOL_EXCHANGE = ButtonWrapper(
     name='WORK_GO_TO_SCHOOL_EXCHANGE',
@@ -530,6 +684,13 @@ WORK_GO_TO_SCHOOL_EXCHANGE = ButtonWrapper(
         search=(623, 552, 798, 622),
         color=(190, 203, 221),
         button=(643, 572, 778, 602),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/WORK_GO_TO_SCHOOL_EXCHANGE.png',
+        area=(643, 567, 768, 610),
+        search=(623, 547, 788, 630),
+        color=(186, 201, 220),
+        button=(643, 567, 768, 610),
     ),
 )
 WORK_GO_TO_STORY = ButtonWrapper(
@@ -548,6 +709,13 @@ WORK_GO_TO_STORY = ButtonWrapper(
         color=(208, 215, 228),
         button=(994, 159, 1109, 211),
     ),
+    zht=Button(
+        file='./assets/zht/base/page/WORK_GO_TO_STORY.png',
+        area=(995, 153, 1086, 201),
+        search=(975, 133, 1106, 221),
+        color=(181, 192, 212),
+        button=(995, 153, 1086, 201),
+    ),
 )
 WORK_GO_TO_TACTICAL_CHALLENGE = ButtonWrapper(
     name='WORK_GO_TO_TACTICAL_CHALLENGE',
@@ -564,5 +732,12 @@ WORK_GO_TO_TACTICAL_CHALLENGE = ButtonWrapper(
         search=(992, 512, 1172, 611),
         color=(199, 211, 227),
         button=(1012, 532, 1152, 591),
+    ),
+    zht=Button(
+        file='./assets/zht/base/page/WORK_GO_TO_TACTICAL_CHALLENGE.png',
+        area=(1014, 530, 1120, 569),
+        search=(994, 510, 1140, 589),
+        color=(190, 201, 219),
+        button=(1014, 530, 1120, 569),
     ),
 )

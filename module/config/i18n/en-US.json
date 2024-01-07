@@ -124,7 +124,8 @@
       "help": "Can't detect language automatically, please select the language manually.",
       "auto": "Auto-detect",
       "jp": "Japanese",
-      "en": "English"
+      "en": "English",
+      "zht": "Traditional Chinese"
     },
     "ScreenshotMethod": {
       "name": "Screenshot Method",

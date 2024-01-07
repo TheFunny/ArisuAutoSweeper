@@ -19,6 +19,13 @@ CHALLENGE_LOSE = ButtonWrapper(
         color=(206, 213, 219),
         button=(544, 435, 741, 496),
     ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/CHALLENGE_LOSE.png',
+        area=(567, 190, 707, 226),
+        search=(547, 170, 727, 246),
+        color=(177, 186, 196),
+        button=(544, 434, 738, 494),
+    ),
 )
 CHALLENGE_WIN = ButtonWrapper(
     name='CHALLENGE_WIN',
@@ -35,6 +42,13 @@ CHALLENGE_WIN = ButtonWrapper(
         search=(518, 108, 763, 180),
         color=(193, 201, 210),
         button=(549, 500, 742, 555),
+    ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/CHALLENGE_WIN.png',
+        area=(559, 123, 710, 163),
+        search=(539, 103, 730, 183),
+        color=(190, 200, 210),
+        button=(546, 499, 740, 562),
     ),
 )
 GET_REWARD_CREDIT = ButtonWrapper(
@@ -53,6 +67,13 @@ GET_REWARD_CREDIT = ButtonWrapper(
         color=(233, 213, 66),
         button=(307, 361, 402, 414),
     ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/GET_REWARD_CREDIT.png',
+        area=(304, 361, 403, 413),
+        search=(284, 341, 423, 433),
+        color=(215, 193, 60),
+        button=(304, 361, 403, 413),
+    ),
 )
 GET_REWARD_DAILY = ButtonWrapper(
     name='GET_REWARD_DAILY',
@@ -69,6 +90,13 @@ GET_REWARD_DAILY = ButtonWrapper(
         search=(287, 422, 419, 514),
         color=(232, 212, 65),
         button=(307, 442, 399, 494),
+    ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/GET_REWARD_DAILY.png',
+        area=(302, 441, 401, 492),
+        search=(282, 421, 421, 512),
+        color=(215, 193, 60),
+        button=(302, 441, 401, 492),
     ),
 )
 GOT_REWARD_CREDIT = ButtonWrapper(
@@ -87,6 +115,13 @@ GOT_REWARD_CREDIT = ButtonWrapper(
         color=(209, 211, 210),
         button=(307, 361, 400, 416),
     ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/GOT_REWARD_CREDIT.png',
+        area=(304, 363, 403, 413),
+        search=(284, 343, 423, 433),
+        color=(202, 204, 202),
+        button=(304, 363, 403, 413),
+    ),
 )
 GOT_REWARD_DAILY = ButtonWrapper(
     name='GOT_REWARD_DAILY',
@@ -103,6 +138,13 @@ GOT_REWARD_DAILY = ButtonWrapper(
         search=(285, 419, 422, 517),
         color=(210, 210, 210),
         button=(305, 439, 402, 497),
+    ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/GOT_REWARD_DAILY.png',
+        area=(304, 440, 400, 498),
+        search=(284, 420, 420, 518),
+        color=(203, 203, 204),
+        button=(304, 440, 400, 498),
     ),
 )
 OCR_TICKET = ButtonWrapper(
@@ -121,6 +163,13 @@ OCR_TICKET = ButtonWrapper(
         color=(223, 226, 228),
         button=(211, 472, 251, 505),
     ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/OCR_TICKET.png',
+        area=(156, 473, 218, 504),
+        search=(136, 453, 238, 524),
+        color=(215, 216, 219),
+        button=(156, 473, 218, 504),
+    ),
 )
 PLAYER_SELECT_FIRST = ButtonWrapper(
     name='PLAYER_SELECT_FIRST',
@@ -137,6 +186,13 @@ PLAYER_SELECT_FIRST = ButtonWrapper(
         search=(450, 273, 523, 342),
         color=(206, 214, 220),
         button=(606, 181, 1100, 256),
+    ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/PLAYER_SELECT_FIRST.png',
+        area=(469, 289, 512, 325),
+        search=(449, 269, 532, 345),
+        color=(206, 214, 221),
+        button=(606, 173, 1099, 260),
     ),
 )
 PLAYER_SELECT_SECOND = ButtonWrapper(
@@ -155,6 +211,13 @@ PLAYER_SELECT_SECOND = ButtonWrapper(
         color=(210, 219, 225),
         button=(610, 338, 1098, 407),
     ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/PLAYER_SELECT_SECOND.png',
+        area=(471, 451, 504, 480),
+        search=(451, 431, 524, 500),
+        color=(201, 209, 215),
+        button=(606, 334, 1102, 416),
+    ),
 )
 PLAYER_SELECT_THIRD = ButtonWrapper(
     name='PLAYER_SELECT_THIRD',
@@ -171,6 +234,13 @@ PLAYER_SELECT_THIRD = ButtonWrapper(
         search=(452, 592, 524, 661),
         color=(208, 216, 222),
         button=(609, 500, 1101, 565),
+    ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/PLAYER_SELECT_THIRD.png',
+        area=(470, 609, 503, 638),
+        search=(450, 589, 523, 658),
+        color=(201, 209, 215),
+        button=(613, 490, 1099, 572),
     ),
 )
 PREPARE_CHALLENGE = ButtonWrapper(
@@ -189,6 +259,13 @@ PREPARE_CHALLENGE = ButtonWrapper(
         color=(191, 199, 208),
         button=(538, 555, 745, 602),
     ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/PREPARE_CHALLENGE.png',
+        area=(573, 74, 701, 113),
+        search=(553, 54, 721, 133),
+        color=(176, 186, 196),
+        button=(535, 548, 744, 602),
+    ),
 )
 SKIP_OFF = ButtonWrapper(
     name='SKIP_OFF',
@@ -205,6 +282,13 @@ SKIP_OFF = ButtonWrapper(
         search=(1067, 565, 1147, 642),
         color=(96, 137, 171),
         button=(1088, 585, 1249, 623),
+    ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/SKIP_OFF.png',
+        area=(1121, 583, 1162, 625),
+        search=(1101, 563, 1182, 645),
+        color=(91, 131, 165),
+        button=(1123, 582, 1250, 625),
     ),
 )
 SKIP_ON = ButtonWrapper(
@@ -223,6 +307,13 @@ SKIP_ON = ButtonWrapper(
         color=(99, 177, 212),
         button=(1090, 582, 1252, 625),
     ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/SKIP_ON.png',
+        area=(1123, 584, 1161, 622),
+        search=(1103, 564, 1181, 642),
+        color=(91, 147, 182),
+        button=(1123, 584, 1251, 622),
+    ),
 )
 START_CHALLENGE = ButtonWrapper(
     name='START_CHALLENGE',
@@ -239,5 +330,12 @@ START_CHALLENGE = ButtonWrapper(
         search=(81, 0, 216, 59),
         color=(190, 199, 209),
         button=(1089, 637, 1250, 704),
+    ),
+    zht=Button(
+        file='./assets/zht/tactical_challenge/START_CHALLENGE.png',
+        area=(102, 8, 246, 38),
+        search=(82, 0, 266, 58),
+        color=(160, 172, 184),
+        button=(1089, 640, 1253, 701),
     ),
 )

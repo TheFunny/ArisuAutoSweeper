@@ -23,7 +23,7 @@ Emulator:
     option: [ auto, ]
   GameLanguage:
     value: auto
-    option: [ auto, jp, en ]
+    option: [ auto, jp, en, zht ]
   ScreenshotMethod:
     value: auto
     option: [ auto, ADB, ADB_nc, uiautomator2, aScreenCap, aScreenCap_nc, DroidCast, DroidCast_raw, scrcpy ]
