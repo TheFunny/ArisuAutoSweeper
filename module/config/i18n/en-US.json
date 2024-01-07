@@ -292,7 +292,7 @@
     },
     "OnError": {
       "name": "Error Handling",
-      "help": "Perform the selected action when an error occurs (ticket not enough or any invalid setting)",
+      "help": "Perform the selected action when an error occurs (location not unlocked or any invalid setting)",
       "stop": "Stop script",
       "skip": "Skip current task"
     }
