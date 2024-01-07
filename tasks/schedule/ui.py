@@ -28,7 +28,7 @@ class ScheduleUI(UI):
     
     def click_then_check(self, coords, dest_check: ButtonWrapper):
         click_coords = self.device.click_methods.get(self.config.Emulator_ControlMethod, self.device.click_adb)
-        timer = Timer(3, 5).start()
+        timer = Timer(3, 2).start()
         wait = Timer(1).start()
         while 1:
             click_coords(*coords)
@@ -61,6 +61,7 @@ class ScheduleUI(UI):
             if self.select_then_check(START_LESSON, CONFIRM):
                 ticket -= 1
             if not self.select_then_check(CONFIRM, LOCATIONS_POPUP):
+                logger.error(f"An unexpected error occurred. Skipping location")
                 break
         return True
 
