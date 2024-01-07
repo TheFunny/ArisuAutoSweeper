@@ -19,6 +19,13 @@ LOGIN_CONFIRM = ButtonWrapper(
         color=(216, 220, 225),
         button=(990, 354, 1232, 506),
     ),
+    zht=Button(
+        file='./assets/zht/login/LOGIN_CONFIRM.png',
+        area=(35, 622, 96, 654),
+        search=(15, 602, 116, 674),
+        color=(212, 216, 221),
+        button=(990, 354, 1232, 506),
+    ),
 )
 LOGIN_LOADING = ButtonWrapper(
     name='LOGIN_LOADING',
@@ -36,12 +43,26 @@ LOGIN_LOADING = ButtonWrapper(
         color=(8, 66, 96),
         button=(34, 682, 60, 707),
     ),
+    zht=Button(
+        file='./assets/zht/login/LOGIN_LOADING.png',
+        area=(34, 682, 60, 707),
+        search=(14, 662, 80, 720),
+        color=(8, 66, 96),
+        button=(34, 682, 60, 707),
+    ),
 )
 SURVEY = ButtonWrapper(
     name='SURVEY',
     jp=None,
     en=Button(
         file='./assets/en/login/SURVEY.png',
+        area=(946, 269, 994, 307),
+        search=(926, 249, 1014, 327),
+        color=(211, 223, 166),
+        button=(1199, 6, 1264, 75),
+    ),
+    zht=Button(
+        file='./assets/zht/login/SURVEY.png',
         area=(946, 269, 994, 307),
         search=(926, 249, 1014, 327),
         color=(211, 223, 166),
@@ -59,6 +80,13 @@ UPDATE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/login/UPDATE.png',
+        area=(446, 258, 686, 301),
+        search=(426, 238, 706, 321),
+        color=(216, 216, 216),
+        button=(665, 472, 872, 531),
+    ),
+    zht=Button(
+        file='./assets/zht/login/UPDATE.png',
         area=(446, 258, 686, 301),
         search=(426, 238, 706, 321),
         color=(216, 216, 216),
