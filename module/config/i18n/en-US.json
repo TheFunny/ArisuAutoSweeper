@@ -278,7 +278,7 @@
     },
     "Name": {
       "name": "Inviting Student Name",
-      "help": "Fill in the name of the student to be invited. Use in-game text language. Use > to connect multiple students. Example:\nJP: ホシノ(水着) > 御坂美琴 > ユズ\nOVERSEA: Hoshino(Swimsuit) > Yuuka > Kayoko(New Year)"
+      "help": "It is recommended to use Input Helper to avoid any mistakes and paste it here using Ctrl + V.\nFill in the name of the student to be invited. Use in-game text language. Use > to connect multiple students. Example:\nJP: ホシノ(水着) > 御坂美琴 > ユズ\nOVERSEA: Hoshino(Swimsuit) > Yuuka > Kayoko(New Year)"
     },
     "Substitute": {
       "name": "Replace existing student",
@@ -319,7 +319,7 @@
     },
     "Classrooms": {
       "name": "Classrooms",
-      "help": "Type a number from 1 to 9 that represents the classroom position in the locations popup.\nUse > to connect multiple classrooms and AAS will select them following the order they appear. Example:\n8 > 7 > 6 > 5 > 4 > 3 > 2 > 1"
+      "help": "It is recommended to use Input Helper to avoid any mistakes and paste it here using Ctrl + V.\nType a number from 1 to 9 that represents the classroom position in the locations popup.\nUse > to connect multiple classrooms and AAS will select them following the order they appear.Example:\n8 > 7 > 6 > 5 > 4 > 3 > 2 > 1"
     }
   },
   "Choice2": {
