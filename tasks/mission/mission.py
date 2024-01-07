@@ -38,7 +38,7 @@ class Mission(MissionUI, CommissionsUI):
                 return 20 if stage >= 9 else 10 + 5 * math.floor(stage / 5)
             case "XP" | "CR":
                 stage = int(self.current_stage, base=10)
-                return 40 if stage >= 9 else 5 + 15 * math.floor(stage / 4)
+                return 40 if stage >= 8 else stage * 5
 
     @property
     def mission_info(self) -> list:

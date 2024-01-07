@@ -14,7 +14,7 @@ SHARED_LIST = StageList('SharedList')
 EVENT_LIST = StageList('EventList', EVENT_LIST, EVENT_INDEX, EVENT_ITEM, button_stars=EVENT_STARS)
 SHARED_SWEEP = StageSweep('MissionSweep', 99)
 SHARED_SWEEP.set_button(button_check=CHECK_MISSION_SWEEP) # Check sweep is different for mission, event
-COMMISSIONS_SWEEP = StageSweep('SharedSweep', 99)
+COMMISSIONS_SWEEP = StageSweep('CommissionsSweep', 99)
 
 SWITCH_NORMAL = Switch("Normal_switch")
 SWITCH_NORMAL.add_state("on", NORMAL_ON)
