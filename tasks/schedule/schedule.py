@@ -114,6 +114,7 @@ class Schedule(ScheduleUI):
     def run(self):
         self.ui_ensure(page_schedule)
         self.task = self.valid_task
+        self.set_clickx()
         action_timer = Timer(0.5, 1)
         status = ScheduleStatus.OCR
 
