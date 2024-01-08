@@ -25,7 +25,7 @@ class StageList:
     ):
         self.name = name
         self.stage = button_list if button_list else STAGE_LIST
-        self.index_ocr = Ocr(button_index if button_index else OCR_INDEX, lang='en')
+        self.index_ocr = Ocr(button_index if button_index else OCR_INDEX, lang='zhs')
         self.stage_item = (button_item if button_item else STAGE_ITEM).button
         self.enter = button_enter if button_enter else STAGE_ENTER
         self.sweepable = button_stars if button_stars else STAGE_STARS

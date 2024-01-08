@@ -14,6 +14,9 @@ from module.exception import *
 from module.logger import logger
 from module.notify import handle_notify
 
+from MCE.custom_widgets.ctkmessagebox import CTkMessagebox
+import subprocess
+import platform
 
 class AzurLaneAutoScript:
     stop_event: threading.Event = None
@@ -26,6 +29,7 @@ class AzurLaneAutoScript:
         # Failure count of tasks
         # Key: str, task name, value: int, failure count
         self.failure_record = {}
+        self.operating_system = platform.system()
 
     @cached_property
     def config(self):
@@ -228,6 +232,46 @@ class AzurLaneAutoScript:
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
                         continue
+                elif method == 'exit_aas':
+                    if abs(task.next_run - datetime.now()) >= timedelta(minutes=2): # ensure tactical challenge is fully ran
+                        self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                        self.exit_aas()
+                        exit(1)  
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue
+                elif method == 'exit_emulator':
+                    if abs(task.next_run - datetime.now()) >= timedelta(minutes=2):
+                        self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                        self.exit_emulator()
+                        exit(1)  # stops AAS from restarting emulator
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue
+                elif method == 'exit_aas_emulator':
+                    if abs(task.next_run - datetime.now()) >= timedelta(minutes=2):
+                        self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                        self.exit_emulator()
+                        self.exit_aas()
+                        exit(1)  
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue
+                elif method == 'shutdown':
+                    if abs(task.next_run - datetime.now()) >= timedelta(minutes=2):
+                        self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'
+                        self.shutdown()
+                    release_resources()
+                    self.device.release_during_wait()
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        continue
                 else:
                     logger.warning(f'Invalid Optimization_WhenTaskQueueEmpty: {method}, fallback to stay_there')
                     release_resources()
@@ -308,6 +352,53 @@ class AzurLaneAutoScript:
                 self.checker.check_now()
                 continue
 
+    def exit_emulator(self):
+        if self.operating_system != 'Windows':
+            logger.error("Exiting emulator is only supported on Windows")
+            return
+        try:
+            from module.device.platform.platform_windows import PlatformWindows
+            PlatformWindows(self.config).emulator_stop()
+        except:
+            logger.error("Failed to stop emulator. It may be due to a lack of administrator privileges.")
+
+    def exit_aas(self):
+        if self.operating_system != 'Windows':
+            logger.error("Exiting AAS is only supported on Windows")
+            return
+        try:
+            from module.device.platform.platform_windows import PlatformWindows
+            PlatformWindows(self.config).kill_process_by_regex("aas\.exe")
+        except:
+            logger.error("Failed to stop AAS. It may be due to a lack of administrator privileges.")        
+
+    def shutdown(self):
+        if self.operating_system not in ["Windows", "Linux", "Darwin"]:
+            logger.error("Shutdown set during wait but operating system not supported")
+        else:
+            logger.info('Shutdown during wait')
+            try:
+                self.start_shutdown()
+                msg = CTkMessagebox(title="AAS: Cancel Shutdown?", message="All tasks have been completed: shutting down. Do you want to cancel?",
+                                    icon="MCE\icons\question.png", option_1="Cancel")
+                response = msg.get()
+                if response=="Cancel":
+                    self.cancel_shutdown()
+            except:
+                logger.error("Failed to shutdown. It may be due to a lack of administrator privileges.")
+
+    def start_shutdown(self):
+        logger.info("Running Shutting down")
+        if self.operating_system == "Windows":
+            subprocess.run(["shutdown", "-s", "-t", "60"])
+        elif self.operating_system in ["Linux", "Darwin"]:
+            subprocess.run(["shutdown", "-h", "+1"])
+
+    def cancel_shutdown(self):
+        if self.operating_system == "Windows":
+            subprocess.run(["shutdown", "-a"])
+        elif self.operating_system in ["Linux", "Darwin"]:
+            subprocess.run(["shutdown", "-c"])
 
 if __name__ == '__main__':
     alas = AzurLaneAutoScript()

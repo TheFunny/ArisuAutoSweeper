@@ -29,6 +29,14 @@ Daily:
       - Scheduler
       - Cafe
       - Invitation
+    Schedule:
+      - Scheduler
+      - Schedule
+      - Choice1
+      - Choice2
+      - Choice3
+      - Choice4
+      - Choice5
     Shop:
       - Scheduler
       - NormalShop

@@ -8,6 +8,7 @@ from MCE.custom_widgets.ctk_timeentry import CTkTimeEntry
 from MCE.custom_widgets.ctk_integerspinbox import CTkIntegerSpinbox
 from MCE.custom_widgets.ctk_templatedialog import CTkTemplateDialog
 from MCE.custom_widgets.ctk_notification import CTkNotification
+from MCE.custom_widgets.ctk_add_button import CTkAddButton
 from MCE.utils import Linker, Config
 from filelock import FileLock, Timeout
 import threading
@@ -117,7 +118,7 @@ class MCE_Manager(customtkinter.CTk):
 
     # Helper method to create Mission Tabview with Template and Queue Tabs
     def create_mission_tabview(self):
-        self.mission_tabview = customtkinter.CTkTabview(self, height=500)
+        self.mission_tabview = customtkinter.CTkTabview(self)
         self.mission_tabview.grid(row=17, column=0, columnspan=3, padx=20)
 
         self.tab_template = self.mission_tabview.add('Template')
@@ -134,11 +135,11 @@ class MCE_Manager(customtkinter.CTk):
             self.template_labels.grid(row=0, column=0, sticky="ew")
 
             self.mode_label = customtkinter.CTkLabel(self.template_labels, text="Mode:", font=customtkinter.CTkFont(underline=True))
-            self.mode_tooltip = CTkToolTip(self.mode_label, message="N:Mission Normal\nH:Mission Hard\nE:Event Quest\nBD:Commissions EXP\nIR:Commissions Credits\n")
+            self.mode_tooltip = CTkToolTip(self.mode_label, message="N    :   Mission Normal\nH    :   Mission Hard\nE     :   Event Quest\nXP  :   Commissions EXP\nCR  :   Commissions Credits\n", justify=tk.LEFT)
             self.mode_label.grid(row=1, column=0, padx=(130, 0), pady=5)
 
             self.stage_label = customtkinter.CTkLabel(self.template_labels, text="Stage:", font=customtkinter.CTkFont(underline=True))
-            self.stage_tooltip = CTkToolTip(self.stage_label, message="Valid format for Mission: 1-1\nValid format for Commissions/Event: 01")
+            self.stage_tooltip = CTkToolTip(self.stage_label, message="Valid format\nMission: 1-1, 3-A\nCommissions & Event: 01", justify=tk.LEFT)
             self.stage_label.grid(row=1, column=1, padx=(40, 20), pady=5)
 
             self.run_times_label = customtkinter.CTkLabel(self.template_labels, text="Number of Sweeps:", font=customtkinter.CTkFont(underline=True))
@@ -151,7 +152,8 @@ class MCE_Manager(customtkinter.CTk):
             self.highlight_label = customtkinter.CTkLabel(self.template_buttons_frame, text="*You can double click an entry and press up or down arrow to change its position", font=customtkinter.CTkFont(family="Inter", size=12))
             self.highlight_label.grid(row=0, column=0, columnspan=3)
 
-            self.add_button = customtkinter.CTkButton(self.template_buttons_frame , text="Add", command=lambda queue=queue: self.add_frame(queue=queue))
+            self.add_button = CTkAddButton(master=self.template_buttons_frame)
+            self.add_button.button.configure(command=lambda queue=queue, button=self.add_button.button: self.add_frame(queue=queue, button=button))
             self.add_button.grid(row=1, column=0, padx=5, pady=5)
 
             # Clear button to clear all frames
@@ -166,10 +168,10 @@ class MCE_Manager(customtkinter.CTk):
 
     # Helper method to create Template Frame and Queue Frame
     def create_template_and_queue_frames(self):
-        self.template_frame = customtkinter.CTkScrollableFrame(self.tab_template, width=400, height=350)
+        self.template_frame = customtkinter.CTkScrollableFrame(self.tab_template, width=435, height=350)
         self.template_frame.grid(row=1, column=0, sticky="nsew")
         
-        self.queue_frame = customtkinter.CTkScrollableFrame(self.tab_queue, width=400, height=350)
+        self.queue_frame = customtkinter.CTkScrollableFrame(self.tab_queue, width=435, height=350)
         self.queue_frame.grid(row=1, column=0, sticky="nsew")
 
     # Helper method to create Lists to Store Frame Widgets
@@ -211,7 +213,7 @@ class MCE_Manager(customtkinter.CTk):
                 self.template_optionmenu.set(self.previous_selected)
                 return
             elif template_name in self.templates_list:
-                CTkMessagebox(title="Error", message="Name is invalid.", icon="cancel")
+                CTkMessagebox(title="Error", message="Name is invalid.", icon="MCE\icons\cancel.png")
                 self.template_optionmenu.set(self.previous_selected)
                 return
             else:
@@ -232,7 +234,7 @@ class MCE_Manager(customtkinter.CTk):
 
     def delete_template(self):
         msg = CTkMessagebox(title="Template Deletetion", message=f"Are you sure you want to delete Template {self.previous_selected}?",
-                        icon="question", option_1="No", option_2="Yes")
+                        icon="MCE\icons\question.png", option_1="No", option_2="Yes")
         response = msg.get()
         if response=="Yes":
             if len(self.templates) != 1:
@@ -250,18 +252,19 @@ class MCE_Manager(customtkinter.CTk):
                 self.template_optionmenu.configure(values=self.templates_list)
                 self.template_optionmenu.set(self.preferred_template)
             else:
-                CTkMessagebox(title="Error", message="At least one template must exist!!!", icon="cancel")
+                CTkMessagebox(title="Error", message="At least one template must exist!!!", icon="MCE\icons\cancel.png")
         return
 
 # Function to add a frame with widgets
-    def add_frame(self, inner_list=None, queue=False, state="normal"):
+    def add_frame(self, inner_list=None, queue=False, state="normal", button=None):
+        position = button.cget("text") if button else "Add Down"
         frames = self.queue_frames if queue else self.template_frames
         parent_frame = self.queue_frame if queue else self.template_frame
         row_index = len(frames) + 1  # Calculate the row for the new frame
         # Create a frame
         frame = tk.Frame(parent_frame, bg="gray17")
         frame.grid(row=row_index, column=0, columnspan=4, padx=10, pady=10, sticky="w")
-        frames.append(frame)
+        frames.append(frame) if position == "Add Down" else frames.insert(0, frame)
         # "Up" button to move the frame up
         up_button = customtkinter.CTkButton(frame, text="Up", width=5, command=lambda f=frame, queue=queue: self.move_frame_up(f, queue), state=state)
         up_button.grid(row=0, column=0, padx=5, pady=5, sticky="w")
@@ -269,7 +272,7 @@ class MCE_Manager(customtkinter.CTk):
         down_button = customtkinter.CTkButton(frame, text="Down", width=5, command=lambda f=frame, queue=queue: self.move_frame_down(f, queue), state=state)
         down_button.grid(row=0, column=1, padx=5, pady=5, sticky="w")
         # Dropdown menu for mode
-        mode_optionmenu = customtkinter.CTkOptionMenu(frame, width=60, values=["N", "H", "E", "BD", "IR"], state=state)
+        mode_optionmenu = customtkinter.CTkOptionMenu(frame, width=60, values=["N", "H", "E", "XP", "CR"], state=state)
         mode_optionmenu.set(inner_list[0] if inner_list else "N")
         mode_optionmenu.grid(row=0, column=2, padx=5, pady=5, sticky="w")
         # Entry widget for stage
@@ -288,7 +291,9 @@ class MCE_Manager(customtkinter.CTk):
         delete_button = customtkinter.CTkButton(frame, text="Delete", width=5, command=lambda f=frame, queue=queue: self.delete_frame(f, queue), state=state)
         delete_button.grid(row=0, column=5, padx=5, pady=5, sticky="w")
 
-        frame.bind("<Double-Button-1>", lambda event, f=frame: self.highlight_frame(f))
+        frame.bind("<Double-Button-1>", lambda event, f=frame: self.highlight_frame(f))     
+        if position == "Add Up":
+            self.update_frame_positions(queue=queue)
 
     # Function to clear all frames
     def clear_frames(self, queue=False):
@@ -306,7 +311,7 @@ class MCE_Manager(customtkinter.CTk):
             mode_optionmenu = frame.winfo_children()[2]
             stage_entry = frame.winfo_children()[3]
             if not self.check_entry(mode_optionmenu, stage_entry):
-                CTkMessagebox(title="Error", message="Configuration not saved. Some entries are incomplete or have incorect input.", icon="cancel")
+                CTkMessagebox(title="Error", message="Configuration not saved. Some entries are incomplete or have incorect input.", icon="MCE\icons\cancel.png")
                 return
             mode = frame.winfo_children()[2].get()
             stage = frame.winfo_children()[3].get().strip()

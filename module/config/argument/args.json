@@ -25,7 +25,8 @@
         "option": [
           "auto",
           "jp",
-          "en"
+          "en",
+          "zht"
         ]
       },
       "ScreenshotMethod": {
@@ -128,7 +129,11 @@
         "option": [
           "stay_there",
           "goto_main",
-          "close_game"
+          "close_game",
+          "exit_aas",
+          "exit_emulator",
+          "exit_aas_emulator",
+          "shutdown"
         ]
       }
     }
@@ -315,6 +320,158 @@
       "Substitute": {
         "type": "checkbox",
         "value": false
+      }
+    }
+  },
+  "Schedule": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Schedule",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Schedule": {
+      "OnError": {
+        "type": "select",
+        "value": "skip",
+        "option": [
+          "stop",
+          "skip"
+        ]
+      }
+    },
+    "Choice1": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice2": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice3": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice4": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice5": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
       }
     }
   },

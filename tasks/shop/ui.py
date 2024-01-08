@@ -97,10 +97,10 @@ class ShopUI(UI):
         one at 8 and the other at 16. 
         Only once for each checkpoint.
         """
-        if (8 < item < 16) and not self.swipe_flags[8]:
+        if (9 <= item <= 16) and not self.swipe_flags[8]:
             self.swipe_flags[8] = True
             return True
-        elif item > 16 and not self.swipe_flags[16]:
+        elif item >= 17 and not self.swipe_flags[16]:
             self.swipe_flags[16] = True
             return True
         return False
@@ -109,7 +109,7 @@ class ShopUI(UI):
         self.swipe_flags[8], self.swipe_flags[16] = False, False
 
     def make_purchase(self):
-        if self.select_then_check(PURCHASE, CONFIRM_PURCHASE) and self.appear_then_click(CONFIRM_PURCHASE):
+        if self.match_color(PURCHASE) and self.select_then_check(PURCHASE, CONFIRM_PURCHASE) and self.appear_then_click(CONFIRM_PURCHASE):
             return True
         logger.warning("No items were selected. Unable to purchase.")
         return False

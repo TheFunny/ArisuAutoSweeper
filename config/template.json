@@ -70,6 +70,37 @@
       "Substitute": false
     }
   },
+  "Schedule": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Schedule",
+      "ServerUpdate": "04:00"
+    },
+    "Schedule": {
+      "OnError": "skip"
+    },
+    "Choice1": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice2": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice3": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice4": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice5": {
+      "Location": "None",
+      "Classrooms": null
+    }
+  },
   "Shop": {
     "Scheduler": {
       "Enable": false,

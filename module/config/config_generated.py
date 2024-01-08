@@ -18,7 +18,7 @@ class GeneratedConfig:
     # Group `Emulator`
     Emulator_Serial = 'auto'
     Emulator_PackageName = 'auto'  # auto, JP-Official, OVERSEA-TWHKMO, OVERSEA-Korea, OVERSEA-Asia, OVERSEA-America, OVERSEA-Global
-    Emulator_GameLanguage = 'auto'  # auto, jp, en
+    Emulator_GameLanguage = 'auto'  # auto, jp, en, zht
     Emulator_ScreenshotMethod = 'auto'  # auto, ADB, ADB_nc, uiautomator2, aScreenCap, aScreenCap_nc, DroidCast, DroidCast_raw, scrcpy
     Emulator_ControlMethod = 'MaaTouch'  # minitouch, MaaTouch
     Emulator_AdbRestart = False
@@ -37,7 +37,7 @@ class GeneratedConfig:
     # Group `Optimization`
     Optimization_ScreenshotInterval = 0.3
     Optimization_CombatScreenshotInterval = 1.0
-    Optimization_WhenTaskQueueEmpty = 'goto_main'  # stay_there, goto_main, close_game
+    Optimization_WhenTaskQueueEmpty = 'goto_main'  # stay_there, goto_main, close_game, exit_aas, exit_emulator, exit_aas_emulator, shutdown
 
     # Group `Cafe`
     Cafe_Reward = True
@@ -51,6 +51,29 @@ class GeneratedConfig:
     Invitation_Choice = 'list_top'  # list_top, by_name
     Invitation_Name = None
     Invitation_Substitute = False
+
+    # Group `Schedule`
+    Schedule_OnError = 'skip'  # stop, skip
+
+    # Group `Choice1`
+    Choice1_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice1_Classrooms = None
+
+    # Group `Choice2`
+    Choice2_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice2_Classrooms = None
+
+    # Group `Choice3`
+    Choice3_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice3_Classrooms = None
+
+    # Group `Choice4`
+    Choice4_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice4_Classrooms = None
+
+    # Group `Choice5`
+    Choice5_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice5_Classrooms = None
 
     # Group `Bounty`
     Bounty_OnError = 'skip'  # stop, skip

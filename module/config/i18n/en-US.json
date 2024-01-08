@@ -34,6 +34,10 @@
       "name": "Cafe",
       "help": ""
     },
+    "Schedule": {
+      "name": "Lesson",
+      "help": "AAS will execute Lesson starting from Choice 1 to Choice 5.\nIt will ignore any Choice that have Location set as None or the text area for classrooms is empty.\nIf any of the active Choices have incorrect input, it will perform the action set in Error handling."
+    },
     "Shop": {
       "name": "Shop",
       "help": ""
@@ -120,7 +124,8 @@
       "help": "Can't detect language automatically, please select the language manually.",
       "auto": "Auto-detect",
       "jp": "Japanese",
-      "en": "English"
+      "en": "English",
+      "zht": "Traditional Chinese"
     },
     "ScreenshotMethod": {
       "name": "Screenshot Method",
@@ -217,10 +222,14 @@
     },
     "WhenTaskQueueEmpty": {
       "name": "When Task Queue is Empty",
-      "help": "Close AL when there are no pending tasks, can help reduce CPU",
+      "help": "Close Blue Archive when there are no pending tasks, can help reduce CPU.\nExit AAS, emulator and shutdown should be set while AAS is running tasks otherwise it won't start; after their execution it will be reset to Goto Main Page.\nExit AAS and emulator are only available on Windows.\n\nExit emulator is only possible if instance name and emulator path actually follow the same auto-filled values according to 'Serial' in Emulator Settings.\nFor example, for Bluestacks 5 the instance name and Bluestacks 5 installation path must be respectively:\nNougat64\nC:/Program Files/BlueStacks_nxt/HD-Player.exe",
       "stay_there": "Stay There",
       "goto_main": "Goto Main Page",
-      "close_game": "Close Game"
+      "close_game": "Close Game",
+      "exit_aas": "Exit AAS",
+      "exit_emulator": "Exit Emulator",
+      "exit_aas_emulator": "Exit AAS & Emulator",
+      "shutdown": "Shutdown"
     }
   },
   "Cafe": {
@@ -270,11 +279,148 @@
     },
     "Name": {
       "name": "Inviting Student Name",
-      "help": "Fill in the name of the student to be invited. Use in-game text language. Use > to connect multiple students. Example:\nJP: ホシノ(水着) > 御坂美琴 > ユズ\nOVERSEA: Hoshino(Swimsuit) > Yuuka > Kayoko(New Year)"
+      "help": "It is recommended to use Input Helper to avoid any mistakes and paste it here using Ctrl + V.\nFill in the name of the student to be invited. Use in-game text language. Use > to connect multiple students. Example:\nJP: ホシノ(水着) > 御坂美琴 > ユズ\nOVERSEA: Hoshino(Swimsuit) > Yuuka > Kayoko(New Year)"
     },
     "Substitute": {
       "name": "Replace existing student",
       "help": "Whether to replace the existing student with their alt.\nIf not, try to match the next student"
+    }
+  },
+  "Schedule": {
+    "_info": {
+      "name": "Lesson Settings",
+      "help": ""
+    },
+    "OnError": {
+      "name": "Error Handling",
+      "help": "Perform the selected action when an error occurs (location not unlocked or any invalid setting)",
+      "stop": "Stop script",
+      "skip": "Skip current task"
+    }
+  },
+  "Choice1": {
+    "_info": {
+      "name": "Choice 1",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": "It is recommended to use Input Helper to avoid any mistakes and paste it here using Ctrl + V.\nType a number from 1 to 9 that represents the classroom position in the locations popup.\nUse > to connect multiple classrooms and AAS will select them following the order they appear.Example:\n8 > 7 > 6 > 5 > 4 > 3 > 2 > 1"
+    }
+  },
+  "Choice2": {
+    "_info": {
+      "name": "Choice 2",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice3": {
+    "_info": {
+      "name": "Choice 3",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice4": {
+    "_info": {
+      "name": "Choice 4",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice5": {
+    "_info": {
+      "name": "Choice 5",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
     }
   },
   "Bounty": {

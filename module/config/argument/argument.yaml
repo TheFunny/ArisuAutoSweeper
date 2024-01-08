@@ -23,7 +23,7 @@ Emulator:
     option: [ auto, ]
   GameLanguage:
     value: auto
-    option: [ auto, jp, en ]
+    option: [ auto, jp, en, zht ]
   ScreenshotMethod:
     value: auto
     option: [ auto, ADB, ADB_nc, uiautomator2, aScreenCap, aScreenCap_nc, DroidCast, DroidCast_raw, scrcpy ]
@@ -71,7 +71,7 @@ Optimization:
   CombatScreenshotInterval: 1.0
   WhenTaskQueueEmpty:
     value: goto_main
-    option: [ stay_there, goto_main, close_game ]
+    option: [ stay_there, goto_main, close_game, exit_aas, exit_emulator, exit_aas_emulator, shutdown ]
 
 # ==================== Daily ====================
 
@@ -92,6 +92,47 @@ Invitation:
     value: null
     type: textarea
   Substitute: false
+
+Schedule:
+  OnError:
+    value: skip
+    option: [ stop, skip ]
+
+Choice1:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice2:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice3:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice4:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice5:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
 
 Bounty:
   OnError:

@@ -75,7 +75,7 @@ class Shop(ShopUI):
                 self.select_items(self.current_item_list)
                 return ShopStatus.PURCHASE
             case ShopStatus.PURCHASE:
-                if self.make_purchase():
+                if self.make_purchase() and self.current_purchase_count > 1:
                     return ShopStatus.REFRESH
                 return ShopStatus.END
             case ShopStatus.REFRESH:

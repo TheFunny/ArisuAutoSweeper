@@ -3,7 +3,7 @@ from enum import Enum
 from module.base.timer import Timer
 from module.exception import RequestHumanTakeover
 from module.logger import logger
-from tasks.mission.ui import MissionUI, CommissionsUI
+from tasks.mission.ui import MissionUI, CommissionsUI, SWITCH_QUEST
 from tasks.stage.ap import AP
 from tasks.cafe.cafe import Cafe
 from tasks.circle.circle import Circle
@@ -13,7 +13,7 @@ from tasks.item.data_update import DataUpdate
 import json
 import math
 from filelock import FileLock
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class MissionStatus(Enum):
     AP = 0 # Calculate AP and decide to terminate Mission module or not
@@ -26,11 +26,19 @@ class MissionStatus(Enum):
 
 
 class Mission(MissionUI, CommissionsUI):
-    _stage_ap = [10, 15, 15, 15]
-
     @property
     def stage_ap(self):
-        return self._stage_ap
+        match self.current_mode:
+            case "N":
+                return 10
+            case "H":
+                return 20
+            case "E":
+                stage = int(self.current_stage, base=10)
+                return 20 if stage >= 9 else 10 + 5 * math.floor(stage / 5)
+            case "XP" | "CR":
+                stage = int(self.current_stage, base=10)
+                return 40 if stage >= 8 else stage * 5
 
     @property
     def mission_info(self) -> list:
@@ -45,8 +53,8 @@ class Mission(MissionUI, CommissionsUI):
             "N" : Normal Mission
             "H" : Hard Mission
             "E" : Event Quest
-            "IR" : Item Retrieval / Commission where you get credit
-            "BD" : Base Defense / Commission where you get exp
+            "CR" : Item Retrieval / Commission where you get credit
+            "XP" : Base Defense / Commission where you get exp
 
         Returns:
             list of list 
@@ -70,7 +78,7 @@ class Mission(MissionUI, CommissionsUI):
             logger.error("Failed to read configuration file")
         finally:
             return queue
-
+    
     def check_reset_daily(self):
         # Check if it's time to reset the queue
         if self.reset_daily:
@@ -80,10 +88,21 @@ class Mission(MissionUI, CommissionsUI):
             last_run_datetime = datetime.strptime(self.last_run, "%Y-%m-%d %H:%M:%S")
             reset_time = datetime.strptime(self.reset_time, "%H:%M:%S").time()
 
-            if current_date != last_run_datetime.date() and current_time >= reset_time:
-                self.last_run = str(datetime.now().replace(microsecond=0))
-                logger.info("Reset Daily activated.")
+            # Check if the difference between the current date and last run date is 2 or greater days
+            if (current_date - last_run_datetime.date()).days >= 2:
+                # Set self.last_run to yesterday's date with time as reset_time
+                yesterday_datetime = current_datetime - timedelta(days=1)
+                yesterday_date = yesterday_datetime.date()
+                self.last_run = str(datetime.combine(yesterday_date, reset_time))
+                logger.info("Reset Daily activated")
                 return True
+
+            # Check if the current date is different from the last run date and the current time is greater than or equal to the reset time
+            elif current_date != last_run_datetime.date() and current_time >= reset_time:
+                self.last_run = str(datetime.now().replace(microsecond=0))
+                logger.info("Reset Daily activated")
+                return True
+
         return False
     
     @property
@@ -122,10 +141,10 @@ class Mission(MissionUI, CommissionsUI):
         """
         if self.current_mode in ["N", "H"]:
             return self.select_mission(self.current_mode, self.current_stage)
-        elif self.current_mode in ["BD", "IR"]:
+        elif self.current_mode in ["CR", "XP"]:
             return self.select_commission(self.current_mode)
         elif self.current_mode == "E":
-            return self.select_event()
+            return self.select_mode(SWITCH_QUEST)
         else:
             logger.error("Uknown mode")
             return False
@@ -134,9 +153,8 @@ class Mission(MissionUI, CommissionsUI):
         """
         Calculate the possible number of sweeps based on the current AP
         """
-        ap_cost = 20 if self.current_mode == "H" else 10
-        required_ap = ap_cost * self.current_count
-        return math.floor(min(required_ap, self.current_ap) / ap_cost)
+        possible_count = math.floor(self.current_ap / self.stage_ap)
+        return min(possible_count, self.current_count)
 
     def update_task(self, failure=False):
         """
@@ -161,10 +179,9 @@ class Mission(MissionUI, CommissionsUI):
             self.task = []
 
     def update_ap(self):
-        ap_cost = 20 if self.current_mode == "H" else 10
         ap = self.config.stored.AP
         ap_old = ap.value
-        ap_new = ap_old - ap_cost * self.realistic_count
+        ap_new = ap_old - self.stage_ap * self.realistic_count
         ap.set(ap_new, ap.total)
         logger.info(f'Set AP: {ap_old} -> {ap_new}')
 
@@ -208,7 +225,7 @@ class Mission(MissionUI, CommissionsUI):
                 self.update_task(failure=True)
                 return MissionStatus.AP
             case MissionStatus.ENTER:
-                if self.enter_stage(self.current_stage):
+                if self.enter_stage(self.current_mode, self.current_stage):
                     return MissionStatus.SWEEP
                 self.update_task(failure=True)
                 return MissionStatus.AP
@@ -235,24 +252,26 @@ class Mission(MissionUI, CommissionsUI):
         with self.lock.acquire():
             self.previous_mode = None
             self.task = self.valid_task
-            action_timer = Timer(0.5, 1)
-            status = MissionStatus.AP
+            if self.task:
+                action_timer = Timer(0.5, 1)
+                status = MissionStatus.AP
+                
+                """Update the dashboard to accurately calculate AP"""
+                DataUpdate(config=self.config, device=self.device).run()
+                
+                while 1:
+                    self.device.screenshot()
+
+                    if self.ui_additional():
+                        continue
+
+                    if action_timer.reached_and_reset():
+                        logger.attr('Status', status)
+                        status = self.handle_mission(status)
+
+                    if status == MissionStatus.FINISH:
+                        break
             
-            """Update the dashboard to accurately calculate AP"""
-            DataUpdate(config=self.config, device=self.device).run()
-            
-            while 1:
-                self.device.screenshot()
-
-                if self.ui_additional():
-                    continue
-
-                if action_timer.reached_and_reset():
-                    logger.attr('Status', status)
-                    status = self.handle_mission(status)
-
-                if status == MissionStatus.FINISH:
-                    break
-
-            self.config.task_delay(server_update=True)
+            # delay mission to 7 hours if there are still stages in the queue 
+            self.config.task_delay(minute=420) if self.task else self.config.task_delay(server_update=True)
         

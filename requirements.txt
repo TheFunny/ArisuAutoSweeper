@@ -19,6 +19,8 @@ cigam==0.0.3              # via apkutils2
 click==8.1.3              # via uvicorn
 colorama==0.4.6           # via click, logzero, tqdm, uvicorn
 coloredlogs==15.0.1       # via onnxruntime
+customtkinter==5.2.1      # via -r requirements-in.txt
+darkdetect==0.8.0         # via customtkinter
 decorator==5.1.1          # via retry
 deprecated==1.2.13        # via uiautomator2
 deprecation==2.1.0        # via adbutils

@@ -19,6 +19,13 @@ CHECK_GEHENNA = ButtonWrapper(
         color=(202, 206, 208),
         button=(103, 145, 252, 182),
     ),
+    zht=Button(
+        file='./assets/zht/scrimmage/CHECK_GEHENNA.png',
+        area=(96, 141, 213, 182),
+        search=(76, 121, 233, 202),
+        color=(191, 194, 197),
+        button=(96, 141, 213, 182),
+    ),
 )
 CHECK_MILLENNIUM = ButtonWrapper(
     name='CHECK_MILLENNIUM',
@@ -35,6 +42,13 @@ CHECK_MILLENNIUM = ButtonWrapper(
         search=(84, 125, 303, 202),
         color=(199, 202, 204),
         button=(104, 145, 283, 182),
+    ),
+    zht=Button(
+        file='./assets/zht/scrimmage/CHECK_MILLENNIUM.png',
+        area=(97, 136, 185, 181),
+        search=(77, 116, 205, 201),
+        color=(216, 219, 220),
+        button=(97, 136, 185, 181),
     ),
 )
 CHECK_SCRIMMAGE = ButtonWrapper(
@@ -53,6 +67,13 @@ CHECK_SCRIMMAGE = ButtonWrapper(
         color=(92, 116, 141),
         button=(651, 88, 891, 130),
     ),
+    zht=Button(
+        file='./assets/zht/scrimmage/CHECK_SCRIMMAGE.png',
+        area=(649, 82, 890, 129),
+        search=(629, 62, 910, 149),
+        color=(85, 110, 136),
+        button=(649, 82, 890, 129),
+    ),
 )
 CHECK_TRINITY = ButtonWrapper(
     name='CHECK_TRINITY',
@@ -69,6 +90,13 @@ CHECK_TRINITY = ButtonWrapper(
         search=(80, 123, 239, 207),
         color=(212, 216, 217),
         button=(100, 143, 219, 187),
+    ),
+    zht=Button(
+        file='./assets/zht/scrimmage/CHECK_TRINITY.png',
+        area=(98, 138, 182, 183),
+        search=(78, 118, 202, 203),
+        color=(226, 228, 229),
+        button=(98, 138, 182, 183),
     ),
 )
 OCR_TICKET = ButtonWrapper(
@@ -87,6 +115,13 @@ OCR_TICKET = ButtonWrapper(
         color=(199, 206, 212),
         button=(229, 88, 289, 112),
     ),
+    zht=Button(
+        file='./assets/zht/scrimmage/OCR_TICKET.png',
+        area=(155, 82, 206, 118),
+        search=(135, 62, 226, 138),
+        color=(218, 222, 225),
+        button=(155, 82, 206, 118),
+    ),
 )
 SELECT_GEHENNA = ButtonWrapper(
     name='SELECT_GEHENNA',
@@ -103,6 +138,13 @@ SELECT_GEHENNA = ButtonWrapper(
         search=(1056, 253, 1243, 333),
         color=(199, 208, 216),
         button=(1076, 273, 1223, 313),
+    ),
+    zht=Button(
+        file='./assets/zht/scrimmage/SELECT_GEHENNA.png',
+        area=(1115, 268, 1228, 313),
+        search=(1095, 248, 1248, 333),
+        color=(186, 196, 207),
+        button=(1115, 268, 1228, 313),
     ),
 )
 SELECT_MILLENNIUM = ButtonWrapper(
@@ -121,6 +163,13 @@ SELECT_MILLENNIUM = ButtonWrapper(
         color=(193, 202, 211),
         button=(1045, 380, 1224, 417),
     ),
+    zht=Button(
+        file='./assets/zht/scrimmage/SELECT_MILLENNIUM.png',
+        area=(1144, 375, 1225, 420),
+        search=(1124, 355, 1245, 440),
+        color=(207, 217, 225),
+        button=(1144, 375, 1225, 420),
+    ),
 )
 SELECT_TRINITY = ButtonWrapper(
     name='SELECT_TRINITY',
@@ -137,5 +186,12 @@ SELECT_TRINITY = ButtonWrapper(
         search=(1098, 144, 1244, 225),
         color=(200, 209, 218),
         button=(1118, 164, 1224, 205),
+    ),
+    zht=Button(
+        file='./assets/zht/scrimmage/SELECT_TRINITY.png',
+        area=(1148, 162, 1225, 202),
+        search=(1128, 142, 1245, 222),
+        color=(216, 226, 234),
+        button=(1148, 162, 1225, 202),
     ),
 )
