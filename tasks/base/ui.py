@@ -1,18 +1,29 @@
 from module.base.button import ButtonWrapper
-from module.base.decorator import run_once
+from module.base.decorator import run_once, Config
 from module.base.timer import Timer
-from module.exception import GameNotRunningError, GamePageUnknownError
+from module.exception import GameNotRunningError, GamePageUnknownError, RequestHumanTakeover
 from module.logger import logger
-from module.ocr.ocr import Ocr
+from module.ocr.ocr import Ocr, Digit
 from tasks.base.main_page import MainPage
 from tasks.base.page import Page, page_main
-from tasks.base.assets.assets_base_page import BACK
+from tasks.login.assets.assets_login import LOGIN_LOADING, OCR_YEAR
+#from tasks.base.assets.assets_base_page import BACK
 
 
 class UI(MainPage):
     ui_current: Page
     ui_main_confirm_timer = Timer(0.2, count=2)
 
+    @Config.when(Emulator_GameLanguage='zhs')
+    def appear_trademark_year(self):
+        ocr_year = Digit(OCR_YEAR).ocr_single_line(self.device.image)
+        return ocr_year == 2023
+
+    @Config.when(Emulator_GameLanguage=None)
+    def appear_trademark_year(self):
+        ocr_year = Digit(OCR_YEAR).ocr_single_line(self.device.image)
+        return ocr_year == 2021
+    
     def ui_page_appear(self, page):
         """
         Args:
@@ -77,9 +88,15 @@ class UI(MainPage):
                 logger.info("Additional ui page handled")
                 timeout.reset()
                 continue
+            # this might be bad but it works
+            if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
+                from tasks.login.login import Login
+                Login(self.config, self.device).handle_app_login()
+                continue
             if back_timer.reached_and_reset():
                 logger.info("Unknown page, try to back")
-                self.device.click(BACK)
+                #self.device.click(BACK)
+                self.device.u2.press("back")
 
             app_check()
             minicap_check()
@@ -176,10 +193,12 @@ class UI(MainPage):
 
         if self.ui_current == destination:
             logger.info("Already at %s" % destination)
+            self.close_popup(destination.check_button)
             return False
         else:
             logger.info("Goto %s" % destination)
             self.ui_goto(destination, skip_first_screenshot=True)
+            self.close_popup(destination.check_button)
             return True
 
     def ui_ensure_index(
@@ -399,3 +418,18 @@ class UI(MainPage):
             button (Button):
         """
         pass
+
+    def close_popup(self, check_button):
+        if not self.match_color(check_button):
+            timer = Timer(5, 5).start()
+            wait = Timer(1).start()
+            while 1:
+                self.device.screenshot()
+                if self.match_color(check_button):
+                    break
+                self.device.u2.press("back")
+                if timer.reached():
+                    logger.error("Failed to close popup")
+                    raise RequestHumanTakeover
+                while not wait.reached():
+                    pass    
