@@ -7,7 +7,7 @@ from module.ocr.ocr import Ocr, Digit
 from tasks.base.main_page import MainPage
 from tasks.base.page import Page, page_main
 from tasks.login.assets.assets_login import LOGIN_LOADING, OCR_YEAR
-#from tasks.base.assets.assets_base_page import BACK
+from tasks.base.assets.assets_base_page import BACK
 
 
 class UI(MainPage):
@@ -61,6 +61,7 @@ class UI(MainPage):
 
         timeout = Timer(10, count=20).start()
         back_timer = Timer(0.5, count=2)
+        u2_back = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -95,8 +96,12 @@ class UI(MainPage):
                 continue
             if back_timer.reached_and_reset():
                 logger.info("Unknown page, try to back")
-                #self.device.click(BACK)
-                self.device.u2.press("back")
+                if u2_back:
+                    self.device.u2.press("back")
+                    u2_back = False
+                else:
+                    self.device.click(BACK)
+                    u2_back = True
 
             app_check()
             minicap_check()
