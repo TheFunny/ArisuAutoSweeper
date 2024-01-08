@@ -8,12 +8,12 @@ from tasks.schedule.assets.assets_schedule import *
 from tasks.schedule.scroll_select import ScrollSelect
 import numpy as np
 
-SCROLL_SELECT = ScrollSelect(window_button=SCROLL, first_item_button=FIRST_ITEM, expected_button=LOCATIONS, clickx=1114)
+SCROLL_SELECT = ScrollSelect(window_button=SCROLL, first_item_button=FIRST_ITEM, expected_button=LOCATIONS, clickx=1116)
 xs = np.linspace(299, 995, 3, dtype=int)
 ys = np.linspace(268, 573, 3, dtype=int)
 
 class ScheduleUI(UI):
-    @Config.when(Emulator_GameLanguage='en')
+    @Config.when(Emulator_GameLanguage='jp')
     def set_clickx(self):
         SCROLL_SELECT.clickx = 1114
 
