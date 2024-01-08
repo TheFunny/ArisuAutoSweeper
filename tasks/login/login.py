@@ -1,11 +1,11 @@
 from module.base.timer import Timer
 from module.base.decorator import Config
+from module.ocr.ocr import Digit
 from module.exception import GameNotRunningError
 from module.logger import logger
 from tasks.base.page import page_main
 from tasks.base.ui import UI
-from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING, UPDATE, SURVEY
-from tasks.base.assets.assets_base_page import MAIN_GO_TO_MAIL
+from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING, UPDATE, SURVEY, OCR_YEAR
 
 
 class Login(UI):
@@ -94,10 +94,8 @@ class Login(UI):
                 continue
             if self.ui_additional():
                 continue
-            # press emulator back button when random popup in main
-            if self.appear(MAIN_GO_TO_MAIL) and not self.match_color(MAIN_GO_TO_MAIL):
+            if not self.appear_trademark_year():
                 self.device.u2.press("back")
-                continue
 
         return True
 
