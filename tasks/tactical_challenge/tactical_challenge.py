@@ -33,10 +33,10 @@ class TacticalChallenge(TacticalChallengeUI):
         return self.config.stored.TacticalChallengeTicket.value
 
     def _player_select(self, select):
-        if select:
+        if not select:
             return random.choice(self.select_players)
         else:
-            return self.select_players[select]
+            return self.select_players[select-1]
 
     def _handle_challenge(self, status):
         match status:
