@@ -98,7 +98,7 @@ class UI(MainPage):
                     continue
                 logger.info("Unknown page, try to back")
                 if u2_back:
-                    self.device.u2.press("back")
+                    self.device.back()
                     u2_back = False
                 else:
                     self.device.click(BACK)
@@ -178,7 +178,11 @@ class UI(MainPage):
                 continue
 
             if back_timer.reached_and_reset():
-                self.device.u2.press("back")
+                if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
+                    from tasks.login.login import Login
+                    Login(self.config, self.device).handle_app_login()
+                    continue
+                self.device.back()
                 logger.info("Unknown page, try to back")
 
         # Reset connection
@@ -439,7 +443,7 @@ class UI(MainPage):
                 self.device.screenshot()
                 if self.match_color(check_button):
                     break
-                self.device.u2.press("back")
+                self.device.back()
                 if timer.reached():
                     logger.error("Failed to close popup")
                     raise RequestHumanTakeover
