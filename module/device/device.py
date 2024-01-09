@@ -186,3 +186,6 @@ class Device(Screenshot, Control, AppControl, Platform):
         super().app_stop()
         self.stuck_record_clear()
         self.click_record_clear()
+
+    def back(self):
+        self.u2.press("back")
