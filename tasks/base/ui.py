@@ -89,12 +89,13 @@ class UI(MainPage):
                 logger.info("Additional ui page handled")
                 timeout.reset()
                 continue
-            # this might be bad but it works
-            if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
-                from tasks.login.login import Login
-                Login(self.config, self.device).handle_app_login()
-                continue
             if back_timer.reached_and_reset():
+                # this might be bad but it works
+                if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
+                    from tasks.login.login import Login
+                    Login(self.config, self.device).handle_app_login()
+                    timeout.reset()
+                    continue
                 logger.info("Unknown page, try to back")
                 if u2_back:
                     self.device.u2.press("back")
@@ -129,7 +130,7 @@ class UI(MainPage):
         self.interval_clear(list(Page.iter_check_buttons()))
 
         # loading_timer = Timer(0.5)
-
+        back_timer = Timer(8, 5).start()
         logger.hr(f"UI goto {destination}")
         while 1:
             if skip_first_screenshot:
@@ -148,6 +149,7 @@ class UI(MainPage):
             # Destination page
             if self.ui_page_appear(destination):
                 logger.info(f'Page arrive: {destination}')
+                self.close_popup(destination.check_button)
                 if self.ui_page_confirm(destination):
                     logger.info(f'Page arrive confirm {destination}')
                 break
@@ -159,6 +161,7 @@ class UI(MainPage):
                     continue
                 if self.appear(page.check_button, interval=5):
                     logger.info(f'Page switch: {page} -> {page.parent}')
+                    self.close_popup(page.check_button)
                     # self.handle_lang_check(page)
                     if self.ui_page_confirm(page):
                         logger.info(f'Page arrive confirm {page}')
@@ -173,6 +176,10 @@ class UI(MainPage):
             # Additional
             if self.ui_additional():
                 continue
+
+            if back_timer.reached_and_reset():
+                self.device.u2.press("back")
+                logger.info("Unknown page, try to back")
 
         # Reset connection
         Page.clear_connection()
