@@ -130,7 +130,7 @@ class UI(MainPage):
         self.interval_clear(list(Page.iter_check_buttons()))
 
         # loading_timer = Timer(0.5)
-        back_timer = Timer(10, 10)
+        #back_timer = Timer(10, 10)
         logger.hr(f"UI goto {destination}")
         while 1:
             if skip_first_screenshot:
@@ -177,14 +177,14 @@ class UI(MainPage):
             if self.ui_additional():
                 continue
 
-            back_timer.start()
-            if back_timer.reached_and_reset():
-                if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
-                    from tasks.login.login import Login
-                    Login(self.config, self.device).handle_app_login()
-                    continue
-                self.device.back()
-                logger.info("Unknown page, try to back")
+            #back_timer.start()
+            #if back_timer.reached_and_reset():
+            #    if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
+            #        from tasks.login.login import Login
+            #        Login(self.config, self.device).handle_app_login()
+            #        continue
+            #    self.device.back()
+            #    logger.info("Unknown page, try to back")
 
         # Reset connection
         Page.clear_connection()
@@ -371,6 +371,8 @@ class UI(MainPage):
         if self.handle_reward():
             return True
         if self.handle_daily_news():
+            return True
+        if self.handle_quit():
             return True
         if self.handle_network_reconnect():
             return True

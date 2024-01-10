@@ -261,3 +261,15 @@ NETWORK_RECONNECT_OK = ButtonWrapper(
         button=(540, 471, 744, 530),
     ),
 )
+QUIT = ButtonWrapper(
+    name='QUIT',
+    jp=None,
+    en=Button(
+        file='./assets/en/base/popup/QUIT.png',
+        area=(587, 309, 688, 357),
+        search=(567, 289, 708, 377),
+        color=(225, 225, 225),
+        button=(410, 473, 623, 532),
+    ),
+    zht=None,
+)
