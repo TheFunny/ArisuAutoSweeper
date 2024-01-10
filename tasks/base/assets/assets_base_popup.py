@@ -271,5 +271,11 @@ QUIT = ButtonWrapper(
         color=(225, 225, 225),
         button=(410, 473, 623, 532),
     ),
-    zht=None,
+    zht=Button(
+        file='./assets/zht/base/popup/QUIT.png',
+        area=(556, 310, 713, 364),
+        search=(536, 290, 733, 384),
+        color=(215, 215, 215),
+        button=(411, 472, 620, 535),
+    ),
 )
