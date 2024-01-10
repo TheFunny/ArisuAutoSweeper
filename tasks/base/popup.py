@@ -117,3 +117,10 @@ class PopupHandler(ModuleBase):
             return True
 
         return False
+    
+    def handle_quit(self, interval=5) -> bool:
+        if self.appear_then_click(QUIT, interval=interval):
+            return True
+
+        return False
+    
