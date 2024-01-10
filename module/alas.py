@@ -367,8 +367,8 @@ class AzurLaneAutoScript:
             logger.error("Exiting AAS is only supported on Windows")
             return
         try:
-            from module.device.platform.platform_windows import PlatformWindows
-            PlatformWindows(self.config).kill_process_by_regex("aas\.exe")
+            from deploy.Windows.alas import AlasManager
+            AlasManager().alas_kill()
         except:
             logger.error("Failed to stop AAS. It may be due to a lack of administrator privileges.")        
 
