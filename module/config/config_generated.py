@@ -75,6 +75,14 @@ class GeneratedConfig:
     Choice5_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
     Choice5_Classrooms = None
 
+    # Group `Choice6`
+    Choice6_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice6_Classrooms = None
+
+    # Group `Choice7`
+    Choice7_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Choice7_Classrooms = None
+
     # Group `Bounty`
     Bounty_OnError = 'skip'  # stop, skip
 

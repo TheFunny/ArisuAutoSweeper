@@ -423,6 +423,56 @@
       "help": "Choice5.Classrooms.help"
     }
   },
+  "Choice6": {
+    "_info": {
+      "name": "Choice6._info.name",
+      "help": "Choice6._info.help"
+    },
+    "Location": {
+      "name": "Choice6.Location.name",
+      "help": "Choice6.Location.help",
+      "None": "None",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    },
+    "Classrooms": {
+      "name": "Choice6.Classrooms.name",
+      "help": "Choice6.Classrooms.help"
+    }
+  },
+  "Choice7": {
+    "_info": {
+      "name": "Choice7._info.name",
+      "help": "Choice7._info.help"
+    },
+    "Location": {
+      "name": "Choice7.Location.name",
+      "help": "Choice7.Location.help",
+      "None": "None",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    },
+    "Classrooms": {
+      "name": "Choice7.Classrooms.name",
+      "help": "Choice7.Classrooms.help"
+    }
+  },
   "Bounty": {
     "_info": {
       "name": "悬赏通缉设置",

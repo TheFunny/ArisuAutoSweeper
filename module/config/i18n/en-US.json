@@ -423,6 +423,56 @@
       "help": ""
     }
   },
+  "Choice6": {
+    "_info": {
+      "name": "Choice 6",
+      "help": "Choice 6"
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice7": {
+    "_info": {
+      "name": "Choice 7",
+      "help": "Choice 7"
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
   "Bounty": {
     "_info": {
       "name": "Bounty Settings",

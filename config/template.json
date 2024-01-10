@@ -99,6 +99,14 @@
     "Choice5": {
       "Location": "None",
       "Classrooms": null
+    },
+    "Choice6": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice7": {
+      "Location": "None",
+      "Classrooms": null
     }
   },
   "Shop": {
