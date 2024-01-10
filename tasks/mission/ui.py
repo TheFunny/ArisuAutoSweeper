@@ -49,11 +49,7 @@ class MissionUI(UI, AP):
             logger.warning("Area not found")
             return False
 
-        to_switch = {
-            "N": SWITCH_NORMAL,
-            "H": SWITCH_HARD
-        }
-        switch = to_switch[mode]
+        switch = SWITCH_HARD if mode == "H" else SWITCH_NORMAL
         if not self.select_mode(switch) and not self.select_area(area):
             return False
         return True
@@ -146,11 +142,10 @@ class MissionUI(UI, AP):
 class CommissionsUI(UI, AP):
     """Works the same way as select_bounty"""
     def select_commission(self, mode):
-        to_button = {
-            "CR": (SELECT_CR, CHECK_CR),
-            "XP": (SELECT_XP, CHECK_XP)
-        }
-        dest_enter, dest_check = to_button[mode]
+        if mode == "CR":
+            dest_enter, dest_check = SELECT_CR, CHECK_CR
+        else:
+            dest_enter, dest_check = SELECT_XP, CHECK_XP
         timer = Timer(5, 10).start()
         while 1:
             self.device.screenshot()
