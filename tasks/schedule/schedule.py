@@ -24,7 +24,7 @@ class Schedule(ScheduleUI):
         info = []
         input_valid = True
         schedule_config = self.config.cross_get("Schedule")
-        choices = ["Choice1", "Choice2", "Choice3", "Choice4", "Choice5"]
+        choices = ["Choice1", "Choice2", "Choice3", "Choice4", "Choice5", "Choice6", "Choice7"]
 
         for choice in choices:
             location, classrooms = schedule_config[choice]["Location"], schedule_config[choice]["Classrooms"]

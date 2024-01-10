@@ -37,6 +37,8 @@ Daily:
       - Choice3
       - Choice4
       - Choice5
+      - Choice6
+      - Choice7
     Shop:
       - Scheduler
       - NormalShop
