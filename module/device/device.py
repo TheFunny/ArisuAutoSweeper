@@ -188,4 +188,4 @@ class Device(Screenshot, Control, AppControl, Platform):
         self.click_record_clear()
 
     def back(self):
-        self.u2.press("back")
+        self.adb_shell("input keyevent 4")
