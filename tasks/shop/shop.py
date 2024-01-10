@@ -83,7 +83,7 @@ class Shop(ShopUI):
                     return ShopStatus.SELECT_SHOP
                 return ShopStatus.END
             case ShopStatus.END:
-                if self.appear(page_shop.check_button):
+                if self.appear(page_shop.check_button) and self.match_color(page_shop.check_button):
                     self.task.pop(0)
                     return ShopStatus.SELECT_SHOP
                 self.click_with_interval(BACK, interval=2)
