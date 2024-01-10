@@ -130,7 +130,7 @@ class UI(MainPage):
         self.interval_clear(list(Page.iter_check_buttons()))
 
         # loading_timer = Timer(0.5)
-        back_timer = Timer(8, 5).start()
+        back_timer = Timer(10, 10)
         logger.hr(f"UI goto {destination}")
         while 1:
             if skip_first_screenshot:
@@ -177,6 +177,7 @@ class UI(MainPage):
             if self.ui_additional():
                 continue
 
+            back_timer.start()
             if back_timer.reached_and_reset():
                 if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
                     from tasks.login.login import Login
@@ -214,7 +215,6 @@ class UI(MainPage):
         else:
             logger.info("Goto %s" % destination)
             self.ui_goto(destination, skip_first_screenshot=True)
-            self.close_popup(destination.check_button)
             return True
 
     def ui_ensure_index(
@@ -441,7 +441,7 @@ class UI(MainPage):
             wait = Timer(1).start()
             while 1:
                 self.device.screenshot()
-                if self.match_color(check_button):
+                if self.match_color(check_button) or not self.appear(check_button):
                     break
                 self.device.back()
                 if timer.reached():
