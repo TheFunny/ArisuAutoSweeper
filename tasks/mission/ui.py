@@ -45,14 +45,10 @@ MODE_TO_PAGE = {
 class MissionUI(UI, AP):
     def select_mission(self, mode, stage):
         area = int(stage.split("-")[0])
-        if not self.select_area(area):
-            logger.warning("Area not found")
-            return False
-
         switch = SWITCH_HARD if mode == "H" else SWITCH_NORMAL
-        if not self.select_mode(switch) and not self.select_area(area):
-            return False
-        return True
+        if self.select_area(area) and self.select_mode(switch):
+            return True
+        return False
     
     def select_area(self, num):
         """"
@@ -77,6 +73,7 @@ class MissionUI(UI, AP):
             except:
                 tries += 1
                 if tries > 3:
+                    logger.warning(f"Area {num} not found")
                     return False
 
     def select_mode(self, switch):
