@@ -98,6 +98,7 @@ class UI(MainPage):
                     timeout.reset()
                     continue
                 logger.info("Unknown page, try to back")
+                # allows TooManyClicks to be triggered in case something goes wrong
                 if u2_back:
                     self.device.back()
                     u2_back = False
@@ -183,6 +184,8 @@ class UI(MainPage):
                 if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
                     from tasks.login.login import Login
                     Login(self.config, self.device).handle_app_login()
+                # don't click back when screen is black. 
+                # Useful for loading screen after switching between pages
                 elif [x for x in get_color(self.device.image, BACK.area) if x > 50]:
                     self.device.back()
                     logger.info("Unknown page, try to back")
@@ -383,6 +386,8 @@ class UI(MainPage):
             return True
         if self.handle_new_student():
             return True
+        # disabled because will exit the game if quit appears
+
         #if self.handle_ap_exceed():
         #    return True
         #if self.handle_insufficient_inventory():
