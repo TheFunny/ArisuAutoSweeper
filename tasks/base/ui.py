@@ -1,6 +1,7 @@
 from module.base.button import ButtonWrapper
 from module.base.decorator import run_once, Config
 from module.base.timer import Timer
+from module.base.utils import get_color
 from module.exception import GameNotRunningError, GamePageUnknownError, RequestHumanTakeover
 from module.logger import logger
 from module.ocr.ocr import Ocr, Digit
@@ -130,7 +131,7 @@ class UI(MainPage):
         self.interval_clear(list(Page.iter_check_buttons()))
 
         # loading_timer = Timer(0.5)
-        #back_timer = Timer(10, 10)
+        back_timer = Timer(4,8)
         logger.hr(f"UI goto {destination}")
         while 1:
             if skip_first_screenshot:
@@ -177,14 +178,16 @@ class UI(MainPage):
             if self.ui_additional():
                 continue
 
-            #back_timer.start()
-            #if back_timer.reached_and_reset():
-            #    if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
-            #        from tasks.login.login import Login
-            #        Login(self.config, self.device).handle_app_login()
-            #        continue
-            #    self.device.back()
-            #    logger.info("Unknown page, try to back")
+            back_timer.start()
+            if back_timer.reached():
+                if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
+                    from tasks.login.login import Login
+                    Login(self.config, self.device).handle_app_login()
+                elif [x for x in get_color(self.device.image, BACK.area) if x > 50]:
+                    self.device.back()
+                    logger.info("Unknown page, try to back")
+                back_timer.reset()
+                
 
         # Reset connection
         Page.clear_connection()
@@ -380,12 +383,12 @@ class UI(MainPage):
             return True
         if self.handle_new_student():
             return True
-        if self.handle_ap_exceed():
-            return True
-        if self.handle_insufficient_inventory():
-            return True
-        if self.handle_item_expired():
-            return True
+        #if self.handle_ap_exceed():
+        #    return True
+        #if self.handle_insufficient_inventory():
+        #    return True
+        #if self.handle_item_expired():
+        #    return True
 
         return False
 
