@@ -36,7 +36,7 @@
     },
     "Schedule": {
       "name": "Lesson",
-      "help": "AAS will execute Lesson starting from Choice 1 to Choice 5.\nIt will ignore any Choice that have Location set as None or the text area for classrooms is empty.\nIf any of the active Choices have incorrect input, it will perform the action set in Error handling."
+      "help": "AAS will execute Lesson starting from Choice 1 to Choice 7.\nIt will ignore any Choice that have Location set as None or the text area for classrooms is empty.\nIf any of the active Choices have incorrect input, it will perform the action set in Error handling."
     },
     "Shop": {
       "name": "Shop",
