@@ -132,7 +132,7 @@ class UI(MainPage):
         self.interval_clear(list(Page.iter_check_buttons()))
 
         # loading_timer = Timer(0.5)
-        back_timer = Timer(4,8)
+        back_timer = Timer(15,15)
         logger.hr(f"UI goto {destination}")
         while 1:
             if skip_first_screenshot:
