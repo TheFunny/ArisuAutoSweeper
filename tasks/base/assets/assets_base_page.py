@@ -573,10 +573,10 @@ WORK_CHECK = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/base/page/WORK_CHECK.png',
-        area=(102, 6, 169, 41),
-        search=(82, 0, 189, 61),
-        color=(184, 194, 203),
-        button=(102, 6, 169, 41),
+        area=(668, 402, 774, 442),
+        search=(648, 382, 794, 462),
+        color=(182, 199, 224),
+        button=(668, 402, 774, 442),
     ),
 )
 WORK_GO_TO_BOUNTY = ButtonWrapper(
