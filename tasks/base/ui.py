@@ -20,6 +20,11 @@ class UI(MainPage):
         ocr_year = Digit(OCR_YEAR).ocr_single_line(self.device.image)
         return ocr_year == 2023
 
+    # temporary block check for jp
+    @Config.when(Emulator_GameLanguage='jp')
+    def appear_trademark_year(self):
+        return False
+
     @Config.when(Emulator_GameLanguage=None)
     def appear_trademark_year(self):
         ocr_year = Digit(OCR_YEAR).ocr_single_line(self.device.image)
