@@ -103,10 +103,10 @@ COMPLETE = ButtonWrapper(
     name='COMPLETE',
     jp=Button(
         file='./assets/jp/task/COMPLETE.png',
-        area=(933, 644, 1016, 697),
-        search=(913, 624, 1036, 717),
-        color=(127, 131, 135),
-        button=(933, 644, 1016, 697),
+        area=(936, 644, 1014, 693),
+        search=(916, 624, 1034, 713),
+        color=(128, 131, 135),
+        button=(936, 644, 1014, 693),
     ),
     en=Button(
         file='./assets/en/task/COMPLETE.png',
