@@ -179,7 +179,13 @@ ITEM_EXPIRED = ButtonWrapper(
 )
 LEVEL_UP = ButtonWrapper(
     name='LEVEL_UP',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/base/popup/LEVEL_UP.png',
+        area=(722, 210, 746, 238),
+        search=(702, 190, 766, 258),
+        color=(184, 202, 219),
+        button=(571, 559, 713, 601),
+    ),
     en=Button(
         file='./assets/en/base/popup/LEVEL_UP.png',
         area=(722, 210, 746, 238),
@@ -197,7 +203,13 @@ LEVEL_UP = ButtonWrapper(
 )
 LOCATION_LEVEL_UP = ButtonWrapper(
     name='LOCATION_LEVEL_UP',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/base/popup/LOCATION_LEVEL_UP.png',
+        area=(430, 141, 463, 180),
+        search=(410, 121, 483, 200),
+        color=(177, 194, 207),
+        button=(577, 616, 707, 647),
+    ),
     en=Button(
         file='./assets/en/base/popup/LOCATION_LEVEL_UP.png',
         area=(430, 141, 463, 180),
@@ -263,7 +275,13 @@ NETWORK_RECONNECT_OK = ButtonWrapper(
 )
 QUIT = ButtonWrapper(
     name='QUIT',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/base/popup/QUIT.png',
+        area=(497, 313, 779, 353),
+        search=(477, 293, 799, 373),
+        color=(210, 210, 210),
+        button=(442, 487, 592, 521),
+    ),
     en=Button(
         file='./assets/en/base/popup/QUIT.png',
         area=(587, 309, 688, 357),

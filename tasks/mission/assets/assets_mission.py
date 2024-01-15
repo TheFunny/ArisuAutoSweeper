@@ -5,7 +5,13 @@ from module.base.button import Button, ButtonWrapper
 
 CHECK_COMMISSIONS = ButtonWrapper(
     name='CHECK_COMMISSIONS',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/CHECK_COMMISSIONS.png',
+        area=(654, 93, 881, 128),
+        search=(634, 73, 901, 148),
+        color=(108, 129, 151),
+        button=(654, 93, 881, 128),
+    ),
     en=Button(
         file='./assets/en/mission/CHECK_COMMISSIONS.png',
         area=(646, 78, 909, 135),
@@ -23,7 +29,13 @@ CHECK_COMMISSIONS = ButtonWrapper(
 )
 CHECK_CR = ButtonWrapper(
     name='CHECK_CR',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/CHECK_CR.png',
+        area=(108, 147, 313, 180),
+        search=(88, 127, 333, 200),
+        color=(195, 201, 205),
+        button=(108, 147, 313, 180),
+    ),
     en=Button(
         file='./assets/en/mission/CHECK_CR.png',
         area=(97, 137, 340, 191),
@@ -41,7 +53,13 @@ CHECK_CR = ButtonWrapper(
 )
 CHECK_MISSION_SWEEP = ButtonWrapper(
     name='CHECK_MISSION_SWEEP',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/CHECK_MISSION_SWEEP.png',
+        area=(637, 188, 722, 213),
+        search=(617, 168, 742, 233),
+        color=(169, 180, 193),
+        button=(637, 188, 722, 213),
+    ),
     en=Button(
         file='./assets/en/mission/CHECK_MISSION_SWEEP.png',
         area=(654, 184, 703, 209),
@@ -59,7 +77,13 @@ CHECK_MISSION_SWEEP = ButtonWrapper(
 )
 CHECK_XP = ButtonWrapper(
     name='CHECK_XP',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/CHECK_XP.png',
+        area=(106, 147, 225, 180),
+        search=(86, 127, 245, 200),
+        color=(167, 172, 176),
+        button=(106, 147, 225, 180),
+    ),
     en=Button(
         file='./assets/en/mission/CHECK_XP.png',
         area=(94, 135, 325, 194),
@@ -77,7 +101,13 @@ CHECK_XP = ButtonWrapper(
 )
 EVENT_INDEX = ButtonWrapper(
     name='EVENT_INDEX',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/EVENT_INDEX.png',
+        area=(704, 135, 761, 694),
+        search=(684, 115, 781, 714),
+        color=(189, 197, 195),
+        button=(704, 135, 761, 694),
+    ),
     en=Button(
         file='./assets/en/mission/EVENT_INDEX.png',
         area=(704, 135, 761, 694),
@@ -95,7 +125,13 @@ EVENT_INDEX = ButtonWrapper(
 )
 EVENT_ITEM = ButtonWrapper(
     name='EVENT_ITEM',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/EVENT_ITEM.png',
+        area=(691, 136, 1198, 232),
+        search=(671, 116, 1218, 252),
+        color=(201, 219, 224),
+        button=(691, 136, 1198, 232),
+    ),
     en=Button(
         file='./assets/en/mission/EVENT_ITEM.png',
         area=(691, 136, 1198, 232),
@@ -113,7 +149,13 @@ EVENT_ITEM = ButtonWrapper(
 )
 EVENT_LIST = ButtonWrapper(
     name='EVENT_LIST',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/EVENT_LIST.png',
+        area=(695, 137, 1196, 688),
+        search=(675, 117, 1216, 708),
+        color=(171, 185, 190),
+        button=(695, 137, 1196, 688),
+    ),
     en=Button(
         file='./assets/en/mission/EVENT_LIST.png',
         area=(695, 137, 1196, 688),
@@ -131,7 +173,13 @@ EVENT_LIST = ButtonWrapper(
 )
 EVENT_STARS = ButtonWrapper(
     name='EVENT_STARS',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/EVENT_STARS.png',
+        area=(704, 186, 761, 218),
+        search=(684, 166, 781, 238),
+        color=(228, 223, 194),
+        button=(704, 186, 761, 218),
+    ),
     en=Button(
         file='./assets/en/mission/EVENT_STARS.png',
         area=(704, 186, 761, 218),
@@ -149,7 +197,13 @@ EVENT_STARS = ButtonWrapper(
 )
 HARD_OFF = ButtonWrapper(
     name='HARD_OFF',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/HARD_OFF.png',
+        area=(1034, 144, 1095, 172),
+        search=(1014, 124, 1115, 192),
+        color=(204, 211, 218),
+        button=(1034, 144, 1095, 172),
+    ),
     en=Button(
         file='./assets/en/mission/HARD_OFF.png',
         area=(947, 132, 1193, 182),
@@ -167,7 +221,13 @@ HARD_OFF = ButtonWrapper(
 )
 HARD_ON = ButtonWrapper(
     name='HARD_ON',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/HARD_ON.png',
+        area=(1032, 143, 1095, 172),
+        search=(1012, 123, 1115, 192),
+        color=(211, 104, 54),
+        button=(1032, 143, 1095, 172),
+    ),
     en=Button(
         file='./assets/en/mission/HARD_ON.png',
         area=(940, 133, 1189, 186),
@@ -185,7 +245,13 @@ HARD_ON = ButtonWrapper(
 )
 LEFT = ButtonWrapper(
     name='LEFT',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/LEFT.png',
+        area=(0, 301, 89, 408),
+        search=(0, 281, 109, 428),
+        color=(193, 224, 241),
+        button=(0, 301, 89, 408),
+    ),
     en=Button(
         file='./assets/en/mission/LEFT.png',
         area=(0, 301, 89, 408),
@@ -203,7 +269,13 @@ LEFT = ButtonWrapper(
 )
 NORMAL_OFF = ButtonWrapper(
     name='NORMAL_OFF',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/NORMAL_OFF.png',
+        area=(759, 146, 847, 171),
+        search=(739, 126, 867, 191),
+        color=(197, 205, 214),
+        button=(759, 146, 847, 171),
+    ),
     en=Button(
         file='./assets/en/mission/NORMAL_OFF.png',
         area=(682, 135, 927, 182),
@@ -221,7 +293,13 @@ NORMAL_OFF = ButtonWrapper(
 )
 NORMAL_ON = ButtonWrapper(
     name='NORMAL_ON',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/NORMAL_ON.png',
+        area=(759, 145, 845, 172),
+        search=(739, 125, 865, 192),
+        color=(107, 115, 72),
+        button=(759, 145, 845, 172),
+    ),
     en=Button(
         file='./assets/en/mission/NORMAL_ON.png',
         area=(682, 137, 924, 185),
@@ -239,7 +317,13 @@ NORMAL_ON = ButtonWrapper(
 )
 OCR_AREA = ButtonWrapper(
     name='OCR_AREA',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/OCR_AREA.png',
+        area=(111, 178, 174, 212),
+        search=(91, 158, 194, 232),
+        color=(218, 222, 227),
+        button=(111, 178, 174, 212),
+    ),
     en=Button(
         file='./assets/en/mission/OCR_AREA.png',
         area=(108, 176, 176, 219),
@@ -257,7 +341,13 @@ OCR_AREA = ButtonWrapper(
 )
 QUEST_OFF = ButtonWrapper(
     name='QUEST_OFF',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/QUEST_OFF.png',
+        area=(903, 80, 989, 115),
+        search=(883, 60, 1009, 135),
+        color=(212, 217, 221),
+        button=(903, 80, 989, 115),
+    ),
     en=Button(
         file='./assets/en/mission/QUEST_OFF.png',
         area=(859, 69, 1025, 125),
@@ -275,7 +365,13 @@ QUEST_OFF = ButtonWrapper(
 )
 QUEST_ON = ButtonWrapper(
     name='QUEST_ON',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/QUEST_ON.png',
+        area=(903, 82, 987, 113),
+        search=(883, 62, 1007, 133),
+        color=(84, 93, 69),
+        button=(903, 82, 987, 113),
+    ),
     en=Button(
         file='./assets/en/mission/QUEST_ON.png',
         area=(861, 71, 1025, 124),
@@ -293,7 +389,13 @@ QUEST_ON = ButtonWrapper(
 )
 RIGHT = ButtonWrapper(
     name='RIGHT',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/RIGHT.png',
+        area=(1202, 311, 1280, 412),
+        search=(1182, 291, 1280, 432),
+        color=(193, 223, 241),
+        button=(1202, 311, 1280, 412),
+    ),
     en=Button(
         file='./assets/en/mission/RIGHT.png',
         area=(1202, 311, 1280, 412),
@@ -311,7 +413,13 @@ RIGHT = ButtonWrapper(
 )
 SELECT_CR = ButtonWrapper(
     name='SELECT_CR',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/SELECT_CR.png',
+        area=(1009, 271, 1226, 312),
+        search=(989, 251, 1246, 332),
+        color=(207, 213, 221),
+        button=(1009, 271, 1226, 312),
+    ),
     en=Button(
         file='./assets/en/mission/SELECT_CR.png',
         area=(1004, 267, 1237, 321),
@@ -329,7 +437,13 @@ SELECT_CR = ButtonWrapper(
 )
 SELECT_XP = ButtonWrapper(
     name='SELECT_XP',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/mission/SELECT_XP.png',
+        area=(1095, 166, 1224, 205),
+        search=(1075, 146, 1244, 225),
+        color=(175, 185, 198),
+        button=(1095, 166, 1224, 205),
+    ),
     en=Button(
         file='./assets/en/mission/SELECT_XP.png',
         area=(1016, 165, 1227, 211),

@@ -101,7 +101,13 @@ CLAIM_ALL = ButtonWrapper(
 )
 COMPLETE = ButtonWrapper(
     name='COMPLETE',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/task/COMPLETE.png',
+        area=(933, 644, 1016, 697),
+        search=(913, 624, 1036, 717),
+        color=(127, 131, 135),
+        button=(933, 644, 1016, 697),
+    ),
     en=Button(
         file='./assets/en/task/COMPLETE.png',
         area=(921, 643, 1026, 692),

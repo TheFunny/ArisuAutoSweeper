@@ -159,7 +159,13 @@ CRAFTING_CHECK = ButtonWrapper(
 )
 EVENT_CHECK = ButtonWrapper(
     name='EVENT_CHECK',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/base/page/EVENT_CHECK.png',
+        area=(107, 11, 210, 37),
+        search=(87, 0, 230, 57),
+        color=(204, 211, 218),
+        button=(107, 11, 210, 37),
+    ),
     en=Button(
         file='./assets/en/base/page/EVENT_CHECK.png',
         area=(102, 6, 187, 40),
@@ -629,7 +635,13 @@ WORK_GO_TO_COMMISSIONS = ButtonWrapper(
 )
 WORK_GO_TO_EVENT = ButtonWrapper(
     name='WORK_GO_TO_EVENT',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/base/page/WORK_GO_TO_EVENT.png',
+        area=(63, 131, 142, 205),
+        search=(43, 111, 162, 225),
+        color=(122, 127, 129),
+        button=(63, 131, 142, 205),
+    ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_EVENT.png',
         area=(67, 131, 142, 201),

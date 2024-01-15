@@ -5,7 +5,13 @@ from module.base.button import Button, ButtonWrapper
 
 BEGIN_STORY = ButtonWrapper(
     name='BEGIN_STORY',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/BEGIN_STORY.png',
+        area=(729, 533, 1110, 600),
+        search=(709, 513, 1130, 620),
+        color=(112, 210, 244),
+        button=(729, 533, 1110, 600),
+    ),
     en=Button(
         file='./assets/en/momotalk/BEGIN_STORY.png',
         area=(796, 540, 1059, 591),
@@ -23,7 +29,13 @@ BEGIN_STORY = ButtonWrapper(
 )
 CHATTING = ButtonWrapper(
     name='CHATTING',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/CHATTING.png',
+        area=(776, 520, 817, 545),
+        search=(756, 500, 837, 565),
+        color=(89, 103, 121),
+        button=(776, 520, 817, 545),
+    ),
     en=Button(
         file='./assets/en/momotalk/CHATTING.png',
         area=(774, 563, 821, 585),
@@ -41,7 +53,13 @@ CHATTING = ButtonWrapper(
 )
 CHAT_AREA = ButtonWrapper(
     name='CHAT_AREA',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/CHAT_AREA.png',
+        area=(686, 153, 1146, 626),
+        search=(666, 133, 1166, 646),
+        color=(190, 186, 195),
+        button=(686, 153, 1146, 626),
+    ),
     en=Button(
         file='./assets/en/momotalk/CHAT_AREA.png',
         area=(760, 149, 1149, 628),
@@ -59,7 +77,13 @@ CHAT_AREA = ButtonWrapper(
 )
 CONFIRM_SKIP = ButtonWrapper(
     name='CONFIRM_SKIP',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/CONFIRM_SKIP.png',
+        area=(664, 491, 871, 554),
+        search=(644, 471, 891, 574),
+        color=(113, 214, 249),
+        button=(664, 491, 871, 554),
+    ),
     en=Button(
         file='./assets/en/momotalk/CONFIRM_SKIP.png',
         area=(674, 486, 871, 555),
@@ -77,7 +101,13 @@ CONFIRM_SKIP = ButtonWrapper(
 )
 CONFIRM_SORT = ButtonWrapper(
     name='CONFIRM_SORT',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/CONFIRM_SORT.png',
+        area=(243, 403, 656, 440),
+        search=(223, 383, 676, 460),
+        color=(252, 253, 253),
+        button=(243, 403, 656, 440),
+    ),
     en=Button(
         file='./assets/en/momotalk/CONFIRM_SORT.png',
         area=(239, 407, 657, 439),
@@ -95,7 +125,13 @@ CONFIRM_SORT = ButtonWrapper(
 )
 FIRST_UNREAD = ButtonWrapper(
     name='FIRST_UNREAD',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/FIRST_UNREAD.png',
+        area=(635, 244, 660, 272),
+        search=(615, 224, 680, 292),
+        color=(251, 85, 43),
+        button=(635, 244, 660, 272),
+    ),
     en=Button(
         file='./assets/en/momotalk/FIRST_UNREAD.png',
         area=(636, 239, 661, 265),
@@ -113,7 +149,13 @@ FIRST_UNREAD = ButtonWrapper(
 )
 MENU = ButtonWrapper(
     name='MENU',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/MENU.png',
+        area=(1159, 28, 1249, 55),
+        search=(1139, 8, 1269, 75),
+        color=(184, 192, 201),
+        button=(1159, 28, 1249, 55),
+    ),
     en=Button(
         file='./assets/en/momotalk/MENU.png',
         area=(1156, 15, 1251, 63),
@@ -131,7 +173,13 @@ MENU = ButtonWrapper(
 )
 NOTIFICATION_BADGE = ButtonWrapper(
     name='NOTIFICATION_BADGE',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/NOTIFICATION_BADGE.png',
+        area=(163, 107, 196, 129),
+        search=(143, 87, 216, 149),
+        color=(240, 110, 65),
+        button=(163, 107, 196, 129),
+    ),
     en=Button(
         file='./assets/en/momotalk/NOTIFICATION_BADGE.png',
         area=(171, 109, 200, 128),
@@ -149,7 +197,13 @@ NOTIFICATION_BADGE = ButtonWrapper(
 )
 REPLY = ButtonWrapper(
     name='REPLY',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/REPLY.png',
+        area=(792, 509, 868, 530),
+        search=(772, 489, 888, 550),
+        color=(172, 184, 193),
+        button=(792, 509, 868, 530),
+    ),
     en=Button(
         file='./assets/en/momotalk/REPLY.png',
         area=(791, 431, 855, 462),
@@ -167,7 +221,13 @@ REPLY = ButtonWrapper(
 )
 SELECT_STUDENT = ButtonWrapper(
     name='SELECT_STUDENT',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/SELECT_STUDENT.png',
+        area=(801, 374, 1023, 399),
+        search=(781, 354, 1043, 419),
+        color=(226, 227, 228),
+        button=(801, 374, 1023, 399),
+    ),
     en=Button(
         file='./assets/en/momotalk/SELECT_STUDENT.png',
         area=(839, 369, 998, 403),
@@ -185,7 +245,13 @@ SELECT_STUDENT = ButtonWrapper(
 )
 SKIP = ButtonWrapper(
     name='SKIP',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/SKIP.png',
+        area=(1188, 96, 1233, 142),
+        search=(1168, 76, 1253, 162),
+        color=(87, 107, 130),
+        button=(1188, 96, 1233, 142),
+    ),
     en=Button(
         file='./assets/en/momotalk/SKIP.png',
         area=(1192, 103, 1229, 141),
@@ -203,7 +269,13 @@ SKIP = ButtonWrapper(
 )
 SORT_ASCENDING = ButtonWrapper(
     name='SORT_ASCENDING',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/SORT_ASCENDING.png',
+        area=(633, 166, 646, 186),
+        search=(613, 146, 666, 206),
+        color=(205, 216, 224),
+        button=(633, 166, 646, 186),
+    ),
     en=Button(
         file='./assets/en/momotalk/SORT_ASCENDING.png',
         area=(631, 166, 648, 188),
@@ -221,7 +293,13 @@ SORT_ASCENDING = ButtonWrapper(
 )
 SORT_DESCENDING = ButtonWrapper(
     name='SORT_DESCENDING',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/SORT_DESCENDING.png',
+        area=(633, 168, 646, 187),
+        search=(613, 148, 666, 207),
+        color=(202, 212, 221),
+        button=(633, 168, 646, 187),
+    ),
     en=Button(
         file='./assets/en/momotalk/SORT_DESCENDING.png',
         area=(631, 166, 648, 189),
@@ -239,7 +317,13 @@ SORT_DESCENDING = ButtonWrapper(
 )
 STORY = ButtonWrapper(
     name='STORY',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/STORY.png',
+        area=(792, 531, 887, 553),
+        search=(772, 511, 907, 573),
+        color=(218, 206, 212),
+        button=(792, 531, 887, 553),
+    ),
     en=Button(
         file='./assets/en/momotalk/STORY.png',
         area=(790, 529, 979, 557),
@@ -257,7 +341,13 @@ STORY = ButtonWrapper(
 )
 SWITCH_MESSAGE = ButtonWrapper(
     name='SWITCH_MESSAGE',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/SWITCH_MESSAGE.png',
+        area=(150, 271, 193, 297),
+        search=(130, 251, 213, 317),
+        color=(194, 198, 206),
+        button=(150, 271, 193, 297),
+    ),
     en=Button(
         file='./assets/en/momotalk/SWITCH_MESSAGE.png',
         area=(147, 271, 194, 297),
@@ -275,7 +365,13 @@ SWITCH_MESSAGE = ButtonWrapper(
 )
 SWITCH_MESSAGE_CHECK = ButtonWrapper(
     name='SWITCH_MESSAGE_CHECK',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/SWITCH_MESSAGE_CHECK.png',
+        area=(231, 167, 379, 190),
+        search=(211, 147, 399, 210),
+        color=(197, 201, 202),
+        button=(231, 167, 379, 190),
+    ),
     en=Button(
         file='./assets/en/momotalk/SWITCH_MESSAGE_CHECK.png',
         area=(228, 165, 391, 194),
@@ -293,7 +389,13 @@ SWITCH_MESSAGE_CHECK = ButtonWrapper(
 )
 SWITCH_STUDENT = ButtonWrapper(
     name='SWITCH_STUDENT',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/SWITCH_STUDENT.png',
+        area=(151, 168, 193, 213),
+        search=(131, 148, 213, 233),
+        color=(169, 176, 188),
+        button=(151, 168, 193, 213),
+    ),
     en=Button(
         file='./assets/en/momotalk/SWITCH_STUDENT.png',
         area=(148, 167, 194, 217),
@@ -311,7 +413,13 @@ SWITCH_STUDENT = ButtonWrapper(
 )
 SWITCH_STUDENT_CHECK = ButtonWrapper(
     name='SWITCH_STUDENT_CHECK',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/SWITCH_STUDENT_CHECK.png',
+        area=(232, 168, 275, 190),
+        search=(212, 148, 295, 210),
+        color=(169, 174, 176),
+        button=(232, 168, 275, 190),
+    ),
     en=Button(
         file='./assets/en/momotalk/SWITCH_STUDENT_CHECK.png',
         area=(229, 166, 320, 192),
@@ -329,7 +437,13 @@ SWITCH_STUDENT_CHECK = ButtonWrapper(
 )
 UNREAD = ButtonWrapper(
     name='UNREAD',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/UNREAD.png',
+        area=(454, 158, 570, 194),
+        search=(434, 138, 590, 214),
+        color=(242, 243, 243),
+        button=(454, 158, 570, 194),
+    ),
     en=Button(
         file='./assets/en/momotalk/UNREAD.png',
         area=(454, 160, 568, 193),
@@ -347,7 +461,13 @@ UNREAD = ButtonWrapper(
 )
 UNREAD_OFF = ButtonWrapper(
     name='UNREAD_OFF',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/UNREAD_OFF.png',
+        area=(458, 273, 655, 314),
+        search=(438, 253, 675, 334),
+        color=(252, 252, 252),
+        button=(458, 273, 655, 314),
+    ),
     en=Button(
         file='./assets/en/momotalk/UNREAD_OFF.png',
         area=(456, 273, 658, 316),
@@ -365,7 +485,13 @@ UNREAD_OFF = ButtonWrapper(
 )
 UNREAD_ON = ButtonWrapper(
     name='UNREAD_ON',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/momotalk/UNREAD_ON.png',
+        area=(463, 274, 653, 314),
+        search=(443, 254, 673, 334),
+        color=(245, 118, 143),
+        button=(463, 274, 653, 314),
+    ),
     en=Button(
         file='./assets/en/momotalk/UNREAD_ON.png',
         area=(456, 272, 658, 314),

@@ -53,7 +53,13 @@ LOGIN_LOADING = ButtonWrapper(
 )
 OCR_YEAR = ButtonWrapper(
     name='OCR_YEAR',
-    jp=None,
+    jp=Button(
+        file='./assets/jp/login/OCR_YEAR.png',
+        area=(377, 689, 414, 701),
+        search=(357, 669, 434, 720),
+        color=(160, 157, 158),
+        button=(377, 689, 414, 701),
+    ),
     en=Button(
         file='./assets/en/login/OCR_YEAR.png',
         area=(377, 689, 414, 701),
@@ -72,13 +78,7 @@ OCR_YEAR = ButtonWrapper(
 SURVEY = ButtonWrapper(
     name='SURVEY',
     jp=None,
-    en=Button(
-        file='./assets/en/login/SURVEY.png',
-        area=(946, 269, 994, 307),
-        search=(926, 249, 1014, 327),
-        color=(211, 223, 166),
-        button=(1199, 6, 1264, 75),
-    ),
+    en=None,
     zht=Button(
         file='./assets/zht/login/SURVEY.png',
         area=(946, 269, 994, 307),
