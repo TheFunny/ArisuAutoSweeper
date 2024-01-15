@@ -35,8 +35,8 @@
       "help": ""
     },
     "Schedule": {
-      "name": "Task.Schedule.name",
-      "help": "Task.Schedule.help"
+      "name": "课程表",
+      "help": "按照选项顺序执行，忽略设置为“无”或教室未填写的选项"
     },
     "Shop": {
       "name": "商店",
@@ -55,8 +55,8 @@
       "help": "战术大赛 / 竞技场"
     },
     "Mission": {
-      "name": "Task.Mission.name",
-      "help": "Task.Mission.help"
+      "name": "任务/特别委托/活动",
+      "help": "打开 MCE 管理器"
     },
     "Circle": {
       "name": "公会",
@@ -125,7 +125,7 @@
       "auto": "自动检测",
       "jp": "日语",
       "en": "英语",
-      "zht": "zht"
+      "zht": "繁体中文"
     },
     "ScreenshotMethod": {
       "name": "模拟器截图方案",
@@ -222,14 +222,14 @@
     },
     "WhenTaskQueueEmpty": {
       "name": "当任务队列清空后",
-      "help": "无任务时关闭游戏，能在收菜期间降低 CPU 占用",
+      "help": "无任务时关闭游戏，能在收菜期间降低 CPU 占用\n关闭 AAS / 关闭模拟器 / 关机选项仅在 AAS 启动后设置方可生效，执行后自动重置为”前往主界面“\n关闭 AAS / 关闭模拟器仅在 Windows 系统下生效\n\n关闭模拟器使用模拟器实例名称和安装路径设置。为确保功能正常，请使用根据端口号的模拟器自动填写，或不使用 AAS 启动模拟器，并将日志中的模拟器名称与路径填写在设置中",
       "stay_there": "停在原处",
       "goto_main": "前往主界面",
       "close_game": "关闭游戏",
-      "exit_aas": "exit_aas",
-      "exit_emulator": "exit_emulator",
-      "exit_aas_emulator": "exit_aas_emulator",
-      "shutdown": "shutdown"
+      "exit_aas": "关闭 AAS",
+      "exit_emulator": "关闭模拟器",
+      "exit_aas_emulator": "关闭 AAS 和模拟器",
+      "shutdown": "关机"
     }
   },
   "Cafe": {
@@ -288,189 +288,189 @@
   },
   "Schedule": {
     "_info": {
-      "name": "Schedule._info.name",
-      "help": "Schedule._info.help"
+      "name": "课程表设置",
+      "help": ""
     },
     "OnError": {
-      "name": "Schedule.OnError.name",
-      "help": "Schedule.OnError.help",
-      "stop": "stop",
-      "skip": "skip"
+      "name": "错误处理",
+      "help": "当出现区域未解锁或设置有误等错误时，执行该操作",
+      "stop": "停止脚本运行",
+      "skip": "跳过当前任务"
     }
   },
   "Choice1": {
     "_info": {
-      "name": "Choice1._info.name",
-      "help": "Choice1._info.help"
+      "name": "选项 1",
+      "help": ""
     },
     "Location": {
-      "name": "Choice1.Location.name",
-      "help": "Choice1.Location.help",
-      "None": "None",
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9"
+      "name": "区域",
+      "help": "",
+      "None": "无",
+      "0": "夏莱 办公区",
+      "1": "夏莱 居住区",
+      "2": "格黑娜学园 中央区",
+      "3": "阿拜多斯高中",
+      "4": "千年 学习区",
+      "5": "三一 广场",
+      "6": "赤冬联邦学园",
+      "7": "百鬼夜行中心区域",
+      "8": "D.U.白鸟区",
+      "9": "山海经中央特区"
     },
     "Classrooms": {
-      "name": "Choice1.Classrooms.name",
-      "help": "Choice1.Classrooms.help"
+      "name": "教室",
+      "help": "填写教室序号(1 ~ 9)，多个教室使用 > 连接。例：\n5 > 3 > 2 > 4 > 1"
     }
   },
   "Choice2": {
     "_info": {
-      "name": "Choice2._info.name",
-      "help": "Choice2._info.help"
+      "name": "选项 2",
+      "help": ""
     },
     "Location": {
-      "name": "Choice2.Location.name",
-      "help": "Choice2.Location.help",
-      "None": "None",
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9"
+      "name": "区域",
+      "help": "",
+      "None": "无",
+      "0": "夏莱 办公区",
+      "1": "夏莱 居住区",
+      "2": "格黑娜学园 中央区",
+      "3": "阿拜多斯高中",
+      "4": "千年 学习区",
+      "5": "三一 广场",
+      "6": "赤冬联邦学园",
+      "7": "百鬼夜行中心区域",
+      "8": "D.U.白鸟区",
+      "9": "山海经中央特区"
     },
     "Classrooms": {
-      "name": "Choice2.Classrooms.name",
-      "help": "Choice2.Classrooms.help"
+      "name": "教室",
+      "help": "填写教室序号(1 ~ 9)，多个教室使用 > 连接。例：\n5 > 3 > 2 > 4 > 1"
     }
   },
   "Choice3": {
     "_info": {
-      "name": "Choice3._info.name",
-      "help": "Choice3._info.help"
+      "name": "选项 3",
+      "help": ""
     },
     "Location": {
-      "name": "Choice3.Location.name",
-      "help": "Choice3.Location.help",
-      "None": "None",
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9"
+      "name": "区域",
+      "help": "",
+      "None": "无",
+      "0": "夏莱 办公区",
+      "1": "夏莱 居住区",
+      "2": "格黑娜学园 中央区",
+      "3": "阿拜多斯高中",
+      "4": "千年 学习区",
+      "5": "三一 广场",
+      "6": "赤冬联邦学园",
+      "7": "百鬼夜行中心区域",
+      "8": "D.U.白鸟区",
+      "9": "山海经中央特区"
     },
     "Classrooms": {
-      "name": "Choice3.Classrooms.name",
-      "help": "Choice3.Classrooms.help"
+      "name": "教室",
+      "help": "填写教室序号(1 ~ 9)，多个教室使用 > 连接。例：\n5 > 3 > 2 > 4 > 1"
     }
   },
   "Choice4": {
     "_info": {
-      "name": "Choice4._info.name",
-      "help": "Choice4._info.help"
+      "name": "选项 4",
+      "help": ""
     },
     "Location": {
-      "name": "Choice4.Location.name",
-      "help": "Choice4.Location.help",
-      "None": "None",
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9"
+      "name": "区域",
+      "help": "",
+      "None": "无",
+      "0": "夏莱 办公区",
+      "1": "夏莱 居住区",
+      "2": "格黑娜学园 中央区",
+      "3": "阿拜多斯高中",
+      "4": "千年 学习区",
+      "5": "三一 广场",
+      "6": "赤冬联邦学园",
+      "7": "百鬼夜行中心区域",
+      "8": "D.U.白鸟区",
+      "9": "山海经中央特区"
     },
     "Classrooms": {
-      "name": "Choice4.Classrooms.name",
-      "help": "Choice4.Classrooms.help"
+      "name": "教室",
+      "help": "填写教室序号(1 ~ 9)，多个教室使用 > 连接。例：\n5 > 3 > 2 > 4 > 1"
     }
   },
   "Choice5": {
     "_info": {
-      "name": "Choice5._info.name",
-      "help": "Choice5._info.help"
+      "name": "选项 5",
+      "help": ""
     },
     "Location": {
-      "name": "Choice5.Location.name",
-      "help": "Choice5.Location.help",
-      "None": "None",
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9"
+      "name": "区域",
+      "help": "",
+      "None": "无",
+      "0": "夏莱 办公区",
+      "1": "夏莱 居住区",
+      "2": "格黑娜学园 中央区",
+      "3": "阿拜多斯高中",
+      "4": "千年 学习区",
+      "5": "三一 广场",
+      "6": "赤冬联邦学园",
+      "7": "百鬼夜行中心区域",
+      "8": "D.U.白鸟区",
+      "9": "山海经中央特区"
     },
     "Classrooms": {
-      "name": "Choice5.Classrooms.name",
-      "help": "Choice5.Classrooms.help"
+      "name": "教室",
+      "help": "填写教室序号(1 ~ 9)，多个教室使用 > 连接。例：\n5 > 3 > 2 > 4 > 1"
     }
   },
   "Choice6": {
     "_info": {
-      "name": "Choice6._info.name",
-      "help": "Choice6._info.help"
+      "name": "选项 6",
+      "help": ""
     },
     "Location": {
-      "name": "Choice6.Location.name",
-      "help": "Choice6.Location.help",
-      "None": "None",
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9"
+      "name": "区域",
+      "help": "",
+      "None": "无",
+      "0": "夏莱 办公区",
+      "1": "夏莱 居住区",
+      "2": "格黑娜学园 中央区",
+      "3": "阿拜多斯高中",
+      "4": "千年 学习区",
+      "5": "三一 广场",
+      "6": "赤冬联邦学园",
+      "7": "百鬼夜行中心区域",
+      "8": "D.U.白鸟区",
+      "9": "山海经中央特区"
     },
     "Classrooms": {
-      "name": "Choice6.Classrooms.name",
-      "help": "Choice6.Classrooms.help"
+      "name": "教室",
+      "help": "填写教室序号(1 ~ 9)，多个教室使用 > 连接。例：\n5 > 3 > 2 > 4 > 1"
     }
   },
   "Choice7": {
     "_info": {
-      "name": "Choice7._info.name",
-      "help": "Choice7._info.help"
+      "name": "选项 7",
+      "help": ""
     },
     "Location": {
-      "name": "Choice7.Location.name",
-      "help": "Choice7.Location.help",
-      "None": "None",
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9"
+      "name": "区域",
+      "help": "",
+      "None": "无",
+      "0": "夏莱 办公区",
+      "1": "夏莱 居住区",
+      "2": "格黑娜学园 中央区",
+      "3": "阿拜多斯高中",
+      "4": "千年 学习区",
+      "5": "三一 广场",
+      "6": "赤冬联邦学园",
+      "7": "百鬼夜行中心区域",
+      "8": "D.U.白鸟区",
+      "9": "山海经中央特区"
     },
     "Classrooms": {
-      "name": "Choice7.Classrooms.name",
-      "help": "Choice7.Classrooms.help"
+      "name": "教室",
+      "help": "填写教室序号(1 ~ 9)，多个教室使用 > 连接。例：\n5 > 3 > 2 > 4 > 1"
     }
   },
   "Bounty": {
