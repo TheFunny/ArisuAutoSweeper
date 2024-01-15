@@ -36,7 +36,7 @@ class TacticalChallenge(TacticalChallengeUI):
         if not select:
             return random.choice(self.select_players)
         else:
-            return self.select_players[select-1]
+            return self.select_players[select - 1]
 
     def _handle_challenge(self, status):
         match status:

@@ -1,7 +1,7 @@
 import numpy as np
 
-from module.base.timer import Timer
 from module.base.base import ModuleBase
+from module.base.timer import Timer
 from module.base.utils import area_size
 from module.logger import logger
 from module.ocr.ocr import DigitCounter
@@ -16,13 +16,14 @@ ITEM_POSITIONS = {
     17: (650, 460), 18: (805, 460), 19: (960, 460), 20: (1110, 460),
 }
 
+
 class ShopUI(UI):
     def __init__(self, config, device):
         super().__init__(config, device)
 
         self.click_coords = self.device.click_methods.get(self.config.Emulator_ControlMethod, self.device.click_adb)
         self.swipe_vector_range = (0.85, 0.9)
-        self.swipe_flags = {8:False, 16: False}
+        self.swipe_flags = {8: False, 16: False}
         self.list = ITEM_LIST
 
     def swipe_page(self, direction: str, main: ModuleBase, vector_range=None, reverse=False):
@@ -71,7 +72,7 @@ class ShopUI(UI):
         shop_switch.set('on', main=self)
 
         return True
-    
+
     def select_items(self, item_list):
         """
         Select items in the item list checking if swipe is required each time.
@@ -89,7 +90,7 @@ class ShopUI(UI):
                 )
             while not timer.reached_and_reset():
                 pass
-            self.click_coords(*ITEM_POSITIONS[item])        
+            self.click_coords(*ITEM_POSITIONS[item])
 
     def should_swipe(self, item):
         """
@@ -104,12 +105,13 @@ class ShopUI(UI):
             self.swipe_flags[16] = True
             return True
         return False
-    
+
     def reset_swipe_flags(self):
         self.swipe_flags[8], self.swipe_flags[16] = False, False
 
     def make_purchase(self):
-        if self.match_color(PURCHASE) and self.select_then_check(PURCHASE, CONFIRM_PURCHASE) and self.appear_then_click(CONFIRM_PURCHASE):
+        if self.match_color(PURCHASE) and self.select_then_check(PURCHASE, CONFIRM_PURCHASE) and self.appear_then_click(
+                CONFIRM_PURCHASE):
             return True
         logger.warning("No items were selected. Unable to purchase.")
         return False
@@ -125,7 +127,7 @@ class ShopUI(UI):
                 logger.info("Refreshed the shop")
                 return True
         return False
-                                
+
     def get_refresh_count(self):
         if not self.select_then_check(REFRESH, CONFIRM_REFRESH):
             logger.warning('OCR failed due to invalid page')
@@ -135,4 +137,3 @@ class ShopUI(UI):
             logger.warning('Invalid count')
             return False
         return count
-

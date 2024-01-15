@@ -28,6 +28,7 @@ REPLY_TEMPLATE = REPLY.matched_button.image
 STORY_TEMPLATE = STORY.matched_button.image
 CHATTING_TEMPLATE = CHATTING.matched_button.image
 
+
 class MomoTalkUI(UI):
     def __init__(self, config, device):
         super().__init__(config, device)
@@ -81,7 +82,7 @@ class MomoTalkUI(UI):
         switch.set(state, main=self)
 
         return True
-    
+
     def click_all(self, template, x_add=0, y_add=0):
         """
         Find the all the locations of the template adding an offset if specified and click them. 
@@ -116,7 +117,7 @@ class MomoTalkUI(UI):
             return True
         logger.warning("No students available for interaction")
         return False
-    
+
     def sort_messages(self):
         """
         Switch from newest to unread and sort the messages in descending order
@@ -140,7 +141,7 @@ class MomoTalkUI(UI):
             return True
         logger.warning("No students available for interaction")
         return False
-    
+
     def chat(self):
         """
         Waits for the chat area to be stable and then 
@@ -164,8 +165,8 @@ class MomoTalkUI(UI):
                 timer.reset()
             elif timer.reached():
                 logger.info("No new message detected")
-                return False        
-                
+                return False
+
     def skip_story(self):
         """
         Skip story by executing a series of steps. Returns True if the confirm skip
@@ -184,5 +185,3 @@ class MomoTalkUI(UI):
                     while not timer.reached_and_reset():
                         pass
                     break
-
-

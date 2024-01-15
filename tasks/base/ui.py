@@ -5,10 +5,10 @@ from module.base.utils import get_color
 from module.exception import GameNotRunningError, GamePageUnknownError, RequestHumanTakeover
 from module.logger import logger
 from module.ocr.ocr import Ocr, Digit
+from tasks.base.assets.assets_base_page import BACK
 from tasks.base.main_page import MainPage
 from tasks.base.page import Page, page_main
 from tasks.login.assets.assets_login import LOGIN_LOADING, OCR_YEAR
-from tasks.base.assets.assets_base_page import BACK
 
 
 class UI(MainPage):
@@ -24,7 +24,7 @@ class UI(MainPage):
     def appear_trademark_year(self):
         ocr_year = Digit(OCR_YEAR).ocr_single_line(self.device.image)
         return ocr_year == 2021
-    
+
     def ui_page_appear(self, page):
         """
         Args:
@@ -132,7 +132,7 @@ class UI(MainPage):
         self.interval_clear(list(Page.iter_check_buttons()))
 
         # loading_timer = Timer(0.5)
-        back_timer = Timer(15,15)
+        back_timer = Timer(15, 15)
         logger.hr(f"UI goto {destination}")
         while 1:
             if skip_first_screenshot:
@@ -190,7 +190,6 @@ class UI(MainPage):
                     self.device.back()
                     logger.info("Unknown page, try to back")
                 back_timer.reset()
-                
 
         # Reset connection
         Page.clear_connection()
@@ -388,11 +387,11 @@ class UI(MainPage):
             return True
         # disabled because will exit the game if quit appears
 
-        #if self.handle_ap_exceed():
+        # if self.handle_ap_exceed():
         #    return True
-        #if self.handle_insufficient_inventory():
+        # if self.handle_insufficient_inventory():
         #    return True
-        #if self.handle_item_expired():
+        # if self.handle_item_expired():
         #    return True
 
         return False
@@ -458,4 +457,4 @@ class UI(MainPage):
                     logger.error("Failed to close popup")
                     raise RequestHumanTakeover
                 while not wait.reached():
-                    pass    
+                    pass

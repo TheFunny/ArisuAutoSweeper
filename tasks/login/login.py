@@ -18,6 +18,7 @@ class Login(UI):
             GameTooManyClickError:
             GameNotRunningError:
         """
+
         def _page_main_twice_confirm():
             if self.ui_page_appear(page_main):
                 timer = Timer(1).start()

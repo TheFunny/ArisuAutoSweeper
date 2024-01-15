@@ -1,16 +1,18 @@
-from module.base.timer import Timer
+import numpy as np
+
 from module.base.decorator import Config
+from module.base.timer import Timer
 from module.logger import logger
 from module.ocr.ocr import DigitCounter
-from tasks.base.ui import UI
 from tasks.base.assets.assets_base_page import SCHEDULE_CHECK
+from tasks.base.ui import UI
 from tasks.schedule.assets.assets_schedule import *
 from tasks.schedule.scroll_select import ScrollSelect
-import numpy as np
 
 SCROLL_SELECT = ScrollSelect(window_button=SCROLL, first_item_button=FIRST_ITEM, expected_button=LOCATIONS, clickx=1116)
 xs = np.linspace(299, 995, 3, dtype=int)
 ys = np.linspace(268, 573, 3, dtype=int)
+
 
 class ScheduleUI(UI):
     @Config.when(Emulator_GameLanguage='jp')
@@ -20,7 +22,7 @@ class ScheduleUI(UI):
     @Config.when(Emulator_GameLanguage=None)
     def set_clickx(self):
         pass
-    
+
     def select_then_check(self, dest_enter: ButtonWrapper, dest_check: ButtonWrapper):
         timer = Timer(8, 10).start()
         while 1:
@@ -30,10 +32,10 @@ class ScheduleUI(UI):
                 timer.reset()
             if self.appear(dest_check):
                 return True
-            
+
             if timer.reached():
                 return False
-    
+
     def click_then_check(self, coords, dest_check: ButtonWrapper):
         click_coords = self.device.click_methods.get(self.config.Emulator_ControlMethod, self.device.click_adb)
         timer = Timer(3, 2).start()
@@ -47,14 +49,14 @@ class ScheduleUI(UI):
                 pass
             if timer.reached():
                 return False
-            
+
     def enter_location(self, location):
         SCROLL_SELECT.select_location(self, location)
         if not self.appear(LOCATIONS):
             logger.error("Unable to navigate to page for location {}".format(location + 1))
             return False
         return self.select_then_check(LOCATIONS, LOCATIONS_POPUP)
-                    
+
     def select_classrooms(self, ticket, classrooms):
         for classroom in classrooms:
             if ticket == 0:
@@ -86,5 +88,5 @@ class ScheduleUI(UI):
             logger.warning('Invalid ticket')
             return False
         logger.attr('ScheduleTicket', ticket)
-        #self.config.stored.BountyTicket.set(ticket)
+        # self.config.stored.BountyTicket.set(ticket)
         return ticket

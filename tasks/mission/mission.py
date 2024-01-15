@@ -1,28 +1,28 @@
-from enum import Enum
-
-from module.base.timer import Timer
-from module.exception import RequestHumanTakeover
-from module.logger import logger
-from tasks.mission.ui import MissionUI, CommissionsUI, SWITCH_QUEST
-from tasks.stage.ap import AP
-from tasks.cafe.cafe import Cafe
-from tasks.circle.circle import Circle
-from tasks.task.task import Task
-from tasks.mail.mail import Mail
-from tasks.item.data_update import DataUpdate
 import json
 import math
-from filelock import FileLock
 from datetime import datetime, timedelta
+from enum import Enum
+
+from filelock import FileLock
+
+from module.base.timer import Timer
+from module.logger import logger
+from tasks.cafe.cafe import Cafe
+from tasks.circle.circle import Circle
+from tasks.item.data_update import DataUpdate
+from tasks.mail.mail import Mail
+from tasks.mission.ui import MissionUI, CommissionsUI, SWITCH_QUEST
+from tasks.task.task import Task
+
 
 class MissionStatus(Enum):
-    AP = 0 # Calculate AP and decide to terminate Mission module or not
-    NAVIGATE = 1 # Navigate to the stage page for example the commissions page or mission page
-    SELECT = 2 # Select the stage mode for example hard or normal in mission
-    ENTER = 3 # Search and for the stage in the stage list and enter
-    SWEEP = 4 # Sweep the stage 
-    RECHARGE = 5 # Recharge AP from other taks if they are enabled
-    FINISH = -1 # Inidicate termination of Mission module
+    AP = 0  # Calculate AP and decide to terminate Mission module or not
+    NAVIGATE = 1  # Navigate to the stage page for example the commissions page or mission page
+    SELECT = 2  # Select the stage mode for example hard or normal in mission
+    ENTER = 3  # Search and for the stage in the stage list and enter
+    SWEEP = 4  # Sweep the stage
+    RECHARGE = 5  # Recharge AP from other taks if they are enabled
+    FINISH = -1  # Inidicate termination of Mission module
 
 
 class Mission(MissionUI, CommissionsUI):
@@ -84,7 +84,7 @@ class Mission(MissionUI, CommissionsUI):
             logger.error("Failed to read configuration file")
         finally:
             return queue
-    
+
     def check_reset_daily(self):
         # Check if it's time to reset the queue
         if self.reset_daily:
@@ -110,13 +110,13 @@ class Mission(MissionUI, CommissionsUI):
                 return True
 
         return False
-    
+
     @property
     def valid_task(self) -> list:
         task = self.mission_info
         if not task:
             logger.warning('Mission enabled but no task set')
-            #self.error_handler()            
+            # self.error_handler()
         return task
 
     @property
@@ -131,12 +131,12 @@ class Mission(MissionUI, CommissionsUI):
     def current_count(self):
         if self.current_mode == "H" and self.task[0][2] > 3:
             return 3
-        return self.task[0][2] 
+        return self.task[0][2]
 
     @current_count.setter
     def current_count(self, value):
         self.task[0][2] = value
-    
+
     def select(self) -> bool:
         """
         A wrapper method to select the current_mode 
@@ -154,7 +154,7 @@ class Mission(MissionUI, CommissionsUI):
         else:
             logger.error("Uknown mode")
             return False
-        
+
     def get_realistic_count(self) -> int:
         """
         Calculate the possible number of sweeps based on the current AP
@@ -196,11 +196,12 @@ class Mission(MissionUI, CommissionsUI):
         Check if AP related modules such as cafe, circle, task, mail are enabled and run them if they are.
         task_call only works after the current task is finished so is not suitable.
         """
-        cafe_reward = self.config.cross_get(["Cafe", "Scheduler", "Enable"]) and self.config.cross_get(["Cafe", "Cafe", "Reward"])
+        cafe_reward = self.config.cross_get(["Cafe", "Scheduler", "Enable"]) and self.config.cross_get(
+            ["Cafe", "Cafe", "Reward"])
         circle = self.config.cross_get(["Circle", "Scheduler", "Enable"])
         task = self.config.cross_get(["Task", "Scheduler", "Enable"])
         mail = self.config.cross_get(["Mail", "Scheduler", "Enable"])
-        ap_tasks = [(cafe_reward,Cafe), (circle, Circle), (task, Task), (mail, Mail)]
+        ap_tasks = [(cafe_reward, Cafe), (circle, Circle), (task, Task), (mail, Mail)]
         modules = [x[1] for x in ap_tasks if x[0]]
         if not modules:
             logger.info("Recharge AP was enabled but no AP related modules were enabled")
@@ -208,7 +209,7 @@ class Mission(MissionUI, CommissionsUI):
         for module in modules:
             module(config=self.config, device=self.device).run()
         return True
-        
+
     def handle_mission(self, status):
         match status:
             case MissionStatus.AP:
@@ -216,13 +217,13 @@ class Mission(MissionUI, CommissionsUI):
                     return MissionStatus.FINISH
                 self.realistic_count = self.get_realistic_count()
                 if self.realistic_count == 0 and self.recharge_AP:
-                        self.recharge_AP = False
-                        return MissionStatus.RECHARGE
+                    self.recharge_AP = False
+                    return MissionStatus.RECHARGE
                 elif self.realistic_count == 0 and not self.recharge_AP:
                     return MissionStatus.FINISH
                 else:
                     return MissionStatus.NAVIGATE
-            case MissionStatus.NAVIGATE:      
+            case MissionStatus.NAVIGATE:
                 self.navigate(self.previous_mode, self.current_mode)
                 return MissionStatus.SELECT
             case MissionStatus.SELECT:
@@ -241,7 +242,7 @@ class Mission(MissionUI, CommissionsUI):
                     self.update_task()
                 else:
                     self.update_task(failure=True)
-                return MissionStatus.AP    
+                return MissionStatus.AP
             case MissionStatus.RECHARGE:
                 if self.recharge():
                     DataUpdate(config=self.config, device=self.device).run()
@@ -261,10 +262,10 @@ class Mission(MissionUI, CommissionsUI):
             if self.task:
                 action_timer = Timer(0.5, 1)
                 status = MissionStatus.AP
-                
+
                 """Update the dashboard to accurately calculate AP"""
                 DataUpdate(config=self.config, device=self.device).run()
-                
+
                 while 1:
                     self.device.screenshot()
 
@@ -277,7 +278,6 @@ class Mission(MissionUI, CommissionsUI):
 
                     if status == MissionStatus.FINISH:
                         break
-            
+
             # delay mission to 7 hours if there are still stages in the queue 
             self.config.task_delay(minute=420) if self.task else self.config.task_delay(server_update=True)
-        

@@ -1,7 +1,7 @@
 from module.base.base import ModuleBase
 from module.base.timer import Timer
-from tasks.base.assets.assets_base_popup import *
 from tasks.base.assets.assets_base_page import LOADING_CHECK
+from tasks.base.assets.assets_base_popup import *
 
 
 class PopupHandler(ModuleBase):
@@ -111,16 +111,15 @@ class PopupHandler(ModuleBase):
             return True
 
         return False
-    
+
     def handle_level_up(self, interval=5) -> bool:
         if self.appear_then_click(LEVEL_UP, interval=interval):
             return True
 
         return False
-    
+
     def handle_quit(self, interval=5) -> bool:
         if self.appear_then_click(QUIT, interval=interval):
             return True
 
         return False
-    

@@ -2,8 +2,8 @@ from enum import Enum
 
 from module.base.timer import Timer
 from module.logger import logger
-from tasks.tactical_challenge.assets.assets_tactical_challenge import *
 from tasks.momotalk.ui import MomoTalkUI
+
 
 class MomoTalkStatus(Enum):
     OPEN = 0
@@ -12,6 +12,7 @@ class MomoTalkStatus(Enum):
     CHAT = 3
     STORY = 4
     FINISHED = -1
+
 
 class MomoTalk(MomoTalkUI):
     def handle_momotalk(self, status):
@@ -26,16 +27,16 @@ class MomoTalk(MomoTalkUI):
             case MomoTalkStatus.CHECK:
                 if self.check_first_student():
                     return MomoTalkStatus.CHAT
-                return MomoTalkStatus.FINISHED                
+                return MomoTalkStatus.FINISHED
             case MomoTalkStatus.CHAT:
                 if self.chat():
                     return MomoTalkStatus.STORY
                 return MomoTalkStatus.OPEN
             case MomoTalkStatus.STORY:
                 if self.skip_story():
-                    return MomoTalkStatus.CHAT    
+                    return MomoTalkStatus.CHAT
             case MomoTalkStatus.FINISHED:
-                return status                
+                return status
             case _:
                 logger.warning(f'Invalid status: {status}')
         return status
@@ -58,4 +59,3 @@ class MomoTalk(MomoTalkUI):
                 break
 
         self.config.task_delay(server_update=True)
-

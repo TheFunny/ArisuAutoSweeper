@@ -1,7 +1,6 @@
 from enum import Flag
 
 from module.base.timer import Timer
-from module.exception import RequestHumanTakeover
 from module.logger import logger
 from module.ui.switch import Switch
 from tasks.base.assets.assets_base_page import BACK
@@ -17,6 +16,7 @@ class ShopStatus(Flag):
     REFRESH = 3
     END = 4
     FINISH = -1
+
 
 class Shop(ShopUI):
     @property
@@ -58,7 +58,7 @@ class Shop(ShopUI):
     @property
     def current_purchase_count(self):
         return self.task[0][1]
-    
+
     @property
     def current_item_list(self):
         return self.task[0][2]

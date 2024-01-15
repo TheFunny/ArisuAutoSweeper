@@ -1,9 +1,9 @@
 from module.base.timer import Timer
 from module.logger import logger
-from module.ui.switch import Switch
 from module.ocr.ocr import Digit
+from module.ui.switch import Switch
 from tasks.base.assets.assets_base_page import BACK, MISSION_CHECK, EVENT_CHECK, WORK_GO_TO_EVENT
-from tasks.base.page import page_mission, page_commissions, page_work #,page_event
+from tasks.base.page import page_mission, page_commissions, page_work  # ,page_event
 from tasks.base.ui import UI
 from tasks.mission.assets.assets_mission import *
 from tasks.stage.ap import AP
@@ -13,7 +13,7 @@ from tasks.stage.sweep import StageSweep
 SHARED_LIST = StageList('SharedList')
 EVENT_LIST = StageList('EventList', EVENT_LIST, EVENT_INDEX, EVENT_ITEM, button_stars=EVENT_STARS)
 SHARED_SWEEP = StageSweep('MissionSweep', 99)
-SHARED_SWEEP.set_button(button_check=CHECK_MISSION_SWEEP) # Check sweep is different for mission, event
+SHARED_SWEEP.set_button(button_check=CHECK_MISSION_SWEEP)  # Check sweep is different for mission, event
 COMMISSIONS_SWEEP = StageSweep('CommissionsSweep', 99)
 
 SWITCH_NORMAL = Switch("Normal_switch")
@@ -25,8 +25,8 @@ SWITCH_HARD.add_state("on", HARD_ON)
 SWITCH_HARD.add_state("off", HARD_OFF)
 
 SWITCH_QUEST = Switch("QUEST_switch")
-SWITCH_QUEST.add_state("on",QUEST_ON)
-SWITCH_QUEST.add_state("off",QUEST_OFF)
+SWITCH_QUEST.add_state("on", QUEST_ON)
+SWITCH_QUEST.add_state("off", QUEST_OFF)
 
 """
 A dictionary that maps the mode to a tuple where 
@@ -38,7 +38,7 @@ MODE_TO_PAGE = {
     "H": (MISSION_CHECK, page_mission),
     "XP": (CHECK_XP, page_commissions),
     "CR": (CHECK_CR, page_commissions),
-    "E" : (EVENT_CHECK, None) #page_event
+    "E": (EVENT_CHECK, None)  # page_event
 }
 
 
@@ -49,7 +49,7 @@ class MissionUI(UI, AP):
         if self.select_area(area) and self.select_mode(switch):
             return True
         return False
-    
+
     def select_area(self, num):
         """"
         May require further error handling for these cases. 
@@ -67,9 +67,9 @@ class MissionUI(UI, AP):
                 if current_area == num:
                     return True
                 elif current_area > num:
-                    [self.click_with_interval(LEFT, interval=1) for x in range(abs(current_area-num))]
+                    [self.click_with_interval(LEFT, interval=1) for x in range(abs(current_area - num))]
                 elif current_area < num:
-                    [self.click_with_interval(RIGHT, interval=1) for x in range(abs(current_area-num))]
+                    [self.click_with_interval(RIGHT, interval=1) for x in range(abs(current_area - num))]
             except:
                 tries += 1
                 if tries > 3:
@@ -107,12 +107,12 @@ class MissionUI(UI, AP):
         For example, "N" and "H" are in Mission so we call go_back.
         If different, ui_ensure is called for example, "N" and "IR".
         """
-        if prev==next or (prev in ["N", "H"] and next in ["N", "H"]):
+        if prev == next or (prev in ["N", "H"] and next in ["N", "H"]):
             self.go_back(MODE_TO_PAGE[next][0])
         elif prev in ["XP", "CR"] and next in ["XP", "CR"]:
             self.go_back(CHECK_COMMISSIONS)
         else:
-            self.goto_event() if next == "E" else self.ui_ensure(MODE_TO_PAGE[next][1]) 
+            self.goto_event() if next == "E" else self.ui_ensure(MODE_TO_PAGE[next][1])
 
     def go_back(self, check):
         while 1:
@@ -132,12 +132,14 @@ class MissionUI(UI, AP):
             if self.appear(EVENT_CHECK):
                 break
             self.appear_then_click(WORK_GO_TO_EVENT)
-            self.device.swipe((40,160), (260, 40))
+            self.device.swipe((40, 160), (260, 40))
             while not timer.reached_and_reset():
                 pass
 
+
 class CommissionsUI(UI, AP):
     """Works the same way as select_bounty"""
+
     def select_commission(self, mode):
         if mode == "CR":
             dest_enter, dest_check = SELECT_CR, CHECK_CR

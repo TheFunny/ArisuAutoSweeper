@@ -1,14 +1,14 @@
+import re
 from enum import Flag
 
 from module.base.timer import Timer
 from module.exception import RequestHumanTakeover
 from module.logger import logger
 from tasks.base.assets.assets_base_page import BACK
+from tasks.base.assets.assets_base_page import SCHEDULE_CHECK
 from tasks.base.page import page_schedule
 from tasks.schedule.ui import ScheduleUI
-from tasks.base.assets.assets_base_page import SCHEDULE_CHECK
 
-import re
 
 class ScheduleStatus(Flag):
     OCR = 0
@@ -18,7 +18,7 @@ class ScheduleStatus(Flag):
     FINISH = 4
 
 
-class Schedule(ScheduleUI):    
+class Schedule(ScheduleUI):
     @property
     def schedule_info(self):
         info = []
@@ -28,7 +28,8 @@ class Schedule(ScheduleUI):
 
         for choice in choices:
             location, classrooms = schedule_config[choice]["Location"], schedule_config[choice]["Classrooms"]
-            if location == "None" or not classrooms or (isinstance(classrooms, str) and classrooms.replace(" ", "") == ""):
+            if location == "None" or not classrooms or (
+                    isinstance(classrooms, str) and classrooms.replace(" ", "") == ""):
                 continue
             elif isinstance(classrooms, int):
                 classrooms_list = [str(classrooms)]
@@ -39,7 +40,7 @@ class Schedule(ScheduleUI):
                 classrooms_list = []
                 # tried to convert to set to remove duplicates but doesn't maintain order
                 [classrooms_list.append(x) for x in classrooms if x not in classrooms_list]
-            
+
             if self.valid_classroom(classrooms_list):
                 info.append([location, classrooms_list])
             else:
@@ -57,7 +58,7 @@ class Schedule(ScheduleUI):
             if not 1 <= int(classroom) <= 9:
                 return False
         return True
-    
+
     @property
     def valid_task(self) -> list:
         task = self.schedule_info
