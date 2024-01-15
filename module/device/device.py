@@ -188,4 +188,5 @@ class Device(Screenshot, Control, AppControl, Platform):
         self.click_record_clear()
 
     def back(self):
+        logger.info("Sending Back...")
         self.adb_shell("input keyevent 4")
