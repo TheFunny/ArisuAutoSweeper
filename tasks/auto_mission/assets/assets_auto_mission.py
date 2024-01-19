@@ -123,10 +123,10 @@ CHEST = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/auto_mission/CHEST.png',
-        area=(150, 539, 206, 578),
-        search=(130, 519, 226, 598),
-        color=(150, 204, 233),
-        button=(150, 539, 206, 578),
+        area=(151, 544, 185, 576),
+        search=(131, 524, 205, 596),
+        color=(144, 206, 238),
+        button=(151, 544, 185, 576),
     ),
 )
 END_PHASE = ButtonWrapper(
