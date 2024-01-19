@@ -8,6 +8,13 @@
       "DataUpdate"
     ]
   },
+  "Copilot": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
+      "Auto_Mission"
+    ]
+  },
   "Daily": {
     "menu": "collapse",
     "page": "setting",

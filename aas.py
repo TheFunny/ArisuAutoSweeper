@@ -66,6 +66,10 @@ class ArisuAutoSweeper(AzurLaneAutoScript):
         from tasks.schedule.schedule import Schedule
         Schedule(config=self.config, device=self.device).run()
 
+    def auto_mission(self):
+        from tasks.auto_mission.auto_mission import AutoMission
+        AutoMission(config=self.config, device=self.device).run()
+
     def data_update(self):
         from tasks.item.data_update import DataUpdate
         DataUpdate(config=self.config, device=self.device).run()

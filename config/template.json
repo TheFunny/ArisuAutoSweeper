@@ -49,6 +49,35 @@
       "TacticalChallengeTicket": {}
     }
   },
+  "Auto_Mission": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Auto_Mission",
+      "ServerUpdate": "04:00"
+    },
+    "Formation": {
+      "burst1": 1,
+      "burst2": 1,
+      "pierce1": 1,
+      "pierce2": 1,
+      "mystic1": 1,
+      "mystic2": 1
+    },
+    "ManualBoss": {
+      "Enable": false
+    },
+    "Normal": {
+      "Enable": false,
+      "Area": 2,
+      "Completion": "clear"
+    },
+    "Hard": {
+      "Enable": false,
+      "Area": 2,
+      "Completion": "clear"
+    }
+  },
   "Cafe": {
     "Scheduler": {
       "Enable": true,

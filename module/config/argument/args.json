@@ -246,6 +246,138 @@
       }
     }
   },
+  "Auto_Mission": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Auto_Mission",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Formation": {
+      "burst1": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "burst2": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pierce1": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pierce2": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "mystic1": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "mystic2": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    "ManualBoss": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
+    "Normal": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Area": {
+        "type": "input",
+        "value": 2
+      },
+      "Completion": {
+        "type": "select",
+        "value": "clear",
+        "option": [
+          "clear",
+          "three_stars"
+        ]
+      }
+    },
+    "Hard": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Area": {
+        "type": "input",
+        "value": 2
+      },
+      "Completion": {
+        "type": "select",
+        "value": "clear",
+        "option": [
+          "clear",
+          "three_stars",
+          "three_stars_chest"
+        ]
+      }
+    }
+  },
   "Cafe": {
     "Scheduler": {
       "Enable": {

@@ -242,6 +242,43 @@ TacticalChallengeShop:
   "14": false
   "15": false
 
+Formation:
+  burst1:
+    value: 1
+    option: [ 1, 2, 3, 4 ]
+  burst2:
+    value: 1
+    option: [ 1, 2, 3, 4 ]
+  pierce1:
+    value: 1
+    option: [ 1, 2, 3, 4 ]
+  pierce2:
+    value: 1
+    option: [ 1, 2, 3, 4 ]
+  mystic1:
+    value: 1
+    option: [ 1, 2, 3, 4 ]
+  mystic2:
+    value: 1
+    option: [ 1, 2, 3, 4 ]
+
+ManualBoss:
+  Enable: false
+  
+Normal:
+  Enable: false
+  Area: 2
+  Completion:
+    value: clear
+    option: [ clear, three_stars]
+
+Hard:
+  Enable: false
+  Area: 2
+  Completion:
+    value: clear
+    option: [ clear, three_stars, three_stars_chest]
+
 ItemStorage:
   AP:
     stored: StoredAP

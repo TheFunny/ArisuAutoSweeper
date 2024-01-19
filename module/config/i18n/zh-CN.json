@@ -4,6 +4,10 @@
       "name": "AAS",
       "help": ""
     },
+    "Copilot": {
+      "name": "Menu.Copilot.name",
+      "help": "Menu.Copilot.help"
+    },
     "Daily": {
       "name": "每日",
       "help": ""
@@ -29,6 +33,10 @@
     "DataUpdate": {
       "name": "仪表盘更新",
       "help": ""
+    },
+    "Auto_Mission": {
+      "name": "Task.Auto_Mission.name",
+      "help": "Task.Auto_Mission.help"
     },
     "Cafe": {
       "name": "咖啡厅",
@@ -814,6 +822,111 @@
     "15": {
       "name": "15",
       "help": "x125k 信用点 - 100 战术硬币"
+    }
+  },
+  "Formation": {
+    "_info": {
+      "name": "Formation._info.name",
+      "help": "Formation._info.help"
+    },
+    "burst1": {
+      "name": "Formation.burst1.name",
+      "help": "Formation.burst1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "burst2": {
+      "name": "Formation.burst2.name",
+      "help": "Formation.burst2.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "pierce1": {
+      "name": "Formation.pierce1.name",
+      "help": "Formation.pierce1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "pierce2": {
+      "name": "Formation.pierce2.name",
+      "help": "Formation.pierce2.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "mystic1": {
+      "name": "Formation.mystic1.name",
+      "help": "Formation.mystic1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "mystic2": {
+      "name": "Formation.mystic2.name",
+      "help": "Formation.mystic2.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    }
+  },
+  "ManualBoss": {
+    "_info": {
+      "name": "ManualBoss._info.name",
+      "help": "ManualBoss._info.help"
+    },
+    "Enable": {
+      "name": "ManualBoss.Enable.name",
+      "help": "ManualBoss.Enable.help"
+    }
+  },
+  "Normal": {
+    "_info": {
+      "name": "Normal._info.name",
+      "help": "Normal._info.help"
+    },
+    "Enable": {
+      "name": "Normal.Enable.name",
+      "help": "Normal.Enable.help"
+    },
+    "Area": {
+      "name": "Normal.Area.name",
+      "help": "Normal.Area.help"
+    },
+    "Completion": {
+      "name": "Normal.Completion.name",
+      "help": "Normal.Completion.help",
+      "clear": "clear",
+      "three_stars": "three_stars"
+    }
+  },
+  "Hard": {
+    "_info": {
+      "name": "Hard._info.name",
+      "help": "Hard._info.help"
+    },
+    "Enable": {
+      "name": "Hard.Enable.name",
+      "help": "Hard.Enable.help"
+    },
+    "Area": {
+      "name": "Hard.Area.name",
+      "help": "Hard.Area.help"
+    },
+    "Completion": {
+      "name": "Hard.Completion.name",
+      "help": "Hard.Completion.help",
+      "clear": "clear",
+      "three_stars": "three_stars",
+      "three_stars_chest": "three_stars_chest"
     }
   },
   "ItemStorage": {

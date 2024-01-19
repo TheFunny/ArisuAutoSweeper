@@ -4,6 +4,10 @@
       "name": "AAS",
       "help": ""
     },
+    "Copilot": {
+      "name": "Copilot",
+      "help": ""
+    },
     "Daily": {
       "name": "Daily",
       "help": ""
@@ -28,6 +32,10 @@
     },
     "DataUpdate": {
       "name": "Dashboard Upd",
+      "help": ""
+    },
+    "Auto_Mission": {
+      "name": "Auto-Mission",
       "help": ""
     },
     "Cafe": {
@@ -814,6 +822,111 @@
     "15": {
       "name": "15",
       "help": "x125k Credits - 100 Coins"
+    }
+  },
+  "Formation": {
+    "_info": {
+      "name": "Formation",
+      "help": "Select the unit for each type"
+    },
+    "burst1": {
+      "name": "Explosive 1",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "burst2": {
+      "name": "Explosive 2",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "pierce1": {
+      "name": "Piercing 1",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "pierce2": {
+      "name": "Piercing 2",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "mystic1": {
+      "name": "Mystic 1",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "mystic2": {
+      "name": "Mystic 2",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    }
+  },
+  "ManualBoss": {
+    "_info": {
+      "name": "Manual Boss",
+      "help": "AAS will wait for the user to take over when encountering the boss"
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    }
+  },
+  "Normal": {
+    "_info": {
+      "name": "Normal",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Area": {
+      "name": "Area",
+      "help": ""
+    },
+    "Completion": {
+      "name": "Completion level",
+      "help": "",
+      "clear": "Clear",
+      "three_stars": "3 Stars"
+    }
+  },
+  "Hard": {
+    "_info": {
+      "name": "Hard",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Area": {
+      "name": "Area",
+      "help": ""
+    },
+    "Completion": {
+      "name": "Completion level",
+      "help": "",
+      "clear": "Clear",
+      "three_stars": "3 Stars",
+      "three_stars_chest": "3 Stars + Chest"
     }
   },
   "ItemStorage": {
