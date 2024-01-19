@@ -161,23 +161,23 @@ class GeneratedConfig:
 
     # Group `Formation`
     Formation_burst1 = 1  # 1, 2, 3, 4
-    Formation_burst2 = 1  # 1, 2, 3, 4
-    Formation_pierce1 = 1  # 1, 2, 3, 4
-    Formation_pierce2 = 1  # 1, 2, 3, 4
-    Formation_mystic1 = 1  # 1, 2, 3, 4
-    Formation_mystic2 = 1  # 1, 2, 3, 4
+    Formation_burst2 = 4  # 1, 2, 3, 4
+    Formation_pierce1 = 2  # 1, 2, 3, 4
+    Formation_pierce2 = 4  # 1, 2, 3, 4
+    Formation_mystic1 = 3  # 1, 2, 3, 4
+    Formation_mystic2 = 4  # 1, 2, 3, 4
 
     # Group `ManualBoss`
     ManualBoss_Enable = False
 
     # Group `Normal`
     Normal_Enable = False
-    Normal_Area = 2
+    Normal_Area = 4
     Normal_Completion = 'clear'  # clear, three_stars
 
     # Group `Hard`
     Hard_Enable = False
-    Hard_Area = 2
+    Hard_Area = 6
     Hard_Completion = 'clear'  # clear, three_stars, three_stars_chest
 
     # Group `ItemStorage`

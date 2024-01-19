@@ -285,7 +285,7 @@
       },
       "burst2": {
         "type": "select",
-        "value": 1,
+        "value": 4,
         "option": [
           1,
           2,
@@ -295,7 +295,7 @@
       },
       "pierce1": {
         "type": "select",
-        "value": 1,
+        "value": 2,
         "option": [
           1,
           2,
@@ -305,7 +305,7 @@
       },
       "pierce2": {
         "type": "select",
-        "value": 1,
+        "value": 4,
         "option": [
           1,
           2,
@@ -315,7 +315,7 @@
       },
       "mystic1": {
         "type": "select",
-        "value": 1,
+        "value": 3,
         "option": [
           1,
           2,
@@ -325,7 +325,7 @@
       },
       "mystic2": {
         "type": "select",
-        "value": 1,
+        "value": 4,
         "option": [
           1,
           2,
@@ -347,7 +347,7 @@
       },
       "Area": {
         "type": "input",
-        "value": 2
+        "value": 4
       },
       "Completion": {
         "type": "select",
@@ -365,7 +365,7 @@
       },
       "Area": {
         "type": "input",
-        "value": 2
+        "value": 6
       },
       "Completion": {
         "type": "select",

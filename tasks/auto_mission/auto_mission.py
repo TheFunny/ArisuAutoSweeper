@@ -35,7 +35,6 @@ class AutoMission(AutoMissionUI, Mission):
         if valid:
             info = zip(mode, area, stages_data, completion_level)
             return list(filter(lambda x: x[2], info))
-        raise RequestHumanTakeover
     
     def check_formation(self, mode, area, stages_data):
         mode_name = "Normal" if mode == "N" else "Hard"
@@ -176,6 +175,8 @@ class AutoMission(AutoMissionUI, Mission):
 
                 if status == AutoMissionStatus.FINISH:
                     break
+        else:
+            raise RequestHumanTakeover
         
         self.config.task_delay(server_update=True)
         

@@ -247,19 +247,19 @@ Formation:
     value: 1
     option: [ 1, 2, 3, 4 ]
   burst2:
-    value: 1
+    value: 4
     option: [ 1, 2, 3, 4 ]
   pierce1:
-    value: 1
+    value: 2
     option: [ 1, 2, 3, 4 ]
   pierce2:
-    value: 1
+    value: 4
     option: [ 1, 2, 3, 4 ]
   mystic1:
-    value: 1
+    value: 3
     option: [ 1, 2, 3, 4 ]
   mystic2:
-    value: 1
+    value: 4
     option: [ 1, 2, 3, 4 ]
 
 ManualBoss:
@@ -267,14 +267,14 @@ ManualBoss:
   
 Normal:
   Enable: false
-  Area: 2
+  Area: 4
   Completion:
     value: clear
     option: [ clear, three_stars]
 
 Hard:
   Enable: false
-  Area: 2
+  Area: 6
   Completion:
     value: clear
     option: [ clear, three_stars, three_stars_chest]

@@ -58,23 +58,23 @@
     },
     "Formation": {
       "burst1": 1,
-      "burst2": 1,
-      "pierce1": 1,
-      "pierce2": 1,
-      "mystic1": 1,
-      "mystic2": 1
+      "burst2": 4,
+      "pierce1": 2,
+      "pierce2": 4,
+      "mystic1": 3,
+      "mystic2": 4
     },
     "ManualBoss": {
       "Enable": false
     },
     "Normal": {
       "Enable": false,
-      "Area": 2,
+      "Area": 4,
       "Completion": "clear"
     },
     "Hard": {
       "Enable": false,
-      "Area": 2,
+      "Area": 6,
       "Completion": "clear"
     }
   },
