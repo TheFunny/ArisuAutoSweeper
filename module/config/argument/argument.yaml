@@ -243,38 +243,31 @@ TacticalChallengeShop:
   "15": false
 
 Formation:
-  burst1:
-    value: 1
-    option: [ 1, 2, 3, 4 ]
-  burst2:
-    value: 4
-    option: [ 1, 2, 3, 4 ]
-  pierce1:
-    value: 2
-    option: [ 1, 2, 3, 4 ]
-  pierce2:
-    value: 4
-    option: [ 1, 2, 3, 4 ]
-  mystic1:
-    value: 3
-    option: [ 1, 2, 3, 4 ]
-  mystic2:
-    value: 4
-    option: [ 1, 2, 3, 4 ]
+  burst1: 1-1
+  burst2: 1-2
+  pierce1: 1-3
+  pierce2: 1-4
+  mystic1: 1-5
+  mystic2: 2-1
+  Substitute: false
 
 ManualBoss:
   Enable: false
   
 Normal:
   Enable: false
-  Area: 4
+  Area: 
+    value: null
+    type: textarea
   Completion:
     value: clear
     option: [ clear, three_stars]
 
 Hard:
   Enable: false
-  Area: 6
+  Area: 
+    value: null
+    type: textarea
   Completion:
     value: clear
     option: [ clear, three_stars, three_stars_chest]

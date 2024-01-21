@@ -831,51 +831,31 @@
     },
     "burst1": {
       "name": "Formation.burst1.name",
-      "help": "Formation.burst1.help",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": "Formation.burst1.help"
     },
     "burst2": {
       "name": "Formation.burst2.name",
-      "help": "Formation.burst2.help",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": "Formation.burst2.help"
     },
     "pierce1": {
       "name": "Formation.pierce1.name",
-      "help": "Formation.pierce1.help",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": "Formation.pierce1.help"
     },
     "pierce2": {
       "name": "Formation.pierce2.name",
-      "help": "Formation.pierce2.help",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": "Formation.pierce2.help"
     },
     "mystic1": {
       "name": "Formation.mystic1.name",
-      "help": "Formation.mystic1.help",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": "Formation.mystic1.help"
     },
     "mystic2": {
       "name": "Formation.mystic2.name",
-      "help": "Formation.mystic2.help",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": "Formation.mystic2.help"
+    },
+    "Substitute": {
+      "name": "Formation.Substitute.name",
+      "help": "Formation.Substitute.help"
     }
   },
   "ManualBoss": {

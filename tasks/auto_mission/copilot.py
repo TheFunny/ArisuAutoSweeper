@@ -1,11 +1,15 @@
 from module.base.timer import Timer
 from module.logger import logger
 from module.ui.switch import Switch
+from module.ui.scroll_select import ScrollSelect
 from module.ocr.ocr import Digit
 from tasks.base.ui import UI
 from tasks.base.assets.assets_base_page import MISSION_CHECK
 from tasks.auto_mission.assets.assets_auto_mission import *
 from tasks.auto_mission.stage import StageState
+
+SCROLL_SELECT = ScrollSelect(PRESET_WINDOW, PRESET_FIRST_ITEM, MOBILIZE, clickx=1150, responsey=60, swipeoffsetx=-600)
+PRESETS = [PRESET1_ON, PRESET2_ON, PRESET3_ON, PRESET4_ON]
 
 SWITCH_UNIT1 = Switch('Unit1_Switch')
 SWITCH_UNIT1.add_state('on', UNIT1_ON)
@@ -74,8 +78,21 @@ class Copilot(UI):
             return True
 
     """Formation methods"""
-    def choose_unit(self, type, type_to_unit):
-        unit_index = type_to_unit[type] - 1
+    def choose_from_preset(self, type, type_to_preset):
+        preset, row = type_to_preset[type]
+        preset_index = preset - 1
+        row_index = row - 1
+        self.select_then_check(LAYOUT, PRESET_LIST)
+        #self.set_switch(PRESET_SWITCHES[preset_index])
+        PRESET = PRESETS[preset_index]
+        while not self.match_color(PRESET, threshold=50):
+            self.device.screenshot()
+            self.click_with_interval(PRESET, interval=1)
+        clickoffsety = [90, 85, 0, -90, 0]
+        SCROLL_SELECT.select_index(main=self, target_index=row_index, clickoffsety=clickoffsety[row_index])
+
+    def choose_unit(self, unit):
+        unit_index = unit - 1 
         unit_switch = UNIT_SWITCHES[unit_index]
         self.set_switch(unit_switch)
 
@@ -86,16 +103,23 @@ class Copilot(UI):
                 return True
             self.click(*start_coords, interval=2)
 
-    def formation(self, stage, type_to_unit):
+    def formation(self, stage, type_to_preset):
         if stage.state == StageState.SUB:
             # Select a unit to start the battle 
-            self.choose_unit(stage.formation_info, type_to_unit)
+            self.choose_unit(1)
+            if type_to_preset:
+                type = stage.formation_info
+                self.choose_from_preset(type, type_to_preset)
             self.click_with_interval(MOBILIZE, interval=1)
         else:
+            unit = 1
             for type, start_coords in stage.formation_start_info:
                 self.goto_formation_page(start_coords)
-                self.choose_unit(type, type_to_unit)
+                self.choose_unit(unit)
+                if type_to_preset:
+                    self.choose_from_preset(type, type_to_preset)
                 self.select_then_check(MOBILIZE, MISSION_INFO)
+                unit += 1
 
     """Fight methods"""
     def begin_mission(self):

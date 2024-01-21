@@ -23,7 +23,8 @@ class AutoMissionUI(Copilot):
             # Get stage_data data from the module
             return stage_data
         except ModuleNotFoundError:
-            logger.error(f"Exploration not supported for area {area}, under development...")
+            mode_name = "Normal" if mode == "N" else "Hard"
+            logger.error(f"Exploration not supported for Mission {mode_name} area {area}, under development...")
             return None
 
     def wait_mission_info(self, mode, open_task=False, max_retry=99999):

@@ -160,24 +160,25 @@ class GeneratedConfig:
     TacticalChallengeShop_15 = False
 
     # Group `Formation`
-    Formation_burst1 = 1  # 1, 2, 3, 4
-    Formation_burst2 = 4  # 1, 2, 3, 4
-    Formation_pierce1 = 2  # 1, 2, 3, 4
-    Formation_pierce2 = 4  # 1, 2, 3, 4
-    Formation_mystic1 = 3  # 1, 2, 3, 4
-    Formation_mystic2 = 4  # 1, 2, 3, 4
+    Formation_burst1 = '1-1'
+    Formation_burst2 = '1-2'
+    Formation_pierce1 = '1-3'
+    Formation_pierce2 = '1-4'
+    Formation_mystic1 = '1-5'
+    Formation_mystic2 = '2-1'
+    Formation_Substitute = False
 
     # Group `ManualBoss`
     ManualBoss_Enable = False
 
     # Group `Normal`
     Normal_Enable = False
-    Normal_Area = 4
+    Normal_Area = None
     Normal_Completion = 'clear'  # clear, three_stars
 
     # Group `Hard`
     Hard_Enable = False
-    Hard_Area = 6
+    Hard_Area = None
     Hard_Completion = 'clear'  # clear, three_stars, three_stars_chest
 
     # Group `ItemStorage`

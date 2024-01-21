@@ -4,10 +4,10 @@ from module.base.decorator import Config
 from module.base.timer import Timer
 from module.logger import logger
 from module.ocr.ocr import DigitCounter
+from module.ui.scroll_select import ScrollSelect
 from tasks.base.assets.assets_base_page import SCHEDULE_CHECK
 from tasks.base.ui import UI
 from tasks.schedule.assets.assets_schedule import *
-from tasks.schedule.scroll_select import ScrollSelect
 
 SCROLL_SELECT = ScrollSelect(window_button=SCROLL, first_item_button=FIRST_ITEM, expected_button=LOCATIONS, clickx=1116)
 xs = np.linspace(299, 995, 3, dtype=int)
@@ -51,7 +51,7 @@ class ScheduleUI(UI):
                 return False
 
     def enter_location(self, location):
-        SCROLL_SELECT.select_location(self, location)
+        SCROLL_SELECT.select_index(main=self, target_index=location)
         if not self.appear(LOCATIONS):
             logger.error("Unable to navigate to page for location {}".format(location + 1))
             return False

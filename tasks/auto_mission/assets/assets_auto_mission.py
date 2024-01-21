@@ -183,6 +183,24 @@ ENTER_SUB = ButtonWrapper(
         button=(553, 490, 712, 538),
     ),
 )
+LAYOUT = ButtonWrapper(
+    name='LAYOUT',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/LAYOUT.png',
+        area=(1179, 461, 1226, 504),
+        search=(1159, 441, 1246, 524),
+        color=(189, 198, 210),
+        button=(1179, 461, 1226, 504),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/LAYOUT.png',
+        area=(1179, 461, 1226, 504),
+        search=(1159, 441, 1246, 524),
+        color=(189, 198, 210),
+        button=(1179, 461, 1226, 504),
+    ),
+)
 MISSION_COMPLETE = ButtonWrapper(
     name='MISSION_COMPLETE',
     jp=None,
@@ -325,6 +343,204 @@ ONE_STAR = ButtonWrapper(
         search=(128, 329, 203, 410),
         color=(240, 235, 215),
         button=(148, 349, 183, 390),
+    ),
+)
+PRESET1_OFF = ButtonWrapper(
+    name='PRESET1_OFF',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET1_OFF.png',
+        area=(52, 143, 197, 181),
+        search=(32, 123, 217, 201),
+        color=(253, 253, 254),
+        button=(52, 143, 197, 181),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET1_OFF.png',
+        area=(52, 143, 197, 181),
+        search=(32, 123, 217, 201),
+        color=(253, 253, 254),
+        button=(52, 143, 197, 181),
+    ),
+)
+PRESET1_ON = ButtonWrapper(
+    name='PRESET1_ON',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET1_ON.png',
+        area=(54, 146, 200, 182),
+        search=(34, 126, 220, 202),
+        color=(48, 77, 115),
+        button=(54, 146, 200, 182),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET1_ON.png',
+        area=(54, 146, 200, 182),
+        search=(34, 126, 220, 202),
+        color=(48, 77, 115),
+        button=(54, 146, 200, 182),
+    ),
+)
+PRESET2_OFF = ButtonWrapper(
+    name='PRESET2_OFF',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET2_OFF.png',
+        area=(214, 144, 355, 180),
+        search=(194, 124, 375, 200),
+        color=(252, 253, 253),
+        button=(214, 144, 355, 180),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET2_OFF.png',
+        area=(214, 144, 355, 180),
+        search=(194, 124, 375, 200),
+        color=(252, 253, 253),
+        button=(214, 144, 355, 180),
+    ),
+)
+PRESET2_ON = ButtonWrapper(
+    name='PRESET2_ON',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET2_ON.png',
+        area=(211, 147, 355, 182),
+        search=(191, 127, 375, 202),
+        color=(50, 78, 116),
+        button=(211, 147, 355, 182),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET2_ON.png',
+        area=(211, 147, 355, 182),
+        search=(191, 127, 375, 202),
+        color=(50, 78, 116),
+        button=(211, 147, 355, 182),
+    ),
+)
+PRESET3_OFF = ButtonWrapper(
+    name='PRESET3_OFF',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET3_OFF.png',
+        area=(369, 143, 516, 186),
+        search=(349, 123, 536, 206),
+        color=(251, 252, 252),
+        button=(369, 143, 516, 186),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET3_OFF.png',
+        area=(369, 143, 516, 186),
+        search=(349, 123, 536, 206),
+        color=(251, 252, 252),
+        button=(369, 143, 516, 186),
+    ),
+)
+PRESET3_ON = ButtonWrapper(
+    name='PRESET3_ON',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET3_ON.png',
+        area=(365, 146, 517, 184),
+        search=(345, 126, 537, 204),
+        color=(49, 78, 116),
+        button=(365, 146, 517, 184),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET3_ON.png',
+        area=(365, 146, 517, 184),
+        search=(345, 126, 537, 204),
+        color=(49, 78, 116),
+        button=(365, 146, 517, 184),
+    ),
+)
+PRESET4_OFF = ButtonWrapper(
+    name='PRESET4_OFF',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET4_OFF.png',
+        area=(527, 146, 675, 183),
+        search=(507, 126, 695, 203),
+        color=(252, 252, 253),
+        button=(527, 146, 675, 183),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET4_OFF.png',
+        area=(527, 146, 675, 183),
+        search=(507, 126, 695, 203),
+        color=(252, 252, 253),
+        button=(527, 146, 675, 183),
+    ),
+)
+PRESET4_ON = ButtonWrapper(
+    name='PRESET4_ON',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET4_ON.png',
+        area=(528, 148, 676, 178),
+        search=(508, 128, 696, 198),
+        color=(50, 78, 117),
+        button=(528, 148, 676, 178),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET4_ON.png',
+        area=(528, 148, 676, 178),
+        search=(508, 128, 696, 198),
+        color=(50, 78, 117),
+        button=(528, 148, 676, 178),
+    ),
+)
+PRESET_FIRST_ITEM = ButtonWrapper(
+    name='PRESET_FIRST_ITEM',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET_FIRST_ITEM.png',
+        area=(28, 184, 1252, 397),
+        search=(8, 164, 1272, 417),
+        color=(214, 224, 231),
+        button=(28, 184, 1252, 397),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET_FIRST_ITEM.png',
+        area=(28, 184, 1252, 397),
+        search=(8, 164, 1272, 417),
+        color=(214, 224, 231),
+        button=(28, 184, 1252, 397),
+    ),
+)
+PRESET_LIST = ButtonWrapper(
+    name='PRESET_LIST',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET_LIST.png',
+        area=(556, 85, 726, 120),
+        search=(536, 65, 746, 140),
+        color=(197, 205, 213),
+        button=(556, 85, 726, 120),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET_LIST.png',
+        area=(567, 83, 708, 120),
+        search=(547, 63, 728, 140),
+        color=(177, 187, 197),
+        button=(567, 83, 708, 120),
+    ),
+)
+PRESET_WINDOW = ButtonWrapper(
+    name='PRESET_WINDOW',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/PRESET_WINDOW.png',
+        area=(28, 184, 1252, 649),
+        search=(8, 164, 1272, 669),
+        color=(215, 226, 233),
+        button=(28, 184, 1252, 649),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/PRESET_WINDOW.png',
+        area=(28, 184, 1252, 649),
+        search=(8, 164, 1272, 669),
+        color=(215, 226, 233),
+        button=(28, 184, 1252, 649),
     ),
 )
 RANK = ButtonWrapper(

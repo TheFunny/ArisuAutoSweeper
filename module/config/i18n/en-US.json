@@ -827,55 +827,35 @@
   "Formation": {
     "_info": {
       "name": "Formation",
-      "help": "Select the unit for each type"
+      "help": "AAS will choose the unit from the Preset List in the Layout after entering the Unit Formation Page. The format is preset-row, for example 1-1 means choose preset 1 row 1. Please make sure the presets are set to their original names (1,2,3,4). It is highly recommended that you set them up to be unique."
     },
     "burst1": {
       "name": "Explosive 1",
-      "help": "",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": ""
     },
     "burst2": {
       "name": "Explosive 2",
-      "help": "",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": ""
     },
     "pierce1": {
       "name": "Piercing 1",
-      "help": "",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": ""
     },
     "pierce2": {
       "name": "Piercing 2",
-      "help": "",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": ""
     },
     "mystic1": {
       "name": "Mystic 1",
-      "help": "",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": ""
     },
     "mystic2": {
       "name": "Mystic 2",
-      "help": "",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4"
+      "help": ""
+    },
+    "Substitute": {
+      "name": "Find Alternatives",
+      "help": "In case you set the preset for some types to be the same and the stage requires all of those types, AAS will try to find alternatives. For example, if you set Explosive 1 and Explosive 2 to be the same and the stage requires both of them, AAS will replace Explosive 2 with Piercing 1."
     }
   },
   "ManualBoss": {
@@ -899,7 +879,7 @@
     },
     "Area": {
       "name": "Area",
-      "help": ""
+      "help": "Currently only between 4 and 16. Use > to connect multiple areas. Example: 6 > 7 > 8"
     },
     "Completion": {
       "name": "Completion level",
@@ -919,7 +899,7 @@
     },
     "Area": {
       "name": "Area",
-      "help": ""
+      "help": "Currently only between 6 and 16. Use > to connect multiple areas. Example: 6 > 7 > 8"
     },
     "Completion": {
       "name": "Completion level",

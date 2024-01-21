@@ -13,8 +13,6 @@ class ScrollSelect:
     
     Parameters
     ----------
-    targetind : int
-        Index of the target level
     window_starty: 
         Y-coordinate of the upper edge of the window
     first_item_endy: 
@@ -31,7 +29,7 @@ class ScrollSelect:
         Whether to click on clickx and the last row after the sliding ends
     """
 
-    def __init__(self, window_button, first_item_button, expected_button, clickx, swipeoffsetx=-100,
+    def __init__(self, window_button, first_item_button, expected_button, clickx, swipeoffsetx=-100, responsey=40,
                  finalclick=True) -> None:
         # TODO: Actually, only concerned about the height of one element, completely displaying the Y of the first button, completely displaying the Y of the bottom button, the number of complete elements that the window can contain, the height of the last element in the window, and the left offset and response distance.
         self.window_starty = window_button.area[1]
@@ -42,7 +40,7 @@ class ScrollSelect:
         self.clickx = clickx
         self.expected_button = expected_button
         self.swipeoffsetx = swipeoffsetx
-        self.responsey = 40
+        self.responsey = responsey
         self.finalclick = finalclick
 
     def compute_swipe(self, main, x1, y1, distance, responsey):
@@ -59,7 +57,7 @@ class ScrollSelect:
             main.device.swipe((x1, y1), (x1, int(y1 - (distance + responsey - 4 * (1 + distance / 100)))),
                               duration=1 + distance / 100)
 
-    def select_location(self, main, target_index) -> None:
+    def select_index(self, main, target_index, clickoffsety=0) -> None:
         click_coords = main.device.click_methods.get(main.config.Emulator_ControlMethod, main.device.click_adb)
         logger.info("Scroll and select the {}-th level".format(target_index + 1))
         self.scroll_right_up(main, scrollx=self.clickx + self.swipeoffsetx)
@@ -110,8 +108,10 @@ class ScrollSelect:
                                    self.responsey)
             if self.finalclick:
                 # Click on the last row
+                clicky = (self.window_endy - self.itemheight // 2) + clickoffsety
+                logger.info(clicky)
                 self.run_until(main,
-                               lambda: click_coords(self.clickx, self.window_endy - self.itemheight // 2),
+                               lambda: click_coords(self.clickx, clicky),
                                lambda: main.appear(self.expected_button)
                                )
 
