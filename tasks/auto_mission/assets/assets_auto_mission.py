@@ -348,13 +348,7 @@ ONE_STAR = ButtonWrapper(
 PRESET1_OFF = ButtonWrapper(
     name='PRESET1_OFF',
     jp=None,
-    en=Button(
-        file='./assets/en/auto_mission/PRESET1_OFF.png',
-        area=(52, 143, 197, 181),
-        search=(32, 123, 217, 201),
-        color=(253, 253, 254),
-        button=(52, 143, 197, 181),
-    ),
+    en=None,
     zht=Button(
         file='./assets/zht/auto_mission/PRESET1_OFF.png',
         area=(52, 143, 197, 181),
@@ -384,13 +378,7 @@ PRESET1_ON = ButtonWrapper(
 PRESET2_OFF = ButtonWrapper(
     name='PRESET2_OFF',
     jp=None,
-    en=Button(
-        file='./assets/en/auto_mission/PRESET2_OFF.png',
-        area=(214, 144, 355, 180),
-        search=(194, 124, 375, 200),
-        color=(252, 253, 253),
-        button=(214, 144, 355, 180),
-    ),
+    en=None,
     zht=Button(
         file='./assets/zht/auto_mission/PRESET2_OFF.png',
         area=(214, 144, 355, 180),
@@ -420,13 +408,7 @@ PRESET2_ON = ButtonWrapper(
 PRESET3_OFF = ButtonWrapper(
     name='PRESET3_OFF',
     jp=None,
-    en=Button(
-        file='./assets/en/auto_mission/PRESET3_OFF.png',
-        area=(369, 143, 516, 186),
-        search=(349, 123, 536, 206),
-        color=(251, 252, 252),
-        button=(369, 143, 516, 186),
-    ),
+    en=None,
     zht=Button(
         file='./assets/zht/auto_mission/PRESET3_OFF.png',
         area=(369, 143, 516, 186),
@@ -456,13 +438,7 @@ PRESET3_ON = ButtonWrapper(
 PRESET4_OFF = ButtonWrapper(
     name='PRESET4_OFF',
     jp=None,
-    en=Button(
-        file='./assets/en/auto_mission/PRESET4_OFF.png',
-        area=(527, 146, 675, 183),
-        search=(507, 126, 695, 203),
-        color=(252, 252, 253),
-        button=(527, 146, 675, 183),
-    ),
+    en=None,
     zht=Button(
         file='./assets/zht/auto_mission/PRESET4_OFF.png',
         area=(527, 146, 675, 183),
@@ -559,6 +535,24 @@ RANK = ButtonWrapper(
         search=(520, 608, 758, 709),
         color=(233, 216, 69),
         button=(540, 628, 738, 689),
+    ),
+)
+RECEIVED_CHEST = ButtonWrapper(
+    name='RECEIVED_CHEST',
+    jp=None,
+    en=Button(
+        file='./assets/en/auto_mission/RECEIVED_CHEST.png',
+        area=(502, 188, 774, 226),
+        search=(482, 168, 794, 246),
+        color=(198, 208, 217),
+        button=(547, 487, 738, 547),
+    ),
+    zht=Button(
+        file='./assets/zht/auto_mission/RECEIVED_CHEST.png',
+        area=(569, 192, 704, 226),
+        search=(549, 172, 724, 246),
+        color=(177, 187, 197),
+        button=(549, 488, 736, 543),
     ),
 )
 REWARD_ACQUIRED = ButtonWrapper(

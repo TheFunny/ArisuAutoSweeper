@@ -88,7 +88,7 @@ class Copilot(UI):
         while not self.match_color(PRESET, threshold=50):
             self.device.screenshot()
             self.click_with_interval(PRESET, interval=1)
-        clickoffsety = [90, 85, 0, -90, 0]
+        clickoffsety = [85, 85, 0, -120, 0]
         SCROLL_SELECT.select_index(main=self, target_index=row_index, clickoffsety=clickoffsety[row_index])
 
     def choose_unit(self, unit):
@@ -146,7 +146,20 @@ class Copilot(UI):
             force_index = self.get_force()
             self.sleep(1)
         return force_index
-                    
+    
+    def handle_all_mission_popup(self):
+        self.sleep(2)
+        while not self.match_color(MISSION_INFO):
+            self.device.screenshot()
+            if self.match_color(MISSION_INFO):
+                break
+            if self.appear_then_click(MISSION_INFO_POPUP):
+                continue
+            if self.appear_then_click(MOVE_UNIT):
+                continue
+            if self.appear_then_click(RECEIVED_CHEST):
+                continue
+
     def handle_mission_popup(self, button, skip_first_screenshot=True):
         while 1:
             if skip_first_screenshot:
@@ -170,9 +183,10 @@ class Copilot(UI):
         while 1:
             self.device.screenshot()
             if not self.match_color(END_PHASE):
-                self.handle_mission_popup(END_PHASE_POPUP)
+                self.handle_all_mission_popup()
                 break
             self.appear_then_click(END_PHASE)
+            self.sleep(2)
 
     def wait_over(self):
         #self.sleep(2)
@@ -244,6 +258,8 @@ class Copilot(UI):
             if 'wait-over' in act:
                 self.wait_over()
                 self.sleep(2)
+            if i != len(actions) - 1:
+                self.handle_all_mission_popup()
 
         logger.warning("Actions completed, waiting to enter the battle...")
 
