@@ -84,7 +84,7 @@ class AutoMission(AutoMissionUI, Mission):
         if area_list and len([x for x in area_list if x.isdigit()]) == len(area_list):
             return [int(x) for x in area_list]
         else:        
-            mode_name = "Normal" if mode == "N" else "H"
+            mode_name = "Normal" if mode == "N" else "Hard"
             logger.error(f"Failed to read Mission {mode_name}'s area settings")
             return None
         
@@ -131,7 +131,8 @@ class AutoMission(AutoMissionUI, Mission):
         if valid:
             info = zip(mode, area_list, completion_level)
             return list(filter(lambda x: x[1], info))
-        return None
+        else:
+            raise RequestHumanTakeover
 
     @property
     def current_mode(self):
@@ -186,8 +187,7 @@ class AutoMission(AutoMissionUI, Mission):
                 if preset not in list_preset:
                     list_preset.append(preset)
                     continue
-                logger.error(f"Mission {mode_name} {self.current_area} requires\
-                              {list_type} but they are both set to preset {preset}")
+                logger.error(f"Mission {mode_name} {self.current_area} requires {list_type} but they are both set to preset {preset}")
                 list_preset = self.find_alternative(type, list_preset)
                 use_alternative = True
                 if list_preset:
@@ -233,12 +233,12 @@ class AutoMission(AutoMissionUI, Mission):
                 self.navigate(self.previous_mode, self.current_mode)
                 if self.select_area(self.current_area) and self.select_mode(switch):
                     return AutoMissionStatus.ENTER
-                raise RequestHumanTakeover
+                return AutoMissionStatus.END
                         
             case AutoMissionStatus.ENTER:
                 if self.wait_mission_info(self.current_mode, open_task=True):
                     return AutoMissionStatus.CHECK
-                raise RequestHumanTakeover
+                return AutoMissionStatus.END
             
             case AutoMissionStatus.CHECK:
                 self.current_stage: Stage = self.check_stages(
