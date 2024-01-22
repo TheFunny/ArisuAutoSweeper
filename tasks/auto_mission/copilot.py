@@ -1,14 +1,12 @@
 from module.base.timer import Timer
 from module.logger import logger
 from module.ui.switch import Switch
-from module.ui.scroll_select import ScrollSelect
 from module.ocr.ocr import Digit
 from tasks.base.ui import UI
 from tasks.base.assets.assets_base_page import MISSION_CHECK
 from tasks.auto_mission.assets.assets_auto_mission import *
 from tasks.auto_mission.stage import StageState
 
-SCROLL_SELECT = ScrollSelect(PRESET_WINDOW, PRESET_FIRST_ITEM, MOBILIZE, clickx=1150, responsey=60, swipeoffsetx=-600)
 PRESETS = [PRESET1_ON, PRESET2_ON, PRESET3_ON, PRESET4_ON]
 
 SWITCH_UNIT1 = Switch('Unit1_Switch')
@@ -55,6 +53,13 @@ class Copilot(UI):
             # sleep because clicks can be too fast when executing actions
             self.sleep(interval)
 
+    def click_then_check(self, coords, dest_check):
+        while 1:
+            self.device.screenshot()
+            if self.appear(dest_check):
+                return True
+            self.click(*coords, interval=2)
+
     def select_then_check(self, dest_enter: ButtonWrapper, dest_check: ButtonWrapper):
         while 1:
             self.device.screenshot()
@@ -88,8 +93,33 @@ class Copilot(UI):
         while not self.match_color(PRESET, threshold=50):
             self.device.screenshot()
             self.click_with_interval(PRESET, interval=1)
-        clickoffsety = [85, 85, 0, -120, 0]
-        SCROLL_SELECT.select_index(main=self, target_index=row_index, clickoffsety=clickoffsety[row_index])
+
+        click_first = lambda : self.click_then_check((1145, 320), MOBILIZE)
+        click_second = lambda : self.click_then_check((1145, 530), MOBILIZE)
+        swipe = lambda : self.device.swipe((500, 625), (500, 350))
+        wait = lambda : self.wait_until_stable(
+                PRESET_WINDOW,
+                timer=Timer(3, 0),
+                timeout=Timer(1.5, 5)
+            )
+        match row:
+            case 1:
+                click_first()
+            case 2:
+                click_second()
+            case 3:
+                swipe()
+                wait()
+                click_first()
+            case 4:
+                swipe()
+                wait()
+                click_second()
+            case 5: 
+                swipe()
+                swipe()
+                wait()
+                click_second()
 
     def choose_unit(self, unit):
         unit_index = unit - 1 
@@ -97,11 +127,7 @@ class Copilot(UI):
         self.set_switch(unit_switch)
 
     def goto_formation_page(self, start_coords):
-        while 1:
-            self.device.screenshot()
-            if self.appear(MOBILIZE):
-                return True
-            self.click(*start_coords, interval=2)
+        self.click_then_check(start_coords, MOBILIZE)
 
     def formation(self, stage, type_to_preset):
         if stage.state == StageState.SUB:
