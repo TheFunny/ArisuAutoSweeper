@@ -10,7 +10,7 @@ class AutoMissionUI(Copilot):
     """
     Class dedicated to navigate the mission page and check stages
     """
-    def get_stages_data(self, mode, area):
+    def get_stages_data(self, mode: str, area: int):
         # Dynamically generate the complete module path
         if mode == "N":
             module_path = f'tasks.auto_mission.normal_task.normal_task_' + str(area)
@@ -27,11 +27,9 @@ class AutoMissionUI(Copilot):
             logger.error(f"Exploration not supported for Mission {mode_name} area {area}, under development...")
             return None
 
-    def wait_mission_info(self, mode, open_task=False, max_retry=99999):
+    def wait_mission_info(self, mode: str, open_task=False, max_retry=99999) -> str:
         """
-        Wait for the task information popup to load
-        @param self:
-        @return:
+        Wait for the mission information popup to load in the mission page
         """
         while max_retry > 0:
             self.device.screenshot()
@@ -53,11 +51,9 @@ class AutoMissionUI(Copilot):
         logger.error("max_retry {0}".format(max_retry))
         return None
     
-    def check_stage_state(self, mode, completion_level):
+    def check_stage_state(self, mode: str, completion_level: str) -> StageState:
         """
-        Check the current task type
-        @param self:
-        @return:
+        Check the current stage type
         """
         # Wait for the task information popup to load
         self.wait_mission_info(mode)
@@ -78,7 +74,11 @@ class AutoMissionUI(Copilot):
         # Main task - Cleared
         return StageState.UNCLEARED
         
-    def get_stage_info(self, stage_name, stage_state, stages_data, completion_level):
+    def get_stage_info(self, stage_name: str, stage_state: StageState, stages_data: dict, completion_level: str) -> dict:
+        """
+        Retrieves the stage info from stages_data trying 
+        to find the most suited based on completion_level
+        """
         possible_stages = []
         for stage in stages_data:
             if stage_name in stage:
@@ -99,12 +99,9 @@ class AutoMissionUI(Copilot):
             return stages_data[possible_stages[0]]
         return None
     
-    def check_stages(self, mode, area, stages_data, completion_level):
+    def check_stages(self, mode: str, area: int, stages_data: dict, completion_level: str) -> Stage:
         """
         Find the stage that needs to be battled
-        @param self:
-        @param region:
-        @return:
         """
         stage_index = 1
         max_index = 4 if mode == "H" else 6
@@ -146,7 +143,7 @@ class AutoMissionUI(Copilot):
                 if area != Digit(OCR_AREA).ocr_single_line(self.device.image):
                     return None
     
-    def start_stage(self, stage):
+    def start_stage(self, stage: Stage):
         # Click to start the task
         if stage.state == StageState.SUB:
             self.select_then_check(ENTER_SUB, MOBILIZE)

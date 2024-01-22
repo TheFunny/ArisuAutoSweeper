@@ -1,5 +1,6 @@
 from tasks.mission.mission import Mission
 from tasks.mission.ui import SWITCH_NORMAL, SWITCH_HARD
+from tasks.auto_mission.stage import Stage
 from tasks.auto_mission.ui import AutoMissionUI
 from enum import Enum
 
@@ -12,29 +13,33 @@ import re
 
 class AutoMissionStatus(Enum):
     AP = 0 # Calculate AP and decide to terminate Auto-Mission module or not
-    STAGES_DATA = 1
+    STAGES_DATA = 1 # Retrieve stages data for the area and resolve conflicts for type_to_preset
     NAVIGATE = 2 # Navigate to the area and select mode
     ENTER = 3 # Enter the first stage in the stage list
     CHECK = 4 # Check stages and find a stage that requires to be completed
     START = 5 # Start the stage
     FORMATION = 6 # Select units based on the types required by the stage
     FIGHT = 7 # Fight the stage
-    END = 8
+    END = 8 # Update task
     FINISH = -1 # Indicate termination of Auto-Mission module
 
 class AutoMission(AutoMissionUI, Mission):
     def __init__(self, config, device):
         super().__init__(config, device) 
-        self.task = None
-        self.previous_mode = None
-        self.previous_area = None
-        self._stage = None
-        self.stages_data = None
-        self.default_type_to_preset = self.get_default_type_to_preset()
-        self.current_type_to_preset = None
+        self.task: list[str, list[int], bool] = None
+        self.previous_mode: str = None
+        self.previous_area: int = None
+        self._stage: Stage = None
+        self.stages_data: dict = None
+        self.default_type_to_preset: dict = self.get_default_type_to_preset()
+        self.current_type_to_preset: dict = None
 
-    def get_default_type_to_preset(self):
-        type_to_preset =  {
+    def get_default_type_to_preset(self) -> dict[str, list[int, int]]:
+        """
+        Validate preset settings and returs a dictionary
+        mapping each type to its preset e.g {burst1: [1, 1]}
+        """
+        type_to_preset: dict[str, str] =  {
             "burst1": self.config.Formation_burst1,
             "burst2": self.config.Formation_burst2,
             "pierce1": self.config.Formation_pierce1,
@@ -43,7 +48,6 @@ class AutoMission(AutoMissionUI, Mission):
             "mystic2": self.config.Formation_mystic2
         }
         valid = True
-
         for type, preset in type_to_preset.items():
             preset_list = []
             if isinstance(preset, str):
@@ -64,8 +68,11 @@ class AutoMission(AutoMissionUI, Mission):
             raise RequestHumanTakeover
         return type_to_preset
         
-    def validate_area(self, mode, area_input):
-        area_list = []
+    def validate_area(self, mode, area_input) -> list[int]:
+        """
+        Validate the area input and returns the area as a list of integers
+        """
+        area_list: list[int] = []
         if isinstance(area_input, str):
             area_input = re.sub(r'[ \t\r\n]', '', area_input)
             area_input = (re.sub(r'[＞﹥›˃ᐳ❯]', '>', area_input)).split('>')
@@ -75,16 +82,16 @@ class AutoMission(AutoMissionUI, Mission):
             area_list = [str(area_input)]
 
         if area_list and len([x for x in area_list if x.isdigit()]) == len(area_list):
-            return area_list        
-
-        mode_name = "Normal" if mode == "N" else "H"
-        logger.error(f"Failed to read Mission {mode_name}'s area settings")
-        return None
+            return [int(x) for x in area_list]
+        else:        
+            mode_name = "Normal" if mode == "N" else "H"
+            logger.error(f"Failed to read Mission {mode_name}'s area settings")
+            return None
         
-    def find_alternative(self, type, preset_list):
+    def find_alternative(self, type: str, preset_list: list[list[int, int]]) -> list[list[int, int]]:
         if not self.config.Formation_Substitute:
             return None
-
+        
         alternatives_dictionary = {
             'pierce1': ['pierce2', 'burst1', 'burst2', 'mystic1', 'mystic2'],
             'pierce2': ['burst1', 'burst2', 'mystic1', 'mystic2'],
@@ -104,17 +111,23 @@ class AutoMission(AutoMissionUI, Mission):
         return None
             
     @property
-    def mission_info(self) -> list:
+    def mission_info(self) -> list[str, list[int], bool]:
+        """
+        Generate task, a list of list where each inner list is defined as
+        [mode, area_list, completion_level] e.g ["H", [6,7,8], "clear"]
+        """
         valid = True
         mode = ("N", "H")
-        enable = (self.config.Normal_Enable, self.config.Hard_Enable)
-        area = (self.config.Normal_Area, self.config.Hard_Area)
-        area_list = [None, None]
-        completion_level = (self.config.Normal_Completion, self.config.Hard_Completion)
+        enable: tuple[bool] = (self.config.Normal_Enable, self.config.Hard_Enable)
+        area: tuple[str] = (self.config.Normal_Area, self.config.Hard_Area)
+        area_list: list[list[int]] = [None, None]
+        completion_level: tuple[bool] = (self.config.Normal_Completion, self.config.Hard_Completion)
+
         for index in range(2):
             if enable[index]:
                 area_list[index] = self.validate_area(mode[index], area[index]) 
                 valid = valid if area_list[index] else False
+
         if valid:
             info = zip(mode, area_list, completion_level)
             return list(filter(lambda x: x[1], info))
@@ -126,44 +139,46 @@ class AutoMission(AutoMissionUI, Mission):
 
     @property
     def current_area(self):
-        return int(self.task[0][1][0])
+        return self.task[0][1][0]
     
     @property
     def current_stage(self):
         return self._stage
     
     @current_stage.setter
-    def current_stage(self, value):
+    def current_stage(self, value: Stage):
         self._stage = value
     
     @property
     def current_completion_level(self):
-        return self.task[0][2]
+        return self.task[0][2] 
     
     @property
     def current_count(self):
-        return 1
+        # required to use update_ap() and get_realistic_count()
+        return 1 
     
-    def update_stages_data(self):
+    def update_stages_data(self) -> bool:
         if [self.previous_mode, self.previous_area] != [self.current_mode, self.current_area]:
             self.stages_data = self.get_stages_data(self.current_mode, self.current_area)
         if self.stages_data:
             return True
         return False
     
-    def update_current_type_to_preset(self):
+    def update_current_type_to_preset(self) -> bool:
         if [self.previous_mode, self.previous_area] == [self.current_mode, self.current_area]:
+            # set it to None. This will skip changing preset in self.formation
             self.current_type_to_preset = None
             return True
-        
+
         mode_name = "Normal" if self.current_mode == "N" else "Hard"
         use_alternative = False
         for stage, info in self.stages_data.items():
             if "start" not in info:
                 continue
 
-            list_preset = []
-            list_type = []
+            list_preset: list[list[int, int]] = []
+            list_type : list[str] = []
             for type in info["start"]:
                 preset = self.default_type_to_preset[type]
                 list_type.append(type)
@@ -171,7 +186,8 @@ class AutoMission(AutoMissionUI, Mission):
                 if preset not in list_preset:
                     list_preset.append(preset)
                     continue
-                logger.error(f"Mission {mode_name} {self.current_area} requires {list_type} but they are both set to preset {preset}")
+                logger.error(f"Mission {mode_name} {self.current_area} requires\
+                              {list_type} but they are both set to preset {preset}")
                 list_preset = self.find_alternative(type, list_preset)
                 use_alternative = True
                 if list_preset:
@@ -179,11 +195,11 @@ class AutoMission(AutoMissionUI, Mission):
                 return False
 
             if use_alternative:
-                d = {}
+                alt_type_to_preset: dict[str, list[list[int, int]]] = {}
                 for index in range(len(list_type)):
                     type, preset = list_type[index],  list_preset[index]
-                    d[type] = preset
-                self.current_type_to_preset = d
+                    alt_type_to_preset[type] = preset
+                self.current_type_to_preset = alt_type_to_preset
             else:
                 self.current_type_to_preset = self.default_type_to_preset
             return True
@@ -225,7 +241,9 @@ class AutoMission(AutoMissionUI, Mission):
                 raise RequestHumanTakeover
             
             case AutoMissionStatus.CHECK:
-                self.current_stage = self.check_stages(self.current_mode, self.current_area, self.stages_data, self.current_completion_level)
+                self.current_stage: Stage = self.check_stages(
+                    self.current_mode, self.current_area, self.stages_data, self.current_completion_level
+                    )
                 if self.current_stage:
                     return AutoMissionStatus.START
                 return AutoMissionStatus.END

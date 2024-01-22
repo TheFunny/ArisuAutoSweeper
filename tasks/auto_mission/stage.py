@@ -8,7 +8,7 @@ class StageState(Enum):
     CHEST = 4
 
 class Stage:
-    def __init__(self, name, state, data):
+    def __init__(self, name: str, state: str, data: dict):
         self.name = name
         self.state = state
         self.data = data

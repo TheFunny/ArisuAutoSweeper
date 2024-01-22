@@ -5,7 +5,7 @@ from module.ocr.ocr import Digit
 from tasks.base.ui import UI
 from tasks.base.assets.assets_base_page import MISSION_CHECK
 from tasks.auto_mission.assets.assets_auto_mission import *
-from tasks.auto_mission.stage import StageState
+from tasks.auto_mission.stage import StageState, Stage
 
 PRESETS = [PRESET1_ON, PRESET2_ON, PRESET3_ON, PRESET4_ON]
 
@@ -41,8 +41,8 @@ class Copilot(UI):
         super().__init__(config, device) 
         self.ocr_unit = Digit(OCR_UNIT)
 
-    """Utility methods"""
-    def sleep(self, num):
+    """---------------------- UTILITY METHODS ------------------------"""
+    def sleep(self, num: int):
         timer = Timer(num).start()
         while not timer.reached():
             pass
@@ -53,7 +53,7 @@ class Copilot(UI):
             # sleep because clicks can be too fast when executing actions
             self.sleep(interval)
 
-    def click_then_check(self, coords, dest_check):
+    def click_then_check(self, coords: tuple[int, int], dest_check: ButtonWrapper):
         while 1:
             self.device.screenshot()
             if self.appear(dest_check):
@@ -68,7 +68,7 @@ class Copilot(UI):
                 return True
             self.sleep(2)
             
-    def set_switch(self, switch):
+    def set_switch(self, switch: Switch):
         """
         Set skip switch to on
         Returns:
@@ -82,13 +82,11 @@ class Copilot(UI):
             switch.set('on', main=self)
             return True
 
-    """Formation methods"""
-    def choose_from_preset(self, type, type_to_preset):
+    """---------------------- FORMATION METHODS ------------------------"""
+    def choose_from_preset(self, type: str, type_to_preset: dict):
         preset, row = type_to_preset[type]
         preset_index = preset - 1
-        row_index = row - 1
         self.select_then_check(LAYOUT, PRESET_LIST)
-        #self.set_switch(PRESET_SWITCHES[preset_index])
         PRESET = PRESETS[preset_index]
         while not self.match_color(PRESET, threshold=50):
             self.device.screenshot()
@@ -121,15 +119,15 @@ class Copilot(UI):
                 wait()
                 click_second()
 
-    def choose_unit(self, unit):
+    def choose_unit(self, unit: int):
         unit_index = unit - 1 
         unit_switch = UNIT_SWITCHES[unit_index]
         self.set_switch(unit_switch)
 
-    def goto_formation_page(self, start_coords):
+    def goto_formation_page(self, start_coords: tuple[int, int]):
         self.click_then_check(start_coords, MOBILIZE)
 
-    def formation(self, stage, type_to_preset):
+    def formation(self, stage: Stage, type_to_preset: dict):
         if stage.state == StageState.SUB:
             # Select a unit to start the battle 
             self.choose_unit(1)
@@ -147,7 +145,7 @@ class Copilot(UI):
                 self.select_then_check(MOBILIZE, MISSION_INFO)
                 unit += 1
 
-    """Fight methods"""
+    """---------------------- FIGHT METHODS ------------------------"""
     def begin_mission(self):
         # start the fight after formation. Not needed for SUB mission.
         self.select_then_check(BEGIN_MISSION, END_PHASE)
@@ -157,7 +155,7 @@ class Copilot(UI):
         self.set_switch(SWITCH_SKIP_BATTLE)
         self.set_switch(SWITCH_AUTO_END)
 
-    def get_force(self):
+    def get_force(self) -> int:
         # detect the current active unit in the map
         self.device.screenshot()
         current_unit = self.ocr_unit.ocr_single_line(self.device.image)
@@ -165,7 +163,7 @@ class Copilot(UI):
             return self.get_force()
         return current_unit
     
-    def wait_formation_change(self, force_index):
+    def wait_formation_change(self, force_index: int) -> int:
         logger.info("Wait formation change")
         origin = force_index
         while force_index == origin:
@@ -186,7 +184,7 @@ class Copilot(UI):
             if self.appear_then_click(RECEIVED_CHEST):
                 continue
 
-    def handle_mission_popup(self, button, skip_first_screenshot=True):
+    def handle_mission_popup(self, button: ButtonWrapper, skip_first_screenshot=True):
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -198,6 +196,7 @@ class Copilot(UI):
                 continue
 
     def confirm_teleport(self):
+        # Detect and confirm the end of the phase
         while 1: 
             self.device.screenshot()
             if self.appear(MOVE_UNIT):
@@ -219,7 +218,7 @@ class Copilot(UI):
         self.select_then_check(MISSION_INFO, MISSION_INFO_POPUP)
         self.handle_mission_popup(MISSION_INFO_POPUP)
 
-    def start_action(self, actions, manual_boss):
+    def start_action(self, actions, manual_boss: bool):
         for i, act in enumerate(actions):
             if manual_boss and i == len(actions) - 1:
                 logger.warning("Actions completed. Waiting for manual boss...")
@@ -332,7 +331,7 @@ class Copilot(UI):
             self.device.click_record_clear()
             self.device.stuck_record_clear()
 
-    def fight(self, stage, manual_boss):
+    def fight(self, stage: Stage, manual_boss: bool):
         if stage.state != StageState.SUB:
             # Click to start the task
             self.begin_mission()
