@@ -3,6 +3,17 @@ from module.base.button import Button, ButtonWrapper
 # This file was auto-generated, do not modify it manually. To generate:
 # ``` python -m dev_tools.button_extract ```
 
+CIRCLE = ButtonWrapper(
+    name='CIRCLE',
+    jp=Button(
+        file='./assets/jp/circle/CIRCLE.png',
+        area=(197, 315, 228, 350),
+        search=(177, 295, 248, 370),
+        color=(166, 215, 235),
+        button=(188, 299, 435, 456),
+    ),
+    en=None,
+)
 GET_REWARD_AP = ButtonWrapper(
     name='GET_REWARD_AP',
     jp=Button(
