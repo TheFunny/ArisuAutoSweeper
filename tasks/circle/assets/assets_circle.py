@@ -13,6 +13,7 @@ CIRCLE = ButtonWrapper(
         button=(188, 299, 435, 456),
     ),
     en=None,
+    zht=None,
 )
 GET_REWARD_AP = ButtonWrapper(
     name='GET_REWARD_AP',

@@ -621,10 +621,10 @@ WORK_CHECK = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/base/page/WORK_CHECK.png',
-        area=(668, 402, 774, 442),
-        search=(648, 382, 794, 462),
-        color=(182, 199, 224),
-        button=(668, 402, 774, 442),
+        area=(105, 9, 164, 39),
+        search=(85, 0, 184, 59),
+        color=(165, 176, 188),
+        button=(105, 9, 164, 39),
     ),
 )
 WORK_GO_TO_BOUNTY = ButtonWrapper(
@@ -645,10 +645,10 @@ WORK_GO_TO_BOUNTY = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/base/page/WORK_GO_TO_BOUNTY.png',
-        area=(668, 402, 774, 442),
-        search=(648, 382, 794, 462),
-        color=(182, 199, 224),
-        button=(668, 402, 774, 442),
+        area=(668, 410, 770, 438),
+        search=(648, 390, 790, 458),
+        color=(170, 185, 211),
+        button=(668, 410, 770, 438),
     ),
 )
 WORK_GO_TO_COMMISSIONS = ButtonWrapper(
@@ -669,10 +669,10 @@ WORK_GO_TO_COMMISSIONS = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/base/page/WORK_GO_TO_COMMISSIONS.png',
-        area=(656, 487, 759, 526),
-        search=(636, 467, 779, 546),
-        color=(194, 207, 223),
-        button=(656, 487, 759, 526),
+        area=(656, 492, 757, 519),
+        search=(636, 472, 777, 539),
+        color=(177, 190, 212),
+        button=(656, 492, 757, 519),
     ),
 )
 WORK_GO_TO_EVENT = ButtonWrapper(
@@ -693,10 +693,10 @@ WORK_GO_TO_EVENT = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/base/page/WORK_GO_TO_EVENT.png',
-        area=(65, 129, 142, 207),
-        search=(45, 109, 162, 227),
-        color=(136, 159, 172),
-        button=(65, 129, 142, 207),
+        area=(65, 126, 140, 206),
+        search=(45, 106, 160, 226),
+        color=(142, 137, 138),
+        button=(65, 126, 140, 206),
     ),
 )
 WORK_GO_TO_MISSION = ButtonWrapper(
@@ -741,10 +741,10 @@ WORK_GO_TO_SCHOOL_EXCHANGE = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/base/page/WORK_GO_TO_SCHOOL_EXCHANGE.png',
-        area=(643, 567, 768, 610),
-        search=(623, 547, 788, 630),
-        color=(186, 201, 220),
-        button=(643, 567, 768, 610),
+        area=(643, 575, 764, 601),
+        search=(623, 555, 784, 621),
+        color=(171, 185, 208),
+        button=(643, 575, 764, 601),
     ),
 )
 WORK_GO_TO_STORY = ButtonWrapper(
