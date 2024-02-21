@@ -182,17 +182,17 @@ PLAYER_SELECT_FIRST = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/tactical_challenge/PLAYER_SELECT_FIRST.png',
-        area=(470, 293, 503, 322),
-        search=(450, 273, 523, 342),
-        color=(206, 214, 220),
-        button=(606, 181, 1100, 256),
+        area=(469, 292, 489, 319),
+        search=(449, 272, 509, 339),
+        color=(195, 205, 211),
+        button=(563, 197, 1128, 267),
     ),
     zht=Button(
         file='./assets/zht/tactical_challenge/PLAYER_SELECT_FIRST.png',
-        area=(469, 289, 512, 325),
-        search=(449, 269, 532, 345),
-        color=(206, 214, 221),
-        button=(606, 173, 1099, 260),
+        area=(461, 292, 493, 320),
+        search=(441, 272, 513, 340),
+        color=(199, 210, 216),
+        button=(563, 194, 1131, 279),
     ),
 )
 PLAYER_SELECT_SECOND = ButtonWrapper(
@@ -206,17 +206,17 @@ PLAYER_SELECT_SECOND = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/tactical_challenge/PLAYER_SELECT_SECOND.png',
-        area=(467, 450, 507, 482),
-        search=(447, 430, 527, 502),
-        color=(210, 219, 225),
-        button=(610, 338, 1098, 407),
+        area=(466, 453, 491, 478),
+        search=(446, 433, 511, 498),
+        color=(196, 207, 213),
+        button=(559, 354, 1121, 424),
     ),
     zht=Button(
         file='./assets/zht/tactical_challenge/PLAYER_SELECT_SECOND.png',
-        area=(471, 451, 504, 480),
-        search=(451, 431, 524, 500),
-        color=(201, 209, 215),
-        button=(606, 334, 1102, 416),
+        area=(465, 451, 494, 482),
+        search=(445, 431, 514, 502),
+        color=(199, 210, 216),
+        button=(558, 357, 1130, 431),
     ),
 )
 PLAYER_SELECT_THIRD = ButtonWrapper(
@@ -230,17 +230,17 @@ PLAYER_SELECT_THIRD = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/tactical_challenge/PLAYER_SELECT_THIRD.png',
-        area=(472, 612, 504, 641),
-        search=(452, 592, 524, 661),
-        color=(208, 216, 222),
-        button=(609, 500, 1101, 565),
+        area=(464, 608, 492, 638),
+        search=(444, 588, 512, 658),
+        color=(202, 213, 219),
+        button=(558, 513, 1124, 579),
     ),
     zht=Button(
         file='./assets/zht/tactical_challenge/PLAYER_SELECT_THIRD.png',
-        area=(470, 609, 503, 638),
-        search=(450, 589, 523, 658),
-        color=(201, 209, 215),
-        button=(613, 490, 1099, 572),
+        area=(466, 607, 492, 637),
+        search=(446, 587, 512, 657),
+        color=(197, 207, 213),
+        button=(558, 510, 1125, 580),
     ),
 )
 PREPARE_CHALLENGE = ButtonWrapper(
