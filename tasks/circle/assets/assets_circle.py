@@ -7,9 +7,9 @@ CIRCLE = ButtonWrapper(
     name='CIRCLE',
     jp=Button(
         file='./assets/jp/circle/CIRCLE.png',
-        area=(197, 315, 228, 350),
-        search=(177, 295, 248, 370),
-        color=(166, 215, 235),
+        area=(191, 314, 233, 356),
+        search=(171, 294, 253, 376),
+        color=(191, 224, 240),
         button=(188, 299, 435, 456),
     ),
     en=None,
