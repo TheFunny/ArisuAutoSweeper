@@ -333,9 +333,9 @@ START_CHALLENGE = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/tactical_challenge/START_CHALLENGE.png',
-        area=(102, 8, 246, 38),
-        search=(82, 0, 266, 58),
-        color=(160, 172, 184),
+        area=(105, 8, 217, 39),
+        search=(85, 0, 237, 59),
+        color=(161, 172, 185),
         button=(1089, 640, 1253, 701),
     ),
 )
