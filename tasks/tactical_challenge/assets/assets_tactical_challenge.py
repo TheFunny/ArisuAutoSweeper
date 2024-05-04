@@ -133,9 +133,9 @@ PLAYER_SELECT_FIRST = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/tactical_challenge/PLAYER_SELECT_FIRST.png',
-        area=(470, 293, 503, 322),
-        search=(450, 273, 523, 342),
-        color=(206, 214, 220),
+        area=(468, 296, 493, 315),
+        search=(448, 276, 513, 335),
+        color=(191, 202, 207),
         button=(606, 181, 1100, 256),
     ),
 )
@@ -150,9 +150,9 @@ PLAYER_SELECT_SECOND = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/tactical_challenge/PLAYER_SELECT_SECOND.png',
-        area=(467, 450, 507, 482),
-        search=(447, 430, 527, 502),
-        color=(210, 219, 225),
+        area=(467, 454, 493, 473),
+        search=(447, 434, 513, 493),
+        color=(191, 202, 207),
         button=(610, 338, 1098, 407),
     ),
 )
@@ -167,9 +167,9 @@ PLAYER_SELECT_THIRD = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/tactical_challenge/PLAYER_SELECT_THIRD.png',
-        area=(472, 612, 504, 641),
-        search=(452, 592, 524, 661),
-        color=(208, 216, 222),
+        area=(468, 613, 492, 631),
+        search=(448, 593, 512, 651),
+        color=(188, 199, 204),
         button=(609, 500, 1101, 565),
     ),
 )
