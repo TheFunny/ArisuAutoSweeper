@@ -180,10 +180,10 @@ GET_REWARD = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/GET_REWARD.png',
-        area=(581, 503, 692, 536),
-        search=(561, 483, 712, 556),
-        color=(208, 190, 63),
-        button=(539, 491, 741, 555),
+        area=(593, 506, 687, 548),
+        search=(573, 486, 707, 568),
+        color=(211, 193, 64),
+        button=(543, 492, 736, 564),
     ),
 )
 GET_REWARD_CLOSE = ButtonWrapper(
@@ -197,10 +197,10 @@ GET_REWARD_CLOSE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/GET_REWARD_CLOSE.png',
-        area=(883, 134, 926, 178),
-        search=(863, 114, 946, 198),
-        color=(215, 220, 224),
-        button=(883, 134, 926, 178),
+        area=(968, 132, 997, 162),
+        search=(948, 112, 1017, 182),
+        color=(187, 193, 201),
+        button=(968, 132, 997, 162),
     ),
 )
 GOT_REWARD = ButtonWrapper(
@@ -214,10 +214,10 @@ GOT_REWARD = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/GOT_REWARD.png',
-        area=(543, 489, 741, 558),
-        search=(523, 469, 761, 578),
-        color=(211, 212, 212),
-        button=(543, 489, 741, 558),
+        area=(544, 493, 735, 563),
+        search=(524, 473, 755, 583),
+        color=(213, 213, 212),
+        button=(544, 493, 735, 563),
     ),
 )
 INVENTORY = ButtonWrapper(
