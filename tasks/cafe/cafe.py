@@ -34,9 +34,9 @@ class Cafe(CafeUI):
     def _is_second_cafe_on(self):
         return self.config.Cafe_SecondCafe
 
-    @Config.when(Emulator_GameLanguage=None)
+    @Config.when(Emulator_GameLanguage='en')
     def _is_second_cafe_on(self):
-        return False
+        return self.config.Cafe_SecondCafe
 
     is_second_cafe_on = property(_is_second_cafe_on)
 
