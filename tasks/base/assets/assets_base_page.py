@@ -58,10 +58,10 @@ CAFE_CHECK = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/CAFE_CHECK.png',
-        area=(196, 8, 259, 37),
-        search=(176, 0, 279, 57),
-        color=(188, 197, 206),
-        button=(196, 8, 259, 37),
+        area=(106, 12, 167, 36),
+        search=(86, 0, 187, 56),
+        color=(173, 184, 194),
+        button=(106, 12, 167, 36),
     ),
 )
 CIRCLE_CHECK = ButtonWrapper(
