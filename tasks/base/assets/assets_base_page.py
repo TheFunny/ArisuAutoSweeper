@@ -72,17 +72,17 @@ CAFE_CHECK = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/CAFE_CHECK.png',
-        area=(196, 8, 259, 37),
-        search=(176, 0, 279, 57),
-        color=(188, 197, 206),
-        button=(196, 8, 259, 37),
+        area=(106, 12, 167, 36),
+        search=(86, 0, 187, 56),
+        color=(173, 184, 194),
+        button=(106, 12, 167, 36),
     ),
     zht=Button(
         file='./assets/zht/base/page/CAFE_CHECK.png',
-        area=(94, 2, 307, 43),
-        search=(74, 0, 327, 63),
-        color=(187, 196, 201),
-        button=(94, 2, 307, 43),
+        area=(107, 9, 190, 38),
+        search=(87, 0, 210, 58),
+        color=(154, 166, 178),
+        button=(107, 9, 190, 38),
     ),
 )
 CIRCLE_CHECK = ButtonWrapper(
