@@ -51,10 +51,10 @@ CAFE_CHECK = ButtonWrapper(
     name='CAFE_CHECK',
     jp=Button(
         file='./assets/jp/base/page/CAFE_CHECK.png',
-        area=(264, 11, 337, 35),
-        search=(244, 0, 357, 55),
-        color=(188, 197, 205),
-        button=(264, 11, 337, 35),
+        area=(108, 11, 182, 36),
+        search=(88, 0, 202, 56),
+        color=(191, 200, 208),
+        button=(108, 11, 182, 36),
     ),
     en=Button(
         file='./assets/en/base/page/CAFE_CHECK.png',
