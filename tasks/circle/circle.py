@@ -1,9 +1,8 @@
 from enum import Enum
 
-from module.base.decorator import Config
 from module.base.timer import Timer
 from module.logger import logger
-from tasks.base.page import page_circle, MAIN_GO_TO_CIRCLE, CIRCLE_CHECK
+from tasks.base.page import CIRCLE_CHECK, MAIN_GO_TO_CIRCLE
 from tasks.base.ui import UI
 from tasks.circle.assets.assets_circle import *
 
@@ -18,7 +17,6 @@ class CircleStatus(Enum):
 
 
 class Circle(UI):
-    @Config.when(Emulator_GameLanguage='jp')
     def _enter_circle(self):
         self.ui_goto_main()
         action_timer = Timer(1, 8)
@@ -26,14 +24,11 @@ class Circle(UI):
             self.device.screenshot()
             if not action_timer.reached_and_reset():
                 continue
-            if self.appear_then_click(CIRCLE):
+            if self.appear(CIRCLE):
+                self.click_with_interval(CIRCLE, 3)
                 continue
             else:
                 self.device.click(MAIN_GO_TO_CIRCLE)
-
-    @Config.when(Emulator_GameLanguage=None)
-    def _enter_circle(self):
-        self.ui_ensure(page_circle)
 
     def _handle_circle(self, status):
         match status:
