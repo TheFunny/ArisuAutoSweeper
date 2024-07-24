@@ -12,7 +12,13 @@ CIRCLE = ButtonWrapper(
         color=(191, 224, 240),
         button=(188, 299, 435, 456),
     ),
-    en=None,
+    en=Button(
+        file='./assets/en/circle/CIRCLE.png',
+        area=(197, 314, 229, 351),
+        search=(177, 294, 249, 371),
+        color=(173, 219, 236),
+        button=(191, 298, 434, 457),
+    ),
 )
 GET_REWARD_AP = ButtonWrapper(
     name='GET_REWARD_AP',
