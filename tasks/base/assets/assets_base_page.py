@@ -251,13 +251,6 @@ MAIL_CHECK = ButtonWrapper(
 )
 MAIN_GO_TO_CAFE = ButtonWrapper(
     name='MAIN_GO_TO_CAFE',
-    jp=Button(
-        file='./assets/jp/base/page/MAIN_GO_TO_CAFE.png',
-        area=(76, 638, 104, 674),
-        search=(56, 618, 124, 694),
-        color=(173, 212, 230),
-        button=(76, 638, 104, 674),
-    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_CAFE.png',
         area=(81, 638, 102, 668),
@@ -268,30 +261,16 @@ MAIN_GO_TO_CAFE = ButtonWrapper(
 )
 MAIN_GO_TO_CIRCLE = ButtonWrapper(
     name='MAIN_GO_TO_CIRCLE',
-    jp=Button(
-        file='./assets/jp/base/page/MAIN_GO_TO_CIRCLE.png',
-        area=(542, 630, 581, 665),
-        search=(522, 610, 601, 685),
-        color=(164, 225, 243),
-        button=(542, 630, 581, 665),
-    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_CIRCLE.png',
-        area=(540, 631, 583, 660),
-        search=(520, 611, 603, 680),
-        color=(131, 204, 234),
-        button=(540, 631, 583, 660),
+        area=(542, 630, 581, 665),
+        search=(522, 610, 601, 685),
+        color=(163, 225, 242),
+        button=(542, 630, 581, 665),
     ),
 )
 MAIN_GO_TO_CRAFTING = ButtonWrapper(
     name='MAIN_GO_TO_CRAFTING',
-    jp=Button(
-        file='./assets/jp/base/page/MAIN_GO_TO_CRAFTING.png',
-        area=(661, 620, 693, 668),
-        search=(641, 600, 713, 688),
-        color=(183, 216, 230),
-        button=(661, 620, 693, 668),
-    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_CRAFTING.png',
         area=(665, 622, 693, 664),
@@ -302,13 +281,6 @@ MAIN_GO_TO_CRAFTING = ButtonWrapper(
 )
 MAIN_GO_TO_GACHA = ButtonWrapper(
     name='MAIN_GO_TO_GACHA',
-    jp=Button(
-        file='./assets/jp/base/page/MAIN_GO_TO_GACHA.png',
-        area=(898, 631, 927, 663),
-        search=(878, 611, 947, 683),
-        color=(170, 229, 247),
-        button=(898, 631, 927, 663),
-    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_GACHA.png',
         area=(900, 623, 924, 670),
@@ -349,13 +321,6 @@ MAIN_GO_TO_PURCHASE = ButtonWrapper(
 )
 MAIN_GO_TO_SCHEDULE = ButtonWrapper(
     name='MAIN_GO_TO_SCHEDULE',
-    jp=Button(
-        file='./assets/jp/base/page/MAIN_GO_TO_SCHEDULE.png',
-        area=(194, 646, 222, 672),
-        search=(174, 626, 242, 692),
-        color=(150, 197, 223),
-        button=(194, 646, 222, 672),
-    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_SCHEDULE.png',
         area=(194, 638, 216, 672),
@@ -366,13 +331,6 @@ MAIN_GO_TO_SCHEDULE = ButtonWrapper(
 )
 MAIN_GO_TO_SHOP = ButtonWrapper(
     name='MAIN_GO_TO_SHOP',
-    jp=Button(
-        file='./assets/jp/base/page/MAIN_GO_TO_SHOP.png',
-        area=(774, 628, 816, 670),
-        search=(754, 608, 836, 690),
-        color=(145, 203, 229),
-        button=(774, 628, 816, 670),
-    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_SHOP.png',
         area=(773, 630, 816, 667),
