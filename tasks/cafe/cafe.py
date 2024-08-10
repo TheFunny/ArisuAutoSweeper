@@ -63,9 +63,10 @@ class Cafe(CafeUI):
                     self.click_with_interval(GET_REWARD)
             case CafeStatus.GOT:
                 logger.info('Cafe reward have been got')
-                self.appear_then_click(GET_REWARD_CLOSE)
-                if not self.appear(GET_REWARD_CLOSE):
-                    return CafeStatus.INVITATION
+                if self.appear(GET_REWARD_CLOSE):
+                    self.click_with_interval(GET_REWARD_CLOSE, 1)
+                    return status
+                return CafeStatus.INVITATION
             case CafeStatus.INVITATION:
                 if handle_invitation(self):
                     return CafeStatus.CLICK
@@ -77,6 +78,8 @@ class Cafe(CafeUI):
                     return CafeStatus.CHECK
                 self.click_with_interval(buttons[0], interval=1)
             case CafeStatus.CHECK:
+                if self.appear_then_click(GET_REWARD_CLOSE):
+                    return status
                 buttons = self.get_clickable_buttons()
                 if not self.is_adjust_on:
                     if not buttons:
