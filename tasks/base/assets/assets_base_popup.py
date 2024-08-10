@@ -31,9 +31,9 @@ AP_EXCEED = ButtonWrapper(
     name='AP_EXCEED',
     jp=Button(
         file='./assets/jp/base/popup/AP_EXCEED.png',
-        area=(611, 147, 669, 177),
-        search=(591, 127, 689, 197),
-        color=(143, 156, 170),
+        area=(400, 288, 879, 377),
+        search=(380, 268, 899, 397),
+        color=(201, 202, 202),
         button=(539, 470, 743, 533),
     ),
     en=Button(
@@ -133,9 +133,9 @@ INSUFFICIENT_INVENTORY = ButtonWrapper(
     name='INSUFFICIENT_INVENTORY',
     jp=Button(
         file='./assets/jp/base/popup/INSUFFICIENT_INVENTORY.png',
-        area=(610, 124, 669, 153),
-        search=(590, 104, 689, 173),
-        color=(139, 153, 168),
+        area=(371, 392, 896, 451),
+        search=(351, 372, 916, 471),
+        color=(213, 218, 222),
         button=(535, 494, 746, 565),
     ),
     en=Button(
