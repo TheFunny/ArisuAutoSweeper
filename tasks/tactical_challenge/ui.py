@@ -26,17 +26,26 @@ class TacticalChallengeUI(UI):
 
     def get_reward(self):
         timer = Timer(10, 10).start()
+        action_timer = Timer(0.5, 1)
         while 1:
             self.device.screenshot()
-            self.ui_additional()
+            if not action_timer.reached_and_reset():
+                continue
+            if self.handle_insufficient_inventory():
+                logger.warning('Insufficient inventory, skip reward')
+                return True
+            if self.ui_additional():
+                continue
             if self.match_color(GOT_REWARD_DAILY) and self.match_color(GOT_REWARD_CREDIT):
                 return True
             if self.match_color(GET_REWARD_DAILY):
                 self.click_with_interval(GET_REWARD_DAILY, 0.3)
                 logger.info('Get daily reward')
+                continue
             if self.match_color(GET_REWARD_CREDIT):
                 self.click_with_interval(GET_REWARD_CREDIT, 0.3)
                 logger.info('Get credit reward')
+                continue
             if timer.reached():
                 return False
 
