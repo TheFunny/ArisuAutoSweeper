@@ -28,7 +28,7 @@ class Circle(UI):
                 self.click_with_interval(CIRCLE, 3)
                 continue
             else:
-                self.device.click(MAIN_GO_TO_CIRCLE)
+                self.appear_then_click(MAIN_GO_TO_CIRCLE, 3)
 
     def _handle_circle(self, status):
         match status:
