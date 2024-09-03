@@ -103,10 +103,10 @@ CIRCLE_CHECK = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/base/page/CIRCLE_CHECK.png',
-        area=(93, 3, 224, 39),
-        search=(73, 0, 244, 59),
-        color=(187, 197, 206),
-        button=(93, 3, 224, 39),
+        area=(106, 10, 161, 38),
+        search=(86, 0, 181, 58),
+        color=(154, 167, 180),
+        button=(106, 10, 161, 38),
     ),
 )
 COMMISSIONS_CHECK = ButtonWrapper(
