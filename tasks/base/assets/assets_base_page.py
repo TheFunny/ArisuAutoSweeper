@@ -453,10 +453,10 @@ WORK_GO_TO_BOUNTY = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_BOUNTY.png',
-        area=(671, 409, 760, 440),
-        search=(651, 389, 780, 460),
-        color=(183, 202, 227),
-        button=(671, 409, 760, 440),
+        area=(668, 385, 756, 412),
+        search=(648, 365, 776, 432),
+        color=(180, 198, 223),
+        button=(668, 385, 756, 412),
     ),
 )
 WORK_GO_TO_COMMISSIONS = ButtonWrapper(
@@ -470,10 +470,10 @@ WORK_GO_TO_COMMISSIONS = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_COMMISSIONS.png',
-        area=(656, 494, 803, 517),
-        search=(636, 474, 823, 537),
-        color=(192, 204, 221),
-        button=(656, 494, 803, 517),
+        area=(653, 477, 787, 496),
+        search=(633, 457, 807, 516),
+        color=(187, 199, 218),
+        button=(653, 477, 787, 496),
     ),
 )
 WORK_GO_TO_MISSION = ButtonWrapper(
@@ -487,10 +487,10 @@ WORK_GO_TO_MISSION = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_MISSION.png',
-        area=(720, 160, 871, 206),
-        search=(700, 140, 891, 226),
-        color=(192, 204, 221),
-        button=(720, 160, 871, 206),
+        area=(721, 158, 873, 197),
+        search=(701, 138, 893, 217),
+        color=(180, 195, 215),
+        button=(721, 158, 873, 197),
     ),
 )
 WORK_GO_TO_SCHOOL_EXCHANGE = ButtonWrapper(
@@ -504,10 +504,10 @@ WORK_GO_TO_SCHOOL_EXCHANGE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_SCHOOL_EXCHANGE.png',
-        area=(643, 572, 778, 602),
-        search=(623, 552, 798, 622),
-        color=(190, 203, 221),
-        button=(643, 572, 778, 602),
+        area=(635, 569, 769, 597),
+        search=(615, 549, 789, 617),
+        color=(198, 204, 216),
+        button=(635, 569, 769, 597),
     ),
 )
 WORK_GO_TO_STORY = ButtonWrapper(
@@ -521,10 +521,10 @@ WORK_GO_TO_STORY = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_STORY.png',
-        area=(994, 159, 1109, 211),
-        search=(974, 139, 1129, 231),
-        color=(208, 215, 228),
-        button=(994, 159, 1109, 211),
+        area=(996, 159, 1112, 205),
+        search=(976, 139, 1132, 225),
+        color=(200, 209, 225),
+        button=(996, 159, 1112, 205),
     ),
 )
 WORK_GO_TO_TACTICAL_CHALLENGE = ButtonWrapper(
@@ -538,9 +538,9 @@ WORK_GO_TO_TACTICAL_CHALLENGE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_TACTICAL_CHALLENGE.png',
-        area=(1012, 532, 1152, 591),
-        search=(992, 512, 1172, 611),
-        color=(199, 211, 227),
-        button=(1012, 532, 1152, 591),
+        area=(803, 566, 922, 623),
+        search=(783, 546, 942, 643),
+        color=(186, 201, 220),
+        button=(803, 566, 922, 623),
     ),
 )
