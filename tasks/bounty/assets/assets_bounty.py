@@ -117,10 +117,10 @@ OCR_TICKET = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/bounty/OCR_TICKET.png',
-        area=(155, 81, 206, 119),
-        search=(135, 61, 226, 139),
-        color=(209, 217, 221),
-        button=(155, 81, 206, 119),
+        area=(168, 84, 219, 121),
+        search=(148, 64, 239, 141),
+        color=(202, 210, 216),
+        button=(168, 84, 219, 121),
     ),
 )
 SELECT_DESERT_RAILROAD = ButtonWrapper(

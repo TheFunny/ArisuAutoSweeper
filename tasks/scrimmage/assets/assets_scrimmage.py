@@ -117,10 +117,10 @@ OCR_TICKET = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/scrimmage/OCR_TICKET.png',
-        area=(155, 82, 206, 118),
-        search=(135, 62, 226, 138),
-        color=(218, 222, 225),
-        button=(155, 82, 206, 118),
+        area=(170, 87, 220, 119),
+        search=(150, 67, 240, 139),
+        color=(208, 213, 216),
+        button=(170, 87, 220, 119),
     ),
 )
 SELECT_GEHENNA = ButtonWrapper(

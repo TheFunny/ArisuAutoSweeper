@@ -189,9 +189,9 @@ PLAYER_SELECT_FIRST = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/tactical_challenge/PLAYER_SELECT_FIRST.png',
-        area=(469, 289, 512, 325),
-        search=(449, 269, 532, 345),
-        color=(206, 214, 221),
+        area=(467, 294, 495, 315),
+        search=(447, 274, 515, 335),
+        color=(190, 201, 206),
         button=(606, 173, 1099, 260),
     ),
 )
