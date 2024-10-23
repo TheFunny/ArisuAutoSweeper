@@ -14,9 +14,9 @@ CIRCLE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/circle/CIRCLE.png',
-        area=(197, 314, 229, 351),
-        search=(177, 294, 249, 371),
-        color=(173, 219, 236),
+        area=(196, 314, 235, 355),
+        search=(176, 294, 255, 375),
+        color=(183, 221, 238),
         button=(191, 298, 434, 457),
     ),
 )
