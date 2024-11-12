@@ -34,17 +34,17 @@ CAFE_FIRST = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CAFE_FIRST.png',
-        area=(82, 152, 136, 175),
-        search=(62, 132, 156, 195),
-        color=(111, 127, 147),
-        button=(82, 152, 136, 175),
+        area=(100, 156, 148, 175),
+        search=(80, 136, 168, 195),
+        color=(107, 123, 144),
+        button=(100, 156, 148, 175),
     ),
     zht=Button(
         file='./assets/zht/cafe/CAFE_FIRST.png',
-        area=(82, 152, 136, 175),
-        search=(62, 132, 156, 195),
-        color=(111, 127, 147),
-        button=(82, 152, 136, 175),
+        area=(99, 155, 152, 176),
+        search=(79, 135, 172, 196),
+        color=(131, 145, 161),
+        button=(99, 155, 152, 176),
     ),
 )
 CAFE_INVITE = ButtonWrapper(
@@ -106,17 +106,17 @@ CAFE_SECOND = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CAFE_SECOND.png',
-        area=(219, 152, 279, 175),
-        search=(199, 132, 299, 195),
-        color=(110, 126, 146),
-        button=(219, 152, 279, 175),
+        area=(242, 157, 291, 174),
+        search=(222, 137, 311, 194),
+        color=(119, 134, 153),
+        button=(242, 157, 291, 174),
     ),
     zht=Button(
         file='./assets/zht/cafe/CAFE_SECOND.png',
-        area=(219, 152, 279, 175),
-        search=(199, 132, 299, 195),
-        color=(110, 126, 146),
-        button=(219, 152, 279, 175),
+        area=(239, 155, 293, 176),
+        search=(219, 135, 313, 196),
+        color=(132, 145, 162),
+        button=(239, 155, 293, 176),
     ),
 )
 CHANGE_CAFE_NOT_SELECTED = ButtonWrapper(
@@ -130,17 +130,17 @@ CHANGE_CAFE_NOT_SELECTED = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CHANGE_CAFE_NOT_SELECTED.png',
-        area=(84, 89, 178, 109),
-        search=(64, 69, 198, 129),
-        color=(185, 193, 203),
-        button=(84, 89, 178, 109),
+        area=(99, 93, 197, 110),
+        search=(79, 73, 217, 130),
+        color=(179, 187, 196),
+        button=(99, 93, 197, 110),
     ),
     zht=Button(
         file='./assets/zht/cafe/CHANGE_CAFE_NOT_SELECTED.png',
-        area=(84, 89, 178, 109),
-        search=(64, 69, 198, 129),
-        color=(185, 193, 203),
-        button=(84, 89, 178, 109),
+        area=(99, 91, 199, 112),
+        search=(79, 71, 219, 132),
+        color=(169, 177, 188),
+        button=(99, 91, 199, 112),
     ),
 )
 CHANGE_CAFE_SELECTED = ButtonWrapper(
@@ -154,17 +154,17 @@ CHANGE_CAFE_SELECTED = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CHANGE_CAFE_SELECTED.png',
-        area=(40, 87, 191, 112),
-        search=(20, 67, 211, 132),
-        color=(82, 105, 130),
-        button=(40, 87, 191, 112),
+        area=(57, 92, 199, 112),
+        search=(37, 72, 219, 132),
+        color=(92, 115, 140),
+        button=(57, 92, 199, 112),
     ),
     zht=Button(
         file='./assets/zht/cafe/CHANGE_CAFE_SELECTED.png',
-        area=(40, 87, 191, 112),
-        search=(20, 67, 211, 132),
-        color=(82, 105, 130),
-        button=(40, 87, 191, 112),
+        area=(59, 90, 199, 112),
+        search=(39, 70, 219, 132),
+        color=(113, 132, 154),
+        button=(59, 90, 199, 112),
     ),
 )
 CHECK_MOMOTALK = ButtonWrapper(
