@@ -251,7 +251,7 @@
     },
     "SecondCafe": {
       "name": "Second Floor",
-      "help": "JP server only\nEnable auto switch to second floor and perform interaction"
+      "help": "Enable auto switch to second floor and perform interaction"
     }
   },
   "Invitation": {
