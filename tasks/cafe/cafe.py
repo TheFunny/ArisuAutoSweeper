@@ -1,6 +1,5 @@
 from enum import Enum
 
-from module.base.decorator import Config
 from module.base.timer import Timer
 from module.logger import logger
 from module.ui.switch import Switch
@@ -30,15 +29,9 @@ class CafeStatus(Enum):
 
 
 class Cafe(CafeUI):
-    @Config.when(Emulator_GameLanguage='jp')
-    def _is_second_cafe_on(self):
+    @property
+    def is_second_cafe_on(self):
         return self.config.Cafe_SecondCafe
-
-    @Config.when(Emulator_GameLanguage=None)
-    def _is_second_cafe_on(self):
-        return False
-
-    is_second_cafe_on = property(_is_second_cafe_on)
 
     def _handle_cafe(self, status):
         match status:
