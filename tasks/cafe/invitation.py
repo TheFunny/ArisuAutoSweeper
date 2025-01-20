@@ -6,7 +6,7 @@ import numpy as np
 
 from module.base.base import ModuleBase
 from module.base.timer import Timer
-from module.base.utils import area_size, area_offset
+from module.base.utils import area_offset, area_size
 from module.config.utils import get_server_next_update
 from module.logger import logger
 from module.ocr.ocr import Ocr
@@ -223,7 +223,7 @@ def handle_invitation_status(status: InvitationStatus, main: ModuleBase) -> Invi
             if not invitation.is_invitation:
                 logger.info('Invitation waiting until next refresh')
                 return InvitationStatus.FINISHED
-            if main.appear(CAFE_INVITED):
+            if main.match_color(CAFE_INVITED):
                 logger.info('Invitation in cooldown')
                 return InvitationStatus.FINISHED
             if invitation.choice != 'list_top' and invitation.target_name is None:

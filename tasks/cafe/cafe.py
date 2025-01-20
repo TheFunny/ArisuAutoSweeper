@@ -147,26 +147,42 @@ class Cafe(CafeUI):
                 continue
 
             if self.is_second_cafe_on and not is_second and status == CafeStatus.FINISHED:
-                if not SWITCH_CAFE.appear(main=self):
-                    logger.warning('Cafe switch not found')
-                    continue
-                if SWITCH_CAFE.get(main=self) == 'off':
-                    SWITCH_CAFE.set('on', main=self)
-                    logger.info('Switching to second cafe')
-                if not SWITCH_CAFE_SELECT.appear(main=self):
-                    logger.info('Cafe switch select not found')
-                    continue
-                match (SWITCH_CAFE_SELECT.get(main=self)):
-                    case '1':
-                        if self.click_with_interval(CAFE_SECOND):
-                            continue
-                    case '2':
-                        logger.info('Cafe second arrived')
-                        SWITCH_CAFE.set('off', main=self)
-                        status = CafeStatus.STUDENT_LIST
-                        is_list = False
-                        is_second = True
-                        self.check = 0
+                # handle new jp ui
+                if self.config.Emulator_GameLanguage == 'jp':
+                    if not SWITCH_CAFE_SELECT.appear(main=self):
+                        logger.info('Cafe switch not found')
+                        continue
+                    match SWITCH_CAFE_SELECT.get(main=self):
+                        case '1':
+                            if self.click_with_interval(CAFE_FIRST):
+                                continue
+                        case '2':
+                            logger.info('Cafe second arrived')
+                            status = CafeStatus.STUDENT_LIST
+                            is_list = False
+                            is_second = True
+                            self.check = 0
+                else:
+                    if not SWITCH_CAFE.appear(main=self):
+                        logger.warning('Cafe switch not found')
+                        continue
+                    if SWITCH_CAFE.get(main=self) == 'off':
+                        SWITCH_CAFE.set('on', main=self)
+                        logger.info('Switching to second cafe')
+                    if not SWITCH_CAFE_SELECT.appear(main=self):
+                        logger.info('Cafe switch select not found')
+                        continue
+                    match SWITCH_CAFE_SELECT.get(main=self):
+                        case '1':
+                            if self.click_with_interval(CAFE_SECOND):
+                                continue
+                        case '2':
+                            logger.info('Cafe second arrived')
+                            SWITCH_CAFE.set('off', main=self)
+                            status = CafeStatus.STUDENT_LIST
+                            is_list = False
+                            is_second = True
+                            self.check = 0
 
             if action_timer.reached_and_reset():
                 logger.attr('Status', status)
