@@ -112,7 +112,6 @@ class Cafe(CafeUI):
         status = CafeStatus.STUDENT_LIST
         loading_timer = Timer(2).start()
         action_timer = Timer(1, count=1)
-        is_list = False
         is_reset = False
         is_second = False
         is_enable = is_reward_on or is_touch_on
@@ -127,11 +126,6 @@ class Cafe(CafeUI):
                 continue
 
             if not loading_timer.reached():
-                continue
-
-            if not is_list and status == CafeStatus.STUDENT_LIST and self.appear(STUDENT_LIST):
-                is_list = True
-                loading_timer = Timer(3).start()
                 continue
 
             if not is_reward_on and status == CafeStatus.OCR:
@@ -162,9 +156,9 @@ class Cafe(CafeUI):
                         case '2':
                             logger.info('Cafe second arrived')
                             status = CafeStatus.STUDENT_LIST
-                            is_list = False
                             is_second = True
                             self.check = 0
+                            loading_timer.reset().start()
                 else:
                     if not SWITCH_CAFE.appear(main=self):
                         logger.warning('Cafe switch not found')
@@ -183,7 +177,6 @@ class Cafe(CafeUI):
                             logger.info('Cafe second arrived')
                             SWITCH_CAFE.set('off', main=self)
                             status = CafeStatus.STUDENT_LIST
-                            is_list = False
                             is_second = True
                             self.check = 0
 
