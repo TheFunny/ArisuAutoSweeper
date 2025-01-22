@@ -63,7 +63,7 @@ class Cafe(CafeUI):
                 if handle_invitation(self):
                     return CafeStatus.CLICK
             case CafeStatus.CLICK:
-                buttons = self.get_clickable_buttons(offset=(45, 10))
+                buttons = self.get_clickable_buttons()
                 self.click = len(buttons)
                 logger.attr('Clickable', self.click)
                 if not buttons:

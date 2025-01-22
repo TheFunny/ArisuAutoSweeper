@@ -31,7 +31,7 @@ class CafeUI(UI):
         # generate result
         return cv2.bitwise_and(image, image, mask=mask)
 
-    def get_clickable_buttons(self, similarity=0.8, offset=(45, 10)):
+    def get_clickable_buttons(self, similarity=0.8, offset=(40, 10)):
         image = self.extract_clickable_from_image(self.device.image)
         self.template.matched_button._button_offset = offset
         self.template.load_offset(self.template)
