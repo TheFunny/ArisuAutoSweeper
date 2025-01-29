@@ -363,10 +363,10 @@ INVITE_IN_SECOND = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/cafe/INVITE_IN_SECOND.png',
-        area=(482, 147, 799, 177),
-        search=(462, 127, 819, 197),
-        color=(166, 177, 188),
-        button=(482, 147, 799, 177),
+        area=(487, 146, 793, 178),
+        search=(467, 126, 813, 198),
+        color=(153, 165, 178),
+        button=(487, 146, 793, 178),
     ),
 )
 INVITE_IN_SECOND_CLOSE = ButtonWrapper(
@@ -411,10 +411,10 @@ INVITE_SUBSTITUTE = ButtonWrapper(
     ),
     zht=Button(
         file='./assets/zht/cafe/INVITE_SUBSTITUTE.png',
-        area=(506, 157, 775, 186),
-        search=(486, 137, 795, 206),
-        color=(176, 186, 196),
-        button=(673, 477, 857, 542),
+        area=(580, 154, 701, 183),
+        search=(560, 134, 721, 203),
+        color=(147, 160, 174),
+        button=(672, 475, 857, 544),
     ),
 )
 INVITE_SUBSTITUTE_CLOSE = ButtonWrapper(
