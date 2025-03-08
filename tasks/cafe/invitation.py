@@ -243,7 +243,7 @@ def handle_invitation_status(status: InvitationStatus, main: ModuleBase) -> Invi
         case InvitationStatus.SELECT:
             if main.appear(INVITE_CONFIRM):
                 return InvitationStatus.CONFIRM
-            if main.config.LANG == 'jp' and main.appear(INVITE_IN_SECOND):
+            if main.appear(INVITE_IN_SECOND):
                 return InvitationStatus.IN_SECOND
             if main.appear(INVITE_SUBSTITUTE):
                 return InvitationStatus.SUBSTITUTE
