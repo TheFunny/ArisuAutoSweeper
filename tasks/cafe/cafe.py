@@ -8,10 +8,6 @@ from tasks.cafe.assets.assets_cafe import *
 from tasks.cafe.invitation import handle_invitation
 from tasks.cafe.ui import CafeUI
 
-SWITCH_CAFE = Switch('Cafe_switch')
-SWITCH_CAFE.add_state('off', CHANGE_CAFE_NOT_SELECTED)
-SWITCH_CAFE.add_state('on', CHANGE_CAFE_SELECTED)
-
 SWITCH_CAFE_SELECT = Switch('Cafe_switch_select')
 SWITCH_CAFE_SELECT.add_state('1', CAFE_FIRST)
 SWITCH_CAFE_SELECT.add_state('2', CAFE_SECOND)
@@ -141,41 +137,19 @@ class Cafe(CafeUI):
                 continue
 
             if self.is_second_cafe_on and not is_second and status == CafeStatus.FINISHED:
-                # handle new jp ui
-                if self.config.Emulator_GameLanguage == 'jp':
-                    if not SWITCH_CAFE_SELECT.appear(main=self):
-                        logger.info('Cafe switch not found')
-                        continue
-                    match SWITCH_CAFE_SELECT.get(main=self):
-                        case '1':
-                            if self.click_with_interval(CAFE_FIRST):
-                                continue
-                        case '2':
-                            logger.info('Cafe second arrived')
-                            status = CafeStatus.STUDENT_LIST
-                            is_second = True
-                            self.check = 0
-                            loading_timer.reset().start()
-                else:
-                    if not SWITCH_CAFE.appear(main=self):
-                        logger.warning('Cafe switch not found')
-                        continue
-                    if SWITCH_CAFE.get(main=self) == 'off':
-                        SWITCH_CAFE.set('on', main=self)
-                        logger.info('Switching to second cafe')
-                    if not SWITCH_CAFE_SELECT.appear(main=self):
-                        logger.info('Cafe switch select not found')
-                        continue
-                    match SWITCH_CAFE_SELECT.get(main=self):
-                        case '1':
-                            if self.click_with_interval(CAFE_SECOND):
-                                continue
-                        case '2':
-                            logger.info('Cafe second arrived')
-                            SWITCH_CAFE.set('off', main=self)
-                            status = CafeStatus.STUDENT_LIST
-                            is_second = True
-                            self.check = 0
+                if not SWITCH_CAFE_SELECT.appear(main=self):
+                    logger.info('Cafe switch not found')
+                    continue
+                match SWITCH_CAFE_SELECT.get(main=self):
+                    case '1':
+                        if self.click_with_interval(CAFE_FIRST):
+                            continue
+                    case '2':
+                        logger.info('Cafe second arrived')
+                        status = CafeStatus.STUDENT_LIST
+                        is_second = True
+                        self.check = 0
+                        loading_timer.reset().start()
 
             if action_timer.reached_and_reset():
                 logger.attr('Status', status)
