@@ -34,17 +34,17 @@ CAFE_FIRST = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CAFE_FIRST.png',
-        area=(100, 156, 148, 175),
-        search=(80, 136, 168, 195),
-        color=(107, 123, 144),
-        button=(100, 156, 148, 175),
+        area=(205, 96, 215, 107),
+        search=(185, 76, 235, 127),
+        color=(176, 184, 194),
+        button=(205, 96, 215, 107),
     ),
     zht=Button(
         file='./assets/zht/cafe/CAFE_FIRST.png',
-        area=(99, 155, 152, 176),
-        search=(79, 135, 172, 196),
-        color=(131, 145, 161),
-        button=(99, 155, 152, 176),
+        area=(153, 93, 164, 109),
+        search=(133, 73, 184, 129),
+        color=(172, 180, 190),
+        button=(153, 93, 164, 109),
     ),
 )
 CAFE_INVITE = ButtonWrapper(
@@ -58,17 +58,17 @@ CAFE_INVITE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CAFE_INVITE.png',
-        area=(816, 635, 845, 655),
-        search=(796, 615, 865, 675),
-        color=(173, 182, 192),
-        button=(816, 635, 845, 655),
+        area=(870, 637, 903, 663),
+        search=(850, 617, 923, 683),
+        color=(253, 217, 235),
+        button=(870, 637, 903, 663),
     ),
     zht=Button(
         file='./assets/zht/cafe/CAFE_INVITE.png',
-        area=(816, 635, 845, 655),
-        search=(796, 615, 865, 675),
-        color=(173, 182, 192),
-        button=(816, 635, 845, 655),
+        area=(870, 637, 903, 663),
+        search=(850, 617, 923, 683),
+        color=(253, 217, 235),
+        button=(870, 637, 903, 663),
     ),
 )
 CAFE_INVITED = ButtonWrapper(
@@ -82,17 +82,17 @@ CAFE_INVITED = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CAFE_INVITED.png',
-        area=(815, 633, 847, 657),
-        search=(795, 613, 867, 677),
-        color=(144, 144, 146),
-        button=(815, 633, 847, 657),
+        area=(870, 637, 903, 663),
+        search=(850, 617, 923, 683),
+        color=(111, 109, 109),
+        button=(870, 637, 903, 663),
     ),
     zht=Button(
         file='./assets/zht/cafe/CAFE_INVITED.png',
-        area=(815, 633, 847, 657),
-        search=(795, 613, 867, 677),
-        color=(144, 144, 146),
-        button=(815, 633, 847, 657),
+        area=(870, 637, 903, 663),
+        search=(850, 617, 923, 683),
+        color=(111, 109, 109),
+        button=(870, 637, 903, 663),
     ),
 )
 CAFE_SECOND = ButtonWrapper(
@@ -106,65 +106,17 @@ CAFE_SECOND = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CAFE_SECOND.png',
-        area=(242, 157, 291, 174),
-        search=(222, 137, 311, 194),
-        color=(119, 134, 153),
-        button=(242, 157, 291, 174),
+        area=(207, 96, 214, 107),
+        search=(187, 76, 234, 127),
+        color=(174, 182, 192),
+        button=(207, 96, 214, 107),
     ),
     zht=Button(
         file='./assets/zht/cafe/CAFE_SECOND.png',
-        area=(239, 155, 293, 176),
-        search=(219, 135, 313, 196),
-        color=(132, 145, 162),
-        button=(239, 155, 293, 176),
-    ),
-)
-CHANGE_CAFE_NOT_SELECTED = ButtonWrapper(
-    name='CHANGE_CAFE_NOT_SELECTED',
-    jp=Button(
-        file='./assets/jp/cafe/CHANGE_CAFE_NOT_SELECTED.png',
-        area=(84, 89, 178, 109),
-        search=(64, 69, 198, 129),
-        color=(185, 193, 203),
-        button=(84, 89, 178, 109),
-    ),
-    en=Button(
-        file='./assets/en/cafe/CHANGE_CAFE_NOT_SELECTED.png',
-        area=(99, 93, 197, 110),
-        search=(79, 73, 217, 130),
-        color=(179, 187, 196),
-        button=(99, 93, 197, 110),
-    ),
-    zht=Button(
-        file='./assets/zht/cafe/CHANGE_CAFE_NOT_SELECTED.png',
-        area=(99, 91, 199, 112),
-        search=(79, 71, 219, 132),
-        color=(169, 177, 188),
-        button=(99, 91, 199, 112),
-    ),
-)
-CHANGE_CAFE_SELECTED = ButtonWrapper(
-    name='CHANGE_CAFE_SELECTED',
-    jp=Button(
-        file='./assets/jp/cafe/CHANGE_CAFE_SELECTED.png',
-        area=(40, 87, 191, 112),
-        search=(20, 67, 211, 132),
-        color=(82, 105, 130),
-        button=(40, 87, 191, 112),
-    ),
-    en=Button(
-        file='./assets/en/cafe/CHANGE_CAFE_SELECTED.png',
-        area=(57, 92, 199, 112),
-        search=(37, 72, 219, 132),
-        color=(92, 115, 140),
-        button=(57, 92, 199, 112),
-    ),
-    zht=Button(
-        file='./assets/zht/cafe/CHANGE_CAFE_SELECTED.png',
-        area=(59, 90, 199, 112),
-        search=(39, 70, 219, 132),
-        color=(113, 132, 154),
-        button=(59, 90, 199, 112),
+        area=(153, 93, 162, 110),
+        search=(133, 73, 182, 130),
+        color=(169, 178, 189),
+        button=(153, 93, 162, 110),
     ),
 )
 CHECK_MOMOTALK = ButtonWrapper(
@@ -202,17 +154,17 @@ CHECK_REWARD = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/CHECK_REWARD.png',
-        area=(1090, 613, 1229, 644),
-        search=(1070, 593, 1249, 664),
-        color=(64, 88, 115),
-        button=(1086, 611, 1229, 685),
+        area=(1116, 636, 1218, 654),
+        search=(1096, 616, 1238, 674),
+        color=(77, 100, 125),
+        button=(1113, 625, 1239, 692),
     ),
     zht=Button(
         file='./assets/zht/cafe/CHECK_REWARD.png',
-        area=(1087, 609, 1222, 644),
-        search=(1067, 589, 1242, 664),
-        color=(70, 94, 120),
-        button=(1086, 613, 1229, 682),
+        area=(1125, 634, 1209, 651),
+        search=(1105, 614, 1229, 671),
+        color=(107, 128, 149),
+        button=(1113, 626, 1237, 692),
     ),
 )
 CLICKABLE_TEMPLATE = ButtonWrapper(
@@ -524,17 +476,17 @@ OCR_CAFE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/cafe/OCR_CAFE.png',
-        area=(1105, 639, 1195, 674),
-        search=(1085, 619, 1215, 694),
-        color=(84, 104, 127),
-        button=(1105, 639, 1195, 674),
+        area=(1127, 657, 1219, 682),
+        search=(1107, 637, 1239, 702),
+        color=(93, 112, 134),
+        button=(1127, 657, 1219, 682),
     ),
     zht=Button(
         file='./assets/zht/cafe/OCR_CAFE.png',
-        area=(1072, 639, 1232, 679),
-        search=(1052, 619, 1252, 699),
-        color=(71, 93, 118),
-        button=(1072, 639, 1232, 679),
+        area=(1127, 657, 1219, 682),
+        search=(1107, 637, 1239, 702),
+        color=(93, 112, 134),
+        button=(1127, 657, 1219, 682),
     ),
 )
 OCR_NAME = ButtonWrapper(
