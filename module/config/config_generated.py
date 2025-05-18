@@ -56,15 +56,15 @@ class GeneratedConfig:
     Bounty_OnError = 'skip'  # stop, skip
 
     # Group `Highway`
-    Highway_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Highway_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     Highway_Count = 2
 
     # Group `DesertRailroad`
-    DesertRailroad_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    DesertRailroad_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     DesertRailroad_Count = 2
 
     # Group `Schoolhouse`
-    Schoolhouse_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Schoolhouse_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     Schoolhouse_Count = 2
 
     # Group `Scrimmage`
