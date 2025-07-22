@@ -311,6 +311,13 @@ MAIN_GO_TO_MOMOTALK = ButtonWrapper(
 )
 MAIN_GO_TO_PURCHASE = ButtonWrapper(
     name='MAIN_GO_TO_PURCHASE',
+    jp=Button(
+        file='./assets/jp/base/page/MAIN_GO_TO_PURCHASE.png',
+        area=(147, 214, 179, 254),
+        search=(127, 194, 199, 274),
+        color=(171, 216, 241),
+        button=(147, 214, 179, 254),
+    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_PURCHASE.png',
         area=(148, 204, 183, 253),
@@ -353,10 +360,10 @@ MAIN_GO_TO_WORK = ButtonWrapper(
     name='MAIN_GO_TO_WORK',
     jp=Button(
         file='./assets/jp/base/page/MAIN_GO_TO_WORK.png',
-        area=(1167, 605, 1241, 632),
-        search=(1147, 585, 1261, 652),
-        color=(135, 149, 169),
-        button=(1167, 605, 1241, 632),
+        area=(1169, 588, 1239, 612),
+        search=(1149, 568, 1259, 632),
+        color=(150, 162, 180),
+        button=(1169, 588, 1239, 612),
     ),
     en=Button(
         file='./assets/en/base/page/MAIN_GO_TO_WORK.png',
