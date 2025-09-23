@@ -503,7 +503,7 @@
       "7": "07 - Overpass G",
       "8": "08 - Overpass H",
       "9": "09 - Overpass I",
-      "10": "10 - Overpass J (JP Server Only)"
+      "10": "10 - Overpass J"
     },
     "Count": {
       "name": "Sweep X times",
@@ -528,7 +528,7 @@
       "7": "07 - Abandoned Train G",
       "8": "08 - Abandoned Train H",
       "9": "09 - Abandoned Train I",
-      "10": "10 - Abandoned Train J (JP Server Only)"
+      "10": "10 - Abandoned Train J"
     },
     "Count": {
       "name": "Sweep X times",
@@ -553,7 +553,7 @@
       "7": "07 - Besieged Classroom G",
       "8": "08 - Besieged Classroom H",
       "9": "09 - Besieged Classroom I",
-      "10": "10 - Besieged Classroom J (JP Server Only)"
+      "10": "10 - Besieged Classroom J"
     },
     "Count": {
       "name": "Sweep X times",
