@@ -15,6 +15,10 @@
     "Reward": {
       "name": "收菜",
       "help": ""
+    },
+    "Tool": {
+      "name": "工具",
+      "help": ""
     }
   },
   "Task": {
@@ -846,6 +850,16 @@
     },
     "TacticalChallengeTicket": {
       "name": "战术对抗赛",
+      "help": ""
+    }
+  },
+  "Momotalk": {
+    "_info": {
+      "name": "Momotalk",
+      "help": "工具需要停止调度器再单独运行"
+    },
+    "Enable": {
+      "name": "",
       "help": ""
     }
   },

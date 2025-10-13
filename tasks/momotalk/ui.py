@@ -1,9 +1,7 @@
-import cv2
 import numpy as np
 
-from module.base.base import ModuleBase
 from module.base.timer import Timer
-from module.base.utils import point_in_area, area_size
+from module.base.utils import area_size
 from module.logger import logger
 from module.ui.switch import Switch
 from tasks.base.page import page_main, page_momo_talk
@@ -24,23 +22,19 @@ SWITCH_SORT.add_state("descending", SORT_DESCENDING)
 
 """Required for template matching as reply and story 
 button can be found in different locations"""
-REPLY_TEMPLATE = REPLY.matched_button.image
-STORY_TEMPLATE = STORY.matched_button.image
-CHATTING_TEMPLATE = CHATTING.matched_button.image
+REPLY_TEMPLATE = REPLY
+STORY_TEMPLATE = STORY
+CHATTING_TEMPLATE = CHATTING
 
 
 class MomoTalkUI(UI):
-    def __init__(self, config, device):
-        super().__init__(config, device)
-        self.swipe_vector_range = (0.65, 0.85)
-        self.list = CHAT_AREA
-        self.click_coords = self.device.click_methods.get(self.config.Emulator_ControlMethod, self.device.click_adb)
+    swipe_vector_range = (0.65, 0.85)
+    list = CHAT_AREA
 
-    def swipe_page(self, direction: str, main: ModuleBase, vector_range=None, reverse=False):
+    def swipe_page(self, direction: str, vector_range=None, reverse=False):
         """
         Args:
             direction: up, down
-            main:
             vector_range (tuple[float, float]):
             reverse (bool):
         """
@@ -58,7 +52,7 @@ class MomoTalkUI(UI):
 
         if reverse:
             vector = (-vector[0], -vector[1])
-        main.device.swipe_vector(vector, self.list.button)
+        self.device.swipe_vector(vector, self.list.button)
 
     def select_then_disappear(self, dest_enter: ButtonWrapper, dest_check: ButtonWrapper):
         timer = Timer(5, 10).start()
@@ -83,24 +77,19 @@ class MomoTalkUI(UI):
 
         return True
 
-    def click_all(self, template, x_add=0, y_add=0):
+    def click_all(self, template: ButtonWrapper, offset: tuple[int, int] = (0, 0)) -> bool:
         """
         Find the all the locations of the template adding an offset if specified and click them. 
         If after filter, no coords then swipe.
         """
-        image = self.device.screenshot()
-        result = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
-        threshold = 0.8
-        locations = np.where(result >= threshold)
-        seen = set()
-        for pt in zip(*locations[::-1]):
-            center_pt = (int(pt[0] + template.shape[1] / 2 + x_add), int(pt[1] + template.shape[0] / 2 + y_add))
-            seen.add(center_pt)
+        template.load_search(self.list.area)
+        template.matched_button._button_offset = offset
+        seen = template.match_multi_template(self.device.image, similarity=0.8)
         if seen:
-            if y_add != 0:
-                seen = filter(lambda x: point_in_area(x, CHAT_AREA.area), seen)
-                [self.click_coords(coords[0], coords[1]) for coords in seen]
-                self.swipe_page("down", self)
+            if any(offset):
+                for button in seen:
+                    self.device.click(button)
+                self.swipe_page("down")
             return True
         return False
 
@@ -157,10 +146,10 @@ class MomoTalkUI(UI):
                 return True
             elif self.click_all(CHATTING_TEMPLATE):
                 timer.reset()
-            elif self.click_all(REPLY_TEMPLATE, y_add=62):
+            elif self.click_all(REPLY_TEMPLATE, offset=(0, 62)):
                 logger.info("Clicked on reply")
                 timer.reset()
-            elif self.click_all(STORY_TEMPLATE, y_add=62):
+            elif self.click_all(STORY_TEMPLATE, offset=(0, 62)):
                 logger.info("Clicked on story")
                 timer.reset()
             elif timer.reached():

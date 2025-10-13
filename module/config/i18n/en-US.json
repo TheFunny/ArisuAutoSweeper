@@ -15,6 +15,10 @@
     "Reward": {
       "name": "Reward",
       "help": ""
+    },
+    "Tool": {
+      "name": "Tools",
+      "help": ""
     }
   },
   "Task": {
@@ -846,6 +850,16 @@
     },
     "TacticalChallengeTicket": {
       "name": "Tactical Challenge",
+      "help": ""
+    }
+  },
+  "Momotalk": {
+    "_info": {
+      "name": "Momotalk",
+      "help": "Tools need to stop the scheduler and then run independently"
+    },
+    "Enable": {
+      "name": "",
       "help": ""
     }
   },

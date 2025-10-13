@@ -166,3 +166,6 @@ class GeneratedConfig:
     ItemStorage_BountyTicket = {}
     ItemStorage_ScrimmageTicket = {}
     ItemStorage_TacticalChallengeTicket = {}
+
+    # Group `Momotalk`
+    Momotalk_Enable = True

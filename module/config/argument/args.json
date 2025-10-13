@@ -1062,28 +1062,10 @@
     }
   },
   "Momotalk": {
-    "Scheduler": {
+    "Momotalk": {
       "Enable": {
         "type": "checkbox",
-        "value": false,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "Momotalk",
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00",
+        "value": true,
         "display": "hide"
       }
     }

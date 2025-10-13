@@ -6,11 +6,12 @@ from multiprocessing import Process
 from typing import Dict, List, Union
 
 from filelock import FileLock
+from rich.console import Console, ConsoleRenderable
+
 from module.config.utils import filepath_config
 from module.logger import logger, set_file_logger, set_func_logger
 from module.webui.fake import get_config_mod, mod_instance
 from module.webui.setting import State
-from rich.console import Console, ConsoleRenderable
 
 
 class ProcessManager:
@@ -147,6 +148,10 @@ class ProcessManager:
                 if e is not None:
                     AzurLaneAutoScript.stop_event = e
                 ArisuAutoSweeper(config_name=config_name).loop()
+            elif func == "Momotalk":
+                from tasks.momotalk.momotalk import MomoTalk
+
+                MomoTalk(config=config_name, task="Momotalk").run()
             else:
                 logger.critical(f"No function matched: {func}")
             logger.info(f"[{config_name}] exited. Reason: Finish\n")

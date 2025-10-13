@@ -33,7 +33,13 @@
     "tasks": [
       "Circle",
       "Task",
-      "Mail",
+      "Mail"
+    ]
+  },
+  "Tool": {
+    "menu": "collapse",
+    "page": "tool",
+    "tasks": [
       "Momotalk"
     ]
   }

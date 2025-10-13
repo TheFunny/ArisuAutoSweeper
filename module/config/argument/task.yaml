@@ -80,5 +80,12 @@ Reward:
       - Scheduler
     Mail:
       - Scheduler
+
+# ==================== Tool ====================
+
+Tool:
+  menu: 'collapse'
+  page: 'tool'
+  tasks:
     Momotalk:
-      - Scheduler
+      - Momotalk
