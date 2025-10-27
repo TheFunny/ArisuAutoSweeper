@@ -1,10 +1,10 @@
 from module.base.button import ButtonWrapper
-from module.base.decorator import run_once, Config
+from module.base.decorator import Config, run_once
 from module.base.timer import Timer
 from module.base.utils import get_color
 from module.exception import GameNotRunningError, GamePageUnknownError, RequestHumanTakeover
 from module.logger import logger
-from module.ocr.ocr import Ocr, Digit
+from module.ocr.ocr import Digit, Ocr
 from tasks.base.assets.assets_base_page import BACK
 from tasks.base.main_page import MainPage
 from tasks.base.page import Page, page_main
@@ -23,7 +23,8 @@ class UI(MainPage):
     # temporary block check for jp
     @Config.when(Emulator_GameLanguage='jp')
     def appear_trademark_year(self):
-        return False
+        # this disables using back button in jp due to a login issue
+        return True
 
     @Config.when(Emulator_GameLanguage=None)
     def appear_trademark_year(self):
