@@ -30,6 +30,9 @@ pywebio==1.6.2
 starlette==0.14.2
 uvicorn[standard]==0.17.6
 aiofiles
+fastapi>=0.100.0
+python-multipart
+websockets
 
 # GUI
 customtkinter
