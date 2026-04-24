@@ -5,6 +5,13 @@ from module.base.button import Button, ButtonWrapper
 
 OCR_AP = ButtonWrapper(
     name='OCR_AP',
+    jp=Button(
+        file='./assets/jp/item/data/OCR_AP.png',
+        area=(512, 13, 597, 32),
+        search=(492, 0, 617, 52),
+        color=(199, 204, 208),
+        button=(512, 13, 597, 32),
+    ),
     share=Button(
         file='./assets/share/item/data/OCR_AP.png',
         area=(535, 13, 660, 36),
@@ -15,6 +22,13 @@ OCR_AP = ButtonWrapper(
 )
 OCR_DATA = ButtonWrapper(
     name='OCR_DATA',
+    jp=Button(
+        file='./assets/jp/item/data/OCR_DATA.png',
+        area=(716, 14, 1058, 33),
+        search=(696, 0, 1078, 53),
+        color=(211, 219, 224),
+        button=(716, 14, 1058, 33),
+    ),
     share=Button(
         file='./assets/share/item/data/OCR_DATA.png',
         area=(745, 11, 1069, 39),

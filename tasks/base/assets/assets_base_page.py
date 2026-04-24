@@ -207,6 +207,13 @@ GACHA_CHECK = ButtonWrapper(
 )
 HOME = ButtonWrapper(
     name='HOME',
+    jp=Button(
+        file='./assets/jp/base/page/HOME.png',
+        area=(1224, 10, 1250, 35),
+        search=(1204, 0, 1270, 55),
+        color=(162, 176, 202),
+        button=(1224, 10, 1250, 35),
+    ),
     share=Button(
         file='./assets/share/base/page/HOME.png',
         area=(1218, 8, 1253, 41),
@@ -251,6 +258,13 @@ MAIL_CHECK = ButtonWrapper(
 )
 MAIN_GO_TO_CAFE = ButtonWrapper(
     name='MAIN_GO_TO_CAFE',
+    jp=Button(
+        file='./assets/jp/base/page/MAIN_GO_TO_CAFE.png',
+        area=(86, 632, 113, 670),
+        search=(66, 612, 133, 690),
+        color=(174, 222, 246),
+        button=(86, 632, 113, 670),
+    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_CAFE.png',
         area=(81, 638, 102, 668),
@@ -261,6 +275,13 @@ MAIN_GO_TO_CAFE = ButtonWrapper(
 )
 MAIN_GO_TO_CIRCLE = ButtonWrapper(
     name='MAIN_GO_TO_CIRCLE',
+    jp=Button(
+        file='./assets/jp/base/page/MAIN_GO_TO_CIRCLE.png',
+        area=(531, 631, 561, 659),
+        search=(511, 611, 581, 679),
+        color=(182, 230, 254),
+        button=(531, 631, 561, 659),
+    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_CIRCLE.png',
         area=(542, 630, 581, 665),
@@ -271,6 +292,13 @@ MAIN_GO_TO_CIRCLE = ButtonWrapper(
 )
 MAIN_GO_TO_CRAFTING = ButtonWrapper(
     name='MAIN_GO_TO_CRAFTING',
+    jp=Button(
+        file='./assets/jp/base/page/MAIN_GO_TO_CRAFTING.png',
+        area=(645, 627, 667, 662),
+        search=(625, 607, 687, 682),
+        color=(206, 235, 251),
+        button=(645, 627, 667, 662),
+    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_CRAFTING.png',
         area=(665, 622, 693, 664),
@@ -281,6 +309,13 @@ MAIN_GO_TO_CRAFTING = ButtonWrapper(
 )
 MAIN_GO_TO_GACHA = ButtonWrapper(
     name='MAIN_GO_TO_GACHA',
+    jp=Button(
+        file='./assets/jp/base/page/MAIN_GO_TO_GACHA.png',
+        area=(871, 626, 893, 671),
+        search=(851, 606, 913, 691),
+        color=(172, 223, 242),
+        button=(871, 626, 893, 671),
+    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_GACHA.png',
         area=(900, 623, 924, 670),
@@ -291,6 +326,13 @@ MAIN_GO_TO_GACHA = ButtonWrapper(
 )
 MAIN_GO_TO_MAIL = ButtonWrapper(
     name='MAIN_GO_TO_MAIL',
+    jp=Button(
+        file='./assets/jp/base/page/MAIN_GO_TO_MAIL.png',
+        area=(1144, 27, 1165, 44),
+        search=(1124, 7, 1185, 64),
+        color=(102, 125, 168),
+        button=(1144, 27, 1165, 44),
+    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_MAIL.png',
         area=(1130, 29, 1156, 49),
@@ -303,10 +345,10 @@ MAIN_GO_TO_MOMOTALK = ButtonWrapper(
     name='MAIN_GO_TO_MOMOTALK',
     jp=Button(
         file='./assets/jp/base/page/MAIN_GO_TO_MOMOTALK.png',
-        area=(138, 130, 159, 161),
-        search=(118, 110, 179, 181),
-        color=(251, 215, 224),
-        button=(138, 130, 159, 161),
+        area=(125, 118, 146, 151),
+        search=(105, 98, 166, 171),
+        color=(244, 200, 211),
+        button=(125, 118, 146, 151),
     ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_MOMOTALK.png',
@@ -320,10 +362,10 @@ MAIN_GO_TO_PURCHASE = ButtonWrapper(
     name='MAIN_GO_TO_PURCHASE',
     jp=Button(
         file='./assets/jp/base/page/MAIN_GO_TO_PURCHASE.png',
-        area=(135, 211, 168, 250),
-        search=(115, 191, 188, 270),
-        color=(166, 207, 238),
-        button=(135, 211, 168, 250),
+        area=(122, 209, 148, 243),
+        search=(102, 189, 168, 263),
+        color=(190, 222, 246),
+        button=(122, 209, 148, 243),
     ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_PURCHASE.png',
@@ -335,6 +377,13 @@ MAIN_GO_TO_PURCHASE = ButtonWrapper(
 )
 MAIN_GO_TO_SCHEDULE = ButtonWrapper(
     name='MAIN_GO_TO_SCHEDULE',
+    jp=Button(
+        file='./assets/jp/base/page/MAIN_GO_TO_SCHEDULE.png',
+        area=(198, 634, 217, 667),
+        search=(178, 614, 237, 687),
+        color=(176, 222, 243),
+        button=(198, 634, 217, 667),
+    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_SCHEDULE.png',
         area=(194, 638, 216, 672),
@@ -345,6 +394,13 @@ MAIN_GO_TO_SCHEDULE = ButtonWrapper(
 )
 MAIN_GO_TO_SHOP = ButtonWrapper(
     name='MAIN_GO_TO_SHOP',
+    jp=Button(
+        file='./assets/jp/base/page/MAIN_GO_TO_SHOP.png',
+        area=(752, 628, 786, 665),
+        search=(732, 608, 806, 685),
+        color=(168, 221, 248),
+        button=(752, 628, 786, 665),
+    ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_SHOP.png',
         area=(773, 630, 816, 667),
@@ -357,10 +413,10 @@ MAIN_GO_TO_TASK = ButtonWrapper(
     name='MAIN_GO_TO_TASK',
     jp=Button(
         file='./assets/jp/base/page/MAIN_GO_TO_TASK.png',
-        area=(47, 219, 70, 246),
-        search=(27, 199, 90, 266),
-        color=(212, 204, 208),
-        button=(47, 219, 70, 246),
+        area=(30, 214, 55, 248),
+        search=(10, 194, 75, 268),
+        color=(186, 218, 245),
+        button=(30, 214, 55, 248),
     ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_TASK.png',
@@ -374,10 +430,10 @@ MAIN_GO_TO_WORK = ButtonWrapper(
     name='MAIN_GO_TO_WORK',
     jp=Button(
         file='./assets/jp/base/page/MAIN_GO_TO_WORK.png',
-        area=(1169, 588, 1239, 612),
-        search=(1149, 568, 1259, 632),
-        color=(150, 162, 180),
-        button=(1169, 588, 1239, 612),
+        area=(1167, 668, 1222, 688),
+        search=(1147, 648, 1242, 708),
+        color=(141, 156, 174),
+        button=(1167, 668, 1222, 688),
     ),
     en=Button(
         file='./assets/en/base/page/MAIN_GO_TO_WORK.png',
@@ -420,6 +476,13 @@ MISSION_CHECK = ButtonWrapper(
 )
 MOMOTALK_CHECK = ButtonWrapper(
     name='MOMOTALK_CHECK',
+    jp=Button(
+        file='./assets/jp/base/page/MOMOTALK_CHECK.png',
+        area=(144, 107, 169, 130),
+        search=(124, 87, 189, 150),
+        color=(253, 211, 219),
+        button=(144, 107, 169, 130),
+    ),
     share=Button(
         file='./assets/share/base/page/MOMOTALK_CHECK.png',
         area=(144, 107, 169, 130),
@@ -610,10 +673,10 @@ WORK_GO_TO_BOUNTY = ButtonWrapper(
     name='WORK_GO_TO_BOUNTY',
     jp=Button(
         file='./assets/jp/base/page/WORK_GO_TO_BOUNTY.png',
-        area=(667, 383, 764, 409),
-        search=(647, 363, 784, 429),
-        color=(171, 187, 212),
-        button=(667, 383, 764, 409),
+        area=(679, 401, 741, 417),
+        search=(659, 381, 761, 437),
+        color=(155, 164, 186),
+        button=(679, 401, 741, 417),
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_BOUNTY.png',
@@ -634,10 +697,10 @@ WORK_GO_TO_COMMISSIONS = ButtonWrapper(
     name='WORK_GO_TO_COMMISSIONS',
     jp=Button(
         file='./assets/jp/base/page/WORK_GO_TO_COMMISSIONS.png',
-        area=(653, 475, 749, 501),
-        search=(633, 455, 769, 521),
-        color=(171, 185, 208),
-        button=(653, 475, 749, 501),
+        area=(661, 504, 724, 521),
+        search=(641, 484, 744, 541),
+        color=(155, 163, 184),
+        button=(661, 504, 724, 521),
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_COMMISSIONS.png',
@@ -682,10 +745,10 @@ WORK_GO_TO_MISSION = ButtonWrapper(
     name='WORK_GO_TO_MISSION',
     jp=Button(
         file='./assets/jp/base/page/WORK_GO_TO_MISSION.png',
-        area=(722, 155, 807, 199),
-        search=(702, 135, 827, 219),
-        color=(173, 188, 211),
-        button=(722, 155, 807, 199),
+        area=(710, 220, 769, 249),
+        search=(690, 200, 789, 269),
+        color=(137, 153, 180),
+        button=(710, 220, 769, 249),
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_MISSION.png',
@@ -706,10 +769,10 @@ WORK_GO_TO_SCHOOL_EXCHANGE = ButtonWrapper(
     name='WORK_GO_TO_SCHOOL_EXCHANGE',
     jp=Button(
         file='./assets/jp/base/page/WORK_GO_TO_SCHOOL_EXCHANGE.png',
-        area=(636, 566, 753, 592),
-        search=(616, 546, 773, 612),
-        color=(176, 187, 207),
-        button=(636, 566, 753, 592),
+        area=(642, 606, 721, 624),
+        search=(622, 586, 741, 644),
+        color=(167, 174, 192),
+        button=(642, 606, 721, 624),
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_SCHOOL_EXCHANGE.png',
@@ -730,10 +793,10 @@ WORK_GO_TO_STORY = ButtonWrapper(
     name='WORK_GO_TO_STORY',
     jp=Button(
         file='./assets/jp/base/page/WORK_GO_TO_STORY.png',
-        area=(998, 155, 1078, 199),
-        search=(978, 135, 1098, 219),
-        color=(215, 221, 232),
-        button=(998, 155, 1078, 199),
+        area=(993, 220, 1081, 250),
+        search=(973, 200, 1101, 270),
+        color=(209, 214, 224),
+        button=(993, 220, 1081, 250),
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_STORY.png',
@@ -754,10 +817,10 @@ WORK_GO_TO_TACTICAL_CHALLENGE = ButtonWrapper(
     name='WORK_GO_TO_TACTICAL_CHALLENGE',
     jp=Button(
         file='./assets/jp/base/page/WORK_GO_TO_TACTICAL_CHALLENGE.png',
-        area=(801, 565, 920, 593),
-        search=(781, 545, 940, 613),
-        color=(172, 186, 209),
-        button=(801, 565, 920, 593),
+        area=(821, 600, 911, 620),
+        search=(801, 580, 931, 640),
+        color=(156, 164, 185),
+        button=(821, 600, 911, 620),
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_TACTICAL_CHALLENGE.png',
