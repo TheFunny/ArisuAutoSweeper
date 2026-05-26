@@ -289,10 +289,10 @@ MAIN_GO_TO_PURCHASE = ButtonWrapper(
     ),
     share=Button(
         file='./assets/share/base/page/MAIN_GO_TO_PURCHASE.png',
-        area=(135, 211, 168, 250),
-        search=(115, 191, 188, 270),
-        color=(166, 207, 238),
-        button=(135, 211, 168, 250),
+        area=(136, 210, 165, 250),
+        search=(116, 190, 185, 270),
+        color=(175, 216, 240),
+        button=(136, 210, 165, 250),
     ),
 )
 MAIN_GO_TO_SCHEDULE = ButtonWrapper(
