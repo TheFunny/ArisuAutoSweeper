@@ -29,6 +29,33 @@
 - [x] 日语
 - [x] 英语
 
+## WebUI 界面
+
+项目提供两种 WebUI 后端选项：
+
+### FastAPI 后端（推荐/新）
+
+```bash
+python gui_fastapi.py
+```
+
+- ✅ 现代化 REST API 架构
+- ✅ 完整的 API 文档 (`/docs`)
+- ✅ WebSocket 实时日志
+- ✅ 更好的扩展性
+- ✅ 保持与原界面一致的样式
+
+### PyWebIO 后端（传统）
+
+```bash
+python gui.py
+```
+
+- 原有的 WebUI 实现
+- 功能完整且稳定
+
+详细说明请参阅 [FastAPI 迁移指南](FASTAPI_MIGRATION.md)
+
 ## 已知问题
 
 若愿意提供其他语言或国服支持，请开 PR 或 Issue。

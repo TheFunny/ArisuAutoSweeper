@@ -27,9 +27,12 @@ pponnxcr==2.0
 
 # Webui
 pywebio==1.6.2
-starlette==0.14.2
-uvicorn[standard]==0.17.6
+starlette>=0.27.0
+uvicorn[standard]>=0.20.0
 aiofiles
+fastapi>=0.100.0
+python-multipart
+jinja2>=3.0.0
 
 # GUI
 customtkinter
