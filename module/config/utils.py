@@ -539,7 +539,7 @@ def get_server_last_monday_update(daily_trigger):
     Returns:
         datetime.datetime
     """
-    update = get_server_next_update(daily_trigger)
+    update = get_server_last_update(daily_trigger)
     diff = update.weekday()
     update = update - timedelta(days=diff)
     return update
