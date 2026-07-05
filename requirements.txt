@@ -4,7 +4,7 @@
 #
 #    pip-compile --annotation-style=line --output-file=requirements.txt requirements-in.txt
 #
---index-url https://mirrors.ustc.edu.cn/pypi/web/simple
+--index-url http://mirrors.aliyun.com/pypi/simple
 
 adbutils==1.2.9           # via -r requirements-in.txt, uiautomator2
 aiofiles==23.1.0          # via -r requirements-in.txt
