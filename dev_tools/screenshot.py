@@ -2,8 +2,8 @@ import os
 from datetime import datetime
 
 from PIL import Image
-
 from pynput import keyboard
+
 from module.config.config import AzurLaneConfig
 from module.config.utils import alas_instance
 from module.device.connection import Connection, ConnectionAttr
@@ -50,12 +50,12 @@ def handle_sensitive_info(image):
 
 _ = EmptyConnection()
 name = input(
-    '输入alas配置文件名称，或者模拟器serial，或者模拟器端口号: (默认输入 "alas"):\n'
-    '例如："alas", "127.0.0.1:16384", "7555"\n'
+    '输入aas配置文件名称，或者模拟器serial，或者模拟器端口号: (默认输入 "aas"):\n'
+    '例如："aas", "127.0.0.1:16384", "7555"\n'
 )
 name = name.strip().strip('"').strip()
 if not name:
-    name = 'alas'
+    name = 'aas'
 if name.isdigit():
     name = f'127.0.0.1:{name}'
 if name in alas_instance():
