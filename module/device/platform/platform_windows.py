@@ -1,4 +1,5 @@
 import ctypes
+import os
 import re
 import subprocess
 
@@ -12,7 +13,6 @@ from module.device.platform.emulator_windows import Emulator, EmulatorInstance, 
 from module.device.platform.platform_base import PlatformBase
 from module.logger import logger
 
-import os
 
 class EmulatorUnknown(Exception):
     pass
@@ -99,7 +99,7 @@ class PlatformWindows(PlatformBase, EmulatorManager):
             # Nox.exe -clone:Nox_1
             self.execute(f'"{exe}" -clone:{instance.name}')
         elif instance == Emulator.BlueStacks5:
-            # HD-Player.exe -instance Pie64
+            # HD-Player.exe --instance Pie64
             self.execute(f'"{exe}" --instance {instance.name}')
         elif instance == Emulator.BlueStacks4:
             # BlueStacks\Client\Bluestacks.exe -vmname Android_1
