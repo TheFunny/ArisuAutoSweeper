@@ -21,7 +21,6 @@ from module.webui.utils import TaskHandler, get_next_time
 class Updater(DeployConfig, GitManager, PipManager):
     def __init__(self, file=DEPLOY_CONFIG):
         super().__init__(file=file)
-        self.set_repo()
         self.state = 0
         self.event: threading.Event = None
 
