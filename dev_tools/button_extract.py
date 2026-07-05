@@ -92,8 +92,9 @@ def iter_images():
     for server in ASSET_SERVER:
         for path, folders, files in os.walk(os.path.join(AzurLaneConfig.ASSETS_FOLDER, server)):
             for file in files:
-                file = os.path.join(path, file).replace('\\', '/')
-                yield AssetsImage(file)
+                if not file.startswith('.'):
+                    file = os.path.join(path, file).replace('\\', '/')
+                    yield AssetsImage(file)
 
 
 @dataclass
@@ -107,6 +108,11 @@ class DataAssets:
     search: t.Tuple[int, int, int, int] = ()
     color: t.Tuple[int, int, int] = ()
     button: t.Tuple[int, int, int, int] = ()
+
+    has_raw_area = False
+    has_raw_search = False
+    has_raw_color = False
+    has_raw_button = False
 
     @staticmethod
     def area_to_search(area):
@@ -131,12 +137,16 @@ class DataAssets:
             self.button = image.bbox
         elif image.attr == 'AREA':
             self.area = image.bbox
+            self.has_raw_area = True
         elif image.attr == 'SEARCH':
             self.search = image.bbox
+            self.has_raw_search = True
         elif image.attr == 'COLOR':
             self.color = image.mean
+            self.has_raw_color = True
         elif image.attr == 'BUTTON':
             self.button = image.bbox
+            self.has_raw_button = True
         else:
             logger.warning(f'Trying to load an image with unknown attribute: {image}')
 
@@ -182,19 +192,22 @@ def iter_assets():
     # Set `search`
     for path, frames in deep_iter(data, depth=3):
         print(path, frames)
-        # If `search` attribute is set in the first frame, apply to all
-        first = frames[1]
-        if first.search:
-            for frame in frames.values():
+        for frame in frames.values():
+            # Generate `search` from `area`
+            if not frame.has_raw_search:
+                frame.search = DataAssets.area_to_search(frame.area)
+        # If an attribute is set in the first frame, apply to all
+        first: DataAssets = frames[1]
+        for frame in frames.values():
+            # frame: DataAssets = frame
+            if not frame.has_raw_area and first.has_raw_area:
+                frame.area = first.area
+            if not frame.has_raw_search and first.has_raw_search:
                 frame.search = first.search
-        else:
-            for frame in frames.values():
-                if frame.search:
-                    # Follow frame specific `search`
-                    pass
-                else:
-                    # Generate `search` from `area`
-                    frame.search = DataAssets.area_to_search(frame.area)
+            if not frame.has_raw_color and first.has_raw_color:
+                frame.color = first.color
+            if not frame.has_raw_button and first.has_raw_button:
+                frame.button = first.button
 
     return data
 

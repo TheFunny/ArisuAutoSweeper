@@ -6,12 +6,13 @@ from typing import ClassVar
 import module.config.server as server
 from module.exception import ScriptError
 
-REGEX_PUNCTUATION = re.compile(r'[ ,.\'"“”，。:：!！?？·•\-—/\\\n\t()\[\]（）「」『』【】《》［］]')
+# ord('．') = 65294
+REGEX_PUNCTUATION = re.compile(r'[ ,.．\'"“”，。…:：;；!！?？·・•●〇°*※\-—－/\\\n\t()\[\]（）「」『』【】《》［］]')
 
 
 def parse_name(n):
     n = REGEX_PUNCTUATION.sub('', str(n)).lower()
-    return n
+    return n.strip()
 
 
 @dataclass
@@ -179,3 +180,39 @@ class Keyword:
 
         # Not found
         raise ScriptError(f'Cannot find a {cls.__name__} instance that matches "{name}"')
+
+    @classmethod
+    def find_name(cls, name):
+        """
+        Args:
+            name: Attribute name of keyword.
+
+        Returns:
+            Keyword instance.
+
+        Raises:
+            ScriptError: If nothing found.
+        """
+        if isinstance(name, Keyword):
+            return name
+        for instance in cls.instances.values():
+            if name == instance.name:
+                return instance
+
+        # Not found
+        raise ScriptError(f'Cannot find a {cls.__name__} instance that matches "{name}"')
+
+
+class KeywordDigitCounter(Keyword):
+    """
+    A fake Keyword class to filter digit counters in ocr results
+    OcrResultButton.match_keyword will be a str
+    """
+
+    @classmethod
+    def find(cls, name, lang: str = None, ignore_punctuation=True):
+        from module.ocr.ocr import DigitCounter
+        if DigitCounter.is_format_matched(name):
+            return name
+        else:
+            raise ScriptError

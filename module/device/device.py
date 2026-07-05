@@ -1,5 +1,4 @@
-import sys
-from collections import deque
+import collections
 
 from module.base.timer import Timer
 from module.device.app_control import AppControl
@@ -14,16 +13,51 @@ from module.exception import (
 )
 from module.logger import logger
 
-if sys.platform == 'win32':
-    from module.device.platform.platform_windows import PlatformWindows as Platform
-else:
-    from module.device.platform.platform_base import PlatformBase as Platform
+
+def show_function_call():
+    """
+    INFO     21:07:31.554 │ Function calls:
+                       <string>   L1 <module>
+                   spawn.py L116 spawn_main()
+                   spawn.py L129 _main()
+                 process.py L314 _bootstrap()
+                 process.py L108 run()
+         process_manager.py L149 run_process()
+                    alas.py L285 loop()
+                    alas.py  L69 run()
+                     src.py  L55 rogue()
+                   rogue.py  L36 run()
+                   rogue.py  L18 rogue_once()
+                   entry.py L335 rogue_world_enter()
+                    path.py L193 rogue_path_select()
+    """
+    import os
+    import traceback
+    stack = traceback.extract_stack()
+    func_list = []
+    for row in stack:
+        filename, line_number, function_name, _ = row
+        filename = os.path.basename(filename)
+        # /tasks/character/switch.py:64 character_update()
+        func_list.append([filename, str(line_number), function_name])
+    max_filename = max([len(row[0]) for row in func_list])
+    max_linenum = max([len(row[1]) for row in func_list]) + 1
+
+    def format_(file, line, func):
+        file = file.rjust(max_filename, " ")
+        line = f'L{line}'.rjust(max_linenum, " ")
+        if not func.startswith('<'):
+            func = f'{func}()'
+        return f'{file} {line} {func}'
+
+    func_list = [f'\n{format_(*row)}' for row in func_list]
+    logger.info('Function calls:' + ''.join(func_list))
 
 
-class Device(Screenshot, Control, AppControl, Platform):
+class Device(Screenshot, Control, AppControl):
     _screen_size_checked = False
     detect_record = set()
-    click_record = deque(maxlen=15)
+    click_record = collections.deque(maxlen=15)
     stuck_timer = Timer(60, count=60).start()
 
     def __init__(self, *args, **kwargs):
@@ -42,11 +76,22 @@ class Device(Screenshot, Control, AppControl, Platform):
                     )
                     raise
 
+        # Auto-fill emulator info
+        if self.config.EmulatorInfo_Emulator == 'auto':
+            _ = self.emulator_instance
+
         self.screenshot_interval_set()
+        self.method_check()
 
         # Auto-select the fastest screenshot method
         if not self.config.is_template_config and self.config.Emulator_ScreenshotMethod == 'auto':
             self.run_simple_screenshot_benchmark()
+
+        # AAS only, use nemu_ipc if available
+        available = self.nemu_ipc_available()
+        logger.attr('nemu_ipc_available', available)
+        if available:
+            self.config.override(Emulator_ScreenshotMethod='nemu_ipc')
 
     def run_simple_screenshot_benchmark(self):
         """
@@ -61,7 +106,23 @@ class Device(Screenshot, Control, AppControl, Platform):
         bench = Benchmark(config=self.config, device=self)
         method = bench.run_simple_screenshot_benchmark()
         # Set
-        self.config.Emulator_ScreenshotMethod = method
+        with self.config.multi_set():
+            self.config.Emulator_ScreenshotMethod = method
+            # if method == 'nemu_ipc':
+            #     self.config.Emulator_ControlMethod = 'nemu_ipc'
+
+    def method_check(self):
+        """
+        Check combinations of screenshot method and control methods
+        """
+        # nemu_ipc should be together
+        # if self.config.Emulator_ScreenshotMethod == 'nemu_ipc' and self.config.Emulator_ControlMethod != 'nemu_ipc':
+        #     logger.warning('When using nemu_ipc, both screenshot and control should use nemu_ipc')
+        #     self.config.Emulator_ControlMethod = 'nemu_ipc'
+        # if self.config.Emulator_ScreenshotMethod != 'nemu_ipc' and self.config.Emulator_ControlMethod == 'nemu_ipc':
+        #     logger.warning('When not using nemu_ipc, both screenshot and control should not use nemu_ipc')
+        #     self.config.Emulator_ControlMethod = 'minitouch'
+        pass
 
     def screenshot(self):
         """
@@ -87,6 +148,8 @@ class Device(Screenshot, Control, AppControl, Platform):
         # stop it during wait
         if self.config.Emulator_ScreenshotMethod == 'scrcpy':
             self._scrcpy_server_stop()
+        if self.config.Emulator_ScreenshotMethod == 'nemu_ipc':
+            self.nemu_ipc_release()
 
     def stuck_record_add(self, button):
         self.detect_record.add(str(button))
@@ -104,6 +167,7 @@ class Device(Screenshot, Control, AppControl, Platform):
         if not reached:
             return False
 
+        show_function_call()
         logger.warning('Wait too long')
         logger.warning(f'Waiting for {self.detect_record}')
         self.stuck_record_clear()
@@ -155,11 +219,13 @@ class Device(Screenshot, Control, AppControl, Platform):
             count[key] = count.get(key, 0) + 1
         count = sorted(count.items(), key=lambda item: item[1])
         if count[0][1] >= 12:
+            show_function_call()
             logger.warning(f'Too many click for a button: {count[0][0]}')
             logger.warning(f'History click: {[str(prev) for prev in self.click_record]}')
             self.click_record_clear()
             raise GameTooManyClickError(f'Too many click for a button: {count[0][0]}')
         if len(count) >= 2 and count[0][1] >= 6 and count[1][1] >= 6:
+            show_function_call()
             logger.warning(f'Too many click between 2 buttons: {count[0][0]}, {count[1][0]}')
             logger.warning(f'History click: {[str(prev) for prev in self.click_record]}')
             self.click_record_clear()

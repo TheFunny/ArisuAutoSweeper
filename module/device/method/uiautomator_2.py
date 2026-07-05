@@ -1,4 +1,3 @@
-import typing as t
 from dataclasses import dataclass
 from functools import wraps
 from json.decoder import JSONDecodeError
@@ -10,8 +9,8 @@ from lxml import etree
 
 from module.base.utils import *
 from module.device.connection import Connection
-from module.device.method.utils import (RETRY_TRIES, retry_sleep, handle_adb_error,
-                                        ImageTruncated, PackageNotInstalled, possible_reasons)
+from module.device.method.utils import (ImageTruncated, PackageNotInstalled, RETRY_TRIES, handle_adb_error,
+                                        possible_reasons, retry_sleep)
 from module.exception import RequestHumanTakeover
 from module.logger import logger
 
@@ -122,7 +121,7 @@ class Uiautomator2(Connection):
         if image is None:
             raise ImageTruncated('Empty image after cv2.imdecode')
 
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB, dst=image)
         if image is None:
             raise ImageTruncated('Empty image after cv2.cvtColor')
 
@@ -243,7 +242,7 @@ class Uiautomator2(Connection):
         return hierarchy
 
     @retry
-    def resolution_uiautomator2(self) -> t.Tuple[int, int]:
+    def resolution_uiautomator2(self, cal_rotation=True) -> t.Tuple[int, int]:
         """
         Faster u2.window_size(), cause that calls `dumpsys display` twice.
 
@@ -252,9 +251,10 @@ class Uiautomator2(Connection):
         """
         info = self.u2.http.get('/info').json()
         w, h = info['display']['width'], info['display']['height']
-        rotation = self.get_orientation()
-        if (w > h) != (rotation % 2 == 1):
-            w, h = h, w
+        if cal_rotation:
+            rotation = self.get_orientation()
+            if (w > h) != (rotation % 2 == 1):
+                w, h = h, w
         return w, h
 
     def resolution_check_uiautomator2(self):

@@ -1,24 +1,23 @@
 import re
 import time
 from datetime import timedelta
-from typing import Optional
 
+import cv2
 import numpy as np
 from pponnxcr.predict_system import BoxedResult
 
 import module.config.server as server
 from module.base.button import ButtonWrapper
 from module.base.decorator import cached_property
-from module.base.utils import area_pad, corner2area, crop, float2str
+from module.base.utils import area_pad, corner2area, crop, extract_white_letters, float2str
 from module.exception import ScriptError
 from module.logger import logger
-from module.ocr.keyword import Keyword
 from module.ocr.models import OCR_MODEL, TextSystem
 from module.ocr.utils import merge_buttons
 
 
 class OcrResultButton:
-    def __init__(self, boxed_result: BoxedResult, matched_keyword: Optional[Keyword]):
+    def __init__(self, boxed_result: BoxedResult, matched_keyword):
         """
         Args:
             boxed_result: BoxedResult from ppocr-onnx
@@ -349,6 +348,10 @@ class DigitCounter(Ocr):
     def __init__(self, button: ButtonWrapper, lang='en', name=None):
         super().__init__(button, lang=lang, name=name)
 
+    @classmethod
+    def is_format_matched(cls, result) -> bool:
+        return '/' in result
+
     def after_process(self, result):
         result = super().after_process(result)
         result = result.replace('%', '/')
@@ -364,7 +367,7 @@ class DigitCounter(Ocr):
         result = self.after_process(result)
         logger.attr(name=self.name, text=str(result))
 
-        res = re.search(r'(\d+)/(\d+)', result)
+        res = re.search(r'(\d+)\s*/\s*(\d+)', result)
         if res:
             groups = [int(s) for s in res.groups()]
             current, total = int(groups[0]), int(groups[1])
@@ -421,3 +424,20 @@ class Duration(Ocr):
         if number is None:
             return 0
         return int(number)
+
+
+class OcrWhiteLetterOnComplexBackground(Ocr):
+    def pre_process(self, image):
+        image = extract_white_letters(image, threshold=255)
+        image = cv2.merge([image, image, image])
+        return image
+
+    def detect_and_ocr(self, *args, **kwargs):
+        # Try hard to lower TextSystem.box_thresh
+        backup = self.model.text_detector.box_thresh
+        self.model.text_detector.box_thresh = 0.2
+
+        result = super().detect_and_ocr(*args, **kwargs)
+
+        self.model.text_detector.box_thresh = backup
+        return result

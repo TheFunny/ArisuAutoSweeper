@@ -1,9 +1,9 @@
 import ipaddress
 import logging
-import platform
 import re
 import socket
 import subprocess
+import sys
 import time
 from functools import wraps
 
@@ -12,7 +12,8 @@ from adbutils import AdbClient, AdbDevice, AdbTimeout, ForwardItem, ReverseItem
 from adbutils.errors import AdbError
 
 import module.config.server as server_
-from module.base.decorator import Config, cached_property, del_cached_property
+import platform
+from module.base.decorator import Config, cached_property, del_cached_property, run_once
 from module.base.utils import SelectedGrids, ensure_time
 from module.device.connection_attr import ConnectionAttr
 from module.device.method.utils import (
@@ -83,6 +84,18 @@ class AdbDeviceWithStatus(AdbDevice):
 
     def __bool__(self):
         return True
+
+    @cached_property
+    def port(self) -> int:
+        try:
+            return int(self.serial.split(':')[1])
+        except (IndexError, ValueError):
+            return 0
+
+    @cached_property
+    def may_mumu12_family(self):
+        # 127.0.0.1:16XXX
+        return 16384 <= self.port <= 17408
 
 
 class Connection(ConnectionAttr):
@@ -266,14 +279,20 @@ class Connection(ConnectionAttr):
             return True
         return False
 
+    @cached_property
+    def nemud_app_keep_alive(self) -> str:
+        res = self.adb_getprop('nemud.app_keep_alive')
+        logger.attr('nemud.app_keep_alive', res)
+        return res
+
+    @retry
     def check_mumu_app_keep_alive(self):
         if not self.is_mumu_family:
             return False
 
-        res = self.adb_getprop('nemud.app_keep_alive')
-        logger.attr('nemud.app_keep_alive', res)
+        res = self.nemud_app_keep_alive
         if res == '':
-            # Empry property, might not be a mumu emulator or might be an old mumu
+            # Empty property, probably MuMu6 or MuMu12 version < 3.5.6
             return True
         elif res == 'false':
             # Disabled
@@ -285,6 +304,15 @@ class Connection(ConnectionAttr):
         else:
             logger.warning(f'Invalid nemud.app_keep_alive value: {res}')
             return False
+
+    @cached_property
+    def is_mumu_over_version_356(self) -> bool:
+        """
+        Returns:
+            bool: If MuMu12 version >= 3.5.6,
+                which has nemud.app_keep_alive and always be a vertical device
+        """
+        return self.nemud_app_keep_alive != ''
 
     @cached_property
     def _nc_server_host_port(self):
@@ -536,14 +564,14 @@ class Connection(ConnectionAttr):
         # Disconnect offline device before connecting
         for device in self.list_device():
             if device.status == 'offline':
-                logger.warning(f'Device {serial} is offline, disconnect it before connecting')
-                self.adb_disconnect(serial)
+                logger.warning(f'Device {device.serial} is offline, disconnect it before connecting')
+                self.adb_disconnect(device.serial)
             elif device.status == 'unauthorized':
-                logger.error(f'Device {serial} is unauthorized, please accept ADB debugging on your device')
+                logger.error(f'Device {device.serial} is unauthorized, please accept ADB debugging on your device')
             elif device.status == 'device':
                 pass
             else:
-                logger.warning(f'Device {serial} is is having a unknown status: {device.status}')
+                logger.warning(f'Device {device.serial} is is having a unknown status: {device.status}')
 
         # Skip for emulator-5554
         if 'emulator-' in serial:
@@ -751,23 +779,45 @@ class Connection(ConnectionAttr):
         If serial=='auto' and only 1 device detected, use it
         """
         logger.hr('Detect device')
-        logger.info('Here are the available devices, '
-                    'copy to Alas.Emulator.Serial to use it or set Alas.Emulator.Serial="auto"')
-        devices = self.list_device()
+        available = SelectedGrids([])
+        devices = SelectedGrids([])
 
-        # Show available devices
-        available = devices.select(status='device')
-        for device in available:
-            logger.info(device.serial)
-        if not len(available):
-            logger.info('No available devices')
+        @run_once
+        def brute_force_connect():
+            logger.info('Brute force connect')
+            from deploy.Windows.emulator import EmulatorManager
+            manager = EmulatorManager()
+            manager.brute_force_connect()
 
-        # Show unavailable devices if having any
-        unavailable = devices.delete(available)
-        if len(unavailable):
-            logger.info('Here are the devices detected but unavailable')
-            for device in unavailable:
-                logger.info(f'{device.serial} ({device.status})')
+        for _ in range(2):
+            logger.info('Here are the available devices, '
+                        'copy to Alas.Emulator.Serial to use it or set Alas.Emulator.Serial="auto"')
+            devices = self.list_device()
+
+            # Show available devices
+            available = devices.select(status='device')
+            for device in available:
+                logger.info(device.serial)
+            if not len(available):
+                logger.info('No available devices')
+
+            # Show unavailable devices if having any
+            unavailable = devices.delete(available)
+            if len(unavailable):
+                logger.info('Here are the devices detected but unavailable')
+                for device in unavailable:
+                    logger.info(f'{device.serial} ({device.status})')
+
+            # brute_force_connect
+            if self.config.Emulator_Serial == 'auto' and available.count == 0:
+                logger.warning(f'No available device found')
+                if sys.platform == 'win32':
+                    brute_force_connect()
+                    continue
+                else:
+                    break
+            else:
+                break
 
         # Auto device detection
         if self.config.Emulator_Serial == 'auto':
@@ -777,7 +827,16 @@ class Connection(ConnectionAttr):
                 raise RequestHumanTakeover
             elif available.count == 1:
                 logger.info(f'Auto device detection found only one device, using it')
-                self.serial = devices[0].serial
+                self.config.Emulator_Serial = self.serial = available[0].serial
+                del_cached_property(self, 'adb')
+            elif available.count == 2 \
+                    and available.select(serial='127.0.0.1:7555') \
+                    and available.select(may_mumu12_family=True):
+                logger.info(f'Auto device detection found MuMu12 device, using it')
+                # For MuMu12 serials like 127.0.0.1:7555 and 127.0.0.1:16384
+                # ignore 7555 use 16384
+                remain = available.select(may_mumu12_family=True).first_or_none()
+                self.config.Emulator_Serial = self.serial = remain.serial
                 del_cached_property(self, 'adb')
             else:
                 logger.critical('Multiple devices found, auto device detection cannot decide which to choose, '
@@ -786,6 +845,7 @@ class Connection(ConnectionAttr):
 
         # Handle LDPlayer
         # LDPlayer serial jumps between `127.0.0.1:5555+{X}` and `emulator-5554+{X}`
+        # No config write since it's dynamic
         port_serial, emu_serial = get_serial_pair(self.serial)
         if port_serial and emu_serial:
             # Might be LDPlayer, check connected devices
@@ -812,6 +872,57 @@ class Connection(ConnectionAttr):
                                 f'Using serial: {emu_serial}')
                     self.serial = emu_serial
 
+        # Redirect MuMu12 from 127.0.0.1:7555 to 127.0.0.1:16xxx
+        if self.serial == '127.0.0.1:7555':
+            for _ in range(2):
+                mumu12 = available.select(may_mumu12_family=True)
+                if mumu12.count == 1:
+                    emu_serial = mumu12.first_or_none().serial
+                    logger.warning(f'Redirect MuMu12 {self.serial} to {emu_serial}')
+                    self.config.Emulator_Serial = self.serial = emu_serial
+                    break
+                elif mumu12.count >= 2:
+                    logger.warning(f'Multiple MuMu12 serial found, cannot redirect')
+                    break
+                else:
+                    # Only 127.0.0.1:7555
+                    if self.is_mumu_over_version_356:
+                        # is_mumu_over_version_356 and nemud_app_keep_alive was cached
+                        # Acceptable since it's the same device
+                        logger.warning(f'Device {self.serial} is MuMu12 but corresponding port not found')
+                        brute_force_connect()
+                        devices = self.list_device()
+                        # Show available devices
+                        available = devices.select(status='device')
+                        for device in available:
+                            logger.info(device.serial)
+                        if not len(available):
+                            logger.info('No available devices')
+                        continue
+                    else:
+                        # MuMu6
+                        break
+
+        # MuMu12 uses 127.0.0.1:16385 if port 16384 is occupied, auto redirect
+        # No config write since it's dynamic
+        if self.is_mumu12_family:
+            matched = False
+            for device in available.select(may_mumu12_family=True):
+                if device.port == self.port:
+                    # Exact match
+                    matched = True
+                    break
+            if not matched:
+                for device in available.select(may_mumu12_family=True):
+                    if -2 <= device.port - self.port <= 2:
+                        # Port switched
+                        logger.info(f'MuMu12 port switches from {self.serial} to {device.serial}')
+                        del_cached_property(self, 'port')
+                        del_cached_property(self, 'is_mumu12_family')
+                        del_cached_property(self, 'is_mumu_family')
+                        self.serial = device.serial
+                        break
+
     @retry
     def list_package(self, show_log=True):
         """
@@ -833,7 +944,7 @@ class Connection(ConnectionAttr):
         packages = re.findall(r'package:([^\s]+)', output)
         return packages
 
-    def list_azurlane_packages(self, show_log=True):
+    def list_known_packages(self, show_log=True):
         """
         Args:
             show_log:
@@ -850,7 +961,7 @@ class Connection(ConnectionAttr):
         Show all possible packages with the given keyword on this device.
         """
         logger.hr('Detect package')
-        packages = self.list_azurlane_packages()
+        packages = self.list_known_packages()
 
         # Show packages
         logger.info(f'Here are the available packages in device "{self.serial}", '

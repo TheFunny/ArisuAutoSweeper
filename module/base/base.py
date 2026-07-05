@@ -4,7 +4,9 @@ from module.base.timer import Timer
 from module.base.utils import *
 from module.config.config import AzurLaneConfig
 from module.device.device import Device
+from module.device.method.utils import HierarchyButton
 from module.logger import logger
+from module.webui.setting import cached_class_property
 
 
 class ModuleBase:
@@ -44,6 +46,26 @@ class ModuleBase:
             self.device = device
 
         self.interval_timer = {}
+
+    @cached_class_property
+    def worker(self):
+        """
+        A thread pool to run things at background
+
+        Examples:
+        ```
+        def func(image):
+            logger.info('Update thread start')
+            with self.config.multi_set():
+                self.dungeon_get_simuni_point(image)
+                self.dungeon_update_stamina(image)
+        ModuleBase.worker.submit(func, self.device.image)
+        ```
+        """
+        logger.hr('Creating worker')
+        from concurrent.futures import ThreadPoolExecutor
+        pool = ThreadPoolExecutor(1)
+        return pool
 
     def match_template(self, button, interval=0, similarity=0.85):
         """
@@ -120,9 +142,56 @@ class ModuleBase:
 
         return appear
 
-    appear = match_template
+    def xpath(self, xpath) -> HierarchyButton:
+        if isinstance(xpath, str):
+            return HierarchyButton(self.device.hierarchy, xpath)
+        else:
+            return xpath
+
+    def xpath_appear(self, xpath: str, interval=0):
+        button = self.xpath(xpath)
+
+        self.device.stuck_record_add(button)
+
+        if interval and not self.interval_is_reached(button, interval=interval):
+            return False
+
+        appear = bool(button)
+
+        if appear and interval:
+            self.interval_reset(button, interval=interval)
+
+        return appear
+
+    def appear(self, button, interval=0, similarity=0.85):
+        """
+        Args:
+            button (Button, ButtonWrapper, HierarchyButton, str):
+            interval (int, float): interval between two active events.
+
+        Returns:
+            bool:
+
+        Examples:
+            Template match:
+            ```
+            self.device.screenshot()
+            self.appear(POPUP_CONFIRM)
+            ```
+
+            Hierarchy detection (detect elements with xpath):
+            ```
+            self.device.dump_hierarchy()
+            self.appear('//*[@resource-id="..."]')
+            ```
+        """
+        if isinstance(button, (HierarchyButton, str)):
+            return self.xpath_appear(button, interval=interval)
+        else:
+            return self.match_template(button, interval=interval, similarity=similarity)
 
     def appear_then_click(self, button, interval=5, similarity=0.85):
+        button = self.xpath(button)
         appear = self.appear(button, interval=interval, similarity=similarity)
         if appear:
             self.device.click(button)
@@ -219,7 +288,26 @@ class ModuleBase:
         point = fit_points(points, mod=image_size(image), encourage=encourage)
         point = ensure_int(point + area[:2])
         button_area = area_offset((-encourage, -encourage, encourage, encourage), offset=point)
-        return ClickButton(button=button_area, name=name)
+        return ClickButton(area=button_area, name=name)
+
+    def get_interval_timer(self, button, interval=5, renew=False) -> Timer:
+        if hasattr(button, 'name'):
+            name = button.name
+        elif callable(button):
+            name = button.__name__
+        else:
+            name = str(button)
+
+        try:
+            timer = self.interval_timer[name]
+            if renew and timer.limit != interval:
+                timer = Timer(interval)
+                self.interval_timer[name] = timer
+            return timer
+        except KeyError:
+            timer = Timer(interval)
+            self.interval_timer[name] = timer
+            return timer
 
     def interval_reset(self, button, interval=5):
         if isinstance(button, (list, tuple)):
@@ -228,10 +316,7 @@ class ModuleBase:
             return
 
         if button is not None:
-            if button.name in self.interval_timer:
-                self.interval_timer[button.name].reset()
-            else:
-                self.interval_timer[button.name] = Timer(interval).reset()
+            self.get_interval_timer(button, interval=interval).reset()
 
     def interval_clear(self, button, interval=5):
         if isinstance(button, (list, tuple)):
@@ -240,19 +325,11 @@ class ModuleBase:
             return
 
         if button is not None:
-            if button.name in self.interval_timer:
-                self.interval_timer[button.name].clear()
-            else:
-                self.interval_timer[button.name] = Timer(interval).clear()
+            self.get_interval_timer(button, interval=interval).clear()
 
     def interval_is_reached(self, button, interval=5):
-        if button.name in self.interval_timer:
-            if self.interval_timer[button.name].limit != interval:
-                self.interval_timer[button.name] = Timer(interval)
-        else:
-            self.interval_timer[button.name] = Timer(interval)
+        return self.get_interval_timer(button, interval=interval, renew=True).reached()
 
-        return self.interval_timer[button.name].reached()
 
     _image_file = ''
 
@@ -282,3 +359,31 @@ class ModuleBase:
         """
         server_.set_lang(lang)
         logger.attr('Lang', self.config.LANG)
+
+    def screenshot_tracking_add(self):
+        """
+        Add a tracking image, image will be saved
+        """
+        if not self.config.Error_SaveError:
+            return
+
+        logger.info('screenshot_tracking_add')
+        data = self.device.screenshot_deque[-1]
+        image = data['image']
+        now = data['time']
+
+        def image_encode(im, ti):
+            import io
+            from module.handler.sensitive_info import handle_sensitive_image
+
+            output = io.BytesIO()
+            im = handle_sensitive_image(im)
+            Image.fromarray(im, mode='RGB').save(output, format='png')
+            output.seek(0)
+
+            self.device.screenshot_tracking.append({
+                'time': ti,
+                'image': output
+            })
+
+        ModuleBase.worker.submit(image_encode, image, now)

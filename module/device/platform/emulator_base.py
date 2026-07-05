@@ -36,6 +36,21 @@ def get_serial_pair(serial):
     return None, None
 
 
+def remove_duplicated_path(paths):
+    """
+    Args:
+        paths (list[str]):
+
+    Returns:
+        list[str]:
+    """
+    paths = sorted(set(paths))
+    dic = {}
+    for path in paths:
+        dic.setdefault(path.lower(), path)
+    return list(dic.values())
+
+
 @dataclass
 class EmulatorInstanceBase:
     # Serial for adb connection
@@ -54,7 +69,7 @@ class EmulatorInstanceBase:
         Returns:
             str: Emulator type, such as Emulator.NoxPlayer
         """
-        return EmulatorBase.path_to_type(self.path)
+        return self.emulator.type
 
     @cached_property
     def emulator(self):
@@ -83,8 +98,9 @@ class EmulatorInstanceBase:
     def MuMuPlayer12_id(self):
         """
         Convert MuMu 12 instance name to instance id.
-        Example name: MuMuPlayer-12.0-3
-        Example ID  : 3
+        Example names:
+            MuMuPlayer-12.0-3
+            YXArkNights-12.0-1
 
         Returns:
             int: Instance ID, or None if this is not a MuMu 12 instance
@@ -92,8 +108,11 @@ class EmulatorInstanceBase:
         res = re.search(r'MuMuPlayer-12.0-(\d+)', self.name)
         if res:
             return int(res.group(1))
-        else:
-            return None
+        res = re.search(r'YXArkNights-12.0-(\d+)', self.name)
+        if res:
+            return int(res.group(1))
+
+        return None
 
 
 class EmulatorBase:
@@ -201,6 +220,14 @@ class EmulatorBase:
 
 
 class EmulatorManagerBase:
+    @staticmethod
+    def iter_running_emulator():
+        """
+        Yields:
+            str: Path to emulator executables, may contains duplicate values
+        """
+        return
+
     @cached_property
     def all_emulators(self) -> t.List[EmulatorBase]:
         """

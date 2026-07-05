@@ -8,8 +8,8 @@ from deploy.Windows.utils import DataProcessInfo
 from module.base.decorator import run_once
 from module.base.timer import Timer
 from module.device.connection import AdbDeviceWithStatus
-from module.device.platform.platform_base import PlatformBase
 from module.device.platform.emulator_windows import Emulator, EmulatorInstance, EmulatorManager
+from module.device.platform.platform_base import PlatformBase
 from module.logger import logger
 
 import os
@@ -92,6 +92,8 @@ class PlatformWindows(PlatformBase, EmulatorManager):
             self.execute(f'"{exe}" -m {instance.name}')
         elif instance == Emulator.MuMuPlayer12:
             # MuMuPlayer.exe -v 0
+            if instance.MuMuPlayer12_id is None:
+                logger.warning(f'Cannot get MuMu instance index from name {instance.name}')
             self.execute(f'"{exe}" -v {instance.MuMuPlayer12_id}')
         elif instance == Emulator.NoxPlayerFamily:
             # Nox.exe -clone:Nox_1
@@ -148,6 +150,8 @@ class PlatformWindows(PlatformBase, EmulatorManager):
             # MuMu 12 has 2 processes:
             # E:\ProgramFiles\Netease\MuMuPlayer-12.0\shell\MuMuPlayer.exe -v 0
             # "C:\Program Files\MuMuVMMVbox\Hypervisor\MuMuVMMHeadless.exe" --comment MuMuPlayer-12.0-0 --startvm xxx
+            if instance.MuMuPlayer12_id is None:
+                logger.warning(f'Cannot get MuMu instance index from name {instance.name}')
             self.kill_process_by_regex(
                 rf'('
                 rf'MuMuVMMHeadless.exe.*--comment {instance.name}'
@@ -276,7 +280,7 @@ class PlatformWindows(PlatformBase, EmulatorManager):
             show_ping(pong)
 
             # Check azuelane package
-            packages = self.list_azurlane_packages(show_log=False)
+            packages = self.list_known_packages(show_log=False)
             if len(packages):
                 pass
             else:
@@ -326,4 +330,5 @@ class PlatformWindows(PlatformBase, EmulatorManager):
 
 if __name__ == '__main__':
     self = PlatformWindows('alas')
-    self.emulator_start()
+    d = self.emulator_instance
+    print(d)
