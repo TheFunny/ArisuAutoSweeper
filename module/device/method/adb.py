@@ -1,16 +1,16 @@
 import re
+import time
 from functools import wraps
 
 import cv2
 import numpy as np
-import time
 from adbutils.errors import AdbError
 from lxml import etree
 
 from module.base.decorator import Config
 from module.device.connection import Connection
-from module.device.method.utils import (RETRY_TRIES, retry_sleep, remove_prefix, handle_adb_error,
-                                        ImageTruncated, PackageNotInstalled)
+from module.device.method.utils import (ImageTruncated, PackageNotInstalled, RETRY_TRIES, handle_adb_error,
+                                        remove_prefix, retry_sleep)
 from module.exception import RequestHumanTakeover, ScriptError
 from module.logger import logger
 
@@ -128,7 +128,7 @@ class Adb(Connection):
         if image is None:
             raise ImageTruncated('Empty image after cv2.imdecode')
 
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB, dst=image)
         if image is None:
             raise ImageTruncated('Empty image after cv2.cvtColor')
 
