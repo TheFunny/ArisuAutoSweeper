@@ -221,6 +221,25 @@ class ModuleBase:
         button_area = area_offset((-encourage, -encourage, encourage, encourage), offset=point)
         return ClickButton(area=button_area, name=name)
 
+    def get_interval_timer(self, button, interval=5) -> Timer:
+        if hasattr(button, 'name'):
+            name = button.name
+        elif callable(button):
+            name = button.__name__
+        else:
+            name = str(button)
+
+        try:
+            timer = self.interval_timer[name]
+            if timer.limit != interval:
+                timer = Timer(interval)
+                self.interval_timer[name] = timer
+            return timer
+        except KeyError:
+            timer = Timer(interval)
+            self.interval_timer[name] = timer
+            return timer
+
     def interval_reset(self, button, interval=5):
         if isinstance(button, (list, tuple)):
             for b in button:
@@ -228,10 +247,7 @@ class ModuleBase:
             return
 
         if button is not None:
-            if button.name in self.interval_timer:
-                self.interval_timer[button.name].reset()
-            else:
-                self.interval_timer[button.name] = Timer(interval).reset()
+            self.get_interval_timer(button, interval=interval).reset()
 
     def interval_clear(self, button, interval=5):
         if isinstance(button, (list, tuple)):
@@ -240,19 +256,11 @@ class ModuleBase:
             return
 
         if button is not None:
-            if button.name in self.interval_timer:
-                self.interval_timer[button.name].clear()
-            else:
-                self.interval_timer[button.name] = Timer(interval).clear()
+            self.get_interval_timer(button, interval=interval).clear()
 
     def interval_is_reached(self, button, interval=5):
-        if button.name in self.interval_timer:
-            if self.interval_timer[button.name].limit != interval:
-                self.interval_timer[button.name] = Timer(interval)
-        else:
-            self.interval_timer[button.name] = Timer(interval)
+        return self.get_interval_timer(button, interval=interval).reached()
 
-        return self.interval_timer[button.name].reached()
 
     _image_file = ''
 
