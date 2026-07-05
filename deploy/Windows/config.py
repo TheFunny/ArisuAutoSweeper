@@ -77,18 +77,8 @@ class DeployConfig(ConfigModel):
         self.config_template = {}
         self.read()
 
-        self.set_repo()
-
         self.write()
         self.show_config()
-
-    def set_repo(self):
-        # Bypass webui.config.DeployConfig.__setattr__()
-        # Don't write these into deploy.yaml
-        if self.Repository == 'cn':
-            super().__setattr__('Repository', 'https://git.yoursfunny.top/YoursFunny/ArisuAutoSweeper.git')
-        if self.Repository == 'global':
-            super().__setattr__('Repository', 'https://github.com/TheFunny/ArisuAutoSweeper')
 
     def show_config(self):
         logger.hr("Show deploy config", 1)
@@ -110,8 +100,21 @@ class DeployConfig(ConfigModel):
             if hasattr(self, key):
                 super().__setattr__(key, value)
 
+        self.config_redirect()
+
     def write(self):
         poor_yaml_write(self.config, self.file)
+
+    def config_redirect(self):
+        """
+        Redirect deploy config, must be called after each `read()`
+        """
+        # Bypass webui.config.DeployConfig.__setattr__()
+        # Don't write these into deploy.yaml
+        if self.Repository == 'cn':
+            super().__setattr__('Repository', 'https://git.yoursfunny.top/YoursFunny/ArisuAutoSweeper.git')
+        if self.Repository == 'global':
+            super().__setattr__('Repository', 'https://github.com/TheFunny/ArisuAutoSweeper')
 
     def filepath(self, path):
         """
