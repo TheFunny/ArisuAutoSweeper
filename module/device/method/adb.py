@@ -10,7 +10,7 @@ from lxml import etree
 from module.base.decorator import Config
 from module.device.connection import Connection
 from module.device.method.utils import (ImageTruncated, PackageNotInstalled, RETRY_TRIES, handle_adb_error,
-                                        remove_prefix, retry_sleep)
+                                        handle_unknown_host_service, remove_prefix, retry_sleep)
 from module.exception import RequestHumanTakeover, ScriptError
 from module.logger import logger
 
@@ -42,6 +42,10 @@ def retry(func):
             except AdbError as e:
                 if handle_adb_error(e):
                     def init():
+                        self.adb_reconnect()
+                elif handle_unknown_host_service(e):
+                    def init():
+                        self.adb_start_server()
                         self.adb_reconnect()
                 else:
                     break

@@ -6,7 +6,8 @@ from adbutils.errors import AdbError
 
 from module.base.utils import *
 from module.device.connection import Connection
-from module.device.method.utils import (ImageTruncated, RETRY_TRIES, handle_adb_error, retry_sleep)
+from module.device.method.utils import (ImageTruncated, RETRY_TRIES, handle_adb_error, handle_unknown_host_service,
+                                        retry_sleep)
 from module.exception import RequestHumanTakeover, ScriptError
 from module.logger import logger
 
@@ -48,6 +49,10 @@ def retry(func):
             except AdbError as e:
                 if handle_adb_error(e):
                     def init():
+                        self.adb_reconnect()
+                elif handle_unknown_host_service(e):
+                    def init():
+                        self.adb_start_server()
                         self.adb_reconnect()
                 else:
                     break
@@ -164,11 +169,11 @@ class AScreenCap(Connection):
             # ValueError: cannot reshape array of size 0 into shape (720,1280,4)
             raise ImageTruncated(str(e))
 
-        image = cv2.flip(image, 0, dst=image)
+        cv2.flip(image, 0, dst=image)
         if image is None:
             raise ImageTruncated('Empty image after cv2.flip')
 
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB, dst=image)
+        cv2.cvtColor(image, cv2.COLOR_BGR2RGB, dst=image)
         if image is None:
             raise ImageTruncated('Empty image after cv2.cvtColor')
 
