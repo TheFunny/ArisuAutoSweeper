@@ -7,7 +7,6 @@ from adbutils import AdbClient, AdbDevice
 
 from module.base.decorator import cached_property
 from module.config.config import AzurLaneConfig
-from module.config.utils import deep_iter
 from module.exception import RequestHumanTakeover
 from module.logger import logger
 
@@ -127,7 +126,12 @@ class ConnectionAttr:
     def is_mumu_family(self):
         # 127.0.0.1:7555
         # 127.0.0.1:16384 + 32*n
-        return self.serial == '127.0.0.1:7555' or self.serial.startswith('127.0.0.1:16')
+        return self.serial == '127.0.0.1:7555' or self.is_mumu12_family
+
+    @cached_property
+    def is_mumu12_family(self):
+        # 127.0.0.1:16384 + 32*n
+        return len(self.serial) == 15 and self.serial.startswith('127.0.0.1:16')
 
     @cached_property
     def is_emulator(self):
