@@ -1,9 +1,9 @@
 import collections
-import sys
 
 from module.base.timer import Timer
 from module.device.app_control import AppControl
 from module.device.control import Control
+from module.device.platform import Platform
 from module.device.screenshot import Screenshot
 from module.exception import (
     EmulatorNotRunningError,
@@ -13,11 +13,6 @@ from module.exception import (
     RequestHumanTakeover
 )
 from module.logger import logger
-
-if sys.platform == 'win32':
-    from module.device.platform.platform_windows import PlatformWindows as Platform
-else:
-    from module.device.platform.platform_base import PlatformBase as Platform
 
 
 def show_function_call():
@@ -85,7 +80,7 @@ class Device(Screenshot, Control, AppControl, Platform):
         # Auto-fill emulator info
         if self.config.EmulatorInfo_Emulator == 'auto':
             _ = self.emulator_instance
-        
+
         self.screenshot_interval_set()
 
         # Auto-select the fastest screenshot method
