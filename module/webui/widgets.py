@@ -2,7 +2,7 @@ import copy
 import json
 import random
 import string
-from typing import TYPE_CHECKING, Any, Callable, Dict, Generator, List, Optional, Union
+from typing import Any, Callable, Dict, Generator, List, Optional, TYPE_CHECKING, Union
 
 from pywebio.exceptions import SessionException
 from pywebio.io_ctrl import Output
@@ -10,7 +10,7 @@ from pywebio.output import *
 from pywebio.session import eval_js, local, run_js
 from rich.console import ConsoleRenderable
 
-from module.logger import WEB_THEME, Highlighter, HTMLConsole
+from module.logger import HTMLConsole, Highlighter, WEB_THEME
 from module.webui.lang import t
 from module.webui.pin import put_checkbox, put_input, put_select, put_textarea
 from module.webui.process_manager import ProcessManager
@@ -424,6 +424,7 @@ def put_arg_textarea(kwargs: T_Output_Kwargs) -> Output:
     )
 
     return put_scope(
+        # This aims to be a typo, don't correct it, leave it as it is
         f"arg_contianer-textarea-{name}",
         [
             get_title_help(kwargs),
@@ -505,6 +506,25 @@ _widget_type_to_func: Dict[str, Callable] = {
 
 def put_output(output_kwargs: T_Output_Kwargs) -> Optional[Output]:
     return _widget_type_to_func[output_kwargs["widget_type"]](output_kwargs)
+
+
+def type_to_html(type_: str) -> str:
+    """
+    Args:
+        type_: Type defined in _widget_type_to_func and argument.yaml
+
+    Returns:
+        str: Html element name
+    """
+    if type_ == "checkbox":
+        return "checkbox"
+    if type_ in ["input", "lock", "datetime"]:
+        return "input"
+    if type_ in ["select", "state"]:
+        return "select"
+    if type_ in ["textarea", "storage"]:
+        return "textarea"
+    return type_
 
 
 def get_loading_style(shape: str, fill: bool) -> str:

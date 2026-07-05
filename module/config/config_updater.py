@@ -610,6 +610,25 @@ class ConfigUpdater:
         #         yield 'Dungeon.Dungeon.NameAtDoubleRelic', value
         pass
 
+    def iter_hidden_args(self, data) -> t.Iterator[str]:
+        """
+        Args:
+            data (dict): config
+
+        Yields:
+            str: Arg path that should be hidden
+        """
+        # if deep_get(data, 'Rogue.RoguePath.PresetResonanceFilter') != 'custom':
+        #     yield 'Rogue.RoguePath.CustomResonanceFilter'
+        pass
+
+    def get_hidden_args(self, data) -> t.Set[str]:
+        """
+        Return a set of hidden args
+        """
+        out = list(self.iter_hidden_args(data))
+        return set(out)
+
     def read_file(self, config_name, is_template=False):
         """
         Read and update config file.
