@@ -345,12 +345,19 @@ def put_arg_stored(kwargs: T_Output_Kwargs) -> Output:
     value = values.pop("value", "")
     total = values.pop("total", "")
     time_ = values.pop("time", "")
+    comment = values.pop("comment", "")
 
     if value != "" and total != "":
         # 0 / 100
         rows = [put_scope(f"dashboard-value-{name}", [
             put_text(value).style("--dashboard-value--"),
             put_text(f" / {total}").style("--dashboard-time--"),
+        ])]
+    elif value != "" and comment != "":
+        # 88% <1.2d
+        rows = [put_scope(f"dashboard-value-{name}", [
+            put_text(value).style("--dashboard-value--"),
+            put_text(f" {comment}").style("--dashboard-time--"),
         ])]
     elif value != "":
         # 100
@@ -393,6 +400,11 @@ def put_arg_planner(kwargs: T_Output_Kwargs) -> Output | None:
     except KeyError:
         # Hide items not needed by the planner
         return None
+    eta = values.get("eta", 0)
+    if eta > 0:
+        eta = f" - {t('Gui.Dashboard.EtaDays', time=eta)}"
+    else:
+        eta = ""
 
     value = values.pop('value', 0)
     if isinstance(value, dict):
@@ -403,7 +415,7 @@ def put_arg_planner(kwargs: T_Output_Kwargs) -> Output | None:
 
     row = put_scope(f"arg_stored-stored-value-{name}", [
         put_text(f"{progress:.2f}%").style("--dashboard-bold--"),
-        put_text(f"{value} / {total}").style("--dashboard-time--"),
+        put_text(f"{value} / {total}{eta}").style("--dashboard-time--"),
     ])
 
     return put_scope(

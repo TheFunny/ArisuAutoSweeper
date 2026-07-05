@@ -16,6 +16,7 @@ class GeneratedConfig:
     Scheduler_ServerUpdate = '04:00'
 
     # Group `Emulator`
+    Emulator_Serial = 'auto'
     Emulator_PackageName = 'auto'  # auto, JP-Official, OVERSEA-TWHKMO, OVERSEA-Korea, OVERSEA-Asia, OVERSEA-America, OVERSEA-Global
     Emulator_GameLanguage = 'auto'  # auto, jp, en, zht
     Emulator_ScreenshotMethod = 'auto'  # auto, ADB, ADB_nc, uiautomator2, aScreenCap, aScreenCap_nc, DroidCast, DroidCast_raw, scrcpy, nemu_ipc

@@ -923,7 +923,8 @@
       "MinutesAgo": "{time}分钟前",
       "HoursAgo": "{time}小时前",
       "DaysAgo": "{time}天前",
-      "LongTimeAgo": "很久以前"
+      "LongTimeAgo": "很久以前",
+      "EtaDays": "剩余{time}天"
     },
     "AddAlas": {
       "PopupTitle": "添加新配置",

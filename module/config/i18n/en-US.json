@@ -923,7 +923,8 @@
       "MinutesAgo": "{time}min ago",
       "HoursAgo": "{time}h ago",
       "DaysAgo": "{time}d ago",
-      "LongTimeAgo": "long time ago"
+      "LongTimeAgo": "long time ago",
+      "EtaDays": "ETA {time}d"
     },
     "AddAlas": {
       "PopupTitle": "Add new config",
