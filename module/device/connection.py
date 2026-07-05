@@ -1014,6 +1014,7 @@ class Connection(ConnectionAttr):
             # Set server
             # logger.info('Server changed, release resources')
             # set_server(self.package)
+            return
         else:
             logger.critical(
                 f'Multiple Blue Archive packages found, auto package detection cannot decide which to choose, '
