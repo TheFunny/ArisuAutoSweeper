@@ -41,8 +41,9 @@ class Bounty(BountyUI):
         if action == 'stop':
             raise RequestHumanTakeover
         elif action == 'skip':
-            self.config.task_delay(server_update=True)
-            self.config.task_stop()
+            with self.config.multi_set():
+                self.config.task_delay(server_update=True)
+                self.config.task_stop()
 
     @property
     def is_ticket_enough(self) -> bool:

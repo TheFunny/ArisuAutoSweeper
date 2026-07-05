@@ -1,10 +1,9 @@
 from module.base.timer import Timer
-from module.base.decorator import Config
 from module.exception import GameNotRunningError
 from module.logger import logger
 from tasks.base.page import page_main
 from tasks.base.ui import UI
-from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING, UPDATE, SURVEY
+from tasks.login.assets.assets_login import LOGIN_CONFIRM, LOGIN_LOADING, UPDATE
 
 
 class Login(UI):
@@ -19,6 +18,7 @@ class Login(UI):
             GameTooManyClickError:
             GameNotRunningError:
         """
+
         def _page_main_twice_confirm():
             if self.ui_page_appear(page_main):
                 timer = Timer(1).start()
@@ -30,20 +30,11 @@ class Login(UI):
                             return True
                         return False
 
-        @Config.when(Emulator_GameLanguage='en')
-        def _handle_survey(self):
-            if self.appear_then_click(SURVEY):
-                return True
-            return False
-
-        @Config.when(Emulator_GameLanguage=None)
-        def _handle_survey(self):
-            pass
-
         logger.hr('App login')
         orientation_timer = Timer(5)
         startup_timer = Timer(5).start()
         app_timer = Timer(5).start()
+        back_timer = Timer(2).start()
         login_success = False
 
         while 1:
@@ -72,10 +63,11 @@ class Login(UI):
                     break
 
             # Watch resource downloading and loading
+            loading = False
             if self.match_color(LOGIN_LOADING, interval=5, threshold=45):
                 logger.info('Game resources downloading or loading')
                 self.device.stuck_record_clear()
-
+                loading = True
             # Login
             if self.appear_then_click(LOGIN_CONFIRM):
                 login_success = True
@@ -89,10 +81,10 @@ class Login(UI):
             #     continue
             if self.appear_then_click(UPDATE):
                 continue
-            if _handle_survey(self):
-                continue
             if self.ui_additional():
                 continue
+            if not loading and back_timer.reached_and_reset() and not self.appear_trademark_year():
+                self.device.back()
 
         return True
 

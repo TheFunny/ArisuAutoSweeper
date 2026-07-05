@@ -12,6 +12,10 @@
         "option": [
           "auto",
           "JP-Official",
+          "OVERSEA-TWHKMO",
+          "OVERSEA-Korea",
+          "OVERSEA-Asia",
+          "OVERSEA-America",
           "OVERSEA-Global"
         ]
       },
@@ -21,7 +25,8 @@
         "option": [
           "auto",
           "jp",
-          "en"
+          "en",
+          "zht"
         ]
       },
       "ScreenshotMethod": {
@@ -125,7 +130,11 @@
         "option": [
           "stay_there",
           "goto_main",
-          "close_game"
+          "close_game",
+          "exit_aas",
+          "exit_emulator",
+          "exit_aas_emulator",
+          "shutdown"
         ]
       }
     }
@@ -156,329 +165,6 @@
         "type": "input",
         "value": "04:00",
         "display": "hide"
-      }
-    }
-  },
-  "Cafe": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": true,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "Cafe",
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00, 16:00",
-        "display": "hide"
-      }
-    },
-    "Cafe": {
-      "Reward": {
-        "type": "checkbox",
-        "value": true
-      },
-      "Touch": {
-        "type": "checkbox",
-        "value": true
-      },
-      "AutoAdjust": {
-        "type": "checkbox",
-        "value": true
-      },
-      "SecondCafe": {
-        "type": "checkbox",
-        "value": true
-      }
-    }
-  },
-  "Mail": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": true,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "Mail",
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00",
-        "display": "hide"
-      }
-    }
-  },
-  "Circle": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": true,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "Circle",
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00",
-        "display": "hide"
-      }
-    }
-  },
-  "Bounty": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": true,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "Bounty",
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00",
-        "display": "hide"
-      }
-    },
-    "Bounty": {
-      "OnError": {
-        "type": "select",
-        "value": "skip",
-        "option": [
-          "stop",
-          "skip"
-        ]
-      }
-    },
-    "Highway": {
-      "Stage": {
-        "type": "select",
-        "value": 1,
-        "option": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      },
-      "Count": {
-        "type": "input",
-        "value": 2
-      }
-    },
-    "DesertRailroad": {
-      "Stage": {
-        "type": "select",
-        "value": 1,
-        "option": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      },
-      "Count": {
-        "type": "input",
-        "value": 2
-      }
-    },
-    "Schoolhouse": {
-      "Stage": {
-        "type": "select",
-        "value": 1,
-        "option": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ]
-      },
-      "Count": {
-        "type": "input",
-        "value": 2
-      }
-    }
-  },
-  "Scrimmage": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": true,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "Scrimmage",
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00",
-        "display": "hide"
-      }
-    },
-    "Scrimmage": {
-      "OnError": {
-        "type": "select",
-        "value": "skip",
-        "option": [
-          "stop",
-          "skip"
-        ]
-      }
-    },
-    "Trinity": {
-      "Stage": {
-        "type": "select",
-        "value": 1,
-        "option": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "Count": {
-        "type": "input",
-        "value": 2
-      }
-    },
-    "Gehenna": {
-      "Stage": {
-        "type": "select",
-        "value": 1,
-        "option": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "Count": {
-        "type": "input",
-        "value": 2
-      }
-    },
-    "Millennium": {
-      "Stage": {
-        "type": "select",
-        "value": 1,
-        "option": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "Count": {
-        "type": "input",
-        "value": 2
-      }
-    }
-  },
-  "TacticalChallenge": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": true,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "TacticalChallenge",
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "15:00",
-        "display": "hide"
-      }
-    },
-    "TacticalChallenge": {
-      "PlayerSelect": {
-        "type": "select",
-        "value": 0,
-        "option": [
-          0,
-          1,
-          2,
-          3
-        ]
       }
     }
   },
@@ -558,6 +244,830 @@
         "stored": "StoredTacticalChallengeTicket",
         "order": 6,
         "color": "#7ac8e5"
+      }
+    }
+  },
+  "Cafe": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Cafe",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00, 16:00",
+        "display": "hide"
+      }
+    },
+    "Cafe": {
+      "Reward": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Touch": {
+        "type": "checkbox",
+        "value": true
+      },
+      "AutoAdjust": {
+        "type": "checkbox",
+        "value": true
+      },
+      "SecondCafe": {
+        "type": "checkbox",
+        "value": true
+      }
+    },
+    "Invitation": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true
+      },
+      "WaitingHour": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          3,
+          6,
+          9
+        ]
+      },
+      "Choice": {
+        "type": "select",
+        "value": "list_top",
+        "option": [
+          "list_top",
+          "by_name"
+        ]
+      },
+      "Name": {
+        "type": "textarea",
+        "value": null
+      },
+      "Substitute": {
+        "type": "checkbox",
+        "value": false
+      }
+    }
+  },
+  "Schedule": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Schedule",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Schedule": {
+      "OnError": {
+        "type": "select",
+        "value": "skip",
+        "option": [
+          "stop",
+          "skip"
+        ]
+      }
+    },
+    "Choice1": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice2": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice3": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice4": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice5": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice6": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    },
+    "Choice7": {
+      "Location": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Classrooms": {
+        "type": "textarea",
+        "value": null
+      }
+    }
+  },
+  "Shop": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Shop",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "NormalShop": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Purchases": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "1": {
+        "type": "checkbox",
+        "value": false
+      },
+      "2": {
+        "type": "checkbox",
+        "value": false
+      },
+      "3": {
+        "type": "checkbox",
+        "value": false
+      },
+      "4": {
+        "type": "checkbox",
+        "value": false
+      },
+      "5": {
+        "type": "checkbox",
+        "value": false
+      },
+      "6": {
+        "type": "checkbox",
+        "value": false
+      },
+      "7": {
+        "type": "checkbox",
+        "value": false
+      },
+      "8": {
+        "type": "checkbox",
+        "value": false
+      },
+      "9": {
+        "type": "checkbox",
+        "value": false
+      },
+      "10": {
+        "type": "checkbox",
+        "value": false
+      },
+      "11": {
+        "type": "checkbox",
+        "value": false
+      },
+      "12": {
+        "type": "checkbox",
+        "value": false
+      },
+      "13": {
+        "type": "checkbox",
+        "value": false
+      },
+      "14": {
+        "type": "checkbox",
+        "value": false
+      },
+      "15": {
+        "type": "checkbox",
+        "value": false
+      },
+      "16": {
+        "type": "checkbox",
+        "value": false
+      },
+      "17": {
+        "type": "checkbox",
+        "value": false
+      },
+      "18": {
+        "type": "checkbox",
+        "value": false
+      },
+      "19": {
+        "type": "checkbox",
+        "value": false
+      },
+      "20": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
+    "TacticalChallengeShop": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Purchases": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "1": {
+        "type": "checkbox",
+        "value": false
+      },
+      "2": {
+        "type": "checkbox",
+        "value": false
+      },
+      "3": {
+        "type": "checkbox",
+        "value": false
+      },
+      "4": {
+        "type": "checkbox",
+        "value": false
+      },
+      "5": {
+        "type": "checkbox",
+        "value": false
+      },
+      "6": {
+        "type": "checkbox",
+        "value": false
+      },
+      "7": {
+        "type": "checkbox",
+        "value": false
+      },
+      "8": {
+        "type": "checkbox",
+        "value": false
+      },
+      "9": {
+        "type": "checkbox",
+        "value": false
+      },
+      "10": {
+        "type": "checkbox",
+        "value": false
+      },
+      "11": {
+        "type": "checkbox",
+        "value": false
+      },
+      "12": {
+        "type": "checkbox",
+        "value": false
+      },
+      "13": {
+        "type": "checkbox",
+        "value": false
+      },
+      "14": {
+        "type": "checkbox",
+        "value": false
+      },
+      "15": {
+        "type": "checkbox",
+        "value": false
+      }
+    }
+  },
+  "Bounty": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Bounty",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Bounty": {
+      "OnError": {
+        "type": "select",
+        "value": "skip",
+        "option": [
+          "stop",
+          "skip"
+        ]
+      }
+    },
+    "Highway": {
+      "Stage": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    },
+    "DesertRailroad": {
+      "Stage": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    },
+    "Schoolhouse": {
+      "Stage": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    }
+  },
+  "Scrimmage": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Scrimmage",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Scrimmage": {
+      "OnError": {
+        "type": "select",
+        "value": "skip",
+        "option": [
+          "stop",
+          "skip"
+        ]
+      }
+    },
+    "Trinity": {
+      "Stage": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    },
+    "Gehenna": {
+      "Stage": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    },
+    "Millennium": {
+      "Stage": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 2
+      }
+    }
+  },
+  "TacticalChallenge": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "TacticalChallenge",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "14:00",
+        "display": "hide"
+      }
+    },
+    "TacticalChallenge": {
+      "PlayerSelect": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  },
+  "Mission": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Mission",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    }
+  },
+  "Circle": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Circle",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    }
+  },
+  "Task": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Task",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    }
+  },
+  "Mail": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Mail",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    }
+  },
+  "Momotalk": {
+    "Momotalk": {
+      "Enable": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
       }
     }
   }

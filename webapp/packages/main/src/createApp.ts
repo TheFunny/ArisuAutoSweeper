@@ -5,6 +5,7 @@ import logger from '/@/logger';
 import {app, nativeImage, Tray} from 'electron';
 import {join} from 'node:path';
 import {isMacintosh} from '@common/utils';
+
 export const createApp = async () => {
   logger.info('-----createApp-----');
   logger.info('-----createMainWindow-----');
@@ -42,7 +43,7 @@ export const createApp = async () => {
       },
     },
   ]);
-  tray.setToolTip('SRC');
+  tray.setToolTip('AAS');
   tray.setContextMenu(contextMenu);
   tray.on('click', () => {
     if (mainWindow?.isVisible()) {

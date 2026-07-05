@@ -252,3 +252,7 @@ class Device(Screenshot, Control, AppControl):
         super().app_stop()
         self.stuck_record_clear()
         self.click_record_clear()
+
+    def back(self):
+        logger.info("Sending Back...")
+        self.adb_shell("input keyevent 4")

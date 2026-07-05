@@ -33,93 +33,6 @@
       "ServerUpdate": "04:00"
     }
   },
-  "Cafe": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "Cafe",
-      "ServerUpdate": "04:00, 16:00"
-    },
-    "Cafe": {
-      "Reward": true,
-      "Touch": true,
-      "AutoAdjust": true,
-      "SecondCafe": true
-    }
-  },
-  "Mail": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "Mail",
-      "ServerUpdate": "04:00"
-    }
-  },
-  "Circle": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "Circle",
-      "ServerUpdate": "04:00"
-    }
-  },
-  "Bounty": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "Bounty",
-      "ServerUpdate": "04:00"
-    },
-    "Bounty": {
-      "OnError": "skip"
-    },
-    "Highway": {
-      "Stage": 1,
-      "Count": 2
-    },
-    "DesertRailroad": {
-      "Stage": 1,
-      "Count": 2
-    },
-    "Schoolhouse": {
-      "Stage": 1,
-      "Count": 2
-    }
-  },
-  "Scrimmage": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "Scrimmage",
-      "ServerUpdate": "04:00"
-    },
-    "Scrimmage": {
-      "OnError": "skip"
-    },
-    "Trinity": {
-      "Stage": 1,
-      "Count": 2
-    },
-    "Gehenna": {
-      "Stage": 1,
-      "Count": 2
-    },
-    "Millennium": {
-      "Stage": 1,
-      "Count": 2
-    }
-  },
-  "TacticalChallenge": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "TacticalChallenge",
-      "ServerUpdate": "15:00"
-    },
-    "TacticalChallenge": {
-      "PlayerSelect": 0
-    }
-  },
   "DataUpdate": {
     "Scheduler": {
       "Enable": true,
@@ -134,6 +47,211 @@
       "BountyTicket": {},
       "ScrimmageTicket": {},
       "TacticalChallengeTicket": {}
+    }
+  },
+  "Cafe": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Cafe",
+      "ServerUpdate": "04:00, 16:00"
+    },
+    "Cafe": {
+      "Reward": true,
+      "Touch": true,
+      "AutoAdjust": true,
+      "SecondCafe": true
+    },
+    "Invitation": {
+      "Enable": true,
+      "WaitingHour": 0,
+      "Choice": "list_top",
+      "Name": null,
+      "Substitute": false
+    }
+  },
+  "Schedule": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Schedule",
+      "ServerUpdate": "04:00"
+    },
+    "Schedule": {
+      "OnError": "skip"
+    },
+    "Choice1": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice2": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice3": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice4": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice5": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice6": {
+      "Location": "None",
+      "Classrooms": null
+    },
+    "Choice7": {
+      "Location": "None",
+      "Classrooms": null
+    }
+  },
+  "Shop": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Shop",
+      "ServerUpdate": "04:00"
+    },
+    "NormalShop": {
+      "Enable": false,
+      "Purchases": 1,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
+      "7": false,
+      "8": false,
+      "9": false,
+      "10": false,
+      "11": false,
+      "12": false,
+      "13": false,
+      "14": false,
+      "15": false,
+      "16": false,
+      "17": false,
+      "18": false,
+      "19": false,
+      "20": false
+    },
+    "TacticalChallengeShop": {
+      "Enable": false,
+      "Purchases": 1,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
+      "7": false,
+      "8": false,
+      "9": false,
+      "10": false,
+      "11": false,
+      "12": false,
+      "13": false,
+      "14": false,
+      "15": false
+    }
+  },
+  "Bounty": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Bounty",
+      "ServerUpdate": "04:00"
+    },
+    "Bounty": {
+      "OnError": "skip"
+    },
+    "Highway": {
+      "Stage": 0,
+      "Count": 2
+    },
+    "DesertRailroad": {
+      "Stage": 0,
+      "Count": 2
+    },
+    "Schoolhouse": {
+      "Stage": 0,
+      "Count": 2
+    }
+  },
+  "Scrimmage": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Scrimmage",
+      "ServerUpdate": "04:00"
+    },
+    "Scrimmage": {
+      "OnError": "skip"
+    },
+    "Trinity": {
+      "Stage": 0,
+      "Count": 2
+    },
+    "Gehenna": {
+      "Stage": 0,
+      "Count": 2
+    },
+    "Millennium": {
+      "Stage": 0,
+      "Count": 2
+    }
+  },
+  "TacticalChallenge": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "TacticalChallenge",
+      "ServerUpdate": "14:00"
+    },
+    "TacticalChallenge": {
+      "PlayerSelect": 0
+    }
+  },
+  "Mission": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Mission",
+      "ServerUpdate": "04:00"
+    }
+  },
+  "Circle": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Circle",
+      "ServerUpdate": "04:00"
+    }
+  },
+  "Task": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Task",
+      "ServerUpdate": "04:00"
+    }
+  },
+  "Mail": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "Mail",
+      "ServerUpdate": "04:00"
+    }
+  },
+  "Momotalk": {
+    "Momotalk": {
+      "Enable": true
     }
   }
 }

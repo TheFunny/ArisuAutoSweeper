@@ -20,6 +20,7 @@ config/reloadalas
 test.py
 test/
 note.md
+MCE/config.json
 resources/
 locales/
 *.pak

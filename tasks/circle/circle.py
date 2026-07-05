@@ -2,7 +2,7 @@ from enum import Enum
 
 from module.base.timer import Timer
 from module.logger import logger
-from tasks.base.page import page_circle
+from tasks.base.page import CIRCLE_CHECK, MAIN_GO_TO_CIRCLE
 from tasks.base.ui import UI
 from tasks.circle.assets.assets_circle import *
 
@@ -17,6 +17,19 @@ class CircleStatus(Enum):
 
 
 class Circle(UI):
+    def _enter_circle(self):
+        self.ui_goto_main()
+        action_timer = Timer(1, 8)
+        while not self.appear(CIRCLE_CHECK):
+            self.device.screenshot()
+            if not action_timer.reached_and_reset():
+                continue
+            if self.appear(CIRCLE):
+                self.click_with_interval(CIRCLE, 3)
+                continue
+            else:
+                self.appear_then_click(MAIN_GO_TO_CIRCLE, 3)
+
     def _handle_circle(self, status):
         match status:
             case CircleStatus.REWARD:
@@ -31,7 +44,7 @@ class Circle(UI):
         return status
 
     def run(self):
-        self.ui_ensure(page_circle)
+        self._enter_circle()
 
         status = CircleStatus.REWARD
         action_timer = Timer(0.5)

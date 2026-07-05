@@ -23,7 +23,7 @@ Emulator:
     option: [ auto, ]
   GameLanguage:
     value: auto
-    option: [ auto, jp, en ]
+    option: [ auto, jp, en, zht ]
   ScreenshotMethod:
     value: auto
     option: [ auto, ADB, ADB_nc, uiautomator2, aScreenCap, aScreenCap_nc, DroidCast, DroidCast_raw, scrcpy, nemu_ipc ]
@@ -71,7 +71,7 @@ Optimization:
   CombatScreenshotInterval: 1.0
   WhenTaskQueueEmpty:
     value: goto_main
-    option: [ stay_there, goto_main, close_game ]
+    option: [ stay_there, goto_main, close_game, exit_aas, exit_emulator, exit_aas_emulator, shutdown ]
 
 # ==================== Daily ====================
 
@@ -80,6 +80,73 @@ Cafe:
   Touch: true
   AutoAdjust: true
   SecondCafe: true
+Invitation:
+  Enable: true
+  WaitingHour:
+    value: 0
+    option: [ 0, 3, 6, 9 ]
+  Choice:
+    value: list_top
+    option: [ list_top, by_name ]
+  Name:
+    value: null
+    type: textarea
+  Substitute: false
+
+Schedule:
+  OnError:
+    value: skip
+    option: [ stop, skip ]
+
+Choice1:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice2:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice3:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice4:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice5:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice6:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
+Choice7:
+  Location:
+    value: None
+    option: [ None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Classrooms:
+    value: null
+    type: textarea
 
 Bounty:
   OnError:
@@ -88,18 +155,18 @@ Bounty:
 
 Highway:
   Stage:
-    value: 1
-    option: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
   Count: 2
 DesertRailroad:
   Stage:
-    value: 1
-    option: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
   Count: 2
 Schoolhouse:
   Stage:
-    value: 1
-    option: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
   Count: 2
 
 Scrimmage:
@@ -109,24 +176,71 @@ Scrimmage:
 
 Trinity:
   Stage:
-    value: 1
-    option: [ 1, 2, 3, 4 ]
+    value: 0
+    option: [ 0, 1, 2, 3, 4 ]
   Count: 2
 Gehenna:
   Stage:
-    value: 1
-    option: [ 1, 2, 3, 4 ]
+    value: 0
+    option: [ 0, 1, 2, 3, 4 ]
   Count: 2
 Millennium:
   Stage:
-    value: 1
-    option: [ 1, 2, 3, 4 ]
+    value: 0
+    option: [ 0, 1, 2, 3, 4 ]
   Count: 2
 
 TacticalChallenge:
   PlayerSelect:
     value: 0
     option: [ 0, 1, 2, 3 ]
+
+NormalShop:
+  Enable: false
+  Purchases:
+    value: 1
+    option: [ 1, 2, 3, 4 ]
+  "1": false
+  "2": false
+  "3": false
+  "4": false
+  "5": false
+  "6": false
+  "7": false
+  "8": false
+  "9": false
+  "10": false
+  "11": false
+  "12": false
+  "13": false
+  "14": false
+  "15": false
+  "16": false
+  "17": false
+  "18": false
+  "19": false
+  "20": false
+
+TacticalChallengeShop:
+  Enable: false
+  Purchases:
+    value: 1
+    option: [ 1, 2, 3, 4 ]
+  "1": false
+  "2": false
+  "3": false
+  "4": false
+  "5": false
+  "6": false
+  "7": false
+  "8": false
+  "9": false
+  "10": false
+  "11": false
+  "12": false
+  "13": false
+  "14": false
+  "15": false
 
 ItemStorage:
   AP:
@@ -153,3 +267,10 @@ ItemStorage:
     stored: StoredTacticalChallengeTicket
     order: 6
     color: "#7ac8e5"
+
+# ==================== Momotalk ====================
+
+Momotalk:
+  Enable:
+    value: true
+    display: hide

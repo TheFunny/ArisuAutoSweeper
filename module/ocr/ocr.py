@@ -352,6 +352,11 @@ class DigitCounter(Ocr):
     def is_format_matched(cls, result) -> bool:
         return '/' in result
 
+    def after_process(self, result):
+        result = super().after_process(result)
+        result = result.replace('%', '/')
+        return result
+
     def format_result(self, result) -> tuple[int, int, int]:
         """
         Do OCR on a counter, such as `14/15`, and returns 14, 1, 15
@@ -359,7 +364,7 @@ class DigitCounter(Ocr):
         Returns:
             int:
         """
-        result = super().after_process(result)
+        result = self.after_process(result)
         logger.attr(name=self.name, text=str(result))
 
         res = re.search(r'(\d+)\s*/\s*(\d+)', result)

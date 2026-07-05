@@ -7,6 +7,18 @@
     "Daily": {
       "name": "Daily",
       "help": ""
+    },
+    "Farm": {
+      "name": "Farm",
+      "help": ""
+    },
+    "Reward": {
+      "name": "Reward",
+      "help": ""
+    },
+    "Tool": {
+      "name": "Tools",
+      "help": ""
     }
   },
   "Task": {
@@ -18,16 +30,20 @@
       "name": "Error Handling",
       "help": ""
     },
+    "DataUpdate": {
+      "name": "Dashboard Upd",
+      "help": ""
+    },
     "Cafe": {
       "name": "Cafe",
       "help": ""
     },
-    "Mail": {
-      "name": "Mailbox",
-      "help": ""
+    "Schedule": {
+      "name": "Lesson",
+      "help": "AAS will execute Lesson starting from Choice 1 to Choice 7.\nIt will ignore any Choice that have Location set as None or the text area for classrooms is empty.\nIf any of the active Choices have incorrect input, it will perform the action set in Error handling."
     },
-    "Circle": {
-      "name": "Club",
+    "Shop": {
+      "name": "Shop",
       "help": ""
     },
     "Bounty": {
@@ -42,8 +58,24 @@
       "name": "Tactical Challenge",
       "help": ""
     },
-    "DataUpdate": {
-      "name": "Dashboard Upd",
+    "Mission": {
+      "name": "Mission/Commissions/Event",
+      "help": "Open MCE Manager for additional settings. Must be opened if it's your first time!"
+    },
+    "Circle": {
+      "name": "Club",
+      "help": ""
+    },
+    "Task": {
+      "name": "Tasks",
+      "help": ""
+    },
+    "Mail": {
+      "name": "Mailbox",
+      "help": ""
+    },
+    "Momotalk": {
+      "name": "MomoTalk",
       "help": ""
     }
   },
@@ -85,14 +117,19 @@
       "help": "Can't distinguish different regions of oversea servers, please select the server manually.",
       "auto": "Auto-detect",
       "JP-Official": "[JP]-Official",
+      "OVERSEA-TWHKMO": "[OVERSEA]-TW/HK/MO",
+      "OVERSEA-Korea": "[OVERSEA]-Korea",
+      "OVERSEA-Asia": "[OVERSEA]-Asia",
+      "OVERSEA-America": "[OVERSEA]-North America",
       "OVERSEA-Global": "[OVERSEA]-Global"
     },
     "GameLanguage": {
       "name": "In-game Text Language",
-      "help": "",
+      "help": "Can't detect language automatically, please select the language manually.",
       "auto": "Auto-detect",
       "jp": "Japanese",
-      "en": "English"
+      "en": "English",
+      "zht": "Traditional Chinese"
     },
     "ScreenshotMethod": {
       "name": "Screenshot Method",
@@ -190,10 +227,14 @@
     },
     "WhenTaskQueueEmpty": {
       "name": "When Task Queue is Empty",
-      "help": "Close AL when there are no pending tasks, can help reduce CPU",
+      "help": "Close Blue Archive when there are no pending tasks, can help reduce CPU.\nExit AAS, emulator and shutdown should be set while AAS is running tasks otherwise it won't start; after their execution it will be reset to Goto Main Page.\nExit AAS and emulator are only available on Windows.\n\nExit emulator works using the values in Emulator Settings.\nFor accuracy, you should run AAS without emulator and AAS will list all detected instances in the Log. Copy and paste the name and path of the instance into the Emulator Settings.",
       "stay_there": "Stay There",
       "goto_main": "Goto Main Page",
-      "close_game": "Close Game"
+      "close_game": "Close Game",
+      "exit_aas": "Exit AAS",
+      "exit_emulator": "Exit Emulator",
+      "exit_aas_emulator": "Exit AAS & Emulator",
+      "shutdown": "Shutdown"
     }
   },
   "Cafe": {
@@ -215,7 +256,226 @@
     },
     "SecondCafe": {
       "name": "Second Floor",
-      "help": "JP server only\nEnable auto switch to second floor and perform interaction"
+      "help": "Enable auto switch to second floor and perform interaction"
+    }
+  },
+  "Invitation": {
+    "_info": {
+      "name": "Invitation Settings",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": "Enable cafe invitation"
+    },
+    "WaitingHour": {
+      "name": "Invitation Condition",
+      "help": "Choose whether to invite students based on the remaining time before next cafe refresh\nThis is for obtaining maximum student interation and maximum affection when AFK. Recommended option:\n24*7 AFK:\t\t Choose \"If 9 more hours remaining\"\nNormal usage:\t Choose \"Invite immediately\"",
+      "0": "Invite immediately",
+      "3": "If 3 more hours remaining",
+      "6": "If 6 more hours remaining",
+      "9": "If 9 more hours remaining"
+    },
+    "Choice": {
+      "name": "Choose Inviting Student",
+      "help": "Top first student of list: Invite the student at the top first of the list\nBy name: Invite the student with the name you set below",
+      "list_top": "Top first student of list",
+      "by_name": "By name"
+    },
+    "Name": {
+      "name": "Inviting Student Name",
+      "help": "It is recommended to use Input Helper to avoid any mistakes and paste it here using Ctrl + V.\nFill in the name of the student to be invited. Use in-game text language. Use > to connect multiple students. Example:\nJP: ホシノ(水着) > 御坂美琴 > ユズ\nOVERSEA: Hoshino(Swimsuit) > Yuuka > Kayoko(New Year)"
+    },
+    "Substitute": {
+      "name": "Replace existing student",
+      "help": "Whether to replace the existing student with their alt.\nIf not, try to match the next student"
+    }
+  },
+  "Schedule": {
+    "_info": {
+      "name": "Lesson Settings",
+      "help": ""
+    },
+    "OnError": {
+      "name": "Error Handling",
+      "help": "Perform the selected action when an error occurs (location not unlocked or any invalid setting)",
+      "stop": "Stop script",
+      "skip": "Skip current task"
+    }
+  },
+  "Choice1": {
+    "_info": {
+      "name": "Choice 1",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": "It is recommended to use Input Helper to avoid any mistakes and paste it here using Ctrl + V.\nType a number from 1 to 9 that represents the classroom position in the locations popup.\nUse > to connect multiple classrooms and AAS will select them following the order they appear.Example:\n8 > 7 > 6 > 5 > 4 > 3 > 2 > 1"
+    }
+  },
+  "Choice2": {
+    "_info": {
+      "name": "Choice 2",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice3": {
+    "_info": {
+      "name": "Choice 3",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice4": {
+    "_info": {
+      "name": "Choice 4",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice5": {
+    "_info": {
+      "name": "Choice 5",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice6": {
+    "_info": {
+      "name": "Choice 6",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
+    }
+  },
+  "Choice7": {
+    "_info": {
+      "name": "Choice 7",
+      "help": ""
+    },
+    "Location": {
+      "name": "Location",
+      "help": "",
+      "None": "None",
+      "0": "Schale Office",
+      "1": "Schale Residence",
+      "2": "Gehenna",
+      "3": "Abydos",
+      "4": "Millennium",
+      "5": "Trinity",
+      "6": "Red Winter",
+      "7": "Hyakkiyako",
+      "8": "D.U. Shiratori",
+      "9": "Shanhaijing"
+    },
+    "Classrooms": {
+      "name": "Classrooms",
+      "help": ""
     }
   },
   "Bounty": {
@@ -238,6 +498,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Overpass A",
       "2": "02 - Overpass B",
       "3": "03 - Overpass C",
@@ -246,7 +507,8 @@
       "6": "06 - Overpass F",
       "7": "07 - Overpass G",
       "8": "08 - Overpass H",
-      "9": "09 - Overpass I"
+      "9": "09 - Overpass I",
+      "10": "10 - Overpass J"
     },
     "Count": {
       "name": "Sweep X times",
@@ -261,6 +523,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Abandoned Train A",
       "2": "02 - Abandoned Train B",
       "3": "03 - Abandoned Train C",
@@ -269,7 +532,8 @@
       "6": "06 - Abandoned Train F",
       "7": "07 - Abandoned Train G",
       "8": "08 - Abandoned Train H",
-      "9": "09 - Abandoned Train I"
+      "9": "09 - Abandoned Train I",
+      "10": "10 - Abandoned Train J"
     },
     "Count": {
       "name": "Sweep X times",
@@ -284,6 +548,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Besieged Classroom A",
       "2": "02 - Besieged Classroom B",
       "3": "03 - Besieged Classroom C",
@@ -292,7 +557,8 @@
       "6": "06 - Besieged Classroom F",
       "7": "07 - Besieged Classroom G",
       "8": "08 - Besieged Classroom H",
-      "9": "09 - Besieged Classroom I"
+      "9": "09 - Besieged Classroom I",
+      "10": "10 - Besieged Classroom J"
     },
     "Count": {
       "name": "Sweep X times",
@@ -319,6 +585,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Trinity A",
       "2": "02 - Trinity B",
       "3": "03 - Trinity C",
@@ -337,6 +604,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Gehenna A",
       "2": "02 - Gehenna B",
       "3": "03 - Gehenna C",
@@ -355,6 +623,7 @@
     "Stage": {
       "name": "Select Stage",
       "help": "",
+      "0": "Auto select",
       "1": "01 - Millennium A",
       "2": "02 - Millennium B",
       "3": "03 - Millennium C",
@@ -377,6 +646,182 @@
       "1": "First",
       "2": "Second",
       "3": "Third"
+    }
+  },
+  "NormalShop": {
+    "_info": {
+      "name": "Normal Shop Settings",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Purchases": {
+      "name": "Number of Purchases",
+      "help": "Default can be purchased once + number of refreshes = number of purchases, for example, 2 purchases = 1 default purchase + 1 refresh purchase",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "1": {
+      "name": "1",
+      "help": "x5 Novice Activity Report - 12,500 Credits"
+    },
+    "2": {
+      "name": "2",
+      "help": "x5 Normal Activity Report - 125,000 Credits"
+    },
+    "3": {
+      "name": "3",
+      "help": "x3 Advanced Activity Report - 300,000 Credits"
+    },
+    "4": {
+      "name": "4",
+      "help": "x1 Superior Activity Report - 500,000 Credits"
+    },
+    "5": {
+      "name": "5",
+      "help": "x5 Lesser Enhancement Stone - 10,000 Credits"
+    },
+    "6": {
+      "name": "6",
+      "help": "x5 Normal Enhancement Stone - 40,000 Credits"
+    },
+    "7": {
+      "name": "7",
+      "help": "x3 Advanced Enhancement Stone - 96,000 Credits"
+    },
+    "8": {
+      "name": "8",
+      "help": "x1 Superior Enhancement Stone - 128,000 Credits"
+    },
+    "9": {
+      "name": "9",
+      "help": "x5 Lesser Enhancement Stone - 10,000 Credits"
+    },
+    "10": {
+      "name": "10",
+      "help": "x5 Normal Enhancement Stone - 40,000 Credits"
+    },
+    "11": {
+      "name": "11",
+      "help": "x3 Advanced Enhancement Stone - 96,000 Credits"
+    },
+    "12": {
+      "name": "12",
+      "help": "x1 Superior Enhancement Stone - 128,000 Credits"
+    },
+    "13": {
+      "name": "13",
+      "help": "x10 Lesser Enhancement Stone - 20,000 Credits"
+    },
+    "14": {
+      "name": "14",
+      "help": "x10 Normal Enhancement Stone - 80,000 Credits"
+    },
+    "15": {
+      "name": "15",
+      "help": "x6 Advanced Enhancement Stone - 192,000 Credits"
+    },
+    "16": {
+      "name": "16",
+      "help": "x2 Superior Enhancement Stone - 256,000 Credits"
+    },
+    "17": {
+      "name": "17",
+      "help": "x1 Random Selection - 8,000 Credits"
+    },
+    "18": {
+      "name": "18",
+      "help": "x1 Random Selection - 8,000 Credits"
+    },
+    "19": {
+      "name": "19",
+      "help": "x1 Random Selection - 25,000 Credits"
+    },
+    "20": {
+      "name": "20",
+      "help": "x1 Random Selection - 25,000 Credits"
+    }
+  },
+  "TacticalChallengeShop": {
+    "_info": {
+      "name": "Tactical Challenge Shop Settings",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Purchases": {
+      "name": "Number of Purchases",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
+    },
+    "1": {
+      "name": "1",
+      "help": "x5 Shizuko's Eleph - 50 Coins"
+    },
+    "2": {
+      "name": "2",
+      "help": "x5 Mashiro's Eleph - 50 Coins"
+    },
+    "3": {
+      "name": "3",
+      "help": "x5 Saya's Eleph - 50 Coins"
+    },
+    "4": {
+      "name": "4",
+      "help": "x5 Fuuka's Eleph - 50 Coins"
+    },
+    "5": {
+      "name": "5",
+      "help": "x5 Utaha's Eleph - 50 Coins"
+    },
+    "6": {
+      "name": "6",
+      "help": "x1 Lesser Drink(30 AP) - 15 Coins"
+    },
+    "7": {
+      "name": "7",
+      "help": "x1 Normal Drink(60 AP) - 30 Coins"
+    },
+    "8": {
+      "name": "8",
+      "help": "x10 Novice Activity Report - 5 Coins"
+    },
+    "9": {
+      "name": "9",
+      "help": "x5 Normal Activity Report - 25 Coins"
+    },
+    "10": {
+      "name": "10",
+      "help": "x3 Advanced Activity Report - 60 Coins"
+    },
+    "11": {
+      "name": "11",
+      "help": "x1 Superior Activity Report - 100 Coins"
+    },
+    "12": {
+      "name": "12",
+      "help": "x5000 Credits - 4 Coins"
+    },
+    "13": {
+      "name": "13",
+      "help": "x25k Credits - 20 Coins"
+    },
+    "14": {
+      "name": "14",
+      "help": "x75k Credits - 60 Coins"
+    },
+    "15": {
+      "name": "15",
+      "help": "x125k Credits - 100 Coins"
     }
   },
   "ItemStorage": {
@@ -406,6 +851,16 @@
     },
     "TacticalChallengeTicket": {
       "name": "Tactical Challenge",
+      "help": ""
+    }
+  },
+  "Momotalk": {
+    "_info": {
+      "name": "Momotalk",
+      "help": "Tools need to stop the scheduler and then run independently"
+    },
+    "Enable": {
+      "name": "",
       "help": ""
     }
   },

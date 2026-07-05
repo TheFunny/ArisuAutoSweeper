@@ -33,10 +33,10 @@ class TacticalChallenge(TacticalChallengeUI):
         return self.config.stored.TacticalChallengeTicket.value
 
     def _player_select(self, select):
-        if select:
+        if not select:
             return random.choice(self.select_players)
         else:
-            return self.select_players[select]
+            return self.select_players[select - 1]
 
     def _handle_challenge(self, status):
         match status:
@@ -54,7 +54,7 @@ class TacticalChallenge(TacticalChallengeUI):
                     return TCStatus.PREPARE
             case TCStatus.PREPARE:
                 self.appear_then_click(PREPARE_CHALLENGE)
-                if not self.appear(PREPARE_CHALLENGE):
+                if self.appear(START_CHALLENGE):
                     return TCStatus.SKIP
             case TCStatus.SKIP:
                 if not self.set_skip():
@@ -62,7 +62,7 @@ class TacticalChallenge(TacticalChallengeUI):
                 return TCStatus.START
             case TCStatus.START:
                 self.appear_then_click(START_CHALLENGE)
-                if not self.appear(START_CHALLENGE):
+                if self.appear(CHALLENGE_WIN) or self.appear(CHALLENGE_LOSE):
                     return TCStatus.RESULT
             case TCStatus.RESULT:
                 if self.appear_then_click(CHALLENGE_WIN):

@@ -29,7 +29,7 @@ Cafe:
 
 TacticalChallenge:
   Scheduler:
-    ServerUpdate: "15:00"
+    ServerUpdate: "14:00"
 
 DataUpdate:
   Scheduler:

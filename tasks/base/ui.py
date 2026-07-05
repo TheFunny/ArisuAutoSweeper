@@ -1,17 +1,35 @@
 from module.base.button import ButtonWrapper
-from module.base.decorator import run_once
+from module.base.decorator import Config, run_once
 from module.base.timer import Timer
-from module.exception import GameNotRunningError, GamePageUnknownError
+from module.base.utils import get_color
+from module.exception import GameNotRunningError, GamePageUnknownError, RequestHumanTakeover
 from module.logger import logger
-from module.ocr.ocr import Ocr
+from module.ocr.ocr import Digit, Ocr
+from tasks.base.assets.assets_base_page import BACK
 from tasks.base.main_page import MainPage
 from tasks.base.page import Page, page_main
-from tasks.base.assets.assets_base_page import BACK
+from tasks.login.assets.assets_login import LOGIN_LOADING, OCR_YEAR
 
 
 class UI(MainPage):
     ui_current: Page
     ui_main_confirm_timer = Timer(0.2, count=2)
+
+    @Config.when(Emulator_GameLanguage='zhs')
+    def appear_trademark_year(self):
+        ocr_year = Digit(OCR_YEAR).ocr_single_line(self.device.image)
+        return ocr_year == 2023
+
+    # temporary block check for jp
+    @Config.when(Emulator_GameLanguage='jp')
+    def appear_trademark_year(self):
+        # this disables using back button in jp due to a login issue
+        return True
+
+    @Config.when(Emulator_GameLanguage=None)
+    def appear_trademark_year(self):
+        ocr_year = Digit(OCR_YEAR).ocr_single_line(self.device.image)
+        return ocr_year == 2021
 
     def ui_page_appear(self, page):
         """
@@ -50,6 +68,7 @@ class UI(MainPage):
 
         timeout = Timer(10, count=20).start()
         back_timer = Timer(0.5, count=2)
+        u2_back = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -78,8 +97,20 @@ class UI(MainPage):
                 timeout.reset()
                 continue
             if back_timer.reached_and_reset():
+                # this might be bad but it works
+                if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
+                    from tasks.login.login import Login
+                    Login(self.config, self.device).handle_app_login()
+                    timeout.reset()
+                    continue
                 logger.info("Unknown page, try to back")
-                self.device.click(BACK)
+                # allows TooManyClicks to be triggered in case something goes wrong
+                if u2_back:
+                    self.device.back()
+                    u2_back = False
+                else:
+                    self.device.click(BACK)
+                    u2_back = True
 
             app_check()
             minicap_check()
@@ -107,7 +138,7 @@ class UI(MainPage):
         self.interval_clear(list(Page.iter_check_buttons()))
 
         # loading_timer = Timer(0.5)
-
+        back_timer = Timer(15, 15)
         logger.hr(f"UI goto {destination}")
         while 1:
             if skip_first_screenshot:
@@ -126,6 +157,7 @@ class UI(MainPage):
             # Destination page
             if self.ui_page_appear(destination):
                 logger.info(f'Page arrive: {destination}')
+                self.close_popup(destination.check_button)
                 if self.ui_page_confirm(destination):
                     logger.info(f'Page arrive confirm {destination}')
                 break
@@ -137,6 +169,7 @@ class UI(MainPage):
                     continue
                 if self.appear(page.check_button, interval=5):
                     logger.info(f'Page switch: {page} -> {page.parent}')
+                    self.close_popup(page.check_button)
                     # self.handle_lang_check(page)
                     if self.ui_page_confirm(page):
                         logger.info(f'Page arrive confirm {page}')
@@ -151,6 +184,18 @@ class UI(MainPage):
             # Additional
             if self.ui_additional():
                 continue
+
+            back_timer.start()
+            if back_timer.reached():
+                if self.match_color(LOGIN_LOADING, interval=5, threshold=80) or self.appear_trademark_year():
+                    from tasks.login.login import Login
+                    Login(self.config, self.device).handle_app_login()
+                # don't click back when screen is black. 
+                # Useful for loading screen after switching between pages
+                elif [x for x in get_color(self.device.image, BACK.area) if x > 50]:
+                    self.device.back()
+                    logger.info("Unknown page, try to back")
+                back_timer.reset()
 
         # Reset connection
         Page.clear_connection()
@@ -176,6 +221,7 @@ class UI(MainPage):
 
         if self.ui_current == destination:
             logger.info("Already at %s" % destination)
+            self.close_popup(destination.check_button)
             return False
         else:
             logger.info("Goto %s" % destination)
@@ -337,18 +383,22 @@ class UI(MainPage):
             return True
         if self.handle_daily_news():
             return True
+        if self.handle_quit():
+            return True
         if self.handle_network_reconnect():
             return True
         if self.handle_affection_level_up():
             return True
         if self.handle_new_student():
             return True
-        if self.handle_ap_exceed():
-            return True
-        if self.handle_insufficient_inventory():
-            return True
-        if self.handle_item_expired():
-            return True
+        # disabled because will exit the game if quit appears
+
+        # if self.handle_ap_exceed():
+        #    return True
+        # if self.handle_insufficient_inventory():
+        #    return True
+        # if self.handle_item_expired():
+        #    return True
 
         return False
 
@@ -399,3 +449,18 @@ class UI(MainPage):
             button (Button):
         """
         pass
+
+    def close_popup(self, check_button):
+        if not self.match_color(check_button):
+            timer = Timer(5, 5).start()
+            wait = Timer(1).start()
+            while 1:
+                self.device.screenshot()
+                if self.match_color(check_button) or not self.appear(check_button):
+                    break
+                self.device.back()
+                if timer.reached():
+                    logger.error("Failed to close popup")
+                    raise RequestHumanTakeover
+                while not wait.reached():
+                    pass

@@ -12,6 +12,7 @@ from module.device.platform.emulator_windows import Emulator, EmulatorInstance, 
 from module.device.platform.platform_base import PlatformBase
 from module.logger import logger
 
+import os
 
 class EmulatorUnknown(Exception):
     pass
@@ -99,10 +100,15 @@ class PlatformWindows(PlatformBase, EmulatorManager):
             self.execute(f'"{exe}" -clone:{instance.name}')
         elif instance == Emulator.BlueStacks5:
             # HD-Player.exe -instance Pie64
-            self.execute(f'"{exe}" -instance {instance.name}')
+            self.execute(f'"{exe}" --instance {instance.name}')
         elif instance == Emulator.BlueStacks4:
             # BlueStacks\Client\Bluestacks.exe -vmname Android_1
             self.execute(f'"{exe}" -vmname {instance.name}')
+        elif instance == Emulator.LDPlayer9:
+            directory, filename = os.path.split(exe)
+            new_filename = 'ldconsole.exe'
+            exe = os.path.join(directory, new_filename)
+            self.execute(f'"{exe}" launch --index {instance.name.replace("leidian", "")}')
         else:
             raise EmulatorUnknown(f'Cannot start an unknown emulator instance: {instance}')
 
@@ -157,6 +163,13 @@ class PlatformWindows(PlatformBase, EmulatorManager):
         elif instance == Emulator.NoxPlayerFamily:
             # Nox.exe -clone:Nox_1 -quit
             self.execute(f'"{exe}" -clone:{instance.name} -quit')
+        elif instance == Emulator.BlueStacks5:
+            self.execute(f'taskkill /fi "WINDOWTITLE eq {instance.name}" /IM "HD-Player.exe" /F')
+        elif instance == Emulator.LDPlayer9:
+            directory, filename = os.path.split(exe)
+            new_filename = 'ldconsole.exe'
+            exe = os.path.join(directory, new_filename)
+            self.execute(f'"{exe}" quit --index {instance.name.replace("leidian", "")}')
         else:
             raise EmulatorUnknown(f'Cannot stop an unknown emulator instance: {instance}')
 

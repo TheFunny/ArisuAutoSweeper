@@ -1,17 +1,17 @@
-import cv2
+import re
+
 import numpy as np
 
 from module.base.base import ModuleBase
-from module.base.button import ClickButton, match_template
 from module.base.timer import Timer
-from module.base.utils import area_pad, area_size, area_offset, random_rectangle_vector_opted
+from module.base.utils import area_pad, area_size, area_offset
 from module.logger import logger
 from module.ocr.ocr import Ocr
 from tasks.stage.assets.assets_stage_list import *
 
 
 class StageList:
-    drag_vector_range = (0.65, 0.85)
+    swipe_vector_range = (0.65, 0.85)
 
     def __init__(
             self,
@@ -21,7 +21,7 @@ class StageList:
             button_item: ButtonWrapper = None,
             button_enter: ButtonWrapper = None,
             button_stars: ButtonWrapper = None,
-            drag_direction: str = "down"
+            swipe_direction: str = "down"
     ):
         self.name = name
         self.stage = button_list if button_list else STAGE_LIST
@@ -29,11 +29,11 @@ class StageList:
         self.stage_item = (button_item if button_item else STAGE_ITEM).button
         self.enter = button_enter if button_enter else STAGE_ENTER
         self.sweepable = button_stars if button_stars else STAGE_STARS
-        self.drag_direction = drag_direction
+        self.swipe_direction = swipe_direction
 
         self.current_index_min = 1
         self.current_index_max = 1
-        self.current_indexes = []
+        self.current_indexes: list[tuple[str, tuple]] = []
 
     def __str__(self):
         return f'StageList({self.name})'
@@ -48,11 +48,14 @@ class StageList:
 
     @property
     def _indexes(self) -> list[int]:
-        return list(map(lambda x: int(x.ocr_text), self.current_indexes))
+        return [int(x[0]) for x in self.current_indexes]
 
     def load_stage_indexes(self, main: ModuleBase):
         self.current_indexes = list(
-            filter(lambda x: x.ocr_text.isdigit(), self.index_ocr.detect_and_ocr(main.device.image))
+            filter(
+                lambda x: re.match(r'^\d{1,2}-?\d?$', x[0]) and x[0] != '00',
+                map(lambda x: (x.ocr_text, x.box), self.index_ocr.detect_and_ocr(main.device.image))
+            )
         )
         if not self.current_indexes:
             logger.warning(f'No valid index in {self.index_ocr.name}')
@@ -63,7 +66,7 @@ class StageList:
         self.current_index_max = max(indexes)
         logger.attr(self.index_ocr.name, f'Index range: {self.current_index_min} - {self.current_index_max}')
 
-    def drag_page(self, direction: str, main: ModuleBase, vector_range=None, reverse=False):
+    def swipe_page(self, direction: str, main: ModuleBase, vector_range=None, reverse=False):
         """
         Args:
             direction: up, down
@@ -72,7 +75,7 @@ class StageList:
             reverse (bool):
         """
         if vector_range is None:
-            vector_range = self.drag_vector_range
+            vector_range = self.swipe_vector_range
         vector = np.random.uniform(*vector_range)
         width, height = area_size(self.stage.button)
         if direction == 'up':
@@ -80,13 +83,12 @@ class StageList:
         elif direction == 'down':
             vector = (0, -vector * height)
         else:
-            logger.warning(f'Unknown drag direction: {direction}')
+            logger.warning(f'Unknown swipe direction: {direction}')
             return
 
         if reverse:
             vector = (-vector[0], -vector[1])
-        p1, p2 = random_rectangle_vector_opted(vector, box=self.stage.button)
-        main.device.drag(p1, p2, name=f'{self.name}_DRAG')
+        main.device.swipe_vector(vector, self.stage.button, name=f'{self.name}_SWIPE')
 
     def insight_index(self, index: int, main: ModuleBase, skip_first_screenshot=True) -> bool:
         """
@@ -110,18 +112,7 @@ class StageList:
             self.load_stage_indexes(main=main)
 
             if self.current_index_min <= index <= self.current_index_max:
-                break
-
-            if index < self.current_index_min:
-                self.drag_page(self.drag_direction, main, reverse=True)
-            elif index > self.current_index_max:
-                self.drag_page(self.drag_direction, main)
-
-            main.wait_until_stable(
-                self.stage.button,
-                timer=Timer(0, 0),
-                timeout=Timer(1.5, 5)
-            )
+                return True
 
             indexes = self._indexes
             if indexes and last_indexes == set(indexes):
@@ -129,22 +120,82 @@ class StageList:
                 return False
             last_indexes = set(indexes)
 
-        return True
+            if index < self.current_index_min:
+                self.swipe_page(self.swipe_direction, main, reverse=True)
+            elif index > self.current_index_max:
+                self.swipe_page(self.swipe_direction, main)
 
-    @staticmethod
-    def _match_clickable_points(image, template, threshold=0.85):
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-        template = cv2.cvtColor(template, cv2.COLOR_RGB2GRAY)
+            main.wait_until_stable(
+                self.stage.button,
+                timer=Timer(0, 0),
+                timeout=Timer(1.5, 5)
+            )
 
-        res = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
-        loc = np.where(res >= threshold)
-        return [point for point in zip(*loc[::-1])]
+    def insight_max_sweepable_index(self, main: ModuleBase, skip_first_screenshot=True) -> int:
+        """
+        Args:
+            main:
+            skip_first_screenshot:
 
-    def is_sweepable(self, image, main: ModuleBase, skip_first_screenshot=True) -> bool:
-        if not skip_first_screenshot:
-            main.device.screenshot()
+        Returns:
+            Index of max sweepable stage
+        """
+        logger.info('Insight sweepable index')
+        max_sweepable_index = 0
+        last_max_sweepable_index = 0
 
-        return match_template(image, self.sweepable.matched_button.image)
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                main.device.screenshot()
+
+            self.load_stage_indexes(main=main)
+
+            sweepable_index = next(
+                filter(
+                    lambda x: not self.is_sweepable(main, self.search_box(x[-1][:2])),
+                    self.current_indexes
+                ), None
+            )
+
+            # all sweepable
+            if sweepable_index is None:
+                logger.info('All sweepable')
+                max_sweepable_index = self.current_index_max
+                self.swipe_page(self.swipe_direction, main)
+                if max_sweepable_index == last_max_sweepable_index:
+                    logger.info(f'Max sweepable index: {max_sweepable_index}')
+                    return max_sweepable_index
+                last_max_sweepable_index = max_sweepable_index
+            # all not sweepable
+            elif int(sweepable_index[0]) == self.current_index_min:
+                logger.info('All not sweepable')
+                if int(sweepable_index[0]) == 1:
+                    logger.warning('No sweepable index')
+                    return 0
+                self.swipe_page(self.swipe_direction, main, reverse=True)
+            else:
+                logger.info(f'Sweepable index: {int(sweepable_index[0]) - 1}')
+                return int(sweepable_index[0]) - 1
+
+            main.wait_until_stable(
+                self.stage.button,
+                timer=Timer(0, 0),
+                timeout=Timer(1.5, 5)
+            )
+
+    def is_sweepable(self, main: ModuleBase, search_box) -> bool:
+        self.sweepable.load_search(search_box)
+        return main.appear(self.sweepable, similarity=0.8)
+
+    def search_box(
+            self,
+            index_cord: tuple[int, int],
+            padding: tuple[int, int] = (-20, -15)
+    ) -> tuple[int, int, int, int]:
+        stage_item_box = area_pad((*padding, *area_size(self.stage_item)))
+        return area_offset(stage_item_box, index_cord)
 
     def select_index_enter(
             self,
@@ -152,7 +203,7 @@ class StageList:
             index: int,
             insight: bool = True,
             sweepable: bool = True,
-            offset: tuple[int, int] = (-20, -15),
+            padding: tuple[int, int] = (-20, -15),
             skip_first_screenshot: bool = True,
             interval: int = 1.5
     ) -> bool:
@@ -170,35 +221,30 @@ class StageList:
                 main.device.screenshot()
 
             # load index if not insight
-            if load_index_interval.reached_and_reset() and not insight:
+            if load_index_interval.reached_and_reset():
                 self.load_stage_indexes(main=main)
 
             # find box of index
-            index_box = next(filter(lambda x: int(x.ocr_text) == index, self.current_indexes), None)
+            index_box = next(filter(lambda x: int(x[0]) == index, self.current_indexes), None)
 
             if index_box is None:
                 logger.warning(f'No index {index} in {self.index_ocr.name}')
                 continue
 
-            stage_item_box = area_pad((*offset, *area_size(self.stage_item)))
-            search_box = area_offset(stage_item_box, index_box.box[:2])
-            search_image = main.image_crop(search_box)
-
-            if sweepable and not self.is_sweepable(search_image, main, skip_first_screenshot):
+            search_box = self.search_box(index_box[-1][:2], padding)
+            if sweepable and not self.is_sweepable(main, search_box):
                 logger.warning(f'Index {index} is not sweepable')
                 return False
 
-            points = self._match_clickable_points(search_image, self.enter.matched_button.image)
+            self.enter.load_search(search_box)
+            click_button = self.enter.match_multi_template(main.device.image)
 
-            if not points:
+            if not click_button:
                 logger.warning(f'No clickable {self.enter.name}')
                 continue
 
-            point = area_offset((0, 0, *area_size(self.enter.button)), points[0])
-            click_button = ClickButton(area_offset(point, search_box[:2]), name=self.enter.name)
-
             if click_interval.reached_and_reset():
-                main.device.click(click_button)
+                main.device.click(click_button[0])
                 return True
 
             if timeout.reached():

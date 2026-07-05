@@ -19,6 +19,13 @@ MAIL_RECEIVE = ButtonWrapper(
         color=(207, 188, 63),
         button=(1047, 643, 1231, 700),
     ),
+    zht=Button(
+        file='./assets/zht/mail/MAIL_RECEIVE.png',
+        area=(1045, 641, 1229, 696),
+        search=(1025, 621, 1249, 716),
+        color=(231, 214, 68),
+        button=(1045, 641, 1229, 696),
+    ),
 )
 MAIL_RECEIVED = ButtonWrapper(
     name='MAIL_RECEIVED',
@@ -35,5 +42,12 @@ MAIL_RECEIVED = ButtonWrapper(
         search=(1052, 629, 1217, 706),
         color=(204, 205, 206),
         button=(1072, 649, 1197, 686),
+    ),
+    zht=Button(
+        file='./assets/zht/mail/MAIL_RECEIVED.png',
+        area=(1042, 643, 1230, 704),
+        search=(1022, 623, 1250, 720),
+        color=(209, 210, 211),
+        button=(1042, 643, 1230, 704),
     ),
 )
