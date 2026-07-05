@@ -1,5 +1,5 @@
+import collections
 import sys
-from collections import deque
 
 from module.base.timer import Timer
 from module.device.app_control import AppControl
@@ -23,7 +23,7 @@ else:
 class Device(Screenshot, Control, AppControl, Platform):
     _screen_size_checked = False
     detect_record = set()
-    click_record = deque(maxlen=15)
+    click_record = collections.deque(maxlen=15)
     stuck_timer = Timer(60, count=60).start()
 
     def __init__(self, *args, **kwargs):
