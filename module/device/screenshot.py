@@ -70,6 +70,10 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy):
 
         return self.image
 
+    @property
+    def has_cached_image(self):
+        return hasattr(self, 'image') and self.image is not None
+
     def _handle_orientated_image(self, image):
         """
         Args:
