@@ -134,6 +134,9 @@ class StoredExpiredAtMonday0400(StoredBase):
 class StoredInt(StoredBase):
     value = 0
 
+    def clear(self):
+        self.value = 0
+
 
 class StoredCounter(StoredBase):
     value = 0
@@ -147,6 +150,9 @@ class StoredCounter(StoredBase):
         with self._config.multi_set():
             self.value = value
             self.total = total
+
+    def clear(self):
+        self.value = 0
 
     def to_counter(self) -> str:
         return f'{self.value}/{self.total}'
