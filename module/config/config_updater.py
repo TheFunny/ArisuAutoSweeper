@@ -608,7 +608,7 @@ class ConfigUpdater:
         #         yield 'Dungeon.DungeonDaily.CavernOfCorrosion', value
         #     elif key.endswith('CavernOfCorrosion'):
         #         yield 'Dungeon.Dungeon.NameAtDoubleRelic', value
-        pass
+        yield '', None
 
     def iter_hidden_args(self, data) -> t.Iterator[str]:
         """
@@ -620,7 +620,7 @@ class ConfigUpdater:
         """
         # if deep_get(data, 'Rogue.RoguePath.PresetResonanceFilter') != 'custom':
         #     yield 'Rogue.RoguePath.CustomResonanceFilter'
-        pass
+        yield ''
 
     def get_hidden_args(self, data) -> t.Set[str]:
         """
