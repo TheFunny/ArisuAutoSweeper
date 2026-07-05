@@ -1,5 +1,4 @@
 from module.base.base import ModuleBase
-from module.base.button import Button
 from module.base.timer import Timer
 from module.exception import ScriptError
 from module.logger import logger
@@ -36,8 +35,8 @@ class Switch:
         """
         Args:
             state (str):
-            check_button (Button):
-            click_button (Button):
+            check_button (ButtonWrapper):
+            click_button (ButtonWrapper):
         """
         self.state_list.append({
             'state': state,
