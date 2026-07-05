@@ -2,6 +2,7 @@ import collections
 
 from lxml import etree
 
+from module.device.env import IS_WINDOWS
 # Patch pkg_resources before importing adbutils and uiautomator2
 from module.device.pkg_resources import get_distribution
 
@@ -85,7 +86,7 @@ class Device(Screenshot, Control, AppControl):
                     raise
 
         # Auto-fill emulator info
-        if self.config.EmulatorInfo_Emulator == 'auto':
+        if IS_WINDOWS and self.config.EmulatorInfo_Emulator == 'auto':
             _ = self.emulator_instance
 
         self.screenshot_interval_set()
