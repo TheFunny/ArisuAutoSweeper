@@ -1,6 +1,7 @@
 import {app} from 'electron';
 import {isMacintosh} from './env';
 import fs from 'fs';
+
 /**
  * Get the absolute path of the project root directory
  * @param files
@@ -8,7 +9,7 @@ import fs from 'fs';
  */
 const getAlasABSPath = (
   files: string[] = ['**/config/deploy.yaml', '**/config/deploy.template.yaml'],
-  rootName: string | string[] = ['AzurLaneAutoScript', 'Alas', 'ArisuAutoSweeper'],
+  rootName: string | string[] = ['AzurLaneAutoScript', 'Alas', 'StarRailCopilot', 'SRC'],
 ) => {
   const path = require('path');
   const sep = path.sep;
@@ -53,7 +54,6 @@ const getAlasABSPath = (
     const appAbsPathArr = appAbsPath.split(sep);
     let flag = false;
     while (step > 0 && !flag) {
-      appAbsPathArr.pop();
       const entries = fg.sync(files, {
         dot: true,
         cwd: appAbsPathArr.join(sep) as string,
@@ -63,6 +63,7 @@ const getAlasABSPath = (
         alasABSPath = appAbsPathArr.join(sep);
       }
       step--;
+      appAbsPathArr.pop();
     }
   }
 
