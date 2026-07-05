@@ -1,5 +1,11 @@
 import collections
 
+# Patch pkg_resources before importing adbutils and uiautomator2
+from module.device.pkg_resources import get_distribution
+
+# Just avoid being removed by import optimization
+_ = get_distribution
+
 from module.base.timer import Timer
 from module.device.app_control import AppControl
 from module.device.control import Control
