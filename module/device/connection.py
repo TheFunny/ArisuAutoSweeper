@@ -1,6 +1,5 @@
 import ipaddress
 import logging
-import platform
 import re
 import socket
 import subprocess
@@ -12,6 +11,7 @@ from adbutils import AdbClient, AdbDevice, AdbTimeout, ForwardItem, ReverseItem
 from adbutils.errors import AdbError
 
 import module.config.server as server_
+import platform
 from module.base.decorator import Config, cached_property, del_cached_property
 from module.base.utils import SelectedGrids, ensure_time
 from module.device.connection_attr import ConnectionAttr
@@ -266,6 +266,7 @@ class Connection(ConnectionAttr):
             return True
         return False
 
+    @retry
     def check_mumu_app_keep_alive(self):
         if not self.is_mumu_family:
             return False
