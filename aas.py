@@ -60,7 +60,7 @@ class ArisuAutoSweeper(AzurLaneAutoScript):
 
     def momotalk(self):
         from tasks.momotalk.momotalk import MomoTalk
-        MomoTalk(config=self.config, device=self.device).run()
+        MomoTalk(config=self.config, device=self.device, task="Momotalk").run()
 
     def mission(self):
         from tasks.mission.mission import Mission
@@ -73,6 +73,10 @@ class ArisuAutoSweeper(AzurLaneAutoScript):
     def data_update(self):
         from tasks.item.data_update import DataUpdate
         DataUpdate(config=self.config, device=self.device).run()
+
+    def benchmark(self):
+        from module.daemon.benchmark import run_benchmark
+        run_benchmark(config=self.config)
 
 if __name__ == '__main__':
     aas = ArisuAutoSweeper('aas')
