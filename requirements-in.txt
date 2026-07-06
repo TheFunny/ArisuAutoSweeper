@@ -37,4 +37,4 @@ customtkinter
 
 # For dev
 # pip-tools
-pynput==1.7.6
+# pynput==1.7.6
