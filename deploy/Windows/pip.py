@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from urllib.parse import urlparse
 
 from deploy.Windows.config import DeployConfig
-from deploy.Windows.logger import logger, Progress
+from deploy.Windows.logger import Progress, logger
 from deploy.Windows.utils import cached_property
 
 
@@ -46,9 +46,15 @@ class PipManager(DeployConfig):
         return f'"{self.python}" -m pip'
 
     @cached_property
-    def python_site_packages(self):
-        return os.path.abspath(os.path.join(self.python, '../Lib/site-packages')) \
-            .replace(r"\\", "/").replace("\\", "/")
+    def python_site_packages(self) -> str:
+        import site
+        paths = site.getsitepackages()
+        # site-packages should be site-packages folder
+        for path in paths:
+            if path.endswith('site-packages'):
+                return path
+        # Otherwise pick first
+        return paths[0]
 
     @cached_property
     def set_installed_dependency(self) -> t.Set[DataDependency]:
