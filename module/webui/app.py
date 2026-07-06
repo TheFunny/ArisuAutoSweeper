@@ -34,12 +34,10 @@ from pywebio.session import go_app, info, local, register_thread, run_js, set_en
 
 import module.webui.lang as lang
 from module.config.config import AzurLaneConfig, Function
+from module.config.deep import deep_get, deep_iter, deep_set
 from module.config.utils import (
     alas_instance,
     alas_template,
-    deep_get,
-    deep_iter,
-    deep_set,
     dict_to_kv,
     filepath_args,
     filepath_config,
