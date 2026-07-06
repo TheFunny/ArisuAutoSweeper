@@ -53,6 +53,7 @@ from module.webui.fake import (
 )
 from module.webui.fastapi import asgi_app
 from module.webui.lang import _t, t
+from module.webui.patch import patch_executor
 from module.webui.pin import put_input, put_select
 from module.webui.process_manager import ProcessManager
 from module.webui.remote_access import RemoteAccess
@@ -83,6 +84,7 @@ from module.webui.widgets import (
     put_output,
 )
 
+patch_executor()
 task_handler = TaskHandler()
 
 
