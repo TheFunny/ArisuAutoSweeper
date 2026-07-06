@@ -86,7 +86,7 @@ class DeployConfig(ConfigModel):
         for k, v in self.config.items():
             if k in ("Password", "SSHUser"):
                 continue
-            if self.config_template[k] == v:
+            if self.config_template.get(k) == v:
                 continue
             logger.info(f"{k}: {v}")
 
