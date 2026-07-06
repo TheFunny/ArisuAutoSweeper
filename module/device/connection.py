@@ -805,7 +805,10 @@ class Connection(ConnectionAttr):
         """
 
         def connect(s):
-            msg = self.adb_client.connect(s)
+            try:
+                msg = self.adb_client.connect(s)
+            except Exception:
+                return ''
             logger.info(msg)
             return msg
 
