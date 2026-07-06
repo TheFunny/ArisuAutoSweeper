@@ -152,9 +152,7 @@ class Switch:
                     if counter >= 1:
                         logger.warning(f'{self.name} switch {state} asset has evaluated to unknown too many times, '
                                        f'asset should be re-verified')
-                        return False
                     counter += 1
-                continue
 
             # Click
             if click_timer.reached():
