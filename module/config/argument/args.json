@@ -131,6 +131,7 @@
           "stay_there",
           "goto_main",
           "close_game",
+          "close_emulator",
           "exit_aas",
           "exit_emulator",
           "exit_aas_emulator",

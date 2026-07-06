@@ -237,6 +237,27 @@ class AzurLaneAutoScript:
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
                         continue
+                elif method == 'close_emulator':
+                    logger.info('Close emulator during wait')
+                    self.run('stop')
+                    release_resources()
+                    self.device.release_during_wait()
+                    # 关闭模拟器
+                    try:
+                        self.device.emulator_stop()
+                        logger.info('Emulator stopped successfully')
+                    except Exception as e:
+                        logger.warning(f'Failed to stop emulator: {e}')
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        del_cached_property(self, 'device')
+                        continue
+                    # 重新启动模拟器
+                    if task.command != 'Restart':
+                        self.config.task_call('Restart')
+                        del_cached_property(self, 'config')
+                        del_cached_property(self, 'device')
+                        continue
                 elif method == 'exit_aas':
                     if abs(task.next_run - datetime.now()) >= timedelta(minutes=2): # ensure tactical challenge is fully ran
                         self.config.Optimization_WhenTaskQueueEmpty = 'goto_main'

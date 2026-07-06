@@ -232,6 +232,7 @@
       "stay_there": "停在原处",
       "goto_main": "前往主界面",
       "close_game": "关闭游戏",
+      "close_emulator": "关闭模拟器",
       "exit_aas": "关闭 AAS",
       "exit_emulator": "关闭模拟器",
       "exit_aas_emulator": "关闭 AAS 和模拟器",
