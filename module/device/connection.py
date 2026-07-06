@@ -1246,7 +1246,8 @@ class Connection(ConnectionAttr):
             self.package = packages[0]
             # Set config
             if set_config:
-                self.config.Emulator_PackageName = server_.to_server(self.package)
+                self.config.Emulator_PackageName = server_.to_server(
+                    self.package, before=self.config.Emulator_PackageName)
             # Set server
             # logger.info('Server changed, release resources')
             # set_server(self.package)
