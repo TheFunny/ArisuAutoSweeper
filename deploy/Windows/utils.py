@@ -1,7 +1,8 @@
 import os
 import re
-from dataclasses import dataclass
 from typing import Callable, Generic, Iterable, TypeVar
+
+from deploy.Windows.atomic import atomic_read_text, atomic_write
 
 T = TypeVar("T")
 
@@ -64,29 +65,26 @@ def poor_yaml_read(file):
     Returns:
         dict:
     """
-    if not os.path.exists(file):
-        return {}
-
+    content = atomic_read_text(file)
     data = {}
     regex = re.compile(r'^(.*?):(.*?)$')
-    with open(file, 'r', encoding='utf-8') as f:
-        for line in f.readlines():
-            line = line.strip('\n\r\t ').replace('\\', '/')
-            if line.startswith('#'):
-                continue
-            result = re.match(regex, line)
-            if result:
-                k, v = result.group(1), result.group(2).strip('\n\r\t\' ')
-                if v:
-                    if v.lower() == 'null':
-                        v = None
-                    elif v.lower() == 'false':
-                        v = False
-                    elif v.lower() == 'true':
-                        v = True
-                    elif v.isdigit():
-                        v = int(v)
-                    data[k] = v
+    for line in content.splitlines():
+        line = line.strip('\n\r\t ').replace('\\', '/')
+        if line.startswith('#'):
+            continue
+        result = re.match(regex, line)
+        if result:
+            k, v = result.group(1), result.group(2).strip('\n\r\t\' ')
+            if v:
+                if v.lower() == 'null':
+                    v = None
+                elif v.lower() == 'false':
+                    v = False
+                elif v.lower() == 'true':
+                    v = True
+                elif v.isdigit():
+                    v = int(v)
+                data[k] = v
 
     return data
 
@@ -98,8 +96,8 @@ def poor_yaml_write(data, file, template_file=DEPLOY_TEMPLATE):
         file (str):
         template_file (str):
     """
-    with open(template_file, 'r', encoding='utf-8') as f:
-        text = f.read().replace('\\', '/')
+    text = atomic_read_text(template_file)
+    text = text.replace('\\', '/')
 
     for key, value in data.items():
         if value is None:
@@ -110,38 +108,15 @@ def poor_yaml_write(data, file, template_file=DEPLOY_TEMPLATE):
             value = "false"
         text = re.sub(f'{key}:.*?\n', f'{key}: {value}\n', text)
 
-    with open(file, 'w', encoding='utf-8', newline='') as f:
-        f.write(text)
+    atomic_write(file, text)
 
 
-@dataclass
-class DataProcessInfo:
-    proc: object  # psutil.Process or psutil._pswindows.Process
-    pid: int
-
-    @cached_property
-    def name(self):
-        name = self.proc.name()
-        return name
-
-    @cached_property
-    def cmdline(self):
-        try:
-            cmdline = self.proc.cmdline()
-        except:
-            # psutil.AccessDenied
-            cmdline = []
-        cmdline = ' '.join(cmdline).replace(r'\\', '/').replace('\\', '/')
-        return cmdline
-
-    def __str__(self):
-        # Don't print `proc`, it will take some time to get process properties
-        return f'DataProcessInfo(name="{self.name}", pid={self.pid}, cmdline="{self.cmdline}")'
-
-    __repr__ = __str__
-
-
-def iter_process() -> Iterable[DataProcessInfo]:
+def iter_process() -> "Iterable[tuple[int, list[str]]]":
+    """
+    Yields:
+        int: pid
+        list[str]: cmdline, and it's guaranteed to have at least one element
+    """
     try:
         import psutil
     except ModuleNotFoundError:
@@ -151,16 +126,48 @@ def iter_process() -> Iterable[DataProcessInfo]:
         # Since this is a one-time-usage, we access psutil._psplatform.Process directly
         # to bypass the call of psutil.Process.is_running().
         # This only costs about 0.017s.
+        # If you do psutil.process_iter(['pid', 'cmdline']) it will take over 1s
+        import psutil._psutil_windows as cetx
+        for pid in psutil.pids():
+            # 0 and 4 are always represented in taskmgr and process-hacker
+            if pid == 0 or pid == 4:
+                continue
+            try:
+                # This would be fast on psutil<=5.9.8 taking overall time 0.027s
+                # but taking 0.39s on psutil>=6.0.0
+                cmdline = cetx.proc_cmdline(pid, use_peb=True)
+            except (psutil.AccessDenied, psutil.NoSuchProcess, OSError):
+                # psutil.AccessDenied
+                # NoSuchProcess: process no longer exists (pid=xxx)
+                # ProcessLookupError: [Errno 3] assume no such process (originated from psutil_pid_is_running -> 0)
+                # OSError: [WinError 87] 参数错误。: '(originated from ReadProcessMemory)'
+                continue
+
+            # Validate cmdline
+            if not cmdline:
+                continue
+            try:
+                exe = cmdline[0]
+            except IndexError:
+                continue
+            # \??\C:\Windows\system32\conhost.exe
+            if exe.startswith(r'\??'):
+                continue
+            yield pid, cmdline
+    else:
+        # No optimizations yet
         for pid in psutil.pids():
             proc = psutil._psplatform.Process(pid)
-            yield DataProcessInfo(
-                proc=proc,
-                pid=proc.pid,
-            )
-    else:
-        # This will cost about 0.45s, even `attr` is given.
-        for proc in psutil.process_iter():
-            yield DataProcessInfo(
-                proc=proc,
-                pid=proc.pid,
-            )
+            try:
+                cmdline = proc.cmdline()
+            except (psutil.AccessDenied, psutil.NoSuchProcess, OSError):
+                continue
+
+            # Validate cmdline
+            if not cmdline:
+                continue
+            try:
+                cmdline[0]
+            except IndexError:
+                continue
+            yield pid, cmdline

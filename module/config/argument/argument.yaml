@@ -26,7 +26,7 @@ Emulator:
     option: [ auto, jp, en, zht ]
   ScreenshotMethod:
     value: auto
-    option: [ auto, ADB, ADB_nc, uiautomator2, aScreenCap, aScreenCap_nc, DroidCast, DroidCast_raw, scrcpy, nemu_ipc ]
+    option: [ auto, ADB, ADB_nc, uiautomator2, aScreenCap, aScreenCap_nc, DroidCast, DroidCast_raw, scrcpy, nemu_ipc, ldopengl, ]
   ControlMethod:
     value: MaaTouch
     option: [ minitouch, MaaTouch ]
@@ -45,6 +45,7 @@ EmulatorInfo:
       LDPlayer3,
       LDPlayer4,
       LDPlayer9,
+      LDPlayer14,
       MuMuPlayer,
       MuMuPlayerX,
       MuMuPlayer12,
@@ -71,7 +72,7 @@ Optimization:
   CombatScreenshotInterval: 1.0
   WhenTaskQueueEmpty:
     value: goto_main
-    option: [ stay_there, goto_main, close_game, exit_aas, exit_emulator, exit_aas_emulator, shutdown ]
+    option: [ stay_there, goto_main, close_game, close_emulator, exit_aas, exit_emulator, exit_aas_emulator, shutdown ]
 
 # ==================== Daily ====================
 

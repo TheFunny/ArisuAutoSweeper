@@ -4,15 +4,14 @@ import subprocess
 
 import psutil
 
-from deploy.Windows.utils import DataProcessInfo
 from module.base.decorator import run_once
 from module.base.timer import Timer
 from module.device.connection import AdbDeviceWithStatus
 from module.device.platform.emulator_windows import Emulator, EmulatorInstance, EmulatorManager
 from module.device.platform.platform_base import PlatformBase
+from module.device.platform.utils import iter_process
 from module.logger import logger
 
-import os
 
 class EmulatorUnknown(Exception):
     pass
@@ -55,7 +54,9 @@ class PlatformWindows(PlatformBase, EmulatorManager):
         """
         command = command.replace(r"\\", "/").replace("\\", "/").replace('"', '"')
         logger.info(f'Execute: {command}')
-        return subprocess.Popen(command, close_fds=True)  # only work on Windows
+        # `close_fds` only work on Windows
+        # `start_new_session` to avoid emulator getting tree-killed when Alas gets killed
+        return subprocess.Popen(command, close_fds=True, start_new_session=True)
 
     @classmethod
     def kill_process_by_regex(cls, regex: str) -> int:
@@ -70,12 +71,16 @@ class PlatformWindows(PlatformBase, EmulatorManager):
         """
         count = 0
 
-        for proc in psutil.process_iter():
-            cmdline = DataProcessInfo(proc=proc, pid=proc.pid).cmdline
+        for pid, cmdline in iter_process():
+            cmdline = ' '.join(cmdline)
             if re.search(regex, cmdline):
                 logger.info(f'Kill emulator: {cmdline}')
-                proc.kill()
-                count += 1
+                try:
+                    proc = psutil._psplatform.Process(pid)
+                    proc.kill()
+                    count += 1
+                except (psutil.AccessDenied, psutil.NoSuchProcess, OSError) as e:
+                    logger.error(f'Failed to kill process pid={pid}, {e}')
 
         return count
 
@@ -83,7 +88,7 @@ class PlatformWindows(PlatformBase, EmulatorManager):
         """
         Start a emulator without error handling
         """
-        exe = instance.emulator.path
+        exe: str = instance.emulator.path
         if instance == Emulator.MuMuPlayer:
             # NemuPlayer.exe
             self.execute(exe)
@@ -91,24 +96,29 @@ class PlatformWindows(PlatformBase, EmulatorManager):
             # NemuPlayer.exe -m nemu-12.0-x64-default
             self.execute(f'"{exe}" -m {instance.name}')
         elif instance == Emulator.MuMuPlayer12:
-            # MuMuPlayer.exe -v 0
+            # MuMuManager.exe api -v 0 launch_player
+            # Launch via MuMuManager instead of MuMuPlayer.exe/MuMuNxMain.exe.
+            # MuMuNxMain.exe is a GUI singleton, if two instances get launched at the same time,
+            # the second launch request is handed over to a MuMuNxMain.exe that is still initializing
+            # and gets silently dropped, while MuMuManager queues requests in backend service.
             if instance.MuMuPlayer12_id is None:
                 logger.warning(f'Cannot get MuMu instance index from name {instance.name}')
-            self.execute(f'"{exe}" -v {instance.MuMuPlayer12_id}')
+            self.execute(f'"{Emulator.single_to_console(exe)}" api -v {instance.MuMuPlayer12_id} launch_player')
+        elif instance == Emulator.LDPlayerFamily:
+            # ldconsole.exe launch --index 0
+            self.execute(f'"{Emulator.single_to_console(exe)}" launch --index {instance.LDPlayer_id}')
         elif instance == Emulator.NoxPlayerFamily:
             # Nox.exe -clone:Nox_1
             self.execute(f'"{exe}" -clone:{instance.name}')
         elif instance == Emulator.BlueStacks5:
-            # HD-Player.exe -instance Pie64
+            # HD-Player.exe --instance Pie64
             self.execute(f'"{exe}" --instance {instance.name}')
         elif instance == Emulator.BlueStacks4:
-            # BlueStacks\Client\Bluestacks.exe -vmname Android_1
+            # Bluestacks.exe -vmname Android_1
             self.execute(f'"{exe}" -vmname {instance.name}')
-        elif instance == Emulator.LDPlayer9:
-            directory, filename = os.path.split(exe)
-            new_filename = 'ldconsole.exe'
-            exe = os.path.join(directory, new_filename)
-            self.execute(f'"{exe}" launch --index {instance.name.replace("leidian", "")}')
+        elif instance == Emulator.MEmuPlayer:
+            # MEmu.exe MEmu_0
+            self.execute(f'"{exe}" {instance.name}')
         else:
             raise EmulatorUnknown(f'Cannot start an unknown emulator instance: {instance}')
 
@@ -116,8 +126,7 @@ class PlatformWindows(PlatformBase, EmulatorManager):
         """
         Stop a emulator without error handling
         """
-        logger.hr('Emulator stop', level=2)
-        exe = instance.emulator.path
+        exe: str = instance.emulator.path
         if instance == Emulator.MuMuPlayer:
             # MuMu6 does not have multi instance, kill one means kill all
             # Has 4 processes
@@ -147,33 +156,35 @@ class PlatformWindows(PlatformBase, EmulatorManager):
                 rf')'
             )
         elif instance == Emulator.MuMuPlayer12:
-            # MuMu 12 has 2 processes:
-            # E:\ProgramFiles\Netease\MuMuPlayer-12.0\shell\MuMuPlayer.exe -v 0
-            # "C:\Program Files\MuMuVMMVbox\Hypervisor\MuMuVMMHeadless.exe" --comment MuMuPlayer-12.0-0 --startvm xxx
+            # MuMuManager.exe api -v 1 shutdown_player
             if instance.MuMuPlayer12_id is None:
                 logger.warning(f'Cannot get MuMu instance index from name {instance.name}')
-            self.kill_process_by_regex(
-                rf'('
-                rf'MuMuVMMHeadless.exe.*--comment {instance.name}'
-                rf'|MuMuPlayer.exe.*-v {instance.MuMuPlayer12_id}'
-                rf')'
-            )
-            # There is also a shared service, no need to kill it
-            # "C:\Program Files\MuMuVMMVbox\Hypervisor\MuMuVMMSVC.exe" --Embedding
+            self.execute(f'"{Emulator.single_to_console(exe)}" api -v {instance.MuMuPlayer12_id} shutdown_player')
+        elif instance == Emulator.LDPlayerFamily:
+            # ldconsole.exe quit --index 0
+            self.execute(f'"{Emulator.single_to_console(exe)}" quit --index {instance.LDPlayer_id}')
         elif instance == Emulator.NoxPlayerFamily:
             # Nox.exe -clone:Nox_1 -quit
             self.execute(f'"{exe}" -clone:{instance.name} -quit')
         elif instance == Emulator.BlueStacks5:
-            self.execute(f'taskkill /fi "WINDOWTITLE eq {instance.name}" /IM "HD-Player.exe" /F')
-        elif instance == Emulator.LDPlayer9:
-            directory, filename = os.path.split(exe)
-            new_filename = 'ldconsole.exe'
-            exe = os.path.join(directory, new_filename)
-            self.execute(f'"{exe}" quit --index {instance.name.replace("leidian", "")}')
+            # BlueStack has 2 processes
+            # C:\Program Files\BlueStacks_nxt_cn\HD-Player.exe --instance Pie64
+            # C:\Program Files\BlueStacks_nxt_cn\BstkSVC.exe -Embedding
+            self.kill_process_by_regex(
+                rf'('
+                rf'HD-Player.exe.*"--instance" "{instance.name}"'
+                rf')'
+            )
+        elif instance == Emulator.BlueStacks4:
+            # E:\Program Files (x86)\BluestacksCN\bsconsole.exe quit --name Android
+            self.execute(f'"{Emulator.single_to_console(exe)}" quit --name {instance.name}')
+        elif instance == Emulator.MEmuPlayer:
+            # F:\Program Files\Microvirt\MEmu\memuc.exe stop -n MEmu_0
+            self.execute(f'"{Emulator.single_to_console(exe)}" stop -n {instance.name}')
         else:
             raise EmulatorUnknown(f'Cannot stop an unknown emulator instance: {instance}')
 
-    def _emulator_function_wrapper(self, func):
+    def _emulator_function_wrapper(self, func: callable):
         """
         Args:
             func (callable): _emulator_start or _emulator_stop
@@ -234,7 +245,7 @@ class PlatformWindows(PlatformBase, EmulatorManager):
             logger.info(f'Found azurlane packages: {m}')
 
         interval = Timer(0.5).start()
-        timeout = Timer(300).start()
+        timeout = Timer(180).start()
         new_window = 0
         while 1:
             interval.wait()
@@ -310,9 +321,12 @@ class PlatformWindows(PlatformBase, EmulatorManager):
                 return False
             # Start
             if self._emulator_function_wrapper(self._emulator_start):
-                # Success
-                self.emulator_start_watch()
-                return True
+                if self.emulator_start_watch():
+                    # Success
+                    return True
+                else:
+                    # Start command was sent but emulator didn't come online, stop and start again
+                    continue
             else:
                 # Failed to start, stop and start again
                 if self._emulator_function_wrapper(self._emulator_stop):
@@ -325,7 +339,20 @@ class PlatformWindows(PlatformBase, EmulatorManager):
 
     def emulator_stop(self):
         logger.hr('Emulator stop', level=1)
-        return self._emulator_function_wrapper(self._emulator_stop)
+        for _ in range(3):
+            # Stop
+            if self._emulator_function_wrapper(self._emulator_stop):
+                # Success
+                return True
+            else:
+                # Failed to stop, start and stop again
+                if self._emulator_function_wrapper(self._emulator_start):
+                    continue
+                else:
+                    return False
+
+        logger.error('Failed to stop emulator 3 times, stopped')
+        return False
 
 
 if __name__ == '__main__':

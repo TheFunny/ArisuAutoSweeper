@@ -5,8 +5,7 @@ import numpy as np
 from rich.table import Table
 from rich.text import Text
 
-from module.base.utils import float2str as float2str_
-from module.base.utils import random_rectangle_point
+from module.base.utils import float2str as float2str_, random_rectangle_point
 from module.daemon.daemon_base import DaemonBase
 from module.exception import RequestHumanTakeover
 from module.logger import logger
@@ -38,7 +37,7 @@ class Benchmark(DaemonBase):
         record = []
 
         for n in range(1, self.TEST_TOTAL + 1):
-            start = time.time()
+            start = time.perf_counter()
 
             try:
                 func(*args, **kwargs)
@@ -51,7 +50,7 @@ class Benchmark(DaemonBase):
                 logger.warning(f'Benchmark tests failed on func: {func.__name__}')
                 return 'Failed'
 
-            cost = time.time() - start
+            cost = time.perf_counter() - start
             logger.attr(
                 f'{str(n).rjust(2, "0")}/{self.TEST_TOTAL}',
                 f'{float2str(cost)}'
@@ -68,17 +67,19 @@ class Benchmark(DaemonBase):
         if not isinstance(cost, (float, int)):
             return Text(cost, style="bold bright_red")
 
-        if cost < 0.10:
+        if cost < 0.025:
+            return Text('Insane Fast', style="bold bright_green")
+        if cost < 0.100:
             return Text('Ultra Fast', style="bold bright_green")
-        if cost < 0.20:
+        if cost < 0.200:
             return Text('Very Fast', style="bright_green")
-        if cost < 0.30:
+        if cost < 0.300:
             return Text('Fast', style="green")
-        if cost < 0.50:
+        if cost < 0.500:
             return Text('Medium', style="yellow")
-        if cost < 0.75:
+        if cost < 0.750:
             return Text('Slow', style="red")
-        if cost < 1.00:
+        if cost < 1.000:
             return Text('Very Slow', style="bright_red")
         return Text('Ultra Slow', style="bold bright_red")
 
@@ -87,11 +88,11 @@ class Benchmark(DaemonBase):
         if not isinstance(cost, (float, int)):
             return Text(cost, style="bold bright_red")
 
-        if cost < 0.1:
+        if cost < 0.100:
             return Text('Fast', style="bright_green")
-        if cost < 0.2:
+        if cost < 0.200:
             return Text('Medium', style="yellow")
-        if cost < 0.4:
+        if cost < 0.400:
             return Text('Slow', style="red")
         return Text('Very Slow', style="bright_red")
 
@@ -162,22 +163,27 @@ class Benchmark(DaemonBase):
         if click_result:
             self.show(test='Control', data=click_result, evaluate_func=self.evaluate_click)
             fastest = sorted(click_result, key=lambda item: compare(item))[0]
+            # Prefer MaaTouch if both minitouch and MaaTouch are fastest
+            if 'MaaTouch' in click and fastest[0] == 'minitouch':
+                fastest[0] = 'MaaTouch'
             logger.info(f'Recommend control method: {fastest[0]} ({float2str(fastest[1])})')
             fastest_click = fastest[0]
 
         return fastest_screenshot, fastest_click
 
     def get_test_methods(self) -> t.Tuple[t.Tuple[str], t.Tuple[str]]:
-        device = self.config.Benchmark_DeviceType
-        # device == 'emulator'
+        # device = self.config.Benchmark_DeviceType
+        device = 'emulator'
         screenshot = ['ADB', 'ADB_nc', 'uiautomator2', 'aScreenCap', 'aScreenCap_nc', 'DroidCast', 'DroidCast_raw']
-        click = ['ADB', 'uiautomator2', 'minitouch']
+        click = ['ADB', 'uiautomator2', 'minitouch', 'maatouch']
 
         def remove(*args):
             return [l for l in screenshot if l not in args]
 
         # No ascreencap on Android > 9
-        if device in ['emulator_android_12', 'android_phone_12']:
+        sdk = self.device.sdk_ver
+        logger.info(f'sdk_ver: {sdk}')
+        if not (21 <= sdk <= 28):
             screenshot = remove('aScreenCap', 'aScreenCap_nc')
         # No nc loopback
         if device in ['plone_cloud_with_adb']:
@@ -186,8 +192,16 @@ class Benchmark(DaemonBase):
         if device == 'android_phone_vmos':
             screenshot = ['ADB', 'aScreenCap', 'DroidCast', 'DroidCast_raw']
             click = ['ADB', 'Hermit', 'MaaTouch']
+        # Droidcast on SDK 23 (Android 6.0) to SDK 32 (Android 12)
+        if not (23 <= sdk <= 32):
+            screenshot = remove('DroidCast', 'DroidCast_raw')
 
-        scene = self.config.Benchmark_TestScene
+        if self.device.nemu_ipc_available():
+            screenshot.append('nemu_ipc')
+        if self.device.ldopengl_available():
+            screenshot.append('ldopengl')
+
+        scene = 'screenshot_click'
         if 'screenshot' not in scene:
             screenshot = []
         if 'click' not in scene:
@@ -203,8 +217,8 @@ class Benchmark(DaemonBase):
             logger.critical('Request human takeover')
             return
 
-        logger.attr('DeviceType', self.config.Benchmark_DeviceType)
-        logger.attr('TestScene', self.config.Benchmark_TestScene)
+        # logger.attr('DeviceType', self.config.Benchmark_DeviceType)
+        # logger.attr('TestScene', self.config.Benchmark_TestScene)
         screenshot, click = self.get_test_methods()
         self.benchmark(screenshot, click)
 
@@ -224,6 +238,10 @@ class Benchmark(DaemonBase):
             screenshot = remove('aScreenCap', 'aScreenCap_nc')
         if self.device.is_chinac_phone_cloud:
             screenshot = remove('ADB_nc', 'aScreenCap_nc')
+        if self.device.nemu_ipc_available():
+            screenshot.append('nemu_ipc')
+        if self.device.ldopengl_available():
+            screenshot.append('ldopengl')
         screenshot = tuple(screenshot)
 
         self.TEST_TOTAL = 3
@@ -233,6 +251,15 @@ class Benchmark(DaemonBase):
         return method
 
 
+def run_benchmark(config):
+    try:
+        Benchmark(config, task='Benchmark').run()
+        return True
+    except RequestHumanTakeover:
+        logger.critical('Request human takeover')
+        return False
+
+
 if __name__ == '__main__':
-    b = Benchmark('alas', task='Benchmark')
+    b = Benchmark('src', task='Benchmark')
     b.run()

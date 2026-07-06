@@ -42,9 +42,9 @@
           "DroidCast",
           "DroidCast_raw",
           "scrcpy",
-          "nemu_ipc"
-        ],
-        "display": "hide"
+          "nemu_ipc",
+          "ldopengl"
+        ]
       },
       "ControlMethod": {
         "type": "select",
@@ -75,6 +75,7 @@
           "LDPlayer3",
           "LDPlayer4",
           "LDPlayer9",
+          "LDPlayer14",
           "MuMuPlayer",
           "MuMuPlayerX",
           "MuMuPlayer12",
@@ -131,6 +132,7 @@
           "stay_there",
           "goto_main",
           "close_game",
+          "close_emulator",
           "exit_aas",
           "exit_emulator",
           "exit_aas_emulator",

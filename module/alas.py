@@ -1,5 +1,5 @@
-import os
-import re
+import platform
+import subprocess
 import threading
 import time
 from datetime import datetime, timedelta
@@ -7,16 +7,14 @@ from datetime import datetime, timedelta
 import inflection
 from cached_property import cached_property
 
+from MCE.custom_widgets.ctkmessagebox import CTkMessagebox
 from module.base.decorator import del_cached_property
 from module.config.config import AzurLaneConfig, TaskEnd
-from module.config.utils import deep_get, deep_set
+from module.config.deep import deep_get, deep_set
 from module.exception import *
-from module.logger import logger
+from module.logger import logger, save_error_log
 from module.notify import handle_notify
 
-from MCE.custom_widgets.ctkmessagebox import CTkMessagebox
-import subprocess
-import platform
 
 class AzurLaneAutoScript:
     stop_event: threading.Event = None
@@ -89,61 +87,68 @@ class AzurLaneAutoScript:
         except GameNotRunningError as e:
             logger.warning(e)
             self.config.task_call('Restart')
-            return True
+            return False
         except (GameStuckError, GameTooManyClickError) as e:
             logger.error(e)
             self.save_error_log()
             logger.warning(f'Game stuck, {self.device.package} will be restarted in 10 seconds')
-            logger.warning('If you are playing by hand, please stop Alas')
+            logger.warning('If you are playing by hand, please stop AAS')
             self.config.task_call('Restart')
             self.device.sleep(10)
             return False
         except GameBugError as e:
             logger.warning(e)
             self.save_error_log()
-            logger.warning('An error has occurred in Azur Lane game client, Alas is unable to handle')
+            logger.warning('An error has occurred in Blue Archive game client, AAS is unable to handle')
             logger.warning(f'Restarting {self.device.package} to fix it')
             self.config.task_call('Restart')
             self.device.sleep(10)
             return False
         except GamePageUnknownError:
-            logger.info('Game server may be under maintenance or network may be broken, check server status now')
+            # logger.info('Game server may be under maintenance or network may be broken, check server status now')
             self.checker.check_now()
             if self.checker.is_available():
                 logger.critical('Game page unknown')
                 self.save_error_log()
                 handle_notify(
                     self.config.Error_OnePushConfig,
-                    title=f"Alas <{self.config_name}> crashed",
+                    title=f"AAS <{self.config_name}> crashed",
                     content=f"<{self.config_name}> GamePageUnknownError",
                 )
                 exit(1)
             else:
                 self.checker.wait_until_available()
                 return False
+        except HandledError as e:
+            logger.error(e)
+            return False
         except ScriptError as e:
-            logger.critical(e)
+            logger.exception(e)
+            self.error_postprocess()
             logger.critical('This is likely to be a mistake of developers, but sometimes just random issues')
+            self.save_error_log()
             handle_notify(
                 self.config.Error_OnePushConfig,
-                title=f"Alas <{self.config_name}> crashed",
+                title=f"AAS <{self.config_name}> crashed",
                 content=f"<{self.config_name}> ScriptError",
             )
             exit(1)
         except RequestHumanTakeover:
             logger.critical('Request human takeover')
+            self.error_postprocess()
             handle_notify(
                 self.config.Error_OnePushConfig,
-                title=f"Alas <{self.config_name}> crashed",
+                title=f"AAS <{self.config_name}> crashed",
                 content=f"<{self.config_name}> RequestHumanTakeover",
             )
             exit(1)
         except Exception as e:
             logger.exception(e)
+            self.error_postprocess()
             self.save_error_log()
             handle_notify(
                 self.config.Error_OnePushConfig,
-                title=f"Alas <{self.config_name}> crashed",
+                title=f"AAS <{self.config_name}> crashed",
                 content=f"<{self.config_name}> Exception occured",
             )
             exit(1)
@@ -153,33 +158,13 @@ class AzurLaneAutoScript:
         Save last 60 screenshots in ./log/error/<timestamp>
         Save logs to ./log/error/<timestamp>/log.txt
         """
-        from module.base.utils import save_image
-        from module.handler.sensitive_info import (handle_sensitive_image, handle_sensitive_logs)
-        if self.config.Error_SaveError:
-            folder = f'./log/error/{int(time.time() * 1000)}'
-            logger.warning(f'Saving error: {folder}')
-            os.makedirs(folder, exist_ok=True)
-            for data in self.device.screenshot_deque:
-                image_time = datetime.strftime(data['time'], '%Y-%m-%d_%H-%M-%S-%f')
-                image = handle_sensitive_image(data['image'])
-                save_image(image, f'{folder}/{image_time}.png')
-            if self.device.screenshot_tracking:
-                os.makedirs(f'{folder}/tracking', exist_ok=True)
-            for data in self.device.screenshot_tracking:
-                image_time = datetime.strftime(data['time'], '%Y-%m-%d_%H-%M-%S-%f')
-                with open(f'{folder}/tracking/{image_time}.png', 'wb') as f:
-                    f.write(data['image'].getvalue())
-            with open(logger.log_file, 'r', encoding='utf-8') as f:
-                lines = f.readlines()
-                start = 0
-                for index, line in enumerate(lines):
-                    line = line.strip(' \r\t\n')
-                    if re.match('^═{15,}$', line):
-                        start = index
-                lines = lines[start - 2:]
-                lines = handle_sensitive_logs(lines)
-            with open(f'{folder}/log.txt', 'w', encoding='utf-8') as f:
-                f.writelines(lines)
+        save_error_log(config=self.config, device=self.device)
+
+    def error_postprocess(self):
+        """
+        Do something when error occurred
+        """
+        pass
 
     def wait_until(self, future):
         """
@@ -233,7 +218,10 @@ class AzurLaneAutoScript:
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
                         continue
-                    self.run('start')
+                    if task.command != 'Restart':
+                        self.config.task_call('Restart')
+                        del_cached_property(self, 'config')
+                        continue
                 elif method == 'goto_main':
                     logger.info('Goto main page during wait')
                     self.run('goto_main')
@@ -248,6 +236,31 @@ class AzurLaneAutoScript:
                     self.device.release_during_wait()
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
+                        continue
+                elif method == 'close_emulator':
+                    logger.info('Close emulator during wait')
+                    self.run('stop')
+                    release_resources()
+                    self.device.release_during_wait()
+                    # 关闭模拟器
+                    try:
+                        self.device.emulator_stop()
+                        logger.info('Emulator stopped successfully')
+                    except Exception as e:
+                        logger.warning(f'Failed to stop emulator: {e}')
+                    if not self.wait_until(task.next_run):
+                        del_cached_property(self, 'config')
+                        del_cached_property(self, 'device')
+                        continue
+                    if task.command == 'Restart':
+                        del_cached_property(self, 'config')
+                        del_cached_property(self, 'device')
+                        continue
+                    # 重新启动模拟器
+                    if task.command != 'Restart':
+                        self.config.task_call('Restart')
+                        del_cached_property(self, 'config')
+                        del_cached_property(self, 'device')
                         continue
                 elif method == 'exit_aas':
                     if abs(task.next_run - datetime.now()) >= timedelta(minutes=2): # ensure tactical challenge is fully ran
@@ -310,7 +323,7 @@ class AzurLaneAutoScript:
             if self.stop_event is not None:
                 if self.stop_event.is_set():
                     logger.info("Update event detected")
-                    logger.info(f"Alas [{self.config_name}] exited.")
+                    logger.info(f"AAS [{self.config_name}] exited.")
                     break
             # Check game server maintenance
             self.checker.wait_until_available()
@@ -326,6 +339,7 @@ class AzurLaneAutoScript:
             task = self.get_next_task()
             # Init device and change server
             _ = self.device
+            self.device.config = self.config
             # Skip first restart
             if self.is_first_task and task == 'Restart':
                 logger.info('Skip task `Restart` at scheduler start')
@@ -355,7 +369,7 @@ class AzurLaneAutoScript:
                 logger.critical('Request human takeover')
                 handle_notify(
                     self.config.Error_OnePushConfig,
-                    title=f"Alas <{self.config_name}> crashed",
+                    title=f"AAS <{self.config_name}> crashed",
                     content=f"<{self.config_name}> RequestHumanTakeover\nTask `{task}` failed 3 or more times.",
                 )
                 exit(1)

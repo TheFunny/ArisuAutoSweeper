@@ -13,6 +13,7 @@ from module.base.utils import get_color, image_size, limit_in, save_image
 from module.device.method.adb import Adb
 from module.device.method.ascreencap import AScreenCap
 from module.device.method.droidcast import DroidCast
+from module.device.method.ldopengl import LDOpenGL
 from module.device.method.nemu_ipc import NemuIpc
 from module.device.method.scrcpy import Scrcpy
 from module.device.method.wsa import WSA
@@ -20,7 +21,7 @@ from module.exception import RequestHumanTakeover, ScriptError
 from module.logger import logger
 
 
-class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc):
+class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc, LDOpenGL):
     _screen_size_checked = False
     _screen_black_checked = False
     _minicap_uninstalled = False
@@ -40,7 +41,21 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc):
             'DroidCast_raw': self.screenshot_droidcast_raw,
             'scrcpy': self.screenshot_scrcpy,
             'nemu_ipc': self.screenshot_nemu_ipc,
+            'ldopengl': self.screenshot_ldopengl,
         }
+
+    @cached_property
+    def screenshot_method_override(self) -> str:
+        # AAS only, use nemu_ipc if available
+        available = self.nemu_ipc_available()
+        logger.attr('nemu_ipc_available', available)
+        if available:
+            return 'nemu_ipc'
+        available = self.ldopengl_available()
+        logger.attr('ldopengl_available', available)
+        if available:
+            return 'ldopengl'
+        return ''
 
     def screenshot(self):
         """
@@ -51,10 +66,12 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc):
         self._screenshot_interval.reset()
 
         for _ in range(2):
-            method = self.screenshot_methods.get(
-                self.config.Emulator_ScreenshotMethod,
-                self.screenshot_adb
-            )
+            if self.screenshot_method_override:
+                method = self.screenshot_method_override
+            else:
+                method = self.config.Emulator_ScreenshotMethod
+            method = self.screenshot_methods.get(method, self.screenshot_adb)
+
             self.image = method()
 
             # if self.config.Emulator_ScreenshotDedithering:
@@ -182,8 +199,9 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc):
             raise ScriptError(f'Unknown screenshot interval: {interval}')
         # Screenshot interval in scrcpy is meaningless,
         # video stream is received continuously no matter you use it or not.
-        if self.config.Emulator_ScreenshotMethod == 'scrcpy':
-            interval = 0.1
+        if not self.screenshot_method_override:
+            if self.config.Emulator_ScreenshotMethod == 'scrcpy':
+                interval = 0.1
 
         if interval != self._screenshot_interval.limit:
             logger.info(f'Screenshot interval set to {interval}s')

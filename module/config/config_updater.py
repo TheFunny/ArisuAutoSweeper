@@ -5,6 +5,7 @@ from cached_property import cached_property
 
 from deploy.Windows.utils import DEPLOY_TEMPLATE, poor_yaml_read, poor_yaml_write
 from module.base.timer import timer
+from module.config.deep import deep_default, deep_get, deep_iter, deep_set
 from module.config.server import VALID_SERVER
 from module.config.utils import *
 
@@ -453,20 +454,19 @@ class ConfigUpdater:
             dict:
         """
         new = {}
+        type_lock = {'lock', 'state'}
+        type_stored = {'stored', 'dict'}
 
-        def deep_load(keys):
-            data = deep_get(self.args, keys=keys, default={})
+        for keys, data in deep_iter(self.args, depth=3):
             value = deep_get(old, keys=keys, default=data['value'])
             typ = data['type']
             display = data.get('display')
-            if (is_template or value is None or value == ''
-                    or typ in ['lock', 'state'] or (display == 'hide' and typ != 'stored')):
+            if is_template or value is None or value == '' \
+                    or typ in type_lock or (display == 'hide' and typ not in type_stored):
                 value = data['value']
             value = parse_value(value, data=data)
             deep_set(new, keys=keys, value=value)
 
-        for path, _ in deep_iter(self.args, depth=3):
-            deep_load(path)
 
         # if not is_template:
         #     new = self.config_redirect(old, new)

@@ -1,3 +1,4 @@
+import time
 import typing as t
 from functools import wraps
 
@@ -10,7 +11,7 @@ from module.base.decorator import cached_property, del_cached_property
 from module.base.timer import Timer
 from module.device.method.uiautomator_2 import ProcessInfo, Uiautomator2
 from module.device.method.utils import (
-    ImageTruncated, PackageNotInstalled, RETRY_TRIES, handle_adb_error, retry_sleep)
+    ImageTruncated, PackageNotInstalled, RETRY_TRIES, handle_adb_error, handle_unknown_host_service, retry_sleep)
 from module.exception import RequestHumanTakeover
 from module.logger import logger
 
@@ -30,7 +31,7 @@ def retry(func):
         for _ in range(RETRY_TRIES):
             try:
                 if callable(init):
-                    retry_sleep(_)
+                    time.sleep(retry_sleep(_))
                     init()
                 return func(self, *args, **kwargs)
             # Can't handle
@@ -46,6 +47,10 @@ def retry(func):
             except AdbError as e:
                 if handle_adb_error(e):
                     def init():
+                        self.adb_reconnect()
+                elif handle_unknown_host_service(e):
+                    def init():
+                        self.adb_start_server()
                         self.adb_reconnect()
                 else:
                     break
@@ -228,11 +233,21 @@ class DroidCast(Uiautomator2):
             if self.droidcast_height and self.droidcast_width:
                 shape = (self.droidcast_height, self.droidcast_width)
 
+        rotate = self.is_mumu_over_version_356 and self.orientation == 1
+
         image = self.droidcast_session.get(self.droidcast_raw_url(), timeout=3).content
         # DroidCast_raw returns a RGB565 bitmap
 
         try:
-            arr = np.frombuffer(image, dtype=np.uint16).reshape(shape)
+            arr = np.frombuffer(image, dtype=np.uint16)
+            if rotate:
+                arr = arr.reshape(shape)
+                # arr = cv2.rotate(arr, cv2.ROTATE_90_CLOCKWISE)
+                # A little bit faster?
+                arr = cv2.transpose(arr)
+                cv2.flip(arr, 1, dst=arr)
+            else:
+                arr = arr.reshape(shape)
         except ValueError as e:
             if len(image) < 500:
                 logger.warning(f'Unexpected screenshot: {image}')
@@ -260,30 +275,18 @@ class DroidCast(Uiautomator2):
         # b = b.astype(np.uint8)
         # image = cv2.merge([r, g, b])
 
-        # The same as the code above but costs about 5ms instead of 10ms.
-        r = cv2.bitwise_and(arr, 0b1111100000000000)
-        cv2.multiply(r, 0.00390625, dst=r)
-        r = np.uint8(r)
-        m = cv2.multiply(r, 0.03125)
-        cv2.add(r, m, dst=r)
-
-        g = cv2.bitwise_and(arr, 0b0000011111100000)
-        cv2.multiply(g, 0.125, dst=g)
-        g = np.uint8(g)
-        m = cv2.multiply(g, 0.015625)
-        cv2.add(g, m, dst=g)
-
-        b = cv2.bitwise_and(arr, 0b0000000000011111)
-        cv2.multiply(b, 8, dst=b)
-        b = np.uint8(b)
-        m = cv2.multiply(b, 0.03125)
-        cv2.add(b, m, dst=b)
+        # The same as the code above but costs about 2.7ms instead of 16ms.
+        # Note that cv2.convertScaleAbs is 5x fast as cv2.multiply, cv2.add is 8x fast as cv2.convertScaleAbs
+        # Note that cv2.convertScaleAbs includes rounding
+        tmp = np.empty_like(arr)
+        cv2.bitwise_and(arr, 0b1111100000000000, dst=tmp)
+        r = cv2.convertScaleAbs(tmp, alpha=0.0040283203125)  # 0.00390625 * 1.03125
+        cv2.bitwise_and(arr, 0b0000011111100000, dst=tmp)
+        g = cv2.convertScaleAbs(tmp, alpha=0.126953125)  # 0.125 * 1.015625
+        cv2.bitwise_and(arr, 0b0000000000011111, dst=tmp)
+        b = cv2.convertScaleAbs(tmp, alpha=8.25)  # 8 * 1.03125
 
         image = cv2.merge([r, g, b])
-
-        if self.is_mumu_over_version_356:
-            if self.orientation == 1:
-                image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
 
         return image
 

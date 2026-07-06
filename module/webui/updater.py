@@ -21,7 +21,6 @@ from module.webui.utils import TaskHandler, get_next_time
 class Updater(DeployConfig, GitManager, PipManager):
     def __init__(self, file=DEPLOY_CONFIG):
         super().__init__(file=file)
-        self.set_repo()
         self.state = 0
         self.event: threading.Event = None
 
@@ -237,8 +236,8 @@ class Updater(DeployConfig, GitManager, PipManager):
                 self.event.clear()
                 ProcessManager.restart_processes(instances, self.event)
                 return
-            time.sleep(0.25)
-            if time.time() - start_time > 60 * 10:
+            time.sleep(5)
+            if time.time() - start_time > 60 * 20:
                 logger.warning("Waiting alas shutdown timeout, force kill")
                 for alas in _instances:
                     alas.stop()

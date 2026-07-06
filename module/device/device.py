@@ -1,5 +1,14 @@
 import collections
 
+from lxml import etree
+
+from module.device.env import IS_WINDOWS
+# Patch pkg_resources before importing adbutils and uiautomator2
+from module.device.pkg_resources import get_distribution
+
+# Just avoid being removed by import optimization
+_ = get_distribution
+
 from module.base.timer import Timer
 from module.device.app_control import AppControl
 from module.device.control import Control
@@ -61,11 +70,14 @@ class Device(Screenshot, Control, AppControl):
     stuck_timer = Timer(60, count=60).start()
 
     def __init__(self, *args, **kwargs):
-        for _ in range(2):
+        for trial in range(4):
             try:
                 super().__init__(*args, **kwargs)
                 break
             except EmulatorNotRunningError:
+                if trial >= 3:
+                    logger.critical('Failed to start emulator after 3 trial')
+                    raise RequestHumanTakeover
                 # Try to start emulator
                 if self.emulator_instance is not None:
                     self.emulator_start()
@@ -74,10 +86,10 @@ class Device(Screenshot, Control, AppControl):
                         f'No emulator with serial "{self.config.Emulator_Serial}" found, '
                         f'please set a correct serial'
                     )
-                    raise
+                    raise RequestHumanTakeover
 
         # Auto-fill emulator info
-        if self.config.EmulatorInfo_Emulator == 'auto':
+        if IS_WINDOWS and self.config.EmulatorInfo_Emulator == 'auto':
             _ = self.emulator_instance
 
         self.screenshot_interval_set()
@@ -87,11 +99,12 @@ class Device(Screenshot, Control, AppControl):
         if not self.config.is_template_config and self.config.Emulator_ScreenshotMethod == 'auto':
             self.run_simple_screenshot_benchmark()
 
-        # AAS only, use nemu_ipc if available
-        available = self.nemu_ipc_available()
-        logger.attr('nemu_ipc_available', available)
-        if available:
-            self.config.override(Emulator_ScreenshotMethod='nemu_ipc')
+        # Early init
+        if self.config.is_actual_task:
+            if self.config.Emulator_ControlMethod == 'MaaTouch':
+                self.early_maatouch_init()
+            if self.config.Emulator_ControlMethod == 'minitouch':
+                self.early_minitouch_init()
 
     def run_simple_screenshot_benchmark(self):
         """
@@ -122,7 +135,28 @@ class Device(Screenshot, Control, AppControl):
         # if self.config.Emulator_ScreenshotMethod != 'nemu_ipc' and self.config.Emulator_ControlMethod == 'nemu_ipc':
         #     logger.warning('When not using nemu_ipc, both screenshot and control should not use nemu_ipc')
         #     self.config.Emulator_ControlMethod = 'minitouch'
-        pass
+        # Allow Hermit on VMOS only
+        if self.config.Emulator_ControlMethod == 'Hermit' and not self.is_vmos:
+            logger.warning('ControlMethod Hermit is allowed on VMOS only')
+            self.config.Emulator_ControlMethod = 'MaaTouch'
+        if self.config.Emulator_ScreenshotMethod == 'ldopengl' \
+                and self.config.Emulator_ControlMethod == 'minitouch':
+            logger.warning('Use MaaTouch on ldplayer')
+            self.config.Emulator_ControlMethod = 'MaaTouch'
+
+        # Fallback to auto if nemu_ipc and ldopengl are selected on non-corresponding emulators
+        if self.config.Emulator_ScreenshotMethod == 'nemu_ipc':
+            if not (self.is_emulator and self.is_mumu_family):
+                logger.warning('ScreenshotMethod nemu_ipc is available on MuMu Player 12 only, fallback to auto')
+                self.config.Emulator_ScreenshotMethod = 'auto'
+        if self.config.Emulator_ScreenshotMethod == 'ldopengl':
+            if not (self.is_emulator and self.is_ldplayer_bluestacks_family):
+                logger.warning('ScreenshotMethod ldopengl is available on LD Player only, fallback to auto')
+                self.config.Emulator_ScreenshotMethod = 'auto'
+        if not IS_WINDOWS and self.config.Emulator_ScreenshotMethod in ['nemu_ipc', 'ldopengl']:
+            logger.warning(f'ScreenshotMethod {self.config.Emulator_ScreenshotMethod} is available on Windows only, '
+                           f'fallback to auto')
+            self.config.Emulator_ScreenshotMethod = 'auto'
 
     def screenshot(self):
         """
@@ -143,6 +177,10 @@ class Device(Screenshot, Control, AppControl):
 
         return self.image
 
+    def dump_hierarchy(self) -> etree._Element:
+        self.stuck_record_check()
+        return super().dump_hierarchy()
+
     def release_during_wait(self):
         # Scrcpy server is still sending video stream,
         # stop it during wait
@@ -150,6 +188,16 @@ class Device(Screenshot, Control, AppControl):
             self._scrcpy_server_stop()
         if self.config.Emulator_ScreenshotMethod == 'nemu_ipc':
             self.nemu_ipc_release()
+
+    def get_orientation(self):
+        """
+        Callbacks when orientation changed.
+        """
+        o = super().get_orientation()
+
+        self.on_orientation_change_maatouch()
+
+        return o
 
     def stuck_record_add(self, button):
         self.detect_record.add(str(button))

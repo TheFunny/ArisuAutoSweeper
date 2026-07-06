@@ -1,17 +1,16 @@
-import re
 import time
 from datetime import timedelta
 
-import cv2
 import numpy as np
 from pponnxcr.predict_system import BoxedResult
 
 import module.config.server as server
 from module.base.button import ButtonWrapper
 from module.base.decorator import cached_property
-from module.base.utils import area_pad, corner2area, crop, extract_white_letters, float2str
+from module.base.utils import *
 from module.exception import ScriptError
 from module.logger import logger
+from module.ocr.keyword import Keyword
 from module.ocr.models import OCR_MODEL, TextSystem
 from module.ocr.utils import merge_buttons
 
@@ -23,6 +22,7 @@ class OcrResultButton:
             boxed_result: BoxedResult from ppocr-onnx
             matched_keyword: Keyword object or None
         """
+        self.boxed_result = boxed_result
         self.area = boxed_result.box
         self.search = area_pad(self.area, pad=-20)
         # self.color =
@@ -55,6 +55,14 @@ class OcrResultButton:
     @property
     def is_keyword_matched(self) -> bool:
         return self.matched_keyword is not None
+
+    def set_matched_keyword(self, keyword):
+        if keyword is None:
+            self.matched_keyword = None
+            self.name = self.boxed_result.ocr_text
+        else:
+            self.matched_keyword = keyword
+            self.name = str(keyword)
 
 
 class Ocr:
@@ -120,7 +128,7 @@ class Ocr:
         # pre process
         start_time = time.time()
         if not direct_ocr:
-            image = crop(image, self.button.area)
+            image = crop(image, self.button.area, copy=False)
         image = self.pre_process(image)
         # ocr
         result, _ = self.model.ocr_single_line(image)
@@ -163,7 +171,7 @@ class Ocr:
         # pre process
         start_time = time.time()
         if not direct_ocr:
-            image = crop(image, self.button.area)
+            image = crop(image, self.button.area, copy=False)
         image = self.pre_process(image)
         # ocr
         results: list[BoxedResult] = self.model.detect_and_ocr(image)
@@ -226,7 +234,7 @@ class Ocr:
             keyword_classes,
             lang: str = None,
             ignore_punctuation=True
-    ) -> OcrResultButton:
+    ) -> Keyword:
         """
         Args:
             image: Image to detect
@@ -235,7 +243,7 @@ class Ocr:
             ignore_punctuation:
 
         Returns:
-            OcrResultButton: Or None if it didn't matched known keywords.
+            Keyword: Or None if it didn't matched known keywords.
         """
         result = self.ocr_single_line(image)
 
@@ -256,7 +264,7 @@ class Ocr:
             keyword_classes,
             lang: str = None,
             ignore_punctuation=True
-    ) -> list[OcrResultButton]:
+    ) -> list[Keyword]:
         """
         Args:
             image_list:
@@ -265,7 +273,7 @@ class Ocr:
             ignore_punctuation:
 
         Returns:
-            List of matched OcrResultButton.
+            List of matched Keyword.
             OCR result which didn't matched known keywords will be dropped.
         """
         results = self.ocr_multi_lines(image_list)
@@ -303,11 +311,38 @@ class Ocr:
         button = OcrResultButton(boxed_result, matched_keyword)
         return button
 
-    def matched_ocr(self, image, keyword_classes, direct_ocr=False) -> list[OcrResultButton]:
+    def _product_buttons(
+            self,
+            results: "list[BoxedResult]",
+            keyword_classes,
+            lang: str = None,
+            ignore_punctuation=True,
+            ignore_digit=True
+    ) -> "list[OcrResultButton]":
+        results = [self._product_button(
+            result,
+            keyword_classes=keyword_classes,
+            lang=lang,
+            ignore_punctuation=ignore_punctuation,
+            ignore_digit=ignore_digit,
+        ) for result in results]
+        results = [result for result in results if result.is_keyword_matched]
+        return results
+
+    def matched_ocr(
+            self,
+            image,
+            keyword_classes,
+            lang=None,
+            ignore_punctuation=True,
+            direct_ocr=False,
+    ) -> list[OcrResultButton]:
+
         """
         Args:
             image: Screenshot
             keyword_classes: `Keyword` class or classes inherited `Keyword`, or a list of them.
+            lang (str):
             direct_ocr: True to ignore `button` attribute and feed the image to OCR model without cropping.
 
         Returns:
@@ -316,8 +351,8 @@ class Ocr:
         """
         results = self.detect_and_ocr(image, direct_ocr=direct_ocr)
 
-        results = [self._product_button(result, keyword_classes) for result in results]
-        results = [result for result in results if result.is_keyword_matched]
+        results = self._product_buttons(
+            results, keyword_classes=keyword_classes, lang=lang, ignore_punctuation=ignore_punctuation)
 
         logger.attr(name=f'{self.name} matched',
                     text=results)
@@ -325,7 +360,7 @@ class Ocr:
 
 
 class Digit(Ocr):
-    def __init__(self, button: ButtonWrapper, lang='en', name=None):
+    def __init__(self, button: ButtonWrapper, lang=None, name=None):
         super().__init__(button, lang=lang, name=name)
 
     def format_result(self, result) -> int:
@@ -345,7 +380,7 @@ class Digit(Ocr):
 
 
 class DigitCounter(Ocr):
-    def __init__(self, button: ButtonWrapper, lang='en', name=None):
+    def __init__(self, button: ButtonWrapper, lang=None, name=None):
         super().__init__(button, lang=lang, name=name)
 
     @classmethod
@@ -362,7 +397,7 @@ class DigitCounter(Ocr):
         Do OCR on a counter, such as `14/15`, and returns 14, 1, 15
 
         Returns:
-            int:
+            int, int, int: current, remain, total
         """
         result = self.after_process(result)
         logger.attr(name=self.name, text=str(result))
@@ -427,17 +462,60 @@ class Duration(Ocr):
 
 
 class OcrWhiteLetterOnComplexBackground(Ocr):
+    white_preprocess = True
+    # 0.6 by default, 0.2 for lower
+    box_thresh = 0.2
+    # (x, y) Enlarge detected boxes to `min_boxes`
+    # So standalone digits can be better detected
+    # Note that min_box should be 4px larger than the actual letter
+    min_box = None
+
     def pre_process(self, image):
-        image = extract_white_letters(image, threshold=255)
-        image = cv2.merge([image, image, image])
+        if self.white_preprocess:
+            image = extract_white_letters(image, threshold=255)
+            image = cv2.merge([image, image, image])
         return image
+
+    @staticmethod
+    def enlarge_box(box, min_box):
+        area = corner2area(box)
+        center = (int(x) for x in area_center(area))
+        size_x, size_y = area_size(area)
+        min_x, min_y = min_box
+        if size_x < min_x or size_y < min_y:
+            size_x = max(size_x, min_x) // 2
+            size_y = max(size_y, min_y) // 2
+            area = area_offset((-size_x, -size_y, size_x, size_y), center)
+            box = area2corner(area)
+            box = np.array([box[0], box[1], box[3], box[2]]).astype(np.float32)
+            return box
+        else:
+            return box
+
+    def enlarge_boxes(self, boxes):
+        if self.min_box is None:
+            return boxes
+
+        boxes = [self.enlarge_box(box, self.min_box) for box in boxes]
+        boxes = np.array(boxes)
+        return boxes
 
     def detect_and_ocr(self, *args, **kwargs):
         # Try hard to lower TextSystem.box_thresh
         backup = self.model.text_detector.box_thresh
         self.model.text_detector.box_thresh = 0.2
+        # Patch TextDetector
+        text_detector = self.model.text_detector
 
-        result = super().detect_and_ocr(*args, **kwargs)
+        def text_detector_with_min_box(*args, **kwargs):
+            dt_boxes, elapse = text_detector(*args, **kwargs)
+            dt_boxes = self.enlarge_boxes(dt_boxes)
+            return dt_boxes, elapse
 
-        self.model.text_detector.box_thresh = backup
+        self.model.text_detector = text_detector_with_min_box
+        try:
+            result = super().detect_and_ocr(*args, **kwargs)
+        finally:
+            self.model.text_detector.box_thresh = backup
+            self.model.text_detector = text_detector
         return result

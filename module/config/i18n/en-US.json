@@ -143,7 +143,8 @@
       "DroidCast": "DroidCast",
       "DroidCast_raw": "DroidCast_raw",
       "scrcpy": "scrcpy",
-      "nemu_ipc": "nemu_ipc"
+      "nemu_ipc": "nemu_ipc",
+      "ldopengl": "ldopengl"
     },
     "ControlMethod": {
       "name": "Control Method",
@@ -174,6 +175,7 @@
       "LDPlayer3": "LD Player 3",
       "LDPlayer4": "LD Player 4",
       "LDPlayer9": "LD Player 9",
+      "LDPlayer14": "LD Player 14",
       "MuMuPlayer": "MuMu Player",
       "MuMuPlayerX": "MuMu Player X",
       "MuMuPlayer12": "MuMu Player 12",
@@ -231,6 +233,7 @@
       "stay_there": "Stay There",
       "goto_main": "Goto Main Page",
       "close_game": "Close Game",
+      "close_emulator": "Close Emulator",
       "exit_aas": "Exit AAS",
       "exit_emulator": "Exit Emulator",
       "exit_aas_emulator": "Exit AAS & Emulator",
@@ -923,7 +926,8 @@
       "MinutesAgo": "{time}min ago",
       "HoursAgo": "{time}h ago",
       "DaysAgo": "{time}d ago",
-      "LongTimeAgo": "long time ago"
+      "LongTimeAgo": "long time ago",
+      "EtaDays": "ETA {time}d"
     },
     "AddAlas": {
       "PopupTitle": "Add new config",

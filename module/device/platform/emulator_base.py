@@ -100,15 +100,47 @@ class EmulatorInstanceBase:
         Convert MuMu 12 instance name to instance id.
         Example names:
             MuMuPlayer-12.0-3
+            MuMuPlayerGlobal-12.0-0
+            MuMuPlayer-15.0-0
             YXArkNights-12.0-1
 
         Returns:
             int: Instance ID, or None if this is not a MuMu 12 instance
         """
-        res = re.search(r'MuMuPlayer-12.0-(\d+)', self.name)
+        res = re.search(r'MuMuPlayer(?:Global)?-12.0-(\d+)', self.name)
+        if res:
+            return int(res.group(1))
+        res = re.search(r'MuMuPlayer(?:Global)?-15.0-(\d+)', self.name)
         if res:
             return int(res.group(1))
         res = re.search(r'YXArkNights-12.0-(\d+)', self.name)
+        if res:
+            return int(res.group(1))
+
+        return None
+
+    def mumu_vms_config(self, file):
+        """
+        Args:
+            file (str): Such as customer_config.json
+
+        Returns:
+            str: Absolute filepath to the file
+        """
+        return self.emulator.abspath(f'../vms/{self.name}/configs/{file}')
+
+    @cached_property
+    def LDPlayer_id(self):
+        """
+        Convert LDPlayer instance name to instance id.
+        Example names:
+            leidian0
+            leidian1
+
+        Returns:
+            int: Instance ID, or None if this is not a LDPlayer instance
+        """
+        res = re.search(r'leidian(\d+)', self.name)
         if res:
             return int(res.group(1))
 
@@ -128,7 +160,8 @@ class EmulatorBase:
     LDPlayer3 = 'LDPlayer3'
     LDPlayer4 = 'LDPlayer4'
     LDPlayer9 = 'LDPlayer9'
-    LDPlayerFamily = [LDPlayer3, LDPlayer4, LDPlayer9]
+    LDPlayer14 = 'LDPlayer14'
+    LDPlayerFamily = [LDPlayer3, LDPlayer4, LDPlayer9, LDPlayer14]
     MuMuPlayer = 'MuMuPlayer'
     MuMuPlayerX = 'MuMuPlayerX'
     MuMuPlayer12 = 'MuMuPlayer12'

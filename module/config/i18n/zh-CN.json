@@ -143,7 +143,8 @@
       "DroidCast": "DroidCast",
       "DroidCast_raw": "DroidCast_raw",
       "scrcpy": "scrcpy",
-      "nemu_ipc": "nemu_ipc"
+      "nemu_ipc": "nemu_ipc",
+      "ldopengl": "ldopengl"
     },
     "ControlMethod": {
       "name": "模拟器控制方案",
@@ -174,6 +175,7 @@
       "LDPlayer3": "雷电模拟器3",
       "LDPlayer4": "雷电模拟器4",
       "LDPlayer9": "雷电模拟器9",
+      "LDPlayer14": "雷电模拟器14",
       "MuMuPlayer": "MuMu模拟器",
       "MuMuPlayerX": "MuMu模拟器X",
       "MuMuPlayer12": "MuMu模拟器12",
@@ -231,6 +233,7 @@
       "stay_there": "停在原处",
       "goto_main": "前往主界面",
       "close_game": "关闭游戏",
+      "close_emulator": "关闭模拟器",
       "exit_aas": "关闭 AAS",
       "exit_emulator": "关闭模拟器",
       "exit_aas_emulator": "关闭 AAS 和模拟器",
@@ -923,7 +926,8 @@
       "MinutesAgo": "{time}分钟前",
       "HoursAgo": "{time}小时前",
       "DaysAgo": "{time}天前",
-      "LongTimeAgo": "很久以前"
+      "LongTimeAgo": "很久以前",
+      "EtaDays": "剩余{time}天"
     },
     "AddAlas": {
       "PopupTitle": "添加新配置",

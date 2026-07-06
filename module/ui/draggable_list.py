@@ -4,6 +4,7 @@ import numpy as np
 
 from module.base.base import ModuleBase
 from module.base.button import ButtonWrapper
+from module.base.decorator import cached_property
 from module.base.timer import Timer
 from module.base.utils import area_size, random_rectangle_vector_opted
 from module.logger import logger
@@ -67,6 +68,10 @@ class DraggableList:
     def __hash__(self):
         return hash(self.name)
 
+    @cached_property
+    def ocr(self):
+        return self.ocr_class(self.search_button)
+
     def keyword2index(self, row: Keyword) -> int:
         try:
             return self.known_rows.index(row) + 1
@@ -88,8 +93,7 @@ class DraggableList:
         """
         Parse current rows to get list position.
         """
-        self.cur_buttons = self.ocr_class(self.search_button) \
-            .matched_ocr(main.device.image, self.keyword_class)
+        self.cur_buttons = self.ocr.matched_ocr(main.device.image, self.keyword_class)
         # Get indexes
         indexes = [self.keyword2index(row.matched_keyword)
                    for row in self.cur_buttons]
@@ -143,6 +147,13 @@ class DraggableList:
         if direction == 'right':
             return 'left'
 
+    def wait_bottom_appear(self, main: ModuleBase, skip_first_screenshot=True):
+        """
+        Returns:
+            bool: If waited
+        """
+        return False
+
     def insight_row(self, row: Keyword, main: ModuleBase, skip_first_screenshot=True) -> bool:
         """
         Args:
@@ -180,8 +191,11 @@ class DraggableList:
                 self.drag_page(self.drag_direction, main=main)
 
             # Wait for bottoming out
-            main.wait_until_stable(self.search_button, timer=Timer(
-                0, count=0), timeout=Timer(1.5, count=5))
+            self.wait_bottom_appear(main, skip_first_screenshot=False)
+            main.wait_until_stable(
+                self.search_button, timer=Timer(0, count=0),
+                timeout=Timer(1.5, count=5)
+            )
             skip_first_screenshot = True
             if self.cur_buttons and last_buttons == set(self.cur_buttons):
                 if bottom_check.reached():

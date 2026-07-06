@@ -1,16 +1,17 @@
 import copy
-import datetime
 import operator
 import threading
+from datetime import datetime, timedelta
 
 from module.base.decorator import cached_property, del_cached_property
 from module.base.filter import Filter
 from module.config.config_generated import GeneratedConfig
 from module.config.config_manual import ManualConfig
-from module.config.config_updater import ConfigUpdater
+from module.config.config_updater import ConfigUpdater, ensure_time, get_server_next_update, nearest_future
+from module.config.deep import deep_get, deep_set
 from module.config.stored.classes import iter_attribute
 from module.config.stored.stored_generated import StoredGenerated
-from module.config.utils import *
+from module.config.utils import DEFAULT_TIME, dict_to_kv, filepath_config, path_to_arg
 from module.config.watcher import ConfigWatcher
 from module.exception import RequestHumanTakeover, ScriptError
 from module.logger import logger
@@ -104,17 +105,22 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
             logger.info("Using template config, which is read only")
             self.auto_update = False
             self.task = name_to_function("template")
+        self.init_task(task)
+
+    def init_task(self, task=None):
+        if self.is_template_config:
+            return
+
+        self.load()
+        if task is None:
+            # Bind `Alas` by default which includes emulator settings.
+            task = name_to_function("Alas")
         else:
-            self.load()
-            if task is None:
-                # Bind `Alas` by default which includes emulator settings.
-                task = name_to_function("Alas")
-            else:
-                # Bind a specific task for debug purpose.
-                task = name_to_function(task)
-            self.bind(task)
-            self.task = task
-            self.save()
+            # Bind a specific task for debug purpose.
+            task = name_to_function(task)
+        self.bind(task)
+        self.task = task
+        self.save()
 
     def load(self):
         self.data = self.read_file(self.config_name)
@@ -173,6 +179,10 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
         return deep_get(
             self.data, keys="Alas.Optimization.CloseGameDuringWait", default=False
         )
+
+    @property
+    def is_actual_task(self):
+        return self.task.command.lower() not in ['alas', 'template']
 
     @cached_property
     def stored(self) -> StoredGenerated:
@@ -281,6 +291,7 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
                     deep_set(self.data, keys=f"{task}.Scheduler.NextRun", value=now)
 
         limit_next_run(['BattlePass'], limit=now + timedelta(days=31, seconds=-1))
+        limit_next_run(['Weekly'], limit=now + timedelta(days=7, seconds=-1))
         limit_next_run(self.args.keys(), limit=now + timedelta(hours=24, seconds=-1))
 
     def override(self, **kwargs):
@@ -487,19 +498,18 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
     def is_task_enabled(self, task):
         return bool(self.cross_get(keys=[task, 'Scheduler', 'Enable'], default=False))
 
-    def update_daily_quests(self):
-        """
-        Raises:
-            TaskEnd: Call task `DailyQuest` and stop current task
-        """
-        if self.stored.DailyActivity.is_expired():
-            logger.info('DailyActivity expired, call task to update')
-            self.task_call('DailyQuest')
-            self.task_stop()
-        if self.stored.DailyQuest.is_expired():
-            logger.info('DailyQuest expired, call task to update')
-            self.task_call('DailyQuest')
-            self.task_stop()
+    # def update_daily_quests(self):
+    #     """
+    #     Raises:
+    #         TaskEnd: Call task `DailyQuest` and stop current task
+    #     """
+    #     with self.multi_set():
+    #         if self.stored.DailyActivity.is_expired():
+    #             logger.info('DailyActivity expired')
+    #             self.stored.DailyActivity.clear()
+    #         if self.stored.DailyQuest.is_expired():
+    #             logger.info('DailyQuest expired')
+    #             self.stored.DailyQuest.clear()
 
     @property
     def DEVICE_SCREENSHOT_METHOD(self):

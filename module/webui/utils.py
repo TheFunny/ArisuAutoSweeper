@@ -15,7 +15,7 @@ from pywebio.session import eval_js, info as session_info, register_thread, run_
 from rich.console import Console
 from rich.terminal_theme import TerminalTheme
 
-from module.config.utils import deep_iter
+from module.config.deep import deep_iter
 from module.logger import logger
 from module.webui.setting import State
 

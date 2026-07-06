@@ -2,7 +2,8 @@ from datetime import datetime
 from functools import cached_property as functools_cached_property
 
 from module.base.decorator import cached_property
-from module.config.utils import DEFAULT_TIME, deep_get, get_server_last_monday_update, get_server_last_update
+from module.config.deep import deep_get
+from module.config.utils import DEFAULT_TIME, get_server_last_monday_update, get_server_last_update
 
 
 # from module.exception import ScriptError
@@ -134,6 +135,9 @@ class StoredExpiredAtMonday0400(StoredBase):
 class StoredInt(StoredBase):
     value = 0
 
+    def clear(self):
+        self.value = 0
+
 
 class StoredCounter(StoredBase):
     value = 0
@@ -147,6 +151,9 @@ class StoredCounter(StoredBase):
         with self._config.multi_set():
             self.value = value
             self.total = total
+
+    def clear(self):
+        self.value = 0
 
     def to_counter(self) -> str:
         return f'{self.value}/{self.total}'

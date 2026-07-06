@@ -315,6 +315,16 @@ pre.rich-traceback-code {
     margin: 0;
 }
 
+.anim-rotate {
+    animation: rotate-keyframes 0.4s linear infinite
+}
+
+@keyframes rotate-keyframes {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
 #pywebio-scope-contents {
     margin-top: 0;
     overflow-y: auto;
@@ -408,13 +418,13 @@ pre.rich-traceback-code {
 #pywebio-scope-dashboard > i {
     flex-grow: 1;
     align-self: flex-end;
-    width: 10rem;
+    width: 9.5rem;
 }
 
 [id^="pywebio-scope-dashboard-row-"] {
     display: flex;
     flex-grow: 1;
-    width: 10rem;
+    width: 9.5rem;
 }
 
 .dashboard-icon {
@@ -436,16 +446,26 @@ pre.rich-traceback-code {
     overflow-wrap: break-word;
 }
 
+*[style*="--dashboard-bold--"] {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #7a77bb;
+    overflow-wrap: break-word;
+}
+
 [id^="pywebio-scope-dashboard-row-"] p {
     margin-bottom: 0;
 }
 
 [id^="pywebio-scope-dashboard-value-"] {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
     height: 1.5rem;
 }
 
+[id^="pywebio-scope-arg_stored-stored-value-"] p {
+    margin-bottom: 0;
+}
 
 #pywebio-scope-log {
     line-height: 1.2;
@@ -550,19 +570,19 @@ pre.rich-traceback-code {
     padding-right: .25rem;
 }
 
-*[style*="--loading-grow--"] {
+*[style*="--loading-grow--"] > div {
     width: 1.5rem;
     height: 1.5rem;
 }
 
-*[style*="--loading-border--"] {
+*[style*="--loading-border--"] > div {
     width: 1.5rem;
     height: 1.5rem;
     border: .2em solid currentColor;
     border-right-color: transparent;
 }
 
-*[style*="--loading-border-fill--"] {
+*[style*="--loading-border-fill--"] > div {
     width: 1.5rem;
     height: 1.5rem;
     border: .2em solid currentColor;

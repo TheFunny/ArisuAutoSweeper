@@ -6,7 +6,7 @@ from module.exception import ScriptError
 
 
 class Button(Resource):
-    def __init__(self, file, area, search, color, button):
+    def __init__(self, file, area, search, color, button, posi=None):
         """
         Args:
             file: Filepath to an assets
@@ -20,6 +20,7 @@ class Button(Resource):
         self.search: t.Tuple[int, int, int, int] = search
         self.color: t.Tuple[int, int, int] = color
         self._button: t.Tuple[int, int, int, int] = button
+        self.posi: t.Optional[t.Tuple[int, int]] = posi
 
         self.resource_add(self.file)
         self._button_offset: t.Tuple[int, int] = (0, 0)
@@ -28,18 +29,60 @@ class Button(Resource):
     def button(self):
         return area_offset(self._button, self._button_offset)
 
-    def load_offset(self, button):
-        self._button_offset = button._button_offset
+    def load_offset(self, offset):
+        """
+        Args:
+            offset (Button | ButtonWrapper | tuple[int, int]):
+        """
+        if isinstance(offset, ButtonWrapper):
+            offset = offset.matched_button._button_offset
+        elif isinstance(offset, Button):
+            offset = offset._button_offset
+        self._button_offset = offset
+
+    def load_search(self, search):
+        """
+        Args:
+            search (Button | ButtonWrapper | tuple[int, int]):
+        """
+        if isinstance(search, ButtonWrapper):
+            search = search.search
+        elif isinstance(search, Button):
+            search = search.search
+        self.search = search
 
     def clear_offset(self):
         self._button_offset = (0, 0)
+
+    def is_offset_in(self, x=0, y=0):
+        """
+        Args:
+            x:
+            y:
+
+        Returns:
+            bool: If _button_offset is in (-x, -y, x, y)
+        """
+        if x:
+            if self._button_offset[0] < -x or self._button_offset[0] > x:
+                return False
+        if y:
+            if self._button_offset[1] < -y or self._button_offset[1] > y:
+                return False
+        return True
 
     @cached_property
     def image(self):
         return load_image(self.file, self.area)
 
+    @cached_property
+    def image_luma(self):
+        return rgb2luma(self.image)
+
+
     def resource_release(self):
         del_cached_property(self, 'image')
+        del_cached_property(self, 'image_luma')
         self.clear_offset()
 
     def __str__(self):
@@ -92,6 +135,29 @@ class Button(Resource):
             image = crop(image, self.search, copy=False)
         res = cv2.matchTemplate(self.image, image, cv2.TM_CCOEFF_NORMED)
         _, sim, _, point = cv2.minMaxLoc(res)
+        self._button_offset = np.array(point) + self.search[:2] - self.area[:2]
+
+        return sim > similarity
+
+    def match_template_luma(self, image, similarity=0.85, direct_match=False) -> bool:
+        """
+        Detects assets by template matching.
+
+        To Some buttons, its location may not be static, `_button_offset` will be set.
+
+        Args:
+            image: Screenshot.
+            similarity (float): 0-1.
+            direct_match: True to ignore `self.search`
+
+        Returns:
+            bool.
+        """
+        if not direct_match:
+            image = crop(image, self.search, copy=False)
+        image = rgb2luma(image)
+        res = cv2.matchTemplate(self.image_luma, image, cv2.TM_CCOEFF_NORMED)
+        _, sim, _, point = cv2.minMaxLoc(res)
 
         self._button_offset = np.array(point) + self.search[:2] - self.area[:2]
         return sim > similarity
@@ -134,7 +200,7 @@ class Button(Resource):
         Returns:
             bool.
         """
-        matched = self.match_template(image, similarity=similarity, direct_match=direct_match)
+        matched = self.match_template_luma(image, similarity=similarity, direct_match=direct_match)
         if not matched:
             return False
 
@@ -204,6 +270,13 @@ class ButtonWrapper(Resource):
     def match_template(self, image, similarity=0.85, direct_match=False) -> bool:
         for assets in self.buttons:
             if assets.match_template(image, similarity=similarity, direct_match=direct_match):
+                self._matched_button = assets
+                return True
+        return False
+
+    def match_template_luma(self, image, similarity=0.85, direct_match=False) -> bool:
+        for assets in self.buttons:
+            if assets.match_template_luma(image, similarity=similarity, direct_match=direct_match):
                 self._matched_button = assets
                 return True
         return False
@@ -284,10 +357,8 @@ class ButtonWrapper(Resource):
         Load offset from another button.
 
         Args:
-            button (Button, ButtonWrapper):
+            button (Button | ButtonWrapper | tuple[int, int]):
         """
-        if isinstance(button, ButtonWrapper):
-            button = button.matched_button
         for b in self.iter_buttons():
             b.load_offset(button)
 
@@ -295,16 +366,27 @@ class ButtonWrapper(Resource):
         for b in self.iter_buttons():
             b.clear_offset()
 
-    def load_search(self, area):
+    def is_offset_in(self, x=0, y=0):
+        """
+        Args:
+            x:
+            y:
+
+        Returns:
+            bool: If _button_offset is in (-x, -y, x, y)
+        """
+        return self.matched_button.is_offset_in(x=x, y=y)
+
+    def load_search(self, search):
         """
         Set `search` attribute.
         Note that this method is irreversible.
 
         Args:
-            area:
+            search (Button | ButtonWrapper | tuple[int, int, int, int]):
         """
         for b in self.iter_buttons():
-            b.search = area
+            b.load_search(search)
 
     def set_search_offset(self, offset):
         """

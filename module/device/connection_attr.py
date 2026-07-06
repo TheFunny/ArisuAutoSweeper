@@ -7,6 +7,7 @@ from adbutils import AdbClient, AdbDevice
 
 from module.base.decorator import cached_property
 from module.config.config import AzurLaneConfig
+from module.device.method.utils import get_serial_pair
 from module.exception import RequestHumanTakeover
 from module.logger import logger
 
@@ -48,27 +49,47 @@ class ConnectionAttr:
         self.serial_check()
         self.config.DEVICE_OVER_HTTP = self.is_over_http
 
-
     @staticmethod
-    def revise_serial(serial):
-        serial = serial.replace(' ', '')
+    def revise_serial(serial: str):
+        """
+        Tons of fool-proof fixes to handle manual serial input
+        To load a serial:
+            serial = SerialStr.revise_serial(serial)
+        """
+        serial = serial.strip().replace(' ', '')
         # 127。0。0。1：5555
         serial = serial.replace('。', '.').replace('，', '.').replace(',', '.').replace('：', ':')
         # 127.0.0.1.5555
         serial = serial.replace('127.0.0.1.', '127.0.0.1:')
+        # 5555,16384 (actually "5555.16384" because replace(',', '.'))
+        if '.' in serial:
+            left, _, right = serial.partition('.')
+            try:
+                left = int(left)
+                right = int(right)
+                if 5500 < left < 6000 and 16300 < right < 20000:
+                    serial = str(right)
+            except ValueError:
+                pass
         # 16384
-        try:
-            port = int(serial)
-            if 1000 < port < 65536:
-                serial = f'127.0.0.1:{port}'
-        except ValueError:
-            pass
+        if serial.isdigit():
+            try:
+                port = int(serial)
+                if 1000 < port < 65536:
+                    serial = f'127.0.0.1:{port}'
+            except ValueError:
+                pass
         # 夜神模拟器 127.0.0.1:62001
         # MuMu模拟器12127.0.0.1:16384
         if '模拟' in serial:
+            import re
             res = re.search(r'(127\.\d+\.\d+\.\d+:\d+)', serial)
             if res:
                 serial = res.group(1)
+        # 12127.0.0.1:16384
+        serial = serial.replace('12127.0.0.1', '127.0.0.1')
+        # auto127.0.0.1:16384
+        serial = serial.replace('auto127.0.0.1', '127.0.0.1').replace('autoemulator', 'emulator')
         return str(serial)
 
     def serial_check(self):
@@ -124,14 +145,17 @@ class ConnectionAttr:
 
     @cached_property
     def port(self) -> int:
+        port_serial, _ = get_serial_pair(self.serial)
+        if port_serial is None:
+            port_serial = self.serial
         try:
-            return int(self.serial.split(':')[1])
+            return int(port_serial.split(':')[1])
         except (IndexError, ValueError):
             return 0
 
     @cached_property
     def is_mumu12_family(self):
-        # 127.0.0.1:16XXX
+        # 127.0.0.1:16384 + 32*n, assume 32 instances at max
         return 16384 <= self.port <= 17408
 
     @cached_property
@@ -141,8 +165,18 @@ class ConnectionAttr:
         return self.serial == '127.0.0.1:7555' or self.is_mumu12_family
 
     @cached_property
+    def is_ldplayer_bluestacks_family(self):
+        # Note that LDPlayer and BlueStacks have the same serial range
+        # 127.0.0.1:5555 + 2*n, assume 32 instances at max
+        return self.serial.startswith('emulator-') or 5555 <= self.port <= 5619
+
+    @cached_property
     def is_nox_family(self):
         return 62001 <= self.port <= 63025
+
+    @cached_property
+    def is_vmos(self):
+        return 5667 <= self.port <= 5699
 
     @cached_property
     def is_emulator(self):
@@ -151,6 +185,10 @@ class ConnectionAttr:
     @cached_property
     def is_network_device(self):
         return bool(re.match(r'\d+\.\d+\.\d+\.\d+:\d+', self.serial))
+
+    @cached_property
+    def is_local_network_device(self):
+        return bool(re.match(r'192\.168\.\d+\.\d+:\d+', self.serial))
 
     @cached_property
     def is_over_http(self):

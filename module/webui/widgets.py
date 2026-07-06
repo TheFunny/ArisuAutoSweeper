@@ -1,4 +1,3 @@
-import copy
 import json
 import random
 import string
@@ -325,23 +324,68 @@ def put_arg_input(kwargs: T_Output_Kwargs) -> Output:
     )
 
 
-def product_stored_row(kwargs: T_Output_Kwargs, key, value):
-    kwargs = copy.copy(kwargs)
-    kwargs["name"] += f'_{key}'
-    kwargs["value"] = value
-    return put_input(**kwargs).style("--input--")
+def product_stored_row(key, value):
+    if key[-1].isdigit():
+        # quest1, quest2, quest3
+        return [put_text(value).style("--dashboard-time--")]
+    else:
+        # calyx, relic
+        # 3 (relic)
+        return [
+            put_text(value).style("--dashboard-value--"),
+            put_text(f" ({key})").style("--dashboard-time--"),
+        ]
 
 
 def put_arg_stored(kwargs: T_Output_Kwargs) -> Output:
     name: str = kwargs["name"]
-    kwargs["disabled"] = True
+    # kwargs["disabled"] = True
 
     values = kwargs.pop("value", {})
+    value = values.pop("value", "")
+    total = values.pop("total", "")
     time_ = values.pop("time", "")
+    comment = values.pop("comment", "")
 
-    rows = [product_stored_row(kwargs, key, value) for key, value in values.items() if value]
+    if value != "" and total != "":
+        # 0 / 100
+        rows = [put_scope(f"dashboard-value-{name}", [
+            put_text(value).style("--dashboard-value--"),
+            put_text(f" / {total}").style("--dashboard-time--"),
+        ])]
+    elif value != "" and comment != "":
+        # 88% <1.2d
+        rows = [put_scope(f"dashboard-value-{name}", [
+            put_text(value).style("--dashboard-value--"),
+            put_text(f" {comment}").style("--dashboard-time--"),
+        ])]
+    elif value != "":
+        # 100
+        rows = [put_scope(f"dashboard-value-{name}", [
+            put_text(value).style("--dashboard-value--")
+        ])]
+    else:
+        # No Data
+        rows = [put_scope(f"dashboard-value-{name}", [
+            put_text(t("Gui.Dashboard.NoData")).style("--dashboard-value--")
+        ])]
+    # Add other key-value in stored
+    if values:
+        rows += [
+            put_scope(f"dashboard-value-{name}-{key}", product_stored_row(key, value))
+            for key, value in values.items() if value != ""
+        ]
+    # Add time
     if time_:
-        rows += [product_stored_row(kwargs, "time", time_)]
+        rows.append(
+            put_text(time_).style("--dashboard-time--")
+        )
+    else:
+        # Blank row
+        rows.append(
+            put_text(" ").style("--dashboard-time--")
+        )
+
     return put_scope(
         f"arg_container-stored-{name}",
         [
@@ -350,6 +394,48 @@ def put_arg_stored(kwargs: T_Output_Kwargs) -> Output:
                 f"arg_stored-stored-value-{name}",
                 rows,
             )
+        ]
+    )
+
+
+def put_arg_planner(kwargs: T_Output_Kwargs) -> Output | None:
+    name: str = kwargs["name"]
+
+    values = kwargs.pop("value", {})
+    try:
+        progress = float(values["progress"])
+    except (KeyError, ValueError):
+        # Hide items not needed by the planner
+        return None
+    eta = values.get("eta", 0)
+    if eta > 0:
+        eta = f" - {t('Gui.Dashboard.EtaDays', time=eta)}"
+    else:
+        eta = ""
+
+    value = values.pop('value', 0)
+    if isinstance(value, dict):
+        value = tuple(value.values())
+    total = values.pop('total', 0)
+    if isinstance(total, dict):
+        total = tuple(total.values())
+
+    if progress < 100:
+        row = put_scope(f"arg_stored-stored-value-{name}", [
+            put_text(f"{progress:.2f}%").style("--dashboard-bold--"),
+            put_text(f"{value} / {total}{eta}").style("--dashboard-time--"),
+        ])
+    else:
+        row = put_scope(f"arg_stored-stored-value-{name}", [
+            put_text(f"{progress:.2f}%").style("--dashboard-value--"),
+            put_text(f"{value} / {total}").style("--dashboard-time--"),
+        ])
+
+    return put_scope(
+        f"arg_container-planner-{name}",
+        [
+            get_title_help(kwargs),
+            row,
         ]
     )
 
@@ -501,6 +587,7 @@ _widget_type_to_func: Dict[str, Callable] = {
     "storage": put_arg_storage,
     "state": put_arg_state,
     "stored": put_arg_stored,
+    "planner": put_arg_planner,
 }
 
 
