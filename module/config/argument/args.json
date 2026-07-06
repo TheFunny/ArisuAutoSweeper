@@ -42,7 +42,8 @@
           "DroidCast",
           "DroidCast_raw",
           "scrcpy",
-          "nemu_ipc"
+          "nemu_ipc",
+          "ldopengl"
         ],
         "display": "hide"
       },
