@@ -16,6 +16,11 @@ VALID_SERVER = {
 }
 VALID_PACKAGE = set(list(VALID_SERVER.values()))
 
+DICT_PACKAGE_TO_ACTIVITY = {
+    'com.YostarJP.BlueArchive': 'com.yostarjp.bluearchive.MxUnityPlayerActivity',
+    'com.nexon.bluearchive': 'com.nexon.bluearchive.MxUnityPlayerActivity',
+}
+
 
 def set_lang(lang_: str):
     """
