@@ -99,7 +99,7 @@ class MomoTalkUI(UI):
         If yes, open it otherwise it means no student available for interaction.
         """
         self.ui_ensure(page_main)
-        if self.match_color(NOTIFICATION_BADGE, threshold=80):
+        if self.match_color(NOTIFICATION_BADGE, threshold=120):
             self.ui_ensure(page_momo_talk)
             while SWITCH_SIDEBAR.get(self) != "message":
                 SWITCH_SIDEBAR.set("message", self)
