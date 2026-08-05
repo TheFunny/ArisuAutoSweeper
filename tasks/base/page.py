@@ -69,7 +69,7 @@ class Page:
 
 
 # Main Page
-page_main = Page(MAIN_GO_TO_PURCHASE)
+page_main = Page(MAIN_GO_TO_TASK)
 
 # Cafe
 page_cafe = Page(CAFE_CHECK)
