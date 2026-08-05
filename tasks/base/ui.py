@@ -450,6 +450,11 @@ class UI(MainPage):
         """
         pass
 
+    @Config.when(Emulator_GameLanguage='jp')
+    def close_popup(self, check_button):
+        pass
+
+    @Config.when(Emulator_GameLanguage=None)
     def close_popup(self, check_button):
         if not self.match_color(check_button):
             timer = Timer(5, 5).start()
@@ -464,3 +469,4 @@ class UI(MainPage):
                     raise RequestHumanTakeover
                 while not wait.reached():
                     pass
+
