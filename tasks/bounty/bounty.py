@@ -21,10 +21,12 @@ class BountyStatus(Flag):
 class Bounty(BountyUI):
     @property
     def bounty_info(self):
-        bounty = (SELECT_HIGHWAY, SELECT_DESERT_RAILROAD, SELECT_SCHOOLHOUSE)
-        check = (CHECK_HIGHWAY, CHECK_DESERT_RAILROAD, CHECK_SCHOOLHOUSE)
-        stage = (self.config.Highway_Stage, self.config.DesertRailroad_Stage, self.config.Schoolhouse_Stage)
-        count = (self.config.Highway_Count, self.config.DesertRailroad_Count, self.config.Schoolhouse_Count)
+        bounty = (SELECT_HIGHWAY, SELECT_DESERT_RAILROAD, SELECT_SCHOOLHOUSE, SELECT_ROAD, SELECT_MANSION)
+        check = (CHECK_HIGHWAY, CHECK_DESERT_RAILROAD, CHECK_SCHOOLHOUSE, CHECK_ROAD, CHECK_MANSION)
+        stage = (self.config.Highway_Stage, self.config.DesertRailroad_Stage, self.config.Schoolhouse_Stage,
+                 self.config.Road_Stage, self.config.Mansion_Stage)
+        count = (self.config.Highway_Count, self.config.DesertRailroad_Count, self.config.Schoolhouse_Count,
+                 self.config.Road_Count, self.config.Mansion_Count)
         info = zip(bounty, check, stage, count)
         return filter(lambda x: x[3] > 0, info)
 
