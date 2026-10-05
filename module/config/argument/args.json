@@ -827,6 +827,52 @@
         "type": "input",
         "value": 2
       }
+    },
+    "Road": {
+      "Stage": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 0
+      }
+    },
+    "Mansion": {
+      "Stage": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "Count": {
+        "type": "input",
+        "value": 0
+      }
     }
   },
   "Scrimmage": {
