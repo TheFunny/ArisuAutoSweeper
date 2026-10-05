@@ -91,6 +91,14 @@
     "Schoolhouse": {
       "Stage": 0,
       "Count": 2
+    },
+    "Road": {
+      "Stage": 0,
+      "Count": 0
+    },
+    "Mansion": {
+      "Stage": 0,
+      "Count": 0
     }
   },
   "Scrimmage": {

@@ -54,6 +54,28 @@ CHECK_HIGHWAY = ButtonWrapper(
         button=(104, 143, 391, 188),
     ),
 )
+CHECK_MANSION = ButtonWrapper(
+    name='CHECK_MANSION',
+    jp=Button(
+        file='./assets/jp/bounty/CHECK_MANSION.png',
+        area=(108, 148, 313, 178),
+        search=(88, 128, 333, 198),
+        color=(167, 173, 178),
+        button=(108, 148, 313, 178),
+    ),
+    en=None,
+)
+CHECK_ROAD = ButtonWrapper(
+    name='CHECK_ROAD',
+    jp=Button(
+        file='./assets/jp/bounty/CHECK_ROAD.png',
+        area=(108, 148, 313, 178),
+        search=(88, 128, 333, 198),
+        color=(168, 175, 179),
+        button=(108, 148, 313, 178),
+    ),
+    en=None,
+)
 CHECK_SCHOOLHOUSE = ButtonWrapper(
     name='CHECK_SCHOOLHOUSE',
     jp=Button(
@@ -92,10 +114,10 @@ SELECT_DESERT_RAILROAD = ButtonWrapper(
     name='SELECT_DESERT_RAILROAD',
     jp=Button(
         file='./assets/jp/bounty/SELECT_DESERT_RAILROAD.png',
-        area=(1066, 271, 1224, 311),
-        search=(1046, 251, 1244, 331),
-        color=(178, 188, 199),
-        button=(1066, 271, 1224, 311),
+        area=(1071, 290, 1219, 321),
+        search=(1051, 270, 1239, 341),
+        color=(155, 166, 181),
+        button=(1071, 290, 1219, 321),
     ),
     en=Button(
         file='./assets/en/bounty/SELECT_DESERT_RAILROAD.png',
@@ -122,14 +144,36 @@ SELECT_HIGHWAY = ButtonWrapper(
         button=(1073, 167, 1223, 202),
     ),
 )
+SELECT_MANSION = ButtonWrapper(
+    name='SELECT_MANSION',
+    jp=Button(
+        file='./assets/jp/bounty/SELECT_MANSION.png',
+        area=(1156, 657, 1221, 688),
+        search=(1136, 637, 1241, 708),
+        color=(145, 158, 175),
+        button=(1156, 657, 1221, 688),
+    ),
+    en=None,
+)
+SELECT_ROAD = ButtonWrapper(
+    name='SELECT_ROAD',
+    jp=Button(
+        file='./assets/jp/bounty/SELECT_ROAD.png',
+        area=(1156, 535, 1219, 565),
+        search=(1136, 515, 1239, 585),
+        color=(146, 159, 175),
+        button=(1156, 535, 1219, 565),
+    ),
+    en=None,
+)
 SELECT_SCHOOLHOUSE = ButtonWrapper(
     name='SELECT_SCHOOLHOUSE',
     jp=Button(
         file='./assets/jp/bounty/SELECT_SCHOOLHOUSE.png',
-        area=(1154, 381, 1223, 417),
-        search=(1134, 361, 1243, 437),
-        color=(173, 185, 198),
-        button=(1154, 381, 1223, 417),
+        area=(1157, 412, 1220, 443),
+        search=(1137, 392, 1240, 463),
+        color=(157, 170, 185),
+        button=(1157, 412, 1220, 443),
     ),
     en=Button(
         file='./assets/en/bounty/SELECT_SCHOOLHOUSE.png',

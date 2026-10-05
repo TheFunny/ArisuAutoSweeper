@@ -340,6 +340,56 @@
       "help": "Sweep the selected stage for X times"
     }
   },
+  "Road": {
+    "_info": {
+      "name": "Road",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "0": "Auto select",
+      "1": "01 - Burning Road A",
+      "2": "02 - Burning Road B",
+      "3": "03 - Burning Road C",
+      "4": "04 - Burning Road D",
+      "5": "05 - Burning Road E",
+      "6": "06 - Burning Road F",
+      "7": "07 - Burning Road G",
+      "8": "08 - Burning Road H",
+      "9": "09 - Burning Road I",
+      "10": "10 - Burning Road J"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "Mansion": {
+    "_info": {
+      "name": "Mansion",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "0": "Auto select",
+      "1": "01 - Historic Mansion A",
+      "2": "02 - Historic Mansion B",
+      "3": "03 - Historic Mansion C",
+      "4": "04 - Historic Mansion D",
+      "5": "05 - Historic Mansion E",
+      "6": "06 - Historic Mansion F",
+      "7": "07 - Historic Mansion G",
+      "8": "08 - Historic Mansion H",
+      "9": "09 - Historic Mansion I",
+      "10": "10 - Historic Mansion J"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
   "Scrimmage": {
     "_info": {
       "name": "Scrimmage Settings",

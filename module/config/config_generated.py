@@ -67,6 +67,14 @@ class GeneratedConfig:
     Schoolhouse_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     Schoolhouse_Count = 2
 
+    # Group `Road`
+    Road_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    Road_Count = 0
+
+    # Group `Mansion`
+    Mansion_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    Mansion_Count = 0
+
     # Group `Scrimmage`
     Scrimmage_OnError = 'skip'  # stop, skip
 
