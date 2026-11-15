@@ -121,10 +121,10 @@ SELECT_DESERT_RAILROAD = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/bounty/SELECT_DESERT_RAILROAD.png',
-        area=(989, 270, 1223, 308),
-        search=(969, 250, 1243, 328),
-        color=(196, 203, 212),
-        button=(989, 270, 1223, 308),
+        area=(996, 290, 1221, 320),
+        search=(976, 270, 1241, 340),
+        color=(181, 190, 201),
+        button=(996, 290, 1221, 320),
     ),
 )
 SELECT_HIGHWAY = ButtonWrapper(
@@ -138,10 +138,10 @@ SELECT_HIGHWAY = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/bounty/SELECT_HIGHWAY.png',
-        area=(1073, 167, 1223, 202),
-        search=(1053, 147, 1243, 222),
-        color=(192, 201, 211),
-        button=(1073, 167, 1223, 202),
+        area=(1084, 169, 1219, 203),
+        search=(1064, 149, 1239, 223),
+        color=(186, 195, 206),
+        button=(1084, 169, 1219, 203),
     ),
 )
 SELECT_MANSION = ButtonWrapper(
@@ -177,9 +177,9 @@ SELECT_SCHOOLHOUSE = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/bounty/SELECT_SCHOOLHOUSE.png',
-        area=(1055, 378, 1226, 415),
-        search=(1035, 358, 1246, 435),
-        color=(198, 206, 215),
-        button=(1055, 378, 1226, 415),
+        area=(1067, 413, 1217, 441),
+        search=(1047, 393, 1237, 461),
+        color=(176, 185, 197),
+        button=(1067, 413, 1217, 441),
     ),
 )
